@@ -121,3 +121,26 @@ This knowledge system will support:
 - utility reporting lessons
 - assessment questions
 - future accreditation-ready course material
+---
+
+## Future roadmap: iREPS Billing Module
+
+In the iREPS roadmap, a future stage will include a full Billing Module.
+
+The finance and revenue control knowledge system must therefore be designed with billing in mind.
+
+For now, this section focuses on:
+
+- meter data quality
+- meter reading evidence
+- billing readiness
+- revenue protection
+- exception reporting
+- finance controls
+- field-to-office evidence
+- supervisor review
+- utility revenue optimisation
+
+The future Billing Module may later expand this area to include deeper billing workflows, billing calculations, billing review, billing approvals, customer billing outputs, and integration with municipal finance systems.
+
+This roadmap note must be kept in mind when designing finance-related Academy lessons, in-app help, reports, and future courses.
