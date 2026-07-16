@@ -8,7 +8,7 @@ The goal is to explain each term in simple language while preserving the correct
 
 The iREPS Master Dictionary must be reviewed and refined continuously. Every new iREPS word, acronym, workflow name, module name, role, data concept, and operational term must be added here so that all iREPS documentation and training uses one approved meaning.
 
-This is Version 1.2 of the iREPS Master Dictionary. It preserves Version 1.1 locked meanings and enriches the master dictionary using the TEST environment readiness workstream, iREPS Test APK and Web setup, Firebase lookup migration, offline lookup persistence, Cadastral Pipeline v6 context, Zamo demo walkthrough items, and the current logout/sign-out stability investigation.
+This is Version 1.4 of the iREPS Master Dictionary. It preserves the locked meanings from Version 1.3 and adds the dedicated Sales Pipeline Concepts section required by the iREPS Sales Pipeline rules. It also separates sales matching from operational visibility: the Sales Pipeline may establish whether approved sales data exists for a meter, but only approved operational meter-registration, Meter Discovery, and Meter Installation writers may create or change operational VISIBLE / INVISIBLE values.
 
 ## 1. Core iREPS Concepts
 
@@ -346,7 +346,7 @@ This is Version 1.2 of the iREPS Master Dictionary. It preserves Version 1.1 loc
 
 - **Simple meaning:** A transaction or work record in iREPS.
 
-- **Detailed explanation:** A Transaction represents a specific piece of operational work in iREPS. It records the workflow, assignment, execution, outcome, user actions, evidence, and status changes. Transactions are central to iREPS because they preserve what was done, who did it, when it was done, where it was done, and what result was produced.
+- **Detailed explanation:** A Transaction represents a specific piece of operational work in iREPS. It records the workflow, assignment, execution, outcome, user actions, evidence, and status changes. Transactions are central to iREPS because they preserve what was done, who did it, when it was done, where it was done, and what result was produced. A Transaction / TRN is not part of the iREPS Geography hierarchy because it is an action or work record on a meter or AST, not a geography level.
 
 - **Example:** A Meter Reading transaction records that a fieldworker visited a premise, captured a reading, submitted evidence, and completed the reading outcome.
 
@@ -426,17 +426,101 @@ This is Version 1.2 of the iREPS Master Dictionary. It preserves Version 1.1 loc
 
 ## 4. Asset and Location Concepts
 
+### Term: iREPS Geography
+
+- **Acronym:** None
+
+- **Simple meaning:** The approved iREPS location hierarchy from country down to meter.
+
+- **Detailed explanation:** iREPS Geography is the official way iREPS represents where work belongs. The locked geography hierarchy must always be shown as: Country → Province → District Municipality → Local Municipality / workbase / LM / Metro → Ward → ERF → Premise → Asset / AST / Meter. This hierarchy explains the location and operational scope of iREPS data. Transaction / TRN is not part of the geography hierarchy because a TRN is an action or work record performed on a meter or AST, not a place.
+
+- **Example:** A fieldworker works inside a selected workbase / LM and ward. The ward controls which ERFs appear. From an ERF, the user can open or create premises, then work with assets, ASTs, and meters.
+
+- **Related terms:** Country, Province, District Municipality, Local Municipality, Workbase, LM, Metro, Ward, ERF, Premise, Asset, AST, Meter, Operational Scope
+
+### Term: iREPS Geography Hierarchy
+
+- **Acronym:** None
+
+- **Simple meaning:** The locked diagram flow used to show geography in iREPS.
+
+- **Detailed explanation:** The iREPS Geography Hierarchy is the approved diagram flow for manuals, training, diagrams, and user guidance. It must be represented as: Country → Province → District Municipality → Local Municipality / workbase / LM / Metro → Ward → ERF → Premise → Asset / AST / Meter. The hierarchy stops at Meter. Transaction / TRN must not be added to this geography flow because TRN belongs to workflow and action concepts.
+
+- **Example:** The ERFs training page should show the user that ERFs sit below Ward and above Premise in the iREPS hierarchy.
+
+- **Related terms:** iREPS Geography, Ward, ERF, Premise, Asset, AST, Meter, Transaction (TRN)
+
+### Term: Country
+
+- **Acronym:** None
+
+- **Simple meaning:** The national geography level in iREPS.
+
+- **Detailed explanation:** Country is the top level of the iREPS Geography hierarchy. It groups all lower administrative and operational geography levels under the national context.
+
+- **Example:** South Africa is the country level for South African iREPS municipal work.
+
+- **Related terms:** iREPS Geography, Province, District Municipality, Local Municipality, Workbase
+
+### Term: Province
+
+- **Acronym:** None
+
+- **Simple meaning:** The provincial geography level below Country.
+
+- **Detailed explanation:** Province is the second level of the iREPS Geography hierarchy. It groups district municipalities, local municipalities, metros, wards, ERFs, and related operational records under the correct provincial context.
+
+- **Example:** Eastern Cape is a province that can contain district municipalities, local municipalities, wards, and ERFs.
+
+- **Related terms:** iREPS Geography, Country, District Municipality, Local Municipality, Ward
+
+### Term: District Municipality
+
+- **Acronym:** DM
+
+- **Simple meaning:** The district municipal geography level below Province.
+
+- **Detailed explanation:** District Municipality is an administrative geography level that groups local municipalities under a district context. In iREPS Geography, it sits between Province and Local Municipality / workbase / LM / Metro.
+
+- **Example:** OR Tambo District Municipality can contain local municipalities such as King Sabata Dalindyebo.
+
+- **Related terms:** DM, iREPS Geography, Province, Local Municipality, LM, Workbase
+
+### Term: Local Municipality
+
+- **Acronym:** LM
+
+- **Simple meaning:** A municipal geography and workbase level inside iREPS.
+
+- **Detailed explanation:** Local Municipality is the municipal level where iREPS operational work is commonly organised. In the locked iREPS Geography hierarchy, this level is represented as Local Municipality / workbase / LM / Metro because a user's operational workbase may be a local municipality or a metro.
+
+- **Example:** King Sabata Dalindyebo is a Local Municipality that can operate as a workbase in iREPS.
+
+- **Related terms:** LM, Workbase, Metro, Ward, Operational Scope
+
+### Term: Metro
+
+- **Acronym:** None
+
+- **Simple meaning:** A metropolitan municipality used as a workbase level in iREPS.
+
+- **Detailed explanation:** Metro is included in the locked iREPS Geography hierarchy at the same operational level as Local Municipality / workbase / LM. A metro can act as the user's workbase and contain wards, ERFs, premises, assets, and meters.
+
+- **Example:** City of Johannesburg can be treated as a Metro workbase in iREPS.
+
+- **Related terms:** Local Municipality, LM, Workbase, Ward, Operational Scope
+
 ### Term: Asset
 
 - **Acronym:** AST
 
 - **Simple meaning:** A physical or operational item that iREPS tracks.
 
-- **Detailed explanation:** An Asset is something with operational value that can be captured, located, updated, inspected, acted on, and tracked over time. In the meter context, the meter is an Asset with a lifetime. An Asset may have an identifier, location, status, linked premise, linked transactions, evidence, and operational history. AST is the iREPS acronym used for Asset.
+- **Detailed explanation:** An Asset is something with operational value that can be captured, located, updated, inspected, acted on, and tracked over time. In the locked iREPS Geography hierarchy, the final level is shown as Asset / AST / Meter because the meter is the key service asset used in many iREPS mobile workflows. A Transaction / TRN is not a geography level; it is an action or work record performed on an Asset / AST / Meter.
 
 - **Example:** A newly installed meter creates or updates an Asset record linked to the premise where the meter is installed.
 
-- **Related terms:** AST, Meter, Meter Installation, Meter Discovery, Operational Status, Transaction (TRN)
+- **Related terms:** AST, Meter, Meter Installation, Meter Discovery, Operational Status, Transaction (TRN), iREPS Geography
 
 ### Term: Premise
 
@@ -526,13 +610,13 @@ This is Version 1.2 of the iREPS Master Dictionary. It preserves Version 1.1 loc
 
 - **Acronym:** ERF
 
-- **Simple meaning:** A cadastral land parcel or property unit.
+- **Simple meaning:** A cadastral land parcel, property stand, or property unit.
 
-- **Detailed explanation:** An ERF is a cadastral property parcel used to understand land and property boundaries. In iREPS, ERFs help connect premises and municipal operations to a geographic and cadastral base.
+- **Detailed explanation:** An ERF is a cadastral property parcel used to understand land and property boundaries. In the locked iREPS Geography hierarchy, ERF sits below Ward and above Premise. ERFs help connect premises and municipal operations to the correct geographic and cadastral base.
 
 - **Example:** A premise may be located on ERF 1234 within a specific ward and local municipality.
 
-- **Related terms:** Premise, Ward, LM, Cadastral, Geofence
+- **Related terms:** Premise, Ward, LM, Cadastral, Geofence, iREPS Geography
 
 ### Term: Ward
 
@@ -540,11 +624,11 @@ This is Version 1.2 of the iREPS Master Dictionary. It preserves Version 1.1 loc
 
 - **Simple meaning:** A municipal ward area used for operational scope.
 
-- **Detailed explanation:** A ward is a local government area inside a municipality. In iREPS, ward scope is important because fieldwork, reporting, geofences, premises, ERFs, and operations are often organised by ward. Ward must be explicit for operational data and workflows.
+- **Detailed explanation:** A ward is a local government area inside a Local Municipality / workbase / LM / Metro. In the locked iREPS Geography hierarchy, Ward sits below Local Municipality / workbase / LM / Metro and above ERF. In iREPS Mobile, the selected ward controls which ERFs are loaded and shown on the ERFs page. Ward must be explicit for operational data and workflows.
 
 - **Example:** A fieldworker may be assigned meter reading work for a ward such as ZA21570003.
 
-- **Related terms:** LM, ERF, Premise, Geofence, Scope
+- **Related terms:** LM, Workbase, Metro, ERF, Premise, Geofence, Scope, iREPS Geography
 
 ### Term: LM
 
@@ -552,11 +636,11 @@ This is Version 1.2 of the iREPS Master Dictionary. It preserves Version 1.1 loc
 
 - **Simple meaning:** Local Municipality.
 
-- **Detailed explanation:** LM is the local municipality level in iREPS operational scope. Many iREPS workflows, records, and imports are organised by LM and then by ward. LM helps iREPS separate operational data by municipal jurisdiction.
+- **Detailed explanation:** LM is the local municipality level in iREPS operational scope. In the locked iREPS Geography hierarchy, this level is shown as Local Municipality / workbase / LM / Metro. Many iREPS workflows, records, and imports are organised by LM or Metro and then by Ward. LM helps iREPS separate operational data by municipal jurisdiction.
 
 - **Example:** King Sabata Dalindyebo Local Municipality uses LM pCode ZA2157 in the iREPS context.
 
-- **Related terms:** Ward, Municipality, LM pCode, Scope, Governance
+- **Related terms:** Ward, Municipality, LM pCode, Workbase, Metro, Scope, Governance, iREPS Geography
 
 ### Term: Geofence
 
@@ -582,139 +666,1113 @@ This is Version 1.2 of the iREPS Master Dictionary. It preserves Version 1.1 loc
 
 - **Related terms:** LM, Ward, Scope, Admin, Geography
 
-## 5. Meter Data and Sales Link Concepts
+## 5. Sales Pipeline Concepts
 
-### Term: Meter Master
+This section is the official iREPS terminology source for Sales Pipeline business, data, collection, validation, build, and upload concepts. The Sales Pipeline rules govern how the pipeline operates. This dictionary governs what the approved terms mean.
 
-- **Acronym:** MASTER
-
-- **Simple meaning:** A thin bridge record for a meter identity.
-
-- **Detailed explanation:** Meter Master connects meter identity across operational and sales-related contexts without loading large sales collections into the mobile app or Warehouse. It helps iREPS know whether a meter is in the sales repository, linked to an Asset, or visible for certain operational purposes. The Master record should remain a thin bridge, not a heavy operational collection.
-
-- **Example:** A normalized meter number can be checked against meter_master to see whether the meter exists in sales and whether it is already linked to an Asset.
-
-- **Related terms:** MASTER, Meter Discovery, Sales Repository, Visibility, Asset (AST), Normalized Meter Number
-
-### Term: MASTER
-
-- **Acronym:** MASTER
-
-- **Simple meaning:** The short name for Meter Master.
-
-- **Detailed explanation:** MASTER refers to the meter master bridge concept. It supports point lookups and identity linking for meters. It helps iREPS avoid expensive queries across large sales datasets while still giving controlled awareness of sales linkage.
-
-- **Example:** When a meter number is typed or scanned, iREPS can check MASTER to see whether the meter appears in the sales repository.
-
-- **Related terms:** Meter Master, Sales Repository, Visibility, Meter Discovery
-
-### Term: Normalized Meter Number
+### Term: Sales Pipeline
 
 - **Acronym:** None
 
-- **Simple meaning:** A cleaned, standard version of a meter number.
+- **Simple meaning:** The controlled process that prepares, validates, aggregates, links, and uploads approved sales data into iREPS.
 
-- **Detailed explanation:** A normalized meter number is the meter number after applying the same standard formatting rules everywhere. Normalization helps iREPS match the same meter even if users type spaces, lowercase letters, or different formatting. The same normalizer should be used in the form, backend lookup, Asset creation, Meter Master, and sales import logic.
+- **Detailed explanation:** The iREPS Sales Pipeline moves provider sales data through governed layers: RAW provider download → RAW STAGING → Atomic Sales → Monthly Sales → Meter Master → Sales All Meters. Each layer has a different purpose. The pipeline must preserve traceability, validate every required scope, reconcile totals, and stop when data is unsafe or inconsistent.
 
-- **Example:** A meter number typed as “010 236 70951” may be normalized to “01023670951”.
+- **Example:** A Conlog file for July 2026 is prepared for one LM and one month, converted into Atomic Sales, aggregated into Monthly Sales, and then included in controlled downstream Meter Master and Sales All Meters builds.
 
-- **Related terms:** Meter Master, Meter Number, Sales Repository, FormInputMeterNo
+- **Related terms:** RAW Provider Download, RAW STAGING, Atomic Sales, Monthly Sales, Meter Master, Sales All Meters
 
-### Term: Sales Repository
+### Term: Sales Provider
 
 - **Acronym:** None
 
-- **Simple meaning:** The source or collection where sales-related meter records are kept.
+- **Simple meaning:** The external system or company that supplies sales transaction data.
 
-- **Detailed explanation:** The sales repository contains meter numbers and related commercial or billing-side meter information. It is not the same as iREPS operational field data. In iREPS design, sales data should not be loaded into Warehouse or treated as normal field data. Instead, a thin Meter Master bridge can provide controlled awareness of whether a discovered meter appears in the sales repository.
+- **Detailed explanation:** A Sales Provider is the source of commercial or vending transactions used by the Sales Pipeline. Provider identity must remain explicit so iREPS knows where the sales data came from and does not mix incompatible provider data inside a provider-specific collection family.
 
-- **Example:** A discovered meter number is checked against the sales repository. If a match is found, the discovered meter is treated as VISIBLE.
+- **Example:** Conlog is the current governed sales provider for the TEST Sales Pipeline.
 
-- **Related terms:** Sales Data, Meter Master, MASTER, Visibility, Warehouse, Meter Discovery
+- **Related terms:** Conlog, Provider Code, Sales Data, Provider-neutral Architecture
+
+### Term: Provider Code
+
+- **Acronym:** None
+
+- **Simple meaning:** The approved short value used to identify a sales provider in data.
+
+- **Detailed explanation:** Provider Code is the canonical machine-readable identifier for the provider. The current governed value is `conlog`. A provider code must be validated and must not be silently changed, guessed, or mixed with another provider’s records.
+
+- **Example:** A Sales All Meters document currently uses `provider: "conlog"`.
+
+- **Related terms:** Sales Provider, Conlog, Sales All Meters
+
+### Term: Conlog
+
+- **Acronym:** None
+
+- **Simple meaning:** The current vending and sales-data provider used by the governed iREPS Sales Pipeline.
+
+- **Detailed explanation:** Conlog is the current provider for the active TEST collection family. The current collections retain Conlog-specific names during TEST stabilisation. A future provider-neutral redesign may support other providers, but that is a separate governed architecture and migration process.
+
+- **Example:** Conlog portal downloads are placed unchanged in the RAW sales folder before pipeline preparation.
+
+- **Related terms:** Sales Provider, Provider Code, Conlog Sales Collection Family, Provider-neutral Architecture
 
 ### Term: Sales Data
 
 - **Acronym:** None
 
-- **Simple meaning:** Meter or customer data from the municipal sales or billing environment.
+- **Simple meaning:** Commercial transaction and meter-related information received from a sales or vending environment.
 
-- **Detailed explanation:** Sales Data may contain meter information from municipal commercial systems. It is not the same as iREPS operational field data. The mobile app should not preload all sales meters into Warehouse. Instead, iREPS should use controlled backend or Master-based checks to determine whether a captured meter number appears in the sales repository.
+- **Detailed explanation:** Sales Data can include meter numbers, transaction dates, purchase amounts, costs, VAT, customer numbers, account numbers, and last-purchase information. It is different from field operational data. The Sales Pipeline may establish a sales match, but it must not decide operational visibility.
 
-- **Example:** A discovered meter may be found in sales data, meaning iREPS can mark it VISIBLE after backend checks.
+- **Example:** A Conlog purchase for a meter is Sales Data; a fieldworker’s meter photo is operational field data.
 
-- **Related terms:** Sales Repository, Meter Master, MASTER, Visibility, Warehouse, Meter Discovery
+- **Related terms:** Sales Repository, Atomic Sales, Monthly Sales, Sales Match, Operational Data
+
+### Term: Sales Repository
+
+- **Acronym:** None
+
+- **Simple meaning:** The governed collections and approved files where sales-related records are stored.
+
+- **Detailed explanation:** The Sales Repository contains approved sales-side data used for reporting, aggregation, meter awareness, and downstream linking. It is not the same as the mobile Warehouse and should not be loaded into the mobile app as one large operational dataset.
+
+- **Example:** `conlog_sales_atomic`, the Monthly Sales collections, and `sales-all-meters` form part of the current Sales Repository.
+
+- **Related terms:** Sales Data, Conlog Sales Collection Family, Warehouse, Sales Pipeline
+
+### Term: Conlog Sales Collection Family
+
+- **Acronym:** None
+
+- **Simple meaning:** The four current Conlog Firestore collections used for Atomic and Monthly Sales.
+
+- **Detailed explanation:** The current collection family is `conlog_sales_atomic`, `conlog_sales_monthly`, `conlog_sales_monthly_lm`, and `conlog_sales_monthly_lm_groups`. These names remain active during TEST stabilisation and must not contain another provider’s data.
+
+- **Example:** A monthly Conlog upload writes to the three governed Monthly Sales collections only after Atomic Sales is complete.
+
+- **Related terms:** conlog_sales_atomic, conlog_sales_monthly, conlog_sales_monthly_lm, conlog_sales_monthly_lm_groups
+
+### Term: RAW Provider Download
+
+- **Acronym:** RAW
+
+- **Simple meaning:** The original file downloaded from the sales provider.
+
+- **Detailed explanation:** A RAW Provider Download is source evidence. Its contents must remain unchanged. It must not be opened, edited, re-saved, converted manually, or overwritten by the pipeline. A controlled local filename may be applied without changing the file contents.
+
+- **Example:** `conlog_raw_sales__ZA7423__2026-07.csv` is the governed local name for an unchanged July 2026 Conlog download.
+
+- **Related terms:** RAW Sales File, Source Evidence, RAW STAGING, Source Traceability
+
+### Term: RAW Sales File
+
+- **Acronym:** RAW
+
+- **Simple meaning:** The unchanged provider file used as the starting evidence for one sales period.
+
+- **Detailed explanation:** The RAW Sales File belongs in the approved raw-sales input folder. It is not upload-ready and is not Atomic Sales. The pipeline validates and transforms it through Stage 00 while preserving the original file.
+
+- **Example:** The operator downloads the Conlog CSV, renames it under the approved filename contract, and places it in `input/raw-sales`.
+
+- **Related terms:** RAW Provider Download, RAW STAGING, Pipeline Stage, Source Evidence
+
+### Term: Source Evidence
+
+- **Acronym:** None
+
+- **Simple meaning:** Original information preserved so the source of pipeline data can be proven.
+
+- **Detailed explanation:** Source Evidence allows iREPS to trace generated outputs back to an unchanged provider file. It supports investigation, reconciliation, audit, and repeatable rebuilding.
+
+- **Example:** The original provider CSV and its SHA-256 value form part of the source evidence for a monthly run.
+
+- **Related terms:** RAW Provider Download, Source Traceability, SHA-256, Audit Report
+
+### Term: RAW STAGING
+
+- **Acronym:** None
+
+- **Simple meaning:** A standardised provider-specific input created from the original RAW file.
+
+- **Detailed explanation:** RAW STAGING is a validated intermediate layer between the original provider download and Atomic Sales. It uses the approved provider-specific columns and is not uploaded to Firestore. For current Conlog data, it is generated by Stage 00 and consumed by Stage 01.
+
+- **Example:** A six-column Conlog staging file containing LM, transaction date, meter number, amount, cost, and VAT is RAW STAGING.
+
+- **Related terms:** RAW Provider Download, Atomic Sales, Stage 00, Stage 01
+
+### Term: Atomic Sales
+
+- **Acronym:** None
+
+- **Simple meaning:** The transaction-level sales layer in which one record represents one normalised source transaction.
+
+- **Detailed explanation:** Atomic Sales is the downstream source of truth for Monthly Sales aggregation. It preserves transaction identity, meter identity, time, monetary values, provider context, and source lineage. Atomic outputs are not considered uploaded until the approved uploader writes and verifies them in Firestore.
+
+- **Example:** One Conlog purchase made by one meter at a specific time becomes one Atomic Sales record.
+
+- **Related terms:** Atomic Sales Transaction, conlog_sales_atomic, Monthly Sales, Source Traceability
+
+### Term: Atomic Sales Transaction
+
+- **Acronym:** None
+
+- **Simple meaning:** One normalised purchase or sales transaction in the Atomic layer.
+
+- **Detailed explanation:** An Atomic Sales Transaction represents the smallest governed sales event used by the pipeline. Its identity must be deterministic and unique within the governed source so duplicate identities can be detected and stopped.
+
+- **Example:** A purchase of R100.00 becomes one Atomic transaction with `amountTotalC = 10000`.
+
+- **Related terms:** Atomic Sales, Deterministic Identity, Integer Cents, Transaction Date
+
+### Term: conlog_sales_atomic
+
+- **Acronym:** None
+
+- **Simple meaning:** The Firestore collection containing Conlog Atomic Sales transactions.
+
+- **Detailed explanation:** `conlog_sales_atomic` stores the approved transaction-level Conlog records. It is upstream of all Monthly Sales datasets and must be uploaded and verified before the related monthly aggregates are treated as complete.
+
+- **Example:** The Atomic uploader writes verified July 2026 Conlog transactions for ZA7423 into `conlog_sales_atomic`.
+
+- **Related terms:** Atomic Sales, Conlog Sales Collection Family, Monthly Sales, Upload Verification
+
+### Term: Monthly Sales
+
+- **Acronym:** None
+
+- **Simple meaning:** Sales totals aggregated from approved Atomic Sales for one month.
+
+- **Detailed explanation:** Monthly Sales is derived only from approved Atomic outputs. The pipeline builds three linked views for one LM and one month: meter-month, LM-month, and LM-month sales-group totals. These layers must reconcile with Atomic Sales before upload.
+
+- **Example:** All July purchases for one meter are combined into one July meter-month record.
+
+- **Related terms:** Meter-Month Sales, LM-Month Sales, LM-Month Sales Group, Monthly Reconciliation
+
+### Term: Meter-Month Sales
+
+- **Acronym:** None
+
+- **Simple meaning:** One meter’s aggregated sales result for one LM and one month.
+
+- **Detailed explanation:** Meter-Month Sales combines all approved Atomic transactions for the same normalized meter number, LM, and month. It records purchase count, amounts, and first and last purchase times according to the canonical monthly schema.
+
+- **Example:** Meter 04085345850 may have four purchases totalling 45,000 cents in July 2026.
+
+- **Related terms:** conlog_sales_monthly, Monthly Sales, Normalized Meter Number, Purchase Count
+
+### Term: conlog_sales_monthly
+
+- **Acronym:** None
+
+- **Simple meaning:** The Firestore collection containing one Conlog sales aggregate per meter, LM, and month.
+
+- **Detailed explanation:** The deterministic identity combines LM pCode, normalized meter number, and year-month. The collection must contain only the canonical fields defined by its locked schema.
+
+- **Example:** `ZA7423__04085345850__2026-07` is a meter-month document identity.
+
+- **Related terms:** Meter-Month Sales, Monthly Sales, Deterministic Document ID
+
+### Term: LM-Month Sales
+
+- **Acronym:** None
+
+- **Simple meaning:** The total approved sales result for one LM in one month.
+
+- **Detailed explanation:** LM-Month Sales summarises purchase count, meter count, monetary totals, and first and last purchase times across the selected LM/month. It must reconcile with Atomic Sales and the sum of all meter-month records.
+
+- **Example:** ZA7423 has one LM-Month record for July 2026.
+
+- **Related terms:** conlog_sales_monthly_lm, Monthly Sales, LM pCode, Monthly Reconciliation
+
+### Term: conlog_sales_monthly_lm
+
+- **Acronym:** None
+
+- **Simple meaning:** The Firestore collection containing one Conlog aggregate per LM and month.
+
+- **Detailed explanation:** Its deterministic identity combines LM pCode and year-month. It is the LM-level monthly summary and must equal the reconciled totals from the Atomic and meter-month layers.
+
+- **Example:** `ZA7423__2026-07` is an LM-month document identity.
+
+- **Related terms:** LM-Month Sales, Monthly Reconciliation, Deterministic Document ID
+
+### Term: LM-Month Sales Group
+
+- **Acronym:** None
+
+- **Simple meaning:** One LM-month sales total separated into an approved sales-value group.
+
+- **Detailed explanation:** LM-Month Sales Groups help reports compare meters and purchases across governed sales bands. The sum of all groups for the LM/month must reconcile to the LM-Month Sales result.
+
+- **Example:** July 2026 purchases may be summarised into GR1 through GR5 groups.
+
+- **Related terms:** conlog_sales_monthly_lm_groups, Sales Group, Monthly Reconciliation
+
+### Term: conlog_sales_monthly_lm_groups
+
+- **Acronym:** None
+
+- **Simple meaning:** The Firestore collection containing Conlog LM-month totals by sales group.
+
+- **Detailed explanation:** Its deterministic identity combines LM pCode, year-month, and sales group ID. It is a reporting aggregate and must not independently reinterpret RAW data.
+
+- **Example:** `ZA7423__2026-07__GR3` is an LM-month-group document identity.
+
+- **Related terms:** LM-Month Sales Group, Sales Group, Deterministic Document ID
+
+### Term: Sales Group
+
+- **Acronym:** GR
+
+- **Simple meaning:** An approved monthly sales-value band used for grouping meters and purchases.
+
+- **Detailed explanation:** Sales Groups classify monthly sales amounts for reporting without changing Atomic Sales. The current groups are GR1 below R99.99, GR2 from R100.00 to R299.99, GR3 from R300.00 to R499.99, GR4 from R500.00 to R999.99, and GR5 from R1,000.00 upward.
+
+- **Example:** A meter with R450.00 in monthly purchases belongs to GR3 for that month.
+
+- **Related terms:** LM-Month Sales Group, Monthly Sales, Sales Analytics
+
+### Term: Monthly Reconciliation
+
+- **Acronym:** None
+
+- **Simple meaning:** Proving that all monthly sales layers agree.
+
+- **Detailed explanation:** For one LM and month, Atomic totals must equal the sum of meter-month records, the LM-month record, and the sum of LM-month sales groups. Purchase counts, meter counts, amount, cost, VAT, and first and last purchase times must be checked where applicable.
+
+- **Example:** The July Atomic amount equals the July meter-month total, LM-month total, and grouped total.
+
+- **Related terms:** Reconciliation, Atomic Sales, Monthly Sales, Validation
+
+### Term: Pipeline Stage
+
+- **Acronym:** Stage
+
+- **Simple meaning:** One numbered step in the governed Sales Pipeline.
+
+- **Detailed explanation:** Each Pipeline Stage has one controlled responsibility. Stages 00 to 04 process one LM and one month. Stages 05 and 06 build one explicit continuous full-period range. Stages 07 and 08 upload one frozen approved full-period CSV to one explicitly selected Firebase project.
+
+- **Example:** Stage 03 builds the three Monthly Sales datasets from one approved Atomic file.
+
+- **Related terms:** Stage 00, Stage 01, Stage 02, Stage 03, Stage 04, Stage 05, Stage 06, Stage 07, Stage 08
+
+### Term: Stage 00
+
+- **Acronym:** None
+
+- **Simple meaning:** The step that validates an original provider download and creates RAW STAGING.
+
+- **Detailed explanation:** Stage 00 processes exactly one LM and one month, preserves the RAW source unchanged, validates the provider structure and values, reports rejected rows, and writes no staging output when critical validation fails.
+
+- **Example:** Stage 00 transforms the unchanged July Conlog download into the approved July Conlog RAW STAGING file.
+
+- **Related terms:** RAW Provider Download, RAW STAGING, Rejected Row, Preflight Validation
+
+### Term: Stage 01
+
+- **Acronym:** None
+
+- **Simple meaning:** The step that converts approved RAW STAGING into Atomic Sales.
+
+- **Detailed explanation:** Stage 01 is the controlled boundary where current Conlog decimal rand source values are converted exactly once into integer cents for Atomic Sales. It creates upload-ready Atomic CSV outputs.
+
+- **Example:** Stage 01 converts `100.00` rand into `10000` cents.
+
+- **Related terms:** RAW STAGING, Atomic Sales, Integer Cents, Monetary Conversion Boundary
+
+### Term: Stage 02
+
+- **Acronym:** None
+
+- **Simple meaning:** The step that uploads and verifies Atomic Sales in Firestore.
+
+- **Detailed explanation:** Stage 02 writes the approved Atomic CSV for one LM and month to the governed Atomic collection using explicit environment controls and post-upload verification.
+
+- **Example:** Stage 02 uploads the verified July Atomic file to `ireps-test/conlog_sales_atomic`.
+
+- **Related terms:** conlog_sales_atomic, Upload Verification, Explicit Project Selection
+
+### Term: Stage 03
+
+- **Acronym:** None
+
+- **Simple meaning:** The step that builds the three Monthly Sales datasets and their manifest.
+
+- **Detailed explanation:** Stage 03 consumes exactly one approved Atomic CSV for one LM/month, builds meter-month, LM-month, and LM-month-group outputs, reconciles them, fingerprints them, and creates a month-specific successful build manifest.
+
+- **Example:** Stage 03 creates the July 2026 monthly outputs and one July Stage 03 manifest.
+
+- **Related terms:** Monthly Sales, Build Manifest, SHA-256, Monthly Reconciliation
+
+### Term: Stage 04
+
+- **Acronym:** None
+
+- **Simple meaning:** The step that uploads and verifies the three Monthly Sales datasets.
+
+- **Detailed explanation:** Stage 04 consumes the exact successful Stage 03 manifest for one Firebase project, LM, and month. Normal mode is create-only. Controlled resume is limited to recovery of the same partial upload.
+
+- **Example:** Stage 04 uploads the three reconciled July datasets after confirming their SHA-256 values.
+
+- **Related terms:** Create-only, Controlled Resume, Monthly Sales, Upload Audit Report
+
+### Term: Stage 05
+
+- **Acronym:** None
+
+- **Simple meaning:** The step that builds one complete Meter Master staging file for an explicit continuous month range.
+
+- **Detailed explanation:** Stage 05 combines all required monthly meter-level data in the selected range with approved reference data. It dynamically discovers every required month, resolves governed duplicate identities, and produces one complete Meter Master CSV and successful manifest.
+
+- **Example:** Stage 05 builds Meter Master for ZA7423 from September 2025 through July 2026.
+
+- **Related terms:** Meter Master, Full-Period Build, Continuous Month Range, Customer Details, 90 Days No Purchase Report
+
+### Term: Stage 06
+
+- **Acronym:** None
+
+- **Simple meaning:** The step that builds Sales All Meters from the approved Meter Master and monthly sales history.
+
+- **Detailed explanation:** Stage 06 keeps every Meter Master identity, adds monthly and total sales measures, uses an explicit as-of date for recency, creates a successful manifest, and must not derive or output operational visibility.
+
+- **Example:** A meter with no purchases remains in the Stage 06 output with zero sales totals.
+
+- **Related terms:** Sales All Meters, As-of Date, monthlyTotalsC, Operational Visibility Ownership
+
+### Term: Stage 07
+
+- **Acronym:** None
+
+- **Simple meaning:** The step that uploads one frozen approved Meter Master CSV.
+
+- **Detailed explanation:** Stage 07 validates the successful Stage 05 manifest and exact CSV before connecting to Firestore. Normal mode is create-only against an appropriate empty target. Resume is only for recovery of the exact same failed upload contract.
+
+- **Example:** Stage 07 uploads the same approved Meter Master build to an explicitly approved TEST project.
+
+- **Related terms:** Meter Master, Frozen CSV, Create-only, Controlled Resume
+
+### Term: Stage 08
+
+- **Acronym:** None
+
+- **Simple meaning:** The step that uploads one frozen approved Sales All Meters CSV.
+
+- **Detailed explanation:** Stage 08 validates the successful Stage 06 manifest, exact source CSV, project, provider, month range, totals, and ownership contract. It writes only Sales Pipeline-owned fields and must preserve and ignore any existing approved operational `master.visibility` value during controlled recovery.
+
+- **Example:** Stage 08 rejects a staging CSV that contains a `visibility` column.
+
+- **Related terms:** Sales All Meters, Operational Visibility Ownership, Frozen CSV, Upload Verification
+
+### Term: Pipeline Dependency
+
+- **Acronym:** None
+
+- **Simple meaning:** The rule that a downstream stage cannot proceed until its required upstream data is complete and verified.
+
+- **Detailed explanation:** The mandatory dependency is RAW provider download → RAW STAGING → Atomic Sales → Monthly Sales → Meter Master → Sales All Meters. A missing, unreconciled, or unverified upstream month blocks downstream building or uploading.
+
+- **Example:** Meter Master cannot be built from July data until July Atomic and Monthly Sales are complete and verified.
+
+- **Related terms:** Sales Pipeline, Upload Order, Validation, Reconciliation
+
+### Term: Upload Order
+
+- **Acronym:** None
+
+- **Simple meaning:** The required order in which Sales Pipeline collections are loaded.
+
+- **Detailed explanation:** The governed Firestore order is Atomic Sales first; then the three Monthly Sales collections; then Meter Master; then Sales All Meters. This protects downstream integrity.
+
+- **Example:** `sales-all-meters` must not be uploaded before the approved Meter Master exists.
+
+- **Related terms:** Pipeline Dependency, conlog_sales_atomic, Meter Master, Sales All Meters
+
+### Term: LM-Month Execution
+
+- **Acronym:** None
+
+- **Simple meaning:** Running a stage for exactly one LM and one month.
+
+- **Detailed explanation:** Stages 00 through 04 use one explicit LM pCode and one `YYYY-MM` month per execution. The requested LM, filename LM, requested month, source month, and transaction month must agree.
+
+- **Example:** One Stage 03 run processes only ZA7423 and 2026-07.
+
+- **Related terms:** Pipeline Stage, LM pCode, Month, Monthly Sales
+
+### Term: Full-Period Build
+
+- **Acronym:** None
+
+- **Simple meaning:** One controlled downstream build covering an explicit continuous range of months.
+
+- **Detailed explanation:** Stages 05 and 06 are Full-Period Builders. They use one LM plus an explicit from-month and to-month, discover every required month dynamically, and stop when the range is incomplete or inconsistent.
+
+- **Example:** A full-period build may cover 2025-09 through 2026-07.
+
+- **Related terms:** Continuous Month Range, Stage 05, Stage 06, Frozen CSV
+
+### Term: Continuous Month Range
+
+- **Acronym:** None
+
+- **Simple meaning:** A month range with no missing month between the start and end.
+
+- **Detailed explanation:** A downstream full-period build must contain every month from the approved from-month through the approved to-month. Missing, duplicated, or unexpected months stop the build.
+
+- **Example:** 2026-01, 2026-02, and 2026-03 are continuous; 2026-01 and 2026-03 without February are not.
+
+- **Related terms:** Full-Period Build, Missing Month, Validation
+
+### Term: Meter Master
+
+- **Acronym:** MASTER
+
+- **Simple meaning:** The thin canonical identity and cross-reference bridge for a meter.
+
+- **Detailed explanation:** `meter_master` links the sales-side meter universe with iREPS operational meter identity. It is not a sales transaction history, premise, ERF, TRN, status, visibility, or service-provider collection. It uses the normalized meter number as its deterministic document identity and preserves strict field ownership across Sales Pipeline and operational writers.
+
+- **Example:** Meter Master can show that meter 04085345850 has a Conlog sales reference and, separately, an AST reference when an approved operational workflow links one.
+
+- **Related terms:** MASTER, meter_master, Sales Link, AST Link, Normalized Meter Number
+
+### Term: MASTER
+
+- **Acronym:** MASTER
+
+- **Simple meaning:** The short iREPS name for Meter Master.
+
+- **Detailed explanation:** MASTER refers to the governed Meter Master bridge. It supports direct identity lookup and cross-writer linking without copying large sales histories into operational mobile data.
+
+- **Example:** FormInputMeterNo may check MASTER for controlled sales awareness.
+
+- **Related terms:** Meter Master, Sales Link, Backend Check
+
+### Term: meter_master
+
+- **Acronym:** None
+
+- **Simple meaning:** The Firestore collection containing canonical Meter Master documents.
+
+- **Detailed explanation:** Each document ID equals the canonical normalized meter number. The Sales Pipeline owns customer, account, and sales-reference fields. Approved operational writers own the AST reference. Meter Master itself does not contain a `visibility` field.
+
+- **Example:** `meter_master/04085345850` is the canonical identity document for that normalized meter number.
+
+- **Related terms:** Meter Master, Deterministic Document ID, Field Ownership, AST Link
+
+### Term: Sales All Meters
+
+- **Acronym:** None
+
+- **Simple meaning:** The governed sales-awareness projection for every approved Meter Master identity.
+
+- **Detailed explanation:** Sales All Meters combines Meter Master identity and customer references with approved monthly sales history. It includes meters with sales and meters without sales. It supports reporting and quick sales awareness without becoming the canonical operational meter record.
+
+- **Example:** A customer-only Meter Master identity appears in Sales All Meters with zero monthly totals when no approved sales transactions exist.
+
+- **Related terms:** sales-all-meters, Meter Master, monthlyTotalsC, Sales Match
+
+### Term: sales-all-meters
+
+- **Acronym:** None
+
+- **Simple meaning:** The Firestore collection containing Sales All Meters projection documents.
+
+- **Detailed explanation:** The canonical document identity is the normalized meter number. Pipeline-owned fields include meter identity, provider, customer and account references, total sales, monthly totals, and recency fields. The Sales Pipeline must omit operational `master.visibility`.
+
+- **Example:** `sales-all-meters/04085345850` can contain the meter’s monthly Conlog totals and latest purchase date.
+
+- **Related terms:** Sales All Meters, Operational Visibility Ownership, totalAmountC, monthlyTotalsC
+
+### Term: Normalized Meter Number
+
+- **Acronym:** None
+
+- **Simple meaning:** The canonical cleaned string used to identify the same meter consistently.
+
+- **Detailed explanation:** The normalizer casts to string, trims outer whitespace, removes embedded whitespace, converts letters to uppercase, and preserves leading zeroes. It must not silently remove punctuation, force a fixed length, pad, truncate, or convert the meter number to a numeric value.
+
+- **Example:** `010 236 70951` becomes `01023670951`, while a prohibited punctuation value must be rejected rather than silently rewritten.
+
+- **Related terms:** Meter Master, Deterministic Document ID, Sales Match, Meter Number
+
+### Term: Deterministic Document ID
+
+- **Acronym:** None
+
+- **Simple meaning:** A document ID calculated from governed business identity instead of generated randomly.
+
+- **Detailed explanation:** Deterministic IDs allow repeatable lookup, duplicate prevention, reconciliation, and controlled recovery. The same approved input identity must always produce the same Firestore document ID.
+
+- **Example:** A meter-month ID combines LM pCode, normalized meter number, and year-month.
+
+- **Related terms:** Normalized Meter Number, Idempotent, Build Fingerprint, Firestore
+
+### Term: Sales Link
+
+- **Acronym:** None
+
+- **Simple meaning:** A confirmed connection between a meter identity and approved sales-side data.
+
+- **Detailed explanation:** A Sales Link means the meter has a canonical sales reference or matching approved sales data. It is separate from AST linkage and operational visibility. A sales-linked meter is not automatically VISIBLE, and a meter without current sales is not automatically INVISIBLE.
+
+- **Example:** `refs.sales.id` and `refs.sales.provider` can establish the sales-side link in Meter Master.
+
+- **Related terms:** Sales Match, Meter Master, AST Link, Visibility
+
+### Term: Sales Match
+
+- **Acronym:** None
+
+- **Simple meaning:** A result showing that a normalized meter number was found in approved sales data.
+
+- **Detailed explanation:** Sales Match is the correct term for sales-side presence. It must not be called operational visibility. A match can support an `IN SALES` badge or report result, while the backend and operational rules separately govern visibility.
+
+- **Example:** The normalized meter number exists in the approved Sales Repository, so the form shows `IN SALES`.
+
+- **Related terms:** IN SALES, NO SALES MATCH, Sales Link, Backend Check
+
+### Term: IN SALES
+
+- **Acronym:** None
+
+- **Simple meaning:** Approved sales data was found for the normalized meter number.
+
+- **Detailed explanation:** `IN SALES` is a sales-awareness result, not an operational visibility status. It may be shown in a form or report after a controlled lookup, but it does not authorise the Sales Pipeline to set `VISIBLE`.
+
+- **Example:** A meter has one or more approved Conlog transactions, so the report marks it `IN SALES`.
+
+- **Related terms:** Sales Match, Sales Repository, Visibility, Form-side Check
+
+### Term: NO SALES MATCH
+
+- **Acronym:** None
+
+- **Simple meaning:** No approved sales-side match was found for the normalized meter number in the checked scope.
+
+- **Detailed explanation:** `NO SALES MATCH` means only that the governed lookup did not find qualifying sales data. It does not prove that the physical meter is absent, unregistered, undiscovered, or operationally INVISIBLE.
+
+- **Example:** A newly discovered meter has no current Conlog match, so the result is `NO SALES MATCH`, not `INVISIBLE`.
+
+- **Related terms:** Sales Match, IN SALES, Visibility, Meter Discovery
+
+### Term: AST Link
+
+- **Acronym:** None
+
+- **Simple meaning:** The canonical reference connecting Meter Master to an iREPS operational Asset.
+
+- **Detailed explanation:** The AST Link is stored through the approved Meter Master AST reference and is owned by approved operational Meter Discovery and Meter Installation writers. A blank AST link means only that no AST reference is present in that pipeline record; it does not prove invisibility.
+
+- **Example:** After an approved discovery workflow links an AST, Meter Master stores its AST identifier.
+
+- **Related terms:** Meter Master, Asset (AST), Field Ownership, Operational Visibility Ownership
+
+### Term: Field Ownership
+
+- **Acronym:** None
+
+- **Simple meaning:** The rule stating which approved writer may create or change a specific field.
+
+- **Detailed explanation:** Field Ownership prevents one pipeline or workflow from overwriting another workflow’s truth. The Sales Pipeline owns sales-side customer, account, and sales-reference values. Approved operational workflows own AST linkage and operational visibility.
+
+- **Example:** Stage 08 may update no operational visibility field because that field is outside Sales Pipeline ownership.
+
+- **Related terms:** Meter Master, Operational Visibility Ownership, Sales Pipeline-owned Fields
+
+### Term: Sales Pipeline-owned Fields
+
+- **Acronym:** None
+
+- **Simple meaning:** The fields the Sales Pipeline is authorised to create, validate, or upload.
+
+- **Detailed explanation:** These are the canonical sales-side fields defined by the locked schemas and rules. They include approved sales identity, provider, customer, account, totals, monthly totals, purchase recency, and sales references. They do not include operational visibility or operational AST ownership.
+
+- **Example:** Stage 08 owns `totalAmountC` but does not own `master.visibility`.
+
+- **Related terms:** Field Ownership, Sales All Meters, Operational Visibility Ownership
 
 ### Term: Visibility
 
 - **Acronym:** None
 
-- **Simple meaning:** Whether a discovered meter is VISIBLE or INVISIBLE based on whether its captured meter number appears in the sales repository.
+- **Simple meaning:** An operational status controlled by approved operational meter workflows, not by sales matching.
 
-- **Detailed explanation:** A meter is VISIBLE if the captured meter number appears in the sales repository. When a meter is discovered in the field and registered in iREPS, iREPS checks that meter number against the sales repository. If a matching meter number is found, the meter is termed VISIBLE. If no match is found, the meter is termed INVISIBLE. The backend check remains the authority for this decision.
+- **Detailed explanation:** Visibility describes whether the meter is operationally exposed or available according to approved iREPS operational rules. Sales history, Meter Master presence, customer references, and blank or populated pipeline AST fields do not by themselves determine visibility. The Sales Pipeline must not create, derive, default, merge, overwrite, or clear `master.visibility`.
 
-- **Example:** A fieldworker discovers meter 01023670951. iREPS checks the sales repository. If 01023670951 is found, the meter becomes VISIBLE; if it is not found, the meter is INVISIBLE.
+- **Example:** A meter can be `IN SALES` while its operational visibility is still governed separately by Meter Discovery or Meter Installation.
 
-- **Related terms:** VISIBLE, INVISIBLE, Sales Repository, Meter Master, Backend Check, Meter Discovery
+- **Related terms:** VISIBLE, INVISIBLE, Operational Visibility Ownership, Sales Match
 
 ### Term: VISIBLE
 
 - **Acronym:** None
 
-- **Simple meaning:** A discovered meter whose captured meter number appears in the sales repository.
+- **Simple meaning:** The approved operational visibility value showing that a meter is visible under iREPS operational rules.
 
-- **Detailed explanation:** VISIBLE means the meter captured in the field has a matching meter number in the sales repository. It indicates that iREPS has found a sales-side match for the field-captured meter number. This does not mean the form alone is the final truth; the backend must still confirm and stamp the final linkage.
+- **Detailed explanation:** `VISIBLE` is written only by an approved operational meter-registration, Meter Discovery, or Meter Installation writer according to the operational contract. It does not mean merely that sales data exists.
 
-- **Example:** The fieldworker captures meter number 01023670951, and the backend finds that same number in the sales repository. The meter is termed VISIBLE.
+- **Example:** An approved Meter Discovery backend writer may establish `VISIBLE` after completing its governed operational checks.
 
-- **Related terms:** Visibility, INVISIBLE, Sales Repository, Meter Master
+- **Related terms:** Visibility, INVISIBLE, Operational Visibility Ownership, Meter Discovery
 
 ### Term: INVISIBLE
 
 - **Acronym:** None
 
-- **Simple meaning:** A discovered meter whose captured meter number is not found in the sales repository.
+- **Simple meaning:** The approved operational visibility value showing that a meter is not visible under iREPS operational rules.
 
-- **Detailed explanation:** INVISIBLE means the meter was captured in the field but no matching meter number was found in the sales repository. This protects iREPS from treating an unmatched field-captured meter as a confirmed sales-linked meter. The meter may still exist physically and operationally, but the sales linkage is not confirmed.
+- **Detailed explanation:** `INVISIBLE` is an operational value and must not be inferred from no sales, a blank AST link, an absent customer number, or any other Sales Pipeline field. Only an approved operational writer may set it.
 
-- **Example:** The fieldworker captures meter number 999888777, but that number is not found in the sales repository. The meter is termed INVISIBLE.
+- **Example:** A meter with no Conlog purchases is not automatically INVISIBLE.
 
-- **Related terms:** Visibility, VISIBLE, Sales Repository, Meter Master
+- **Related terms:** Visibility, VISIBLE, Operational Visibility Ownership, NO SALES MATCH
+
+### Term: Operational Visibility Ownership
+
+- **Acronym:** None
+
+- **Simple meaning:** The rule that only approved operational meter writers control `master.visibility`.
+
+- **Detailed explanation:** Operational meter-registration, Meter Discovery, and Meter Installation writers own visibility. Stage 06 must not output a visibility column. Stage 08 must not create, upload, overwrite, default, merge, or clear `master.visibility`. Existing approved operational visibility is outside Stage 08 ownership and must be preserved during controlled recovery.
+
+- **Example:** Stage 08 validates sales totals but ignores and preserves an existing operational `master.visibility` value.
+
+- **Related terms:** Visibility, Field Ownership, Stage 06, Stage 08
 
 ### Term: Backend Check
 
 - **Acronym:** None
 
-- **Simple meaning:** A server-side validation that confirms the real truth.
+- **Simple meaning:** A server-side validation that confirms governed data before saving or acting.
 
-- **Detailed explanation:** In iREPS, form-side checks can help users, but the backend check must remain the authority. For meter discovery and sales linkage, the backend should normalize the meter number, check the sales repository or Meter Master, apply rules, and stamp the final Asset or visibility values.
+- **Detailed explanation:** A Backend Check normalizes the meter number, checks approved data sources, applies business rules, and confirms the result independently of a form-side hint. Sales matching and operational visibility remain separate backend responsibilities.
 
-- **Example:** Even if the mobile form shows “In Sales,” the backend must still re-check the meter number when the user submits.
+- **Example:** The backend rechecks whether a scanned meter is `IN SALES` before the transaction is saved.
 
-- **Related terms:** Server-side Check, Form-side Check, Meter Master, Validation
+- **Related terms:** Form-side Check, Sales Match, Validation, Operational Visibility Ownership
 
 ### Term: Form-side Check
 
 - **Acronym:** None
 
-- **Simple meaning:** A helpful check shown on the user form before submission.
+- **Simple meaning:** A helpful early lookup or message shown on the user form.
 
-- **Detailed explanation:** A form-side check gives the user early awareness while typing or scanning. It should not be treated as the final truth. In meter discovery, a form-side check may show whether a meter appears to exist in sales, but the backend must confirm again on save.
+- **Detailed explanation:** A Form-side Check can show a soft sales-awareness result while the user types or scans. It is not the final authority for saving canonical data or setting operational visibility.
 
-- **Example:** A small badge below the meter number field may show “IN SALES” while the fieldworker captures the meter.
+- **Example:** A badge below the meter field shows `IN SALES`, but the backend verifies again on submission.
 
-- **Related terms:** Backend Check, FormInputMeterNo, Meter Master, UI Badge
+- **Related terms:** Backend Check, FormInputMeterNo, IN SALES, UI Badge
 
 ### Term: FormInputMeterNo
 
 - **Acronym:** None
 
-- **Simple meaning:** The form component used to capture a meter number.
+- **Simple meaning:** The iREPS form component used to type or scan a meter number.
 
-- **Detailed explanation:** FormInputMeterNo is the user interface field where a meter number can be typed or scanned. It may perform local duplicate checks and can also show a soft awareness badge based on a debounced Meter Master or sales-link lookup. It should not become the final authority for whether a meter is valid or linked.
+- **Detailed explanation:** FormInputMeterNo may normalize input, help detect local duplicates, and request a controlled sales lookup. It must not invent canonical linkage or operational visibility.
 
-- **Example:** A fieldworker scans a meter number and the FormInputMeterNo field shows whether the meter appears to be in sales.
+- **Example:** A fieldworker scans a meter number and the component displays a soft `IN SALES` result.
 
-- **Related terms:** Meter Number, Meter Master, Form-side Check, Backend Check
+- **Related terms:** Meter Number, Normalized Meter Number, Form-side Check, Backend Check
+
+### Term: Customer Details
+
+- **Acronym:** None
+
+- **Simple meaning:** The approved reference file containing customer, account, meter, status, and purchase information used by Meter Master.
+
+- **Detailed explanation:** Customer Details can populate or improve Meter Master customer and account references. Duplicate resolution may use only the governed identity, account-status, and latest-purchase fields. Customer name, ERF, and address are not Meter Master duplicate-resolution inputs.
+
+- **Example:** A stronger active customer/account row may replace a weak placeholder identity under the approved duplicate rules.
+
+- **Related terms:** Reference Data, Meter Master, Duplicate Resolution, Customer Number
+
+### Term: 90 Days No Purchase Report
+
+- **Acronym:** NPR
+
+- **Simple meaning:** An approved reference report containing meters with no recent purchase activity.
+
+- **Detailed explanation:** The report can add meter identities missing from other sources and may provide a customer number under governed precedence rules. It is reference input for Meter Master, not proof of operational invisibility.
+
+- **Example:** An NPR-only meter is added to Meter Master even though it has no monthly purchase in the selected range.
+
+- **Related terms:** Reference Data, Meter Master, Days Since Last Purchase, NO SALES MATCH
+
+### Term: Reference Data
+
+- **Acronym:** None
+
+- **Simple meaning:** Approved supporting data used to enrich or reconcile the sales pipeline.
+
+- **Detailed explanation:** Reference Data is not a replacement for Atomic Sales. It supports identity and customer/account linking under explicit precedence and duplicate-resolution rules.
+
+- **Example:** Customer Details and the 90 Days No Purchase Report are current Meter Master reference inputs.
+
+- **Related terms:** Customer Details, 90 Days No Purchase Report, Meter Master
+
+### Term: Duplicate Resolution
+
+- **Acronym:** None
+
+- **Simple meaning:** The governed process for choosing one supported record when source files contain competing rows for the same identity.
+
+- **Detailed explanation:** Duplicate Resolution must use only approved decision fields and precedence rules. Unresolved ties or unsupported conflicts stop the build. The pipeline must report how many duplicates were resolved by each approved rule.
+
+- **Example:** A normal customer/account identity may replace a weak row where customer number, account number, and meter number are all the same placeholder.
+
+- **Related terms:** Customer Details, Reference Data, Validation, Conflict
+
+### Term: Conflict
+
+- **Acronym:** None
+
+- **Simple meaning:** Two or more values disagree in a way the approved rules cannot safely resolve.
+
+- **Detailed explanation:** A Conflict must stop the affected build or upload. It must not be hidden by merge, overwrite, default values, or skipped rows.
+
+- **Example:** Two different customer identities with tied latest-purchase dates create an unresolved conflict.
+
+- **Related terms:** Duplicate Resolution, Validation, Controlled Resume
+
+### Term: Integer Cents
+
+- **Acronym:** C
+
+- **Simple meaning:** Money stored as whole cents instead of decimal rand values.
+
+- **Detailed explanation:** From Atomic Sales onward, approved fields ending in `C` contain integer cents. Stage 01 is the single controlled conversion boundary for current Conlog RAW STAGING decimal rand values. Downstream stages must not convert those cents again.
+
+- **Example:** R100.00 is stored as `10000`.
+
+- **Related terms:** Monetary Conversion Boundary, amountTotalC, totalAmountC, VAT
+
+### Term: Monetary Conversion Boundary
+
+- **Acronym:** None
+
+- **Simple meaning:** The one approved point where current Conlog decimal rand values become integer cents.
+
+- **Detailed explanation:** Stage 01 performs this conversion exactly once. RAW STAGING retains the approved provider decimal representation; Atomic and downstream layers use integer cents.
+
+- **Example:** `86.96` becomes `8696` at Stage 01.
+
+- **Related terms:** Stage 01, RAW STAGING, Integer Cents
+
+### Term: amountTotalC
+
+- **Acronym:** None
+
+- **Simple meaning:** A governed total sales amount expressed in integer cents at Atomic and Monthly layers.
+
+- **Detailed explanation:** `amountTotalC` must reconcile with cost and VAT according to the applicable schema and layer. It must never mix rand and cents inside the same governed layer.
+
+- **Example:** `amountTotalC = costC + vatC`.
+
+- **Related terms:** Integer Cents, costC, vatC, Monthly Reconciliation
+
+### Term: totalAmountC
+
+- **Acronym:** None
+
+- **Simple meaning:** The total approved sales amount for one Sales All Meters document across the included month range.
+
+- **Detailed explanation:** `totalAmountC` is expressed in integer cents and must equal the sum of all included monthly sales amounts for that meter.
+
+- **Example:** If monthly totals are 10,000 and 15,000 cents, `totalAmountC` is 25,000 cents.
+
+- **Related terms:** Sales All Meters, monthlyTotalsC, Integer Cents, Reconciliation
+
+### Term: monthlyTotalsC
+
+- **Acronym:** None
+
+- **Simple meaning:** The map of one meter’s approved sales total for each included month, expressed in integer cents.
+
+- **Detailed explanation:** The month keys are dynamic and follow `YYYY-MM`. Every included month must be present according to the approved range, including zero where the meter had no sales.
+
+- **Example:** `"2026-06": 20000` means R200.00 in approved June sales.
+
+- **Related terms:** Sales All Meters, totalAmountC, Continuous Month Range
+
+### Term: Last Purchase Date
+
+- **Acronym:** None
+
+- **Simple meaning:** The latest valid approved purchase date for a meter within the governed source scope.
+
+- **Detailed explanation:** Last Purchase Date supports duplicate resolution and Sales All Meters recency. It must come from approved source data and must reconcile with the selected month range.
+
+- **Example:** If the latest valid purchase is 27 June 2026, that date becomes the meter’s last purchase date for the build.
+
+- **Related terms:** lastPurchaseAtISO, Days Since Last Purchase, Duplicate Resolution
+
+### Term: lastPurchaseAtISO
+
+- **Acronym:** None
+
+- **Simple meaning:** The Sales All Meters field containing the latest valid purchase timestamp in ISO format.
+
+- **Detailed explanation:** A meter with no sales in the approved range uses the schema-approved no-sales value. The field must remain consistent with `daysSinceLastPurchase`.
+
+- **Example:** `2026-06-27T10:35:00Z`.
+
+- **Related terms:** Last Purchase Date, Days Since Last Purchase, Sales All Meters
+
+### Term: Days Since Last Purchase
+
+- **Acronym:** None
+
+- **Simple meaning:** The number of days between the approved as-of date and the latest valid purchase date.
+
+- **Detailed explanation:** The value must be calculated from an explicit build as-of date so the same frozen inputs produce the same result. A meter with no sales uses the schema-approved no-sales value.
+
+- **Example:** An as-of date 17 days after the last purchase produces `daysSinceLastPurchase = 17`.
+
+- **Related terms:** As-of Date, lastPurchaseAtISO, 90 Days No Purchase Report
+
+### Term: As-of Date
+
+- **Acronym:** None
+
+- **Simple meaning:** The explicit date used as the reference point for reproducible recency calculations.
+
+- **Detailed explanation:** Stage 06 must receive an explicit As-of Date and must not silently use the current machine date. This keeps `daysSinceLastPurchase` repeatable across rebuilds.
+
+- **Example:** Rebuilding the same CSV with `--as-of-date 2026-07-14` produces the same recency values.
+
+- **Related terms:** Days Since Last Purchase, Reproducible Build, Stage 06
+
+### Term: Build Manifest
+
+- **Acronym:** Manifest
+
+- **Simple meaning:** A governed JSON record proving exactly what a pipeline build used and produced.
+
+- **Detailed explanation:** A Build Manifest records status, result, scope, input files, output files, schemas, row counts, SHA-256 values, reconciliation results, and fingerprints. An uploader must consume the exact successful manifest, not merely discover a CSV in an output folder.
+
+- **Example:** Stage 04 reads the successful Stage 03 manifest to select the exact three monthly CSVs.
+
+- **Related terms:** SHA-256, Build Fingerprint, Frozen CSV, Upload Contract
+
+### Term: SHA-256
+
+- **Acronym:** SHA-256
+
+- **Simple meaning:** A digital fingerprint used to prove that a file has not changed.
+
+- **Detailed explanation:** Even a small file change produces a different SHA-256 value. The Sales Pipeline records and checks SHA-256 values for source, staging, build, manifest, and upload safety.
+
+- **Example:** Stage 08 stops when the supplied CSV SHA-256 differs from the value in the Stage 06 manifest.
+
+- **Related terms:** Build Manifest, Frozen CSV, File Integrity, Build Fingerprint
+
+### Term: Build Fingerprint
+
+- **Acronym:** None
+
+- **Simple meaning:** A deterministic identity for one exact governed build contract.
+
+- **Detailed explanation:** A Build Fingerprint combines the important scope, input, output, schema, range, and integrity facts needed to prove that the same build is being used. It protects controlled resume from changed or expanded inputs.
+
+- **Example:** A different month range produces a different build fingerprint.
+
+- **Related terms:** Build Manifest, Upload Contract, Controlled Resume, SHA-256
+
+### Term: Frozen CSV
+
+- **Acronym:** None
+
+- **Simple meaning:** An approved pipeline output that must not be edited before upload.
+
+- **Detailed explanation:** A Frozen CSV has passed validation and is tied to a successful manifest and fingerprint. The same approved file may be uploaded to explicitly approved projects when the cross-project contract allows it.
+
+- **Example:** The Meter Master CSV approved in TEST must not be manually changed before an approved Trials upload.
+
+- **Related terms:** Build Manifest, SHA-256, Create-only, Upload Contract
+
+### Term: Reproducible Build
+
+- **Acronym:** None
+
+- **Simple meaning:** A build that produces the same governed result from the same approved inputs and parameters.
+
+- **Detailed explanation:** Reproducibility depends on explicit scope, frozen inputs, deterministic IDs, stable monetary rules, explicit as-of dates, and recorded fingerprints.
+
+- **Example:** Running Stage 06 with the same monthly files, Meter Master, manifest, range, and as-of date produces the same output fingerprint.
+
+- **Related terms:** As-of Date, Deterministic Document ID, Build Fingerprint
+
+### Term: Preflight Validation
+
+- **Acronym:** Preflight
+
+- **Simple meaning:** All safety checks completed before a pipeline write or upload begins.
+
+- **Detailed explanation:** Preflight validates scope, schema, identities, provider, totals, files, fingerprints, project selection, target state, and ownership rules. A failed preflight must write no governed output or Firestore data.
+
+- **Example:** Stage 08 rejects a CSV with a visibility column before connecting to Firestore.
+
+- **Related terms:** Validation, Create-only, Upload Contract, Explicit Project Selection
+
+### Term: Validation
+
+- **Acronym:** None
+
+- **Simple meaning:** Checking that data and execution conditions comply with the approved rules.
+
+- **Detailed explanation:** Validation includes file presence, schema, row count, identities, dates, provider, monetary values, duplicates, continuous months, target environment, and ownership. Critical validation failures stop the process loudly.
+
+- **Example:** A missing required month stops a full-period build.
+
+- **Related terms:** Preflight Validation, Reconciliation, Conflict, Rejected Row
+
+### Term: Reconciliation
+
+- **Acronym:** None
+
+- **Simple meaning:** Proving that related inputs and outputs agree.
+
+- **Detailed explanation:** Reconciliation compares counts, totals, identities, dates, and linked layers. No upload is complete until the applicable reconciliation checks pass.
+
+- **Example:** `totalAmountC` equals the sum of all `monthlyTotalsC` values.
+
+- **Related terms:** Monthly Reconciliation, Validation, Upload Verification
+
+### Term: Rejected Row
+
+- **Acronym:** None
+
+- **Simple meaning:** A source row that fails a required validation rule.
+
+- **Detailed explanation:** Rejected rows must be reported clearly. Stage 00 writes no RAW STAGING output when rejected rows exist, preventing partial unsafe data from progressing.
+
+- **Example:** A transaction outside the requested month is written to the rejected-row report and blocks the monthly staging output.
+
+- **Related terms:** Stage 00, Validation, Audit Report
+
+### Term: Create-only
+
+- **Acronym:** None
+
+- **Simple meaning:** The normal upload mode that creates new documents only in an approved empty target scope.
+
+- **Detailed explanation:** Create-only prevents silent overwrite, merge, update, and stale-field preservation. Existing documents in a scope that should be empty block the normal upload.
+
+- **Example:** Stage 04 uses Firestore create operations for all three monthly collections.
+
+- **Related terms:** Controlled Resume, Firestore Create, Upload Safety
+
+### Term: Controlled Resume
+
+- **Acronym:** Resume
+
+- **Simple meaning:** A restricted recovery mode for finishing the exact same verified partial upload.
+
+- **Detailed explanation:** Controlled Resume is not a general update, refresh, migration, enrichment, or changed-file mode. It requires the same project, failed report, manifest, fingerprint, CSV, document-ID set, range, provider, and totals. Exact existing expected documents may be skipped; conflicts and unexpected documents stop recovery.
+
+- **Example:** A failed Stage 08 run may resume only with its original untampered report and unchanged frozen CSV.
+
+- **Related terms:** Create-only, Upload Contract, Frozen CSV, Conflict
+
+### Term: Upload Contract
+
+- **Acronym:** None
+
+- **Simple meaning:** The complete set of approved facts that define one exact upload.
+
+- **Detailed explanation:** The contract includes project, service account, collection, mode, source CSV, manifest, fingerprints, schema, row count, planned IDs, LM, month range, provider, totals, and ownership rules.
+
+- **Example:** Changing the CSV after a partial upload changes the contract and blocks resume.
+
+- **Related terms:** Build Manifest, Build Fingerprint, Controlled Resume, Explicit Project Selection
+
+### Term: Upload Audit Report
+
+- **Acronym:** None
+
+- **Simple meaning:** A JSON record of what an uploader checked, attempted, created, skipped, verified, or rejected.
+
+- **Detailed explanation:** Every governed preflight and execution attempt must produce an audit report. The report supports recovery, investigation, and proof of the exact upload contract.
+
+- **Example:** A failed Stage 08 report is required before a controlled resume attempt.
+
+- **Related terms:** Controlled Resume, Upload Contract, Audit Trail, Upload Verification
+
+### Term: Upload Verification
+
+- **Acronym:** None
+
+- **Simple meaning:** Confirming after upload that Firestore contains the exact expected governed result.
+
+- **Detailed explanation:** Verification includes final counts and deterministic document samples with exact shapes, field values, and data types. An upload is not complete merely because write batches finished.
+
+- **Example:** The uploader checks the final collection count and selected deterministic sample documents before reporting PASS.
+
+- **Related terms:** Reconciliation, Audit Report, Deterministic Document ID
+
+### Term: Source Traceability
+
+- **Acronym:** None
+
+- **Simple meaning:** The ability to trace a generated record back through every approved source and pipeline layer.
+
+- **Detailed explanation:** Traceability uses source filenames, row references, transaction identities, manifests, SHA-256 values, logs, and reports so a result can be explained and reproduced.
+
+- **Example:** A monthly total can be traced back to the Atomic transactions and original provider file.
+
+- **Related terms:** Source Evidence, Build Manifest, SHA-256, Audit Trail
+
+### Term: Environment-neutral Build
+
+- **Acronym:** None
+
+- **Simple meaning:** A local builder that does not silently choose or connect to a Firebase project.
+
+- **Detailed explanation:** Build stages create and validate local outputs independently of DEV, TEST, Trials, or Production. Environment selection belongs only to an uploader and must be explicit.
+
+- **Example:** Stage 06 builds Sales All Meters without connecting to Firebase.
+
+- **Related terms:** Explicit Project Selection, Build Stage, Firebase Environment
+
+### Term: Explicit Project Selection
+
+- **Acronym:** None
+
+- **Simple meaning:** Naming and confirming the exact Firebase project before an upload.
+
+- **Detailed explanation:** Uploaders require an explicit project ID, matching confirmation, and a service account whose project ID matches the target. Production must never be selected by default.
+
+- **Example:** `--project-id ireps-test` and `--confirm-project ireps-test` must agree.
+
+- **Related terms:** Environment-neutral Build, Upload Contract, Preflight Validation
+
+### Term: Sales Pipeline System Actor
+
+- **Acronym:** None
+
+- **Simple meaning:** The approved audit identity used when the Meter Master Pipeline creates or updates Meter Master data.
+
+- **Detailed explanation:** The approved actor is UID `SYSTEM` and user name `METER MASTER PIPELINE`. It identifies a governed system write and does not represent a human user.
+
+- **Example:** A Sales-created Meter Master document records `createdByUid = SYSTEM` and `createdByUser = METER MASTER PIPELINE`.
+
+- **Related terms:** Meter Master, Metadata, Audit Trail, Stage 07
+
+### Term: Provider-neutral Architecture
+
+- **Acronym:** None
+
+- **Simple meaning:** A future design that can support multiple sales providers through generic collections and explicit provider identity.
+
+- **Detailed explanation:** The current TEST architecture keeps the Conlog collection names. A provider-neutral redesign is deferred to a separate controlled architecture and migration sprint and must not be introduced silently into the current pipeline.
+
+- **Example:** Future support for Conlog and Landis+Gyr may use a provider-neutral sales architecture after formal approval.
+
+- **Related terms:** Sales Provider, Conlog Sales Collection Family, Migration
 
 ## 6. MREAD and Reporting Concepts
 
@@ -1676,11 +2734,11 @@ This is Version 1.2 of the iREPS Master Dictionary. It preserves Version 1.1 loc
 
 - **Simple meaning:** The municipality or operational area a user is working in.
 
-- **Detailed explanation:** A workbase tells iREPS which LM or operational context the user is currently working under. It helps scope data, screens, and workflows so users do not accidentally work in the wrong municipality.
+- **Detailed explanation:** A workbase tells iREPS which Local Municipality, LM, Metro, or operational context the user is currently working under. In the locked iREPS Geography hierarchy, Workbase is represented at the Local Municipality / workbase / LM / Metro level. It helps scope data, screens, and workflows so users do not accidentally work in the wrong municipality.
 
 - **Example:** In TEST, the SPU demo user can switch between King Sabata Dalindyebo and Lesedi workbases.
 
-- **Related terms:** Active Workbase, LM, Ward, Operational Scope, SPU
+- **Related terms:** Active Workbase, LM, Metro, Ward, Operational Scope, SPU, iREPS Geography
 
 ### Term: Active Workbase
 
@@ -1710,13 +2768,13 @@ This is Version 1.2 of the iREPS Master Dictionary. It preserves Version 1.1 loc
 
 - **Acronym:** None
 
-- **Simple meaning:** The LM and ward context where iREPS work happens.
+- **Simple meaning:** The workbase / LM / Metro and ward context where iREPS work happens.
 
-- **Detailed explanation:** Operational scope controls which data and workflows belong together. The locked iREPS rule is that operational scope is LM plus Ward, and ward must be explicit for operational data and workflows where required.
+- **Detailed explanation:** Operational scope controls which data and workflows belong together. The locked iREPS rule is that operational scope is Workbase / LM / Metro plus Ward, and ward must be explicit for operational data and workflows where required. This is why the ERFs page depends on the selected ward.
 
-- **Example:** A premise, ERF, or meter reading should be linked to the correct LM and ward scope.
+- **Example:** A premise, ERF, or meter reading should be linked to the correct workbase / LM / Metro and ward scope.
 
-- **Related terms:** LM, Ward, Workbase, Cadastral, Geofence
+- **Related terms:** LM, Metro, Ward, Workbase, Cadastral, Geofence, iREPS Geography
 
 ### Term: SPU Workbase Patch
 
