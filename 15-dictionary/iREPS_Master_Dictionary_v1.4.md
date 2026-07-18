@@ -8,7 +8,7 @@ The goal is to explain each term in simple language while preserving the correct
 
 The iREPS Master Dictionary must be reviewed and refined continuously. Every new iREPS word, acronym, workflow name, module name, role, data concept, and operational term must be added here so that all iREPS documentation and training uses one approved meaning.
 
-This is Version 1.4 of the iREPS Master Dictionary. It preserves the locked meanings from Version 1.3 and adds the dedicated Sales Pipeline Concepts section required by the iREPS Sales Pipeline rules. It also separates sales matching from operational visibility: the Sales Pipeline may establish whether approved sales data exists for a meter, but only approved operational meter-registration, Meter Discovery, and Meter Installation writers may create or change operational VISIBLE / INVISIBLE values.
+This is Version 1.5 of the iREPS Master Dictionary. It preserves the locked meanings from Version 1.4 and adds the approved source-neutral Meter Master lifecycle, ownership, refresh, conflict and reporting terminology. Meter Master lifecycle classifications are derived from canonical references and are not stored status fields.
 
 ## 1. Core iREPS Concepts
 
@@ -1048,11 +1048,11 @@ This section is the official iREPS terminology source for Sales Pipeline busines
 
 - **Simple meaning:** The step that uploads one frozen approved Meter Master CSV.
 
-- **Detailed explanation:** Stage 07 validates the successful Stage 05 manifest and exact CSV before connecting to Firestore. Normal mode is create-only against an appropriate empty target. Resume is only for recovery of the exact same failed upload contract.
+- **Detailed explanation:** Stage 07 validates the successful Stage 05 manifest and exact CSV before connecting to Firestore. `create-only` performs the initial approved load into an empty Meter Master collection, `refresh` safely applies a newly approved full-period build to an established collection, and `resume` is only recovery of the exact same failed frozen upload contract.
 
 - **Example:** Stage 07 uploads the same approved Meter Master build to an explicitly approved TEST project.
 
-- **Related terms:** Meter Master, Frozen CSV, Create-only, Controlled Resume
+- **Related terms:** Meter Master, Frozen CSV, Initial Meter Master load, Recurring Meter Master refresh, Controlled Resume
 
 ### Term: Stage 08
 
@@ -1132,7 +1132,7 @@ This section is the official iREPS terminology source for Sales Pipeline busines
 
 - **Simple meaning:** The thin canonical identity and cross-reference bridge for a meter.
 
-- **Detailed explanation:** `meter_master` links the sales-side meter universe with iREPS operational meter identity. It is not a sales transaction history, premise, ERF, TRN, status, visibility, or service-provider collection. It uses the normalized meter number as its deterministic document identity and preserves strict field ownership across Sales Pipeline and operational writers.
+- **Detailed explanation:** `meter_master` is the universal source-neutral meter identity and cross-reference register. It links approved sales data independently to an operational AST without storing sales history, operational lifecycle status, premise structure, service-provider allocation, or visibility. It uses the normalized meter number as its deterministic document identity and preserves strict field ownership across Sales Pipeline and operational writers.
 
 - **Example:** Meter Master can show that meter 04085345850 has a Conlog sales reference and, separately, an AST reference when an approved operational workflow links one.
 
@@ -1161,6 +1161,158 @@ This section is the official iREPS terminology source for Sales Pipeline busines
 - **Example:** `meter_master/04085345850` is the canonical identity document for that normalized meter number.
 
 - **Related terms:** Meter Master, Deterministic Document ID, Field Ownership, AST Link
+
+### Term: Meter Master document identity
+
+- **Acronym:** None
+- **Simple meaning:** The permanent normalized meter number used as the Meter Master document ID.
+- **Detailed explanation:** The Firestore path is `meter_master/{normalizedMeterNo}`, and the document ID must equal `meterNo.normalized`. Normalisation removes all whitespace, converts letters to uppercase, preserves leading zeroes, and imposes no universal fixed length. The identity is immutable after creation.
+- **Example:** ` 04 085 345 850 ` resolves to `meter_master/04085345850`.
+- **Related terms:** Meter Master, Normalized Meter Number, Deterministic Document ID
+
+### Term: AST reference
+
+- **Acronym:** None
+- **Simple meaning:** The Meter Master link to the operational AST.
+- **Detailed explanation:** `refs.asts.id` is owned by approved operational writers. A blank string means that no operational AST relationship exists. The Sales Pipeline never creates, changes, or clears this field.
+- **Example:** A field installation populates the AST reference while preserving existing sales fields.
+- **Related terms:** Meter Master, FIELD_ONLY, MATCHED, Operationally owned field
+
+### Term: Sales reference
+
+- **Acronym:** None
+- **Simple meaning:** The Meter Master link to approved sales data.
+- **Detailed explanation:** `refs.sales.id` is owned by the Sales Pipeline and normally equals the canonical normalized meter number. `refs.sales.provider` records the governed provider. Operational writers never create, change, or clear either sales field.
+- **Example:** A Conlog sale populates the sales reference and provider without changing an AST reference.
+- **Related terms:** Meter Master, SALES_ONLY, MATCHED, Pipeline-owned field
+
+### Term: SALES_ONLY
+
+- **Acronym:** None
+- **Simple meaning:** A meter has approved sales data but no operational AST link.
+- **Detailed explanation:** This conceptual classification is derived when `refs.sales.id` is populated and `refs.asts.id` is blank. It is not stored as a Meter Master status field.
+- **Example:** A sales-originated Meter Master document before field matching is SALES_ONLY.
+- **Related terms:** FIELD_ONLY, MATCHED, Sales reference
+
+### Term: FIELD_ONLY
+
+- **Acronym:** None
+- **Simple meaning:** A meter has an operational AST link but no approved sales link.
+- **Detailed explanation:** This conceptual classification is derived when `refs.asts.id` is populated and `refs.sales.id` is blank. It is not stored as a Meter Master status field.
+- **Example:** A newly installed meter that has not appeared in sales is FIELD_ONLY.
+- **Related terms:** SALES_ONLY, MATCHED, AST reference
+
+### Term: MATCHED
+
+- **Acronym:** None
+- **Simple meaning:** A meter has both operational and sales links.
+- **Detailed explanation:** This conceptual classification is derived when both `refs.asts.id` and `refs.sales.id` are populated. It is not stored as a Meter Master status field.
+- **Example:** A FIELD_ONLY meter becomes MATCHED when its first approved sale is linked.
+- **Related terms:** SALES_ONLY, FIELD_ONLY, Meter Master
+
+### Term: EMPTY_OR_INCOMPLETE
+
+- **Acronym:** None
+- **Simple meaning:** A Meter Master record has neither an AST link nor a sales link.
+- **Detailed explanation:** This conceptual classification is derived when both canonical references are blank. It signals an incomplete record requiring investigation and is not stored as a Meter Master status field.
+- **Example:** A document with both reference IDs blank is EMPTY_OR_INCOMPLETE.
+- **Related terms:** Record-level conflict, Meter Master
+
+### Term: Pipeline-owned field
+
+- **Acronym:** None
+- **Simple meaning:** A Meter Master field only the approved Sales Pipeline may change.
+- **Detailed explanation:** Current pipeline-owned fields are `customerNo`, `accountNo`, `refs.sales.id`, and `refs.sales.provider`. Operational writers must preserve them.
+- **Example:** A recurring refresh may enrich `customerNo` but may not change `refs.asts.id`.
+- **Related terms:** Operationally owned field, Field Ownership, Sales Pipeline
+
+### Term: Operationally owned field
+
+- **Acronym:** None
+- **Simple meaning:** A Meter Master field only an approved operational workflow may change.
+- **Detailed explanation:** The current operationally owned Meter Master field is `refs.asts.id`. The Sales Pipeline must preserve it during initial loading, refresh, and resume.
+- **Example:** Meter Discovery may populate a blank AST reference on a compatible SALES_ONLY record.
+- **Related terms:** Pipeline-owned field, AST reference, Field Ownership
+
+### Term: Initial Meter Master load
+
+- **Acronym:** None
+- **Simple meaning:** The first governed creation of Meter Master from an approved sales build.
+- **Detailed explanation:** Stage 07 `create-only` loads complete canonical sales-originated documents into an empty Meter Master collection using one approved frozen Stage 05 contract.
+- **Example:** The first approved TEST load uses `create-only`, not `refresh`.
+- **Related terms:** create-only, Stage 07, Meter Master
+
+### Term: Recurring Meter Master refresh
+
+- **Acronym:** None
+- **Simple meaning:** A governed comparison of a new approved sales build with established Meter Master records.
+- **Detailed explanation:** Stage 07 `refresh` creates missing sales-originated documents, updates only approved sales-owned fields, skips unchanged records, preserves operational links and original creation metadata, and continues after record-level conflicts. It never deletes a Meter Master document merely because it is absent from the sales build.
+- **Example:** A monthly refresh enriches a FIELD_ONLY record into MATCHED without replacing its AST link.
+- **Related terms:** CREATED, UPDATED, UNCHANGED, CONFLICT, Stage 07
+
+### Term: Record-level conflict
+
+- **Acronym:** None
+- **Simple meaning:** A problem limited to one Meter Master record that makes its proposed change unsafe.
+- **Detailed explanation:** The affected record is not written. A stable conflict code and existing/incoming evidence are reported, and processing continues for other valid records. A widespread version of the problem may become a run-level failure.
+- **Example:** An LM mismatch on one document is reported while other compatible meters continue.
+- **Related terms:** CONFLICT, COMPLETED_WITH_CONFLICTS, Conflict Report
+
+### Term: CREATED
+
+- **Acronym:** None
+- **Simple meaning:** Refresh created a missing canonical Meter Master document.
+- **Detailed explanation:** The incoming approved record had no existing canonical document and was safely created using the complete sales-originated shape.
+- **Example:** A newly sold meter absent from Meter Master is classified CREATED.
+- **Related terms:** Recurring Meter Master refresh, UPDATED
+
+### Term: UPDATED
+
+- **Acronym:** None
+- **Simple meaning:** Refresh safely changed approved sales-owned fields.
+- **Detailed explanation:** The existing document was compatible and required a material sales enrichment. Operational fields, controlled identity, and original creation metadata were preserved.
+- **Example:** A FIELD_ONLY document receiving its first sales reference is UPDATED.
+- **Related terms:** Recurring Meter Master refresh, MATCHED
+
+### Term: UNCHANGED
+
+- **Acronym:** None
+- **Simple meaning:** The existing Meter Master already matches the approved incoming sales values.
+- **Detailed explanation:** No Firestore write occurs and `metadata.updated*` remains unchanged.
+- **Example:** Rerunning the same approved refresh classifies an identical compatible record as UNCHANGED.
+- **Related terms:** Idempotency, Recurring Meter Master refresh
+
+### Term: CONFLICT
+
+- **Acronym:** None
+- **Simple meaning:** Refresh skipped an unsafe Meter Master change.
+- **Detailed explanation:** The affected record is not written, receives a stable conflict code and investigation evidence, and does not stop remaining valid records.
+- **Example:** A conflicting controlled LM is classified CONFLICT.
+- **Related terms:** Record-level conflict, COMPLETED_WITH_CONFLICTS
+
+### Term: COMPLETED
+
+- **Acronym:** None
+- **Simple meaning:** The complete governed run finished without unresolved conflicts.
+- **Detailed explanation:** Every incoming row was accounted for and final verification passed without conflicts or record failures that require investigation.
+- **Example:** A refresh containing only CREATED, UPDATED, and UNCHANGED records may finish COMPLETED.
+- **Related terms:** COMPLETED_WITH_CONFLICTS, FAILED
+
+### Term: COMPLETED_WITH_CONFLICTS
+
+- **Acronym:** None
+- **Simple meaning:** Safe records completed while conflicting records were skipped and reported.
+- **Detailed explanation:** This is a completed run result, not a run-level failure. Every safely processable record finished, and the conflict report identifies records requiring investigation.
+- **Example:** A refresh with two isolated LM conflicts may finish COMPLETED_WITH_CONFLICTS.
+- **Related terms:** Record-level conflict, CONFLICT, COMPLETED
+
+### Term: FAILED
+
+- **Acronym:** None
+- **Simple meaning:** A genuine run-level failure prevented the complete result from being trusted.
+- **Detailed explanation:** FAILED is reserved for systemic conditions such as invalid frozen input, project or credential mismatch, systemic Firestore failure, inability to report, invalid run accounting, or failed final verification. An isolated record conflict does not by itself make the run FAILED.
+- **Example:** A CSV fingerprint mismatch produces FAILED before writes begin.
+- **Related terms:** COMPLETED, COMPLETED_WITH_CONFLICTS, Run-level Failure
 
 ### Term: Sales All Meters
 
@@ -3189,3 +3341,11 @@ This section is the official iREPS terminology source for Sales Pipeline busines
 - **Example:** A meter already on sales may need data cleansing so iREPS and the sales repository agree on its details.
 
 - **Related terms:** Data Quality, Sales Repository, Meter Master, Normalisation
+
+## Dictionary changelog
+
+### Version 1.5 — 2026-07-19
+
+- Amended Meter Master as the source-neutral canonical identity and cross-reference register.
+- Added Meter Master identity, AST and sales references, derived lifecycle classifications, ownership, initial-load, recurring-refresh, record-result, conflict, and final-run terminology.
+- Confirmed that lifecycle classifications are derived concepts and are not persisted Meter Master status fields.
