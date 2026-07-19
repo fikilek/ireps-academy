@@ -8,7 +8,7 @@ The goal is to explain each term in simple language while preserving the correct
 
 The iREPS Master Dictionary must be reviewed and refined continuously. Every new iREPS word, acronym, workflow name, module name, role, data concept, and operational term must be added here so that all iREPS documentation and training uses one approved meaning.
 
-This is Version 1.5 of the iREPS Master Dictionary. It preserves the locked meanings from Version 1.4 and adds the approved source-neutral Meter Master lifecycle, ownership, refresh, conflict and reporting terminology. Meter Master lifecycle classifications are derived from canonical references and are not stored status fields.
+This is Version 1.6 of the iREPS Master Dictionary. It preserves the locked meanings from Version 1.5 and adds the confirmed Meter Master to Sales All Meters operational bridge, MATCHED-to-VISIBLE derivation, visibility ownership boundary, and current Sales All Meters metadata restriction. Meter Master lifecycle classifications remain derived from canonical references and are not stored status fields.
 
 ## 1. Core iREPS Concepts
 
@@ -1190,25 +1190,25 @@ This section is the official iREPS terminology source for Sales Pipeline busines
 
 - **Acronym:** None
 - **Simple meaning:** A meter has approved sales data but no operational AST link.
-- **Detailed explanation:** This conceptual classification is derived when `refs.sales.id` is populated and `refs.asts.id` is blank. It is not stored as a Meter Master status field.
-- **Example:** A sales-originated Meter Master document before field matching is SALES_ONLY.
-- **Related terms:** FIELD_ONLY, MATCHED, Sales reference
+- **Detailed explanation:** This conceptual classification is derived when `refs.sales.id` is populated and `refs.asts.id` is blank. It is not stored as a Meter Master status field. A SALES_ONLY meter is not yet MATCHED, so the operational Sales All Meters visibility projection is `INVISIBLE`.
+- **Example:** A sales-originated Meter Master document before Meter Discovery or Meter Installation links an AST is SALES_ONLY.
+- **Related terms:** FIELD_ONLY, MATCHED, Sales reference, INVISIBLE
 
 ### Term: FIELD_ONLY
 
 - **Acronym:** None
 - **Simple meaning:** A meter has an operational AST link but no approved sales link.
-- **Detailed explanation:** This conceptual classification is derived when `refs.asts.id` is populated and `refs.sales.id` is blank. It is not stored as a Meter Master status field.
-- **Example:** A newly installed meter that has not appeared in sales is FIELD_ONLY.
-- **Related terms:** SALES_ONLY, MATCHED, AST reference
+- **Detailed explanation:** This conceptual classification is derived when `refs.asts.id` is populated and `refs.sales.id` is blank. It is not stored as a Meter Master status field. A FIELD_ONLY meter is not yet MATCHED, so the operational Sales All Meters visibility projection is `INVISIBLE` when a projection document exists.
+- **Example:** A newly installed meter that has not appeared in approved sales data is FIELD_ONLY.
+- **Related terms:** SALES_ONLY, MATCHED, AST reference, INVISIBLE
 
 ### Term: MATCHED
 
 - **Acronym:** None
-- **Simple meaning:** A meter has both operational and sales links.
-- **Detailed explanation:** This conceptual classification is derived when both `refs.asts.id` and `refs.sales.id` are populated. It is not stored as a Meter Master status field.
-- **Example:** A FIELD_ONLY meter becomes MATCHED when its first approved sale is linked.
-- **Related terms:** SALES_ONLY, FIELD_ONLY, Meter Master
+- **Simple meaning:** A meter has both an operational AST link and an approved sales link.
+- **Detailed explanation:** This conceptual classification is derived when both `refs.asts.id` and `refs.sales.id` are populated. It is not stored as a Meter Master status field. The approved operational bridge projects a MATCHED Meter Master as `master.visibility = "VISIBLE"` in Sales All Meters.
+- **Example:** A SALES_ONLY meter becomes MATCHED when Meter Discovery or Meter Installation links its AST while preserving the sales reference.
+- **Related terms:** SALES_ONLY, FIELD_ONLY, Meter Master, VISIBLE, Meter Master to Sales All Meters Bridge
 
 ### Term: EMPTY_OR_INCOMPLETE
 
@@ -1320,11 +1320,11 @@ This section is the official iREPS terminology source for Sales Pipeline busines
 
 - **Simple meaning:** The governed sales-awareness projection for every approved Meter Master identity.
 
-- **Detailed explanation:** Sales All Meters combines Meter Master identity and customer references with approved monthly sales history. It includes meters with sales and meters without sales. It supports reporting and quick sales awareness without becoming the canonical operational meter record.
+- **Detailed explanation:** Sales All Meters combines Meter Master identity and customer references with approved monthly sales history. It includes meters with sales and meters without sales. It supports reporting and quick sales awareness without becoming the canonical operational meter record. Sales Pipeline fields and operational visibility have separate owners: the Sales Pipeline owns sales-summary fields, while the approved operational bridge owns only `master.visibility`.
 
-- **Example:** A customer-only Meter Master identity appears in Sales All Meters with zero monthly totals when no approved sales transactions exist.
+- **Example:** A customer-only Meter Master identity appears in Sales All Meters with zero monthly totals. When its Meter Master becomes MATCHED, the operational bridge changes only its visibility projection to `VISIBLE`.
 
-- **Related terms:** sales-all-meters, Meter Master, monthlyTotalsC, Sales Match
+- **Related terms:** sales-all-meters, Meter Master, monthlyTotalsC, Sales Match, Operational Visibility Ownership
 
 ### Term: sales-all-meters
 
@@ -1332,11 +1332,11 @@ This section is the official iREPS terminology source for Sales Pipeline busines
 
 - **Simple meaning:** The Firestore collection containing Sales All Meters projection documents.
 
-- **Detailed explanation:** The canonical document identity is the normalized meter number. Pipeline-owned fields include meter identity, provider, customer and account references, total sales, monthly totals, and recency fields. The Sales Pipeline must omit operational `master.visibility`.
+- **Detailed explanation:** The canonical document identity is the normalized meter number. Pipeline-owned fields include meter identity, provider, customer and account references, total sales, monthly totals, and recency fields. The Sales Pipeline must omit operational `master.visibility`. The approved operational bridge may add or update only `master.id` and `master.visibility`, while preserving all pipeline-owned fields. The current locked collection shape does not include metadata.
 
-- **Example:** `sales-all-meters/04085345850` can contain the meter’s monthly Conlog totals and latest purchase date.
+- **Example:** `sales-all-meters/04085345850` can contain monthly Conlog totals and an operational `master.visibility` value written separately by the approved bridge.
 
-- **Related terms:** Sales All Meters, Operational Visibility Ownership, totalAmountC, monthlyTotalsC
+- **Related terms:** Sales All Meters, Operational Visibility Ownership, totalAmountC, monthlyTotalsC, Meter Master to Sales All Meters Bridge
 
 ### Term: Normalized Meter Number
 
@@ -1368,11 +1368,11 @@ This section is the official iREPS terminology source for Sales Pipeline busines
 
 - **Simple meaning:** A confirmed connection between a meter identity and approved sales-side data.
 
-- **Detailed explanation:** A Sales Link means the meter has a canonical sales reference or matching approved sales data. It is separate from AST linkage and operational visibility. A sales-linked meter is not automatically VISIBLE, and a meter without current sales is not automatically INVISIBLE.
+- **Detailed explanation:** A Sales Link means the meter has a canonical sales reference or matching approved sales data. A sales link alone does not make the meter VISIBLE. When both the Sales Link and AST Link are present, Meter Master is MATCHED and the approved operational bridge projects `VISIBLE` in Sales All Meters.
 
-- **Example:** `refs.sales.id` and `refs.sales.provider` can establish the sales-side link in Meter Master.
+- **Example:** `refs.sales.id` and `refs.sales.provider` establish the sales-side link; `refs.asts.id` must also be populated before the meter is MATCHED.
 
-- **Related terms:** Sales Match, Meter Master, AST Link, Visibility
+- **Related terms:** Sales Match, Meter Master, AST Link, MATCHED, Visibility
 
 ### Term: Sales Match
 
@@ -1380,11 +1380,11 @@ This section is the official iREPS terminology source for Sales Pipeline busines
 
 - **Simple meaning:** A result showing that a normalized meter number was found in approved sales data.
 
-- **Detailed explanation:** Sales Match is the correct term for sales-side presence. It must not be called operational visibility. A match can support an `IN SALES` badge or report result, while the backend and operational rules separately govern visibility.
+- **Detailed explanation:** Sales Match is the correct term for sales-side presence. It must not be called operational visibility. A Sales Match can support an `IN SALES` badge or report result. Operational visibility becomes `VISIBLE` only after the same canonical Meter Master also has an AST link and is therefore MATCHED.
 
-- **Example:** The normalized meter number exists in the approved Sales Repository, so the form shows `IN SALES`.
+- **Example:** The normalized meter number exists in the approved Sales Repository, so the form shows `IN SALES`; after successful installation or discovery links the AST, the operational bridge projects `VISIBLE`.
 
-- **Related terms:** IN SALES, NO SALES MATCH, Sales Link, Backend Check
+- **Related terms:** IN SALES, NO SALES MATCH, Sales Link, MATCHED, Backend Check
 
 ### Term: IN SALES
 
@@ -1416,7 +1416,7 @@ This section is the official iREPS terminology source for Sales Pipeline busines
 
 - **Simple meaning:** The canonical reference connecting Meter Master to an iREPS operational Asset.
 
-- **Detailed explanation:** The AST Link is stored through the approved Meter Master AST reference and is owned by approved operational Meter Discovery and Meter Installation writers. A blank AST link means only that no AST reference is present in that pipeline record; it does not prove invisibility.
+- **Detailed explanation:** The AST Link is stored through the approved Meter Master AST reference and is owned by approved operational Meter Discovery and Meter Installation writers. A blank AST link means the Meter Master is not MATCHED. Under the approved operational bridge, the Sales All Meters visibility projection is therefore `INVISIBLE` until both the AST and sales references are populated.
 
 - **Example:** After an approved discovery workflow links an AST, Meter Master stores its AST identifier.
 
@@ -1450,49 +1450,75 @@ This section is the official iREPS terminology source for Sales Pipeline busines
 
 - **Acronym:** None
 
-- **Simple meaning:** An operational status controlled by approved operational meter workflows, not by sales matching.
+- **Simple meaning:** The operational Sales All Meters value showing whether Meter Master has both required links.
 
-- **Detailed explanation:** Visibility describes whether the meter is operationally exposed or available according to approved iREPS operational rules. Sales history, Meter Master presence, customer references, and blank or populated pipeline AST fields do not by themselves determine visibility. The Sales Pipeline must not create, derive, default, merge, overwrite, or clear `master.visibility`.
+- **Detailed explanation:** Visibility is projected by the approved operational Meter Master to Sales All Meters bridge. A MATCHED Meter Master, with both `refs.asts.id` and `refs.sales.id` populated, projects `VISIBLE`. SALES_ONLY, FIELD_ONLY, and EMPTY_OR_INCOMPLETE project `INVISIBLE`. The Sales Pipeline must not create, derive, default, merge, overwrite, or clear `master.visibility`; it remains an operationally owned field.
 
-- **Example:** A meter can be `IN SALES` while its operational visibility is still governed separately by Meter Discovery or Meter Installation.
+- **Example:** A meter can be `IN SALES` while still `INVISIBLE` when no AST is linked. After Meter Discovery or Meter Installation links the AST, it becomes MATCHED and the bridge projects `VISIBLE`.
 
-- **Related terms:** VISIBLE, INVISIBLE, Operational Visibility Ownership, Sales Match
+- **Related terms:** VISIBLE, INVISIBLE, MATCHED, Operational Visibility Ownership, Sales Match
 
 ### Term: VISIBLE
 
 - **Acronym:** None
 
-- **Simple meaning:** The approved operational visibility value showing that a meter is visible under iREPS operational rules.
+- **Simple meaning:** The Sales All Meters operational value showing that Meter Master is MATCHED.
 
-- **Detailed explanation:** `VISIBLE` is written only by an approved operational meter-registration, Meter Discovery, or Meter Installation writer according to the operational contract. It does not mean merely that sales data exists.
+- **Detailed explanation:** `VISIBLE` is written only by the approved operational bridge after both canonical Meter Master references are populated: `refs.asts.id` and `refs.sales.id`. Sales data alone is insufficient, and an AST alone is insufficient. The value is stored in Sales All Meters, not in Meter Master.
 
-- **Example:** An approved Meter Discovery backend writer may establish `VISIBLE` after completing its governed operational checks.
+- **Example:** A SALES_ONLY Conlog meter becomes MATCHED after Meter Discovery or Meter Installation links its AST; the bridge then writes `master.visibility = "VISIBLE"`.
 
-- **Related terms:** Visibility, INVISIBLE, Operational Visibility Ownership, Meter Discovery
+- **Related terms:** Visibility, INVISIBLE, MATCHED, Operational Visibility Ownership, Meter Discovery, Meter Installation
 
 ### Term: INVISIBLE
 
 - **Acronym:** None
 
-- **Simple meaning:** The approved operational visibility value showing that a meter is not visible under iREPS operational rules.
+- **Simple meaning:** The Sales All Meters operational value showing that Meter Master is not MATCHED.
 
-- **Detailed explanation:** `INVISIBLE` is an operational value and must not be inferred from no sales, a blank AST link, an absent customer number, or any other Sales Pipeline field. Only an approved operational writer may set it.
+- **Detailed explanation:** `INVISIBLE` is projected when the canonical Meter Master does not contain both required links. This includes SALES_ONLY, FIELD_ONLY, and EMPTY_OR_INCOMPLETE. The Sales Pipeline does not write the value; the approved operational bridge owns it.
 
-- **Example:** A meter with no Conlog purchases is not automatically INVISIBLE.
+- **Example:** A SALES_ONLY meter with a populated sales reference but blank AST reference remains `INVISIBLE` until field registration creates the AST link.
 
-- **Related terms:** Visibility, VISIBLE, Operational Visibility Ownership, NO SALES MATCH
+- **Related terms:** Visibility, VISIBLE, SALES_ONLY, FIELD_ONLY, Operational Visibility Ownership
 
 ### Term: Operational Visibility Ownership
 
 - **Acronym:** None
 
-- **Simple meaning:** The rule that only approved operational meter writers control `master.visibility`.
+- **Simple meaning:** The rule that only the approved operational bridge controls `master.visibility`.
 
-- **Detailed explanation:** Operational meter-registration, Meter Discovery, and Meter Installation writers own visibility. Stage 06 must not output a visibility column. Stage 08 must not create, upload, overwrite, default, merge, or clear `master.visibility`. Existing approved operational visibility is outside Stage 08 ownership and must be preserved during controlled recovery.
+- **Detailed explanation:** Meter Discovery, Meter Installation, and other approved meter-registration workflows establish the Meter Master links. The operational bridge projects their canonical result into Sales All Meters: MATCHED becomes VISIBLE; other lifecycle classifications become INVISIBLE. Stage 06 must not output visibility, and Stage 08 must not create, upload, overwrite, default, merge, or clear it. The bridge may update only `master.id` and `master.visibility` and must preserve every Sales Pipeline-owned field.
 
-- **Example:** Stage 08 validates sales totals but ignores and preserves an existing operational `master.visibility` value.
+- **Example:** Stage 08 validates sales totals and preserves visibility; the operational bridge changes visibility after a Meter Master reference transition.
 
-- **Related terms:** Visibility, Field Ownership, Stage 06, Stage 08
+- **Related terms:** Visibility, Field Ownership, Stage 06, Stage 08, Meter Master to Sales All Meters Bridge
+
+
+### Term: Meter Master to Sales All Meters Bridge
+
+- **Acronym:** None
+
+- **Simple meaning:** The approved backend link that keeps Sales All Meters visibility aligned with Meter Master lifecycle references.
+
+- **Detailed explanation:** The bridge reads the canonical Meter Master references and updates only the operational visibility projection in the matching Sales All Meters document. Both `refs.asts.id` and `refs.sales.id` populated means MATCHED and therefore VISIBLE. Any other reference combination means INVISIBLE. The bridge must remain idempotent, preserve every Sales Pipeline-owned field, avoid broad writes, and must not add metadata under the current locked Sales All Meters schema.
+
+- **Example:** Meter Installation links an AST to a SALES_ONLY meter. The bridge preserves the Conlog totals and changes only `master.visibility` to `VISIBLE`.
+
+- **Related terms:** Meter Master, Sales All Meters, MATCHED, Visibility, Field Ownership
+
+### Term: Sales All Meters Metadata Restriction
+
+- **Acronym:** None
+
+- **Simple meaning:** The current Sales All Meters schema does not allow a metadata object.
+
+- **Detailed explanation:** Under the current locked schema, the operational bridge may update only `master.id` and `master.visibility`. It must not add `metadata.updatedAt`, `metadata.updatedByUid`, `metadata.updatedByUser`, or any other metadata fields unless a future governed schema amendment explicitly approves them.
+
+- **Example:** A visibility update preserves all sales fields and does not add `metadata`.
+
+- **Related terms:** Sales All Meters, Meter Master to Sales All Meters Bridge, Canonical Schema, Field Ownership
+
 
 ### Term: Backend Check
 
@@ -1500,7 +1526,7 @@ This section is the official iREPS terminology source for Sales Pipeline busines
 
 - **Simple meaning:** A server-side validation that confirms governed data before saving or acting.
 
-- **Detailed explanation:** A Backend Check normalizes the meter number, checks approved data sources, applies business rules, and confirms the result independently of a form-side hint. Sales matching and operational visibility remain separate backend responsibilities.
+- **Detailed explanation:** A Backend Check normalizes the meter number, checks approved data sources, applies business rules, and confirms the result independently of a form-side hint. The sales lookup establishes sales-side presence; the operational bridge separately projects visibility from the final canonical Meter Master links.
 
 - **Example:** The backend rechecks whether a scanned meter is `IN SALES` before the transaction is saved.
 
@@ -3349,3 +3375,18 @@ This section is the official iREPS terminology source for Sales Pipeline busines
 - Amended Meter Master as the source-neutral canonical identity and cross-reference register.
 - Added Meter Master identity, AST and sales references, derived lifecycle classifications, ownership, initial-load, recurring-refresh, record-result, conflict, and final-run terminology.
 - Confirmed that lifecycle classifications are derived concepts and are not persisted Meter Master status fields.
+
+## Version 1.6 Change Record
+
+### 2026-07-19 — Sales All Meters operational bridge terminology confirmed
+
+Version 1.6 confirms:
+
+- SALES_ONLY, FIELD_ONLY, MATCHED, and EMPTY_OR_INCOMPLETE remain derived Meter Master classifications;
+- MATCHED requires both the AST reference and sales reference;
+- the approved operational bridge projects MATCHED as VISIBLE in Sales All Meters;
+- other derived Meter Master classifications project as INVISIBLE;
+- Meter Discovery and Meter Installation can both produce the SALES_ONLY to MATCHED transition;
+- the Sales Pipeline remains prohibited from writing visibility;
+- the current Sales All Meters schema contains no metadata, so the bridge must not write `metadata.updated*`;
+- recurring Sales All Meters pipeline refresh remains separate from create-only loading and controlled resume.
