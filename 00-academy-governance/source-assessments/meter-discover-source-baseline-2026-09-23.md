@@ -81,7 +81,7 @@ No application was launched, no Firebase data was queried or changed, and no own
 
 | Subject | Evidence |
 | --- | --- |
-| ERF → premise → meter, normal/Sales routes | MD-S31; MD-S01 parent gate/payload; MD-S27 and MD-S40 callable/trigger |
+| ERF → premise → meter, Normal Path and Sales Path | MD-S31; MD-S01 parent gate/payload; MD-S27 and MD-S40 callable/trigger |
 | Form inputs, defaults, conditions, canonicalisation | MD-S01–MD-S16; MD-S41 |
 | Electricity/water screen differences | MD-S02, MD-S03 |
 | Controlled values / findings / preselected actions | MD-S10, MD-S02, MD-S32, MD-S33 |

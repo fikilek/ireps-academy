@@ -140,7 +140,7 @@ Types describe the application's payload representation, not a claim that every 
 - **Data type:** string.
 - **Prerequisite and requirement:** Accessed discovery, electricity or water; required.
 - **Validation and dependencies:** Remove all whitespace; uppercase ASCII a-z; allow only A-Z and 0-9. Local duplicate warning uses loaded data; backend master checks remain authoritative. Do not guess unreadable numbers.
-- **Initial/default value:** Blank; electricity batch route can prefill targetedMeterNo.
+- **Initial/default value:** Blank; Sales Path for electricity can prefill targetedMeterNo.
 - **Canonical storage / transformation:** Same path; normalised identity also keys meter_master.
 - **Evidence:** astNoPhoto.
 - **Synthetic example:** 00AB123456.
@@ -1205,7 +1205,7 @@ Types describe the application's payload representation, not a claim that every 
 - **Data type:** string.
 - **Prerequisite and requirement:** Targeted Batch context present.
 - **Validation and dependencies:** Must agree with normalised context source module.
-- **Initial/default value:** Absent on ordinary route.
+- **Initial/default value:** Absent on Normal Path.
 - **Canonical storage / transformation:** Same root path.
 - **Evidence:** None specifically required.
 - **Synthetic example:** SALES_TARGETED_BATCH.

@@ -1,8 +1,8 @@
 # Meter Discover — mobile user manual
 
-**MDIS-UM · version 0.1 · review draft.** This guide follows the recorded mobile normalisation feature, with the branch differences and unresolved behaviour listed in the [source baseline](../../00-academy-governance/source-assessments/meter-discover-source-baseline-2026-09-23.md). It must be walked through on the intended release before field publication. Screens may still say **Meter Discovery**.
+**MDIS-UM · version 0.2 · review draft.** This guide follows the recorded mobile normalisation feature, with the branch differences and unresolved behaviour listed in the [source baseline](../../00-academy-governance/source-assessments/meter-discover-source-baseline-2026-09-23.md). It must be walked through on the intended release before field publication. Screens may still say **Meter Discovery**.
 
-For explanations use the [Body of Knowledge](../../01-body-of-knowledge/meter-discover-body-of-knowledge.md). For any field's detailed meaning, allowed values or photograph requirement use the [field catalogue](../../01-body-of-knowledge/meter-discover-field-catalogue.md). For refusals and recovery use the [error register](../../01-body-of-knowledge/meter-discover-error-register.md).
+For explanations use the [Body of Knowledge](../../01-body-of-knowledge/meter-discover-body-of-knowledge.md). For mounting examples use the [placement image guide](../../01-body-of-knowledge/meter-discover-body-of-knowledge.md#placement-examples-context-and-closer-views). For any field's detailed meaning, allowed values or photograph requirement use the [field catalogue](../../01-body-of-knowledge/meter-discover-field-catalogue.md). For refusals and recovery use the [error register](../../01-body-of-knowledge/meter-discover-error-register.md).
 
 ## 1. Before starting
 
@@ -10,19 +10,21 @@ Confirm your signed-in account, organisation, active workbase and intended envir
 
 Have the device permissions needed for camera/location and any optional recording. Know where to find local queued forms. Do not assume that an offline dropdown implies the entire workflow is ready to complete offline. This manual does not grant authority to disconnect, remove, install or interfere with service equipment; follow-on work uses its own assigned task and procedure.
 
-## 2. Choose the entry route
+## 2. Choose the entry path
 
-### A. Ordinary discovery from the property
+The only names for these entry paths are **Normal Path** and **Sales Path**, as defined in the [master dictionary](../../15-dictionary/iREPS_Master_Dictionary.md#meter-discover-entry-paths). Reopening a saved draft continues its original path.
+
+### A. Normal Path
 
 1. Select the correct municipality/ward and ERF through the available geography/navigation controls.
 2. Open its **Premises** and select the actual service premise, or create the required premise using the premise workflow.
-3. Verify the address, property type and unit. A shared ERF can contain several premises.
+3. Verify the address, property type and unit. A shared ERF can contain several premises. Use the [property-type examples](../../01-body-of-knowledge/meter-discover-body-of-knowledge.md#property-type-case-index) to distinguish the type grouping from each individual premise.
 4. Start the meter discovery action. Choose electricity or water if access is available, or choose the No Access route if it is not.
 5. Check the premise address and ERF number shown by the form before entering the meter details.
 
 If the parent premise is still only on the device, you can encounter a Saved as Draft result. The discovery cannot be submitted to the server until the parent premise is saved. Do not select another premise merely to remove the blocker.
 
-### B. Discovery from Sales / My Work Orders
+### B. Sales Path
 
 1. Open the accepted work in **My Work Orders** and select the relevant row.
 2. Follow the row to the correct ERF/premise. Keep the expected Sales meter and assigned work context.
@@ -31,7 +33,7 @@ If the parent premise is still only on the device, you can encounter a Saved as 
 5. Continue through the same accessed electricity/water capture steps below. If access is unavailable, use the batch's dedicated **No Access** action; the inspected backend rejects a generic discovery carrying batch context with No Access and directs you to that separate route.
 6. After submission, verify both the found meter and the work-row outcome. A different-meter completion must retain the distinction between expected and found.
 
-Batch checks can refuse work for another team or refuse when allocation cannot be verified. Going through the ordinary route is not a reliable or authorised workaround. Ask the supervisor to resolve assignment or correlation.
+Batch checks can refuse work for another team or refuse when allocation cannot be verified. Going through the Normal Path is not a reliable or authorised workaround. Ask the supervisor to resolve assignment or correlation.
 
 ### C. Resume a local draft
 

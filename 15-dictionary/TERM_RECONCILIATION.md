@@ -28,3 +28,8 @@ The source-pack dictionary has one term heading absent from the current master: 
 ## Contribution rule
 
 Propose additions and revisions against the one master dictionary, citing the owning rule or product decision. Preserve existing approved meanings unless the owner has agreed to change them. Application glossaries should link to the master; historical source packs remain provenance, not competing authorities.
+
+
+## Confirmed entry-path terminology — 23 September 2026
+
+Added **Normal Path** and **Sales Path** from the owner's direct correction. The Meter Discover Body of Knowledge, user manual, field catalogue, scenarios and explanatory data guide use these names. The 412 pre-existing term headings are preserved; the master now contains 414. Existing runtime identifiers and quoted error messages are not renamed.

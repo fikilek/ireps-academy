@@ -60,3 +60,5 @@ Use the manuals and subject folders below. Historical source assessments are acc
 - [Rules and data lifecycle](../01-body-of-knowledge/meter-discover-rules-and-data.md)
 - [Mobile user manual](../02-user-manual/mobile/meter-discover-user-manual.md)
 - [Practical and acceptance scenarios](../10-assessments/meter-discover-scenarios.md)
+
+- [Placement plates and media provenance](../07-media-and-evidence/meter-discover-media-register.md) — generated teaching illustrations; visual review draft.

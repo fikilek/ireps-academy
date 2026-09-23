@@ -40,3 +40,12 @@ For publication, a reviewer must be able to trace each workflow, field and error
 ## Meter Discover implementation
 
 Begin at [Meter Discover — Body of Knowledge](../01-body-of-knowledge/meter-discover-body-of-knowledge.md). Its field catalogue, error register, data lifecycle, manual and acceptance scenarios form the first worked module package. This standard defines required outputs; it does not declare every output published or every future module complete.
+
+
+## Consistent terminology and visual examples
+
+Use the exact master-dictionary term whenever naming a concept. Do not introduce alternate labels for the same path to vary the prose. Meter Discover uses **Normal Path** and **Sales Path**. Keep verbatim runtime labels/error messages recognisable as source quotations when their wording differs; do not rename code through documentation.
+
+Relationship diagrams must distinguish conceptual grouping from saved records. Cover every current controlled Property Type, while making absence of a service, shared meters and mixed-type sites explicit. Physical-location diagrams must show boundaries, the equipment position and the served premise separately.
+
+Provide labelled photographic or realistic teaching examples for each placement. Give wide context and a closer view where useful, with recognition cues and common confusions. Label AI-generated illustrations visibly and retain prompts/provenance; never present them as actual customer evidence or accepted installation designs.

@@ -83,7 +83,7 @@ sequenceDiagram
 
 The full backend is not one atomic write spanning every collection and every later trigger. Some updates occur in Firestore transactions; other work is triggered or performed after acceptance. The source baseline does not certify that all downstream reports/deployments currently consume the same revision.
 
-## 5. Ordinary retry, duplicate identity and correction
+## 5. Retrying a submission, duplicate identity and correction
 
 The callable checks for an existing transaction ID after basic payload/premise validation and treats it as a successful existing transaction. This supports retry of a saved capture using the same ID. It is distinct from discovering the same meter under a new transaction ID, which can conflict with an existing master asset reference.
 
@@ -127,7 +127,7 @@ This diagram explains record states; it is not a new retry/deletion specificatio
 
 ## 7. Follow-on work and return routes
 
-The normalisation feature distinguishes on-site fixes from follow-on jobs. Once discovery is accepted, the phone waits for its asset record (20-second target, polling approximately every 1.5 seconds). If it becomes available, Disconnect meter opens the disconnection form; Replace meter opens removal, which then leads to installation. Origin links identify the discovery as the parent. Batch work carries a return route back to My Work Orders; ordinary work generally returns to the meters list or premise route.
+The normalisation feature distinguishes on-site fixes from follow-on jobs. Once discovery is accepted, the phone waits for its asset record (20-second target, polling approximately every 1.5 seconds). If it becomes available, Disconnect meter opens the disconnection form; Replace meter opens removal, which then leads to installation. Origin links identify the discovery as the parent. The Sales Path carries a return to My Work Orders; the Normal Path generally returns to the meters list or premise.
 
 If the meter is not ready, the worker is told the job still needs to be done from the meter card. If their role cannot execute the field job, the message says to issue it. If discovery is only saved locally, the meter does not yet exist on the server and the next job cannot start through this automatic handoff. The queue processor does not demonstrate a complete automatic navigation/handoff recovery after an eventual background success; that requires verification.
 

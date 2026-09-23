@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="950" viewBox="0 0 1200 950" role="img" aria-labelledby="title desc">
+<title id="title">Two meters at one roadside kiosk serve two different ERFs</title>
+<desc id="desc">House A is inside ERF A and House B is inside ERF B. The kiosk is on the roadside verge, below the front boundary of both parcels. Meter A and Meter B are inside the kiosk. Dotted arrows labelled serves connect each meter to its own house. Meter GPS is captured at the kiosk, not at the houses.</desc>
+<defs>
+ <marker id="arrowA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#136f63"/></marker>
+ <marker id="arrowB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#285eb0"/></marker>
+</defs>
+<rect width="1200" height="950" fill="#fff"/>
+<g font-family="Arial, sans-serif" fill="#183142">
+ <text x="48" y="48" font-size="17" font-weight="bold" fill="#46606f">iREPS ACADEMY · METER DISCOVER</text>
+ <text x="48" y="87" font-size="30" font-weight="bold">Same kiosk. Different properties served.</text>
+ <text x="48" y="120" font-size="19">The meter can stand outside the ERF containing its service premise.</text>
+ <rect x="48" y="150" width="526" height="310" rx="5" fill="#edf8f4" stroke="#136f63" stroke-width="3"/>
+ <rect x="626" y="150" width="526" height="310" rx="5" fill="#eef4ff" stroke="#285eb0" stroke-width="3"/>
+ <text x="72" y="184" font-size="24" font-weight="bold" fill="#136f63">ERF A</text>
+ <text x="650" y="184" font-size="24" font-weight="bold" fill="#285eb0">ERF B</text>
+ <text x="72" y="210" font-size="16">Land parcel A</text><text x="650" y="210" font-size="16">Land parcel B</text>
+ <path d="M186 277 L310 211 L434 277 Z" fill="#136f63"/><rect x="210" y="277" width="200" height="106" rx="4" fill="#fff" stroke="#136f63" stroke-width="2"/>
+ <path d="M764 277 L888 211 L1012 277 Z" fill="#285eb0"/><rect x="788" y="277" width="200" height="106" rx="4" fill="#fff" stroke="#285eb0" stroke-width="2"/>
+ <text x="310" y="315" font-size="23" text-anchor="middle" font-weight="bold">House A</text><text x="310" y="347" font-size="18" text-anchor="middle">Premise A</text>
+ <text x="888" y="315" font-size="23" text-anchor="middle" font-weight="bold">House B</text><text x="888" y="347" font-size="18" text-anchor="middle">Premise B</text>
+ <text x="72" y="433" font-size="17">Property boundary</text><text x="958" y="433" font-size="17">Property boundary</text>
+ <rect x="48" y="479" width="1104" height="224" fill="#fbf5e8"/>
+ <text x="72" y="514" font-size="22" font-weight="bold">ROADSIDE VERGE</text>
+ <text x="72" y="542" font-size="17">Outside both ERF boundaries</text>
+ <rect x="385" y="511" width="430" height="172" rx="9" fill="#f1f3f4" stroke="#425c6b" stroke-width="3"/>
+ <text x="600" y="540" font-size="22" text-anchor="middle" font-weight="bold">Shared kiosk</text>
+ <rect x="410" y="555" width="168" height="91" rx="7" fill="#fff" stroke="#136f63" stroke-width="3"/>
+ <rect x="622" y="555" width="168" height="91" rx="7" fill="#fff" stroke="#285eb0" stroke-width="3"/>
+ <text x="494" y="591" font-size="23" text-anchor="middle" font-weight="bold" fill="#136f63">Meter A</text>
+ <text x="494" y="621" font-size="17" text-anchor="middle">Own serial number</text>
+ <text x="706" y="591" font-size="23" text-anchor="middle" font-weight="bold" fill="#285eb0">Meter B</text>
+ <text x="706" y="621" font-size="17" text-anchor="middle">Own serial number</text>
+ <text x="600" y="668" font-size="17" text-anchor="middle" font-weight="bold">Capture each meter's GPS here</text>
+ <path d="M494 555 L494 398 L310 398 L310 383" fill="none" stroke="#136f63" stroke-width="4" stroke-dasharray="8 6" marker-end="url(#arrowA)"/>
+ <path d="M706 555 L706 398 L888 398 L888 383" fill="none" stroke="#285eb0" stroke-width="4" stroke-dasharray="8 6" marker-end="url(#arrowB)"/>
+ <rect x="370" y="463" width="222" height="31" rx="7" fill="#fff" stroke="#136f63"/><text x="481" y="485" text-anchor="middle" font-size="17" fill="#136f63">Meter A serves House A</text>
+ <rect x="608" y="463" width="222" height="31" rx="7" fill="#fff" stroke="#285eb0"/><text x="719" y="485" text-anchor="middle" font-size="17" fill="#285eb0">Meter B serves House B</text>
+ <rect x="48" y="721" width="1104" height="73" fill="#53616a"/>
+ <path d="M70 757 H1128" stroke="#f4f0d7" stroke-width="3" stroke-dasharray="35 22"/>
+ <rect x="522" y="733" width="156" height="48" rx="5" fill="#53616a"/><text x="600" y="765" font-size="23" font-weight="bold" fill="#fff" text-anchor="middle">STREET</text>
+ <rect x="48" y="819" width="1104" height="93" rx="8" fill="#f3f6f8"/>
+ <text x="72" y="849" font-size="18" font-weight="bold">Read the arrows as “serves”, not as cable routes.</text>
+ <text x="72" y="878" font-size="17">GPS records where each meter stands. The premise link records which house it serves.</text>
+ <text x="48" y="935" font-size="14" fill="#53616a">Conceptual teaching example · Not to scale · No surveyed boundaries or installation design implied</text>
+</g></svg>

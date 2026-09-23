@@ -8,10 +8,10 @@
 | --- | --- | --- |
 | MD-A01 | One ERF with two flats and two electricity meters | Correct ERF → premise → meter associations; each physical serial and evidence kept separate |
 | MD-A02 | Shared kiosk outside two ERFs | Pins at actual kiosk; each meter linked to correct served premise; no forced parcel-centre placement |
-| MD-A03 | Ordinary electricity discovery with no Sales match | Field asset/master created; absence of Sales link explained without calling the meter nonexistent |
+| MD-A03 | Normal Path: electricity discovery with no Sales match | Field asset/master created; absence of Sales link explained without calling the meter nonexistent |
 | MD-A04 | Expected meter in accepted batch | Actor/assignment valid; expected and found identifiers match; transaction, asset, master and row outcomes correlate |
 | MD-A05 | Different physical meter at expected ERF | Actual serial captured; expected Sales identity preserved; different-meter outcome does not falsely report expected serial found |
-| MD-A06 | Ordinary discovery of a Sales meter outside a batch | Correct linkage/visibility and applicable batch ownership behaviour; no bypass assumption |
+| MD-A06 | Normal Path: discovery of a Sales meter outside a batch | Correct linkage/visibility and applicable batch ownership behaviour; no bypass assumption |
 | MD-A07 | Another team's allocated ERF / meter | Correct refusal/exception interpretation; no inaccurate anomaly used to defeat checks |
 | MD-A08 | Meter Ok / Operationally Ok | Appropriate response; required identity proof; no anomaly photo requirement invented for this detail |
 | MD-A09 | Meter Ok / Bridge Suspicion or Bypass Suspicion | Suspicion remains labelled; anomaly photo present; not taught as a confirmed offence |
@@ -31,7 +31,7 @@
 
 ## Submission and recovery matrix
 
-Run both electricity and water where applicable, and both ordinary and batch routes. Use a controlled environment authorised by the owner; this document does not authorise live submissions.
+Run both electricity and water where applicable, and both the Normal Path and the Sales Path. Use a controlled environment authorised by the owner; this document does not authorise live submissions.
 
 | Case | Required observation |
 | --- | --- |
@@ -68,3 +68,15 @@ Suggested assessment rule for review: critical identity, association, evidence a
 For each executed case record: tester, date, environment, mobile build/commit, backend deployment revision, role/provider/team, synthetic fixture IDs, steps, screenshots, transaction/queue IDs, derived records checked, actual outcome, defects and reviewer. Never fill a blank result with Pass solely because a test plan says what should happen.
 
 Publication needs owner resolution of material gaps, a matched application release, reviewed screenshots, demonstrated recovery, accessible diagrams and an approved manual. Video scripts and recordings should be derived from that accepted version; none are claimed produced by this package.
+
+
+## Visual understanding checks
+
+1. Follow Municipality → Ward → ERF → Premise: Flats → Flat 1 → its meters. Which boxes are visual groupings and which represent individual saved premise records?
+2. In the Complex example, distinguish Property Type, Property Name, Unit Number and Premise ID. Explain where the structure changes when units are on separate ERFs.
+3. Use the outside-ERF site plan to identify the GPS position and the served premise for Meter A and Meter B. Explain why neither pin should be moved into a house.
+4. Compare Pole Top, Pole Bottom and a kiosk standing beside a pole. Which visible evidence distinguishes each placement?
+5. Distinguish a meter room, an indoor wall and an outdoor location inside the property. Explain why Inside Property can overlap a more specific mounting label and when a field comment is needed.
+6. Name the two entry paths using the exact dictionary terms: **Normal Path** and **Sales Path**. A Sales-listed meter is found through property navigation without a batch item: explain why that is still the Normal Path.
+
+The placement plates are labelled synthetic teaching material. Passing these recognition questions is not acceptance of live product behaviour or proof of authority to access equipment.

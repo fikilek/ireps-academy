@@ -20,6 +20,9 @@ Source: the owner's Academy conversation and approved consolidation proposal, 23
 | DEC-014 | Initial learning priorities | Agreed | Foundations/onboarding; fieldworker guides; supervisor/manager guides; web manual; electricity and water revenue courses. |
 | DEC-015 | Consolidation and backup | Approved | Preserve existing Academy work, establish governance, consolidate learning material, verify references, commit, merge, push and verify GitHub. This does not approve application or data deployment. |
 | DEC-016 | Module knowledge standard | Owner direction, 23 September 2026 | Every module has a comprehensive Body of Knowledge and a separate User Manual. Include diagrams, full field definitions, prerequisites, validations, errors, routes and all-role/customer explanations. Start with Meter Discover; existing application term Meter Discovery remains an alias. |
+| DEC-017 | Entry-path terminology | Confirmed owner direction | Use exactly **Normal Path** and **Sales Path** across Academy content. Do not invent synonymous path names. Maintain their definitions in the master dictionary. |
+| DEC-018 | Meter Discover relationship teaching | Confirmed owner direction | Show municipality, ward, ERF, property-type grouping, individual premises and their meters. Cover every current Property Type and clearly separate served premise from physical meter position. Type/name grouping in a diagram does not silently add a database entity. |
+| DEC-019 | Placement teaching images | Owner requests real or near-real examples | Show detailed examples beneath each placement. This revision uses explicitly labelled AI-generated teaching illustrations; actual field photographs remain a separate media class requiring provenance. |
 
 ## Questions to resolve with product workstreams
 

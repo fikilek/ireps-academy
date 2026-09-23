@@ -5046,3 +5046,26 @@ These terms describe the approved final-state contract. They do not assert that 
 
 - **Simple meaning:** Old scalar category fields retained for preservation but no longer used as authority.
 - **Detailed explanation:** Root `leakageCategory`, `riskTier` and `riskScore` remain stored unchanged. Current consumers read exact-month `monthlyCategories`; normal writers do not update or delete the scalar fields. Demo Sales restoration is outside this cutover.
+
+
+<a id="meter-discover-entry-paths"></a>
+
+## Meter Discover entry paths — owner terminology, 23 September 2026
+
+### Term: Normal Path
+
+- **Acronym:** None
+- **Simple meaning:** The Meter Discover entry path that starts with the fieldworker selecting the ERF and the correct premise through the property/geography navigation.
+- **Detailed explanation:** Normal Path identifies how the worker enters the work. It can encounter a meter with or without a Sales match. Server checks can still enforce batch ownership and assignment, so the name does not grant a bypass. Reopening a local draft continues its original path.
+- **Example:** Select the ERF, open its premises, select Flat 1, then start Meter Discover.
+- **Related terms:** Sales Path, ERF, Premise, Meter Discovery
+
+### Term: Sales Path
+
+- **Acronym:** None
+- **Simple meaning:** The Meter Discover entry path that starts from Sales-led work and follows an assigned, accepted Targeted Batch item in My Work Orders to its ERF and premise.
+- **Detailed explanation:** Sales Path carries the expected Sales meter and batch/row context into fieldwork. The worker verifies the actual meter found. Targeted Batch and My Work Orders retain their own meanings as the work structure and interface used within this path; they are not alternative names for the path. The Normal Path can also find a Sales-listed meter; that fact alone does not turn it into the Sales Path.
+- **Example:** Open the assigned row in My Work Orders, follow it to the premise and discover the meter physically found there.
+- **Related terms:** Normal Path, Targeted Batch, My Work Orders, Premise, Meter Discovery
+
+**Naming rule:** use exactly **Normal Path** and **Sales Path** whenever naming these entry paths. One term has one meaning. Existing runtime identifiers and verbatim error messages remain exact source evidence; a technical name is not a new learner-facing synonym.
