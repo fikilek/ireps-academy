@@ -1,3 +1,5 @@
+> **Status:** recording-script draft for the proposed 27 September 2026 release. Recording, deployment, review and YouTube publication are unverified. The [owner decisions](../00-academy-governance/OWNER_DECISIONS.md) govern unresolved permissions, offline and QA statements.
+
 # 02 · Illegally Connected, and the disconnection that follows
 
 **About 3 minutes.** For every field worker.

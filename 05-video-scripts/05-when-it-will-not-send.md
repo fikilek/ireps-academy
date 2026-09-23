@@ -1,3 +1,5 @@
+> **Status:** recording-script draft for the proposed 27 September 2026 release. Recording, deployment, review and YouTube publication are unverified. The [owner decisions](../00-academy-governance/OWNER_DECISIONS.md) govern unresolved permissions, offline and QA statements.
+
 # 05 · When it will not send
 
 **About 3 minutes.** For every field worker, and for supervisors. This is the video that saves the most work.

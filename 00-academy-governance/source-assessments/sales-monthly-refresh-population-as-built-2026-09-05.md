@@ -1,3 +1,5 @@
+> **Academy status:** Historical implementation evidence; not learner guidance or current release proof. Imported 2026-09-23. Source: `SRC-041` in the [source register](../SOURCE_REGISTER.csv). [Owner decisions](../OWNER_DECISIONS.md) take precedence over conflicting inherited statements.
+
 # Sales Monthly Refresh and Population — completion evidence
 
 Execution window began 2026-09-05 09:47:13 UTC. Status vocabulary: IMPLEMENTED means local source exists; OFFLINE VERIFIED means specified executable checks passed; LIVE ACCEPTANCE BLOCKED identifies missing live acceptance; NOT RELEASED means no deployment/data release occurred. No remote writes, deployments, commits or merges are authorized in this pass.

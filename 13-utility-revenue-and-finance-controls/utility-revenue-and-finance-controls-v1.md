@@ -1,3 +1,5 @@
+> **Status:** curriculum outline retained for development, not a completed course. See [owner decisions](../00-academy-governance/OWNER_DECISIONS.md).
+
 # Utility Revenue and Finance Controls V1
 
 ## New Knowledge System: Utility Revenue and Finance Controls

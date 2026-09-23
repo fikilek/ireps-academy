@@ -2,7 +2,7 @@ import html, re, pathlib
 
 SCR = pathlib.Path(__file__).parent
 TPL = SCR / "field-guide-template.html"
-PAGE = pathlib.Path(r"C:\dev\ireps-academy\09-fieldwork\field-guide-2026-09-27.html")
+PAGE = SCR / "field-guide-2026-09-27.html"
 DISC_FIELDS = "https://claude.ai/artifact/3ATyax5CnEhpHsxYpNAdvT"
 DISC_RULES = "https://claude.ai/artifact/DUKvC3Khiibof3fJe7QMxu"
 DISC_ERRORS = "https://claude.ai/artifact/GWgWkiECF5J53KTYGycYxb"

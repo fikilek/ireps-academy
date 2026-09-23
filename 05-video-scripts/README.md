@@ -1,3 +1,5 @@
+> **Status:** recording-script draft for the proposed 27 September 2026 release. Recording, deployment, review and YouTube publication are unverified. The [owner decisions](../00-academy-governance/OWNER_DECISIONS.md) govern unresolved permissions, offline and QA statements.
+
 # Screen-recording scripts
 
 One script per form. Someone holds the phone, follows the script and records the screen. No editing suite, no studio: Android's own **Screen recorder** is enough.

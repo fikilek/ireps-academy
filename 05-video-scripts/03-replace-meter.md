@@ -1,3 +1,5 @@
+> **Status:** recording-script draft for the proposed 27 September 2026 release. Recording, deployment, review and YouTube publication are unverified. The [owner decisions](../00-academy-governance/OWNER_DECISIONS.md) govern unresolved permissions, offline and QA statements.
+
 # 03 · Replace meter: the removal, then the installation
 
 **About 4 minutes.** For field workers who carry replacement meters.

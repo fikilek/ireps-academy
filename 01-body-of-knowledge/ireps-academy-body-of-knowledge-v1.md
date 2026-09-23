@@ -1,3 +1,5 @@
+> **Status:** curriculum outline retained for development, not a completed course. See [owner decisions](../00-academy-governance/OWNER_DECISIONS.md).
+
 # iREPS Academy Body of Knowledge V1
 
 ## Purpose

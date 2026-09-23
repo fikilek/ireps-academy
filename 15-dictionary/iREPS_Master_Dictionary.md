@@ -1,5 +1,7 @@
 # iREPS Master Dictionary
 
+> **Academy control notice — 23 September 2026:** SPU means **Super User**. The current role catalogue excludes Guest. Definitions may describe existing or planned concepts; inclusion is not proof of an implemented or production-ready module. Permission inheritance, the common offline design and QA remain open as recorded in [Owner decisions](../00-academy-governance/OWNER_DECISIONS.md). Existing technical meanings are preserved except for the explicitly approved terminology correction. See [Term reconciliation](TERM_RECONCILIATION.md).
+
 ## Purpose
 
 The iREPS Master Dictionary is the official single source of truth for words, acronyms, modules, workflows, roles, data concepts, and operational terms used inside iREPS.
@@ -2004,15 +2006,15 @@ This section is the official iREPS terminology source for Sales Pipeline busines
 
 - **Related terms:** MNG, Supervisor, Governance, LM
 
-### Term: Superuser
+### Term: Super User
 
 - **Acronym:** SPU
 
 - **Simple meaning:** A high-level setup or administration user in iREPS.
 
-- **Detailed explanation:** A Superuser is used for controlled setup, administration, bootstrap, or high-level configuration tasks. It is not a normal fieldworker role. SPU is the iREPS acronym for Superuser.
+- **Detailed explanation:** A Super User is used for controlled setup, administration, bootstrap, or high-level configuration tasks. It is not a normal fieldworker role. SPU is the iREPS acronym for Super User.
 
-- **Example:** A Superuser may be created during TEST environment bootstrap with elevated setup permissions.
+- **Example:** A Super User may be created during TEST environment bootstrap with elevated setup permissions.
 
 - **Related terms:** SPU, Admin, Setup, Test Environment, User Role
 
@@ -2892,7 +2894,7 @@ This section is the official iREPS terminology source for Sales Pipeline busines
 
 - **Example:** A Fieldworker can execute assigned fieldwork, while an SPU demo user can access broader setup or test views.
 
-- **Related terms:** Fieldworker, Supervisor, Manager, Superuser, Workbase
+- **Related terms:** Fieldworker, Supervisor, Manager, Super User, Workbase
 
 ## 15. Cadastral Pipeline and Import Safety Concepts
 
