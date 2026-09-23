@@ -24,4 +24,4 @@ Runtime help rendering and calculations remain in application code. Their editor
 
 No Firebase data changes, application deployment or training publication are part of this work. No fully implemented QA, common offline, Trials or customer-billing capability is claimed. Meter reading still needs strengthening. Four external artifact contents have not been recovered; see EXTERNAL_DEPENDENCIES.md. Content/register status must remain honest about these gaps.
 
-Final integration commits and remote verification are recorded in the completion report added after checks. The source register captures the original provenance even after a local file becomes a redirect.
+Final integration commits and remote verification are recorded in the [completion report](COMPLETION_REPORT.md). The source register captures the original provenance even after a local file becomes a redirect.

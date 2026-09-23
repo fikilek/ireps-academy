@@ -49,3 +49,4 @@ Use the manuals and subject folders below. Historical source assessments are acc
 - [15-dictionary/iREPS_Master_Dictionary.md](../15-dictionary/iREPS_Master_Dictionary.md) — controlled reference; candidate terms under review.
 - [15-dictionary/TERM_RECONCILIATION.md](../15-dictionary/TERM_RECONCILIATION.md) — controlled reference; candidate terms under review.
 - [README.md](../README.md) — approved organisation / open product decisions.
+- [Consolidation completion report](COMPLETION_REPORT.md) — integration and verification record.
