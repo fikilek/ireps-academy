@@ -28,3 +28,7 @@ Application status and content status are recorded separately in the [content re
 - [Recovery guide](00-academy-governance/RECOVERY.md): restoring the repository on another computer.
 
 Engineering rules, database schemas, application runtime code, tests and deployment records remain owned by their application repositories. Academy owns their learner-facing explanation and references the technical sources.
+
+## First comprehensive module
+
+[Meter Discover — Body of Knowledge](01-body-of-knowledge/meter-discover-body-of-knowledge.md) and [User Manual](02-user-manual/mobile/meter-discover-user-manual.md) are source-based review drafts, with detailed field/error references, diagrams and acceptance scenarios. The [module standard](00-academy-governance/MODULE_CONTENT_STANDARD.md) defines the two legs for subsequent modules.

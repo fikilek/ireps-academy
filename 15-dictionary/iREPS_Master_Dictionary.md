@@ -162,11 +162,13 @@ This is Version 2.1 of the iREPS Master Dictionary. It preserves the locked mean
 
 ### Term: Meter Discovery
 
+- **Academy module label:** Meter Discover. The owner uses this label for the module; existing screens and `METER_DISCOVERY` records retain Meter Discovery. See the [module Body of Knowledge](../01-body-of-knowledge/meter-discover-body-of-knowledge.md).
+
 - **Acronym:** None
 
 - **Simple meaning:** An existing installed meter is found and captured in iREPS.
 
-- **Detailed explanation:** Meter Discovery is used when a meter already exists physically on the premises but is not yet properly captured or linked in iREPS. Discovery does not mean the meter is newly installed. It means the fieldworker has found an already-installed meter and is bringing it into the iREPS operational record. A discovered meter does not go through commissioning because commissioning applies to the installation path only.
+- **Detailed explanation:** Meter Discovery is used when a meter already exists physically and serves the selected premise but is not yet properly captured or linked in iREPS. Its mounting position may be outside the ERF containing that premise; record association and physical location are separate facts. Discovery does not mean the meter is newly installed. It means the fieldworker has found an already-installed meter and is bringing it into the iREPS operational record. A discovered meter does not go through commissioning because commissioning applies to the installation path only.
 
 - **Example:** A fieldworker visits a premise and finds an electricity meter already mounted on the wall. The meter is captured through Meter Discovery because it already exists physically.
 

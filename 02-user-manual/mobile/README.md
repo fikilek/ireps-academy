@@ -12,3 +12,5 @@ Status: draft. Check the applicable release before using these as field instruct
 - [Release-specific field guidance](../../09-fieldwork/README.md)
 
 Complete discovery, installation, inspection, commissioning, lifecycle, No Access, evidence and work-order lessons remain priorities in the coverage matrix. Importing an existing short section does not close that coverage gap.
+
+- [Meter Discover — detailed user manual](meter-discover-user-manual.md): separate electricity, water, ordinary/batch routes, No Access, evidence and submission recovery; review draft.

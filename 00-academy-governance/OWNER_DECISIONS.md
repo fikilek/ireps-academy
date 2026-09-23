@@ -19,6 +19,7 @@ Source: the owner's Academy conversation and approved consolidation proposal, 23
 | DEC-013 | Feature availability | Evidence required | A placeholder may coexist with completed code on another branch. Record implementation, environment deployment and acceptance separately. |
 | DEC-014 | Initial learning priorities | Agreed | Foundations/onboarding; fieldworker guides; supervisor/manager guides; web manual; electricity and water revenue courses. |
 | DEC-015 | Consolidation and backup | Approved | Preserve existing Academy work, establish governance, consolidate learning material, verify references, commit, merge, push and verify GitHub. This does not approve application or data deployment. |
+| DEC-016 | Module knowledge standard | Owner direction, 23 September 2026 | Every module has a comprehensive Body of Knowledge and a separate User Manual. Include diagrams, full field definitions, prerequisites, validations, errors, routes and all-role/customer explanations. Start with Meter Discover; existing application term Meter Discovery remains an alias. |
 
 ## Questions to resolve with product workstreams
 

@@ -50,3 +50,13 @@ Use the manuals and subject folders below. Historical source assessments are acc
 - [15-dictionary/TERM_RECONCILIATION.md](../15-dictionary/TERM_RECONCILIATION.md) — controlled reference; candidate terms under review.
 - [README.md](../README.md) — approved organisation / open product decisions.
 - [Consolidation completion report](COMPLETION_REPORT.md) — integration and verification record.
+
+## Meter Discover module — review drafts
+
+- [Academy module content standard](../00-academy-governance/MODULE_CONTENT_STANDARD.md)
+- [Meter Discover — Body of Knowledge](../01-body-of-knowledge/meter-discover-body-of-knowledge.md)
+- [Error register](../01-body-of-knowledge/meter-discover-error-register.md)
+- [Field catalogue](../01-body-of-knowledge/meter-discover-field-catalogue.md)
+- [Rules and data lifecycle](../01-body-of-knowledge/meter-discover-rules-and-data.md)
+- [Mobile user manual](../02-user-manual/mobile/meter-discover-user-manual.md)
+- [Practical and acceptance scenarios](../10-assessments/meter-discover-scenarios.md)
