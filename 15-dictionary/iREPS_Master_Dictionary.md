@@ -8,7 +8,7 @@ The goal is to explain each term in simple language while preserving the correct
 
 The iREPS Master Dictionary must be reviewed and refined continuously. Every new iREPS word, acronym, workflow name, module name, role, data concept, and operational term must be added here so that all iREPS documentation and training uses one approved meaning.
 
-This is Version 1.6 of the iREPS Master Dictionary. It preserves the locked meanings from Version 1.5 and adds the confirmed Meter Master to Sales All Meters operational bridge, MATCHED-to-VISIBLE derivation, visibility ownership boundary, and current Sales All Meters metadata restriction. Meter Master lifecycle classifications remain derived from canonical references and are not stored status fields.
+This is Version 2.1 of the iREPS Master Dictionary. It preserves the locked meanings from Version 2.0 and adds the dedicated Premises terminology section established through the Premise Repeatability v3 workstream. Version 2.1 clarifies Premise identity, the ERF-to-Premise relationship, Property Type, Property Name, Unit Number, repeatable and non-repeatable Premise types, intentional Duplicate Premise creation, same-ERF duplication, Backroom rules, card identity, fresh-state rules, and Property Type reconciliation. Existing Sales Pipeline, Informal ERF, monitoring, and other locked terminology remains unchanged except where the generic data-quality meaning of Duplicate is explicitly distinguished from the intentional Duplicate Premise workflow.
 
 ## 1. Core iREPS Concepts
 
@@ -521,90 +521,6 @@ This is Version 1.6 of the iREPS Master Dictionary. It preserves the locked mean
 - **Example:** A newly installed meter creates or updates an Asset record linked to the premise where the meter is installed.
 
 - **Related terms:** AST, Meter, Meter Installation, Meter Discovery, Operational Status, Transaction (TRN), iREPS Geography
-
-### Term: Premise
-
-- **Acronym:** None
-
-- **Simple meaning:** A property, dwelling, business, unit, or service location where municipal service activity happens.
-
-- **Detailed explanation:** A premise is the operational service point or location where iREPS links meters, fieldwork, address details, occupancy, property type, and related operations. A meter is normally linked to a premise so that iREPS knows where it is located and what property or unit it serves. A premise always has address information. In iREPS address language, strNo means street number; strName means street name; strType means the street type such as Street, Road, Avenue, Drive, or Close; name means the property, complex, building, business, flats, sectional title, or place name where needed; and unitNo means the specific flat, unit, room, or sectional title unit number where applicable.
-
-- **Example:** For a flat, the premise address may include strNo: 12, strName: Nelson Mandela, strType: Drive, name: Sunrise Flats, and unitNo: Unit 8.
-
-- **Related terms:** Meter, ERF, Ward, Geofence, Address, strNo, strName, strType, name, unitNo
-
-### Term: Address
-
-- **Acronym:** None
-
-- **Simple meaning:** The structured location description of a premise.
-
-- **Detailed explanation:** An address helps fieldworkers and office users identify where a premise is located. In iREPS, address fields should be structured so they can support search, display, field navigation, and reporting. The main address fields are strNo, strName, strType, name, and unitNo.
-
-- **Example:** A premise address can be displayed as “12 Nelson Mandela Drive, Sunrise Flats, Unit 8”.
-
-- **Related terms:** Premise, strNo, strName, strType, name, unitNo
-
-### Term: strNo
-
-- **Acronym:** None
-
-- **Simple meaning:** The street number of a premise address.
-
-- **Detailed explanation:** strNo identifies the number assigned to the property or service location on a street. It is a core part of the premise address because it helps fieldworkers locate the correct property.
-
-- **Example:** In “12 Nelson Mandela Drive”, the strNo is 12.
-
-- **Related terms:** Premise, Address, strName, strType
-
-### Term: strName
-
-- **Acronym:** None
-
-- **Simple meaning:** The street name of a premise address.
-
-- **Detailed explanation:** strName stores the actual name of the street without the street type. Keeping the street name separate from the street type supports cleaner searching and consistent address formatting.
-
-- **Example:** In “12 Nelson Mandela Drive”, the strName is Nelson Mandela.
-
-- **Related terms:** Premise, Address, strNo, strType
-
-### Term: strType
-
-- **Acronym:** None
-
-- **Simple meaning:** The type of street used in a premise address.
-
-- **Detailed explanation:** strType describes the kind of street or road. Examples include Street, Road, Avenue, Drive, Close, Crescent, Boulevard, and Way. Separating strType from strName helps avoid inconsistent address capture.
-
-- **Example:** In “12 Nelson Mandela Drive”, the strType is Drive.
-
-- **Related terms:** Premise, Address, strNo, strName
-
-### Term: name
-
-- **Acronym:** None
-
-- **Simple meaning:** The property, building, complex, business, or place name used in the premise address when needed.
-
-- **Detailed explanation:** The name field gives extra location context where a street address alone is not enough. It is especially useful for flats, sectional title properties, complexes, commercial properties, schools, churches, estates, and government buildings.
-
-- **Example:** For “Sunrise Flats, Unit 8”, the name can be Sunrise Flats.
-
-- **Related terms:** Premise, Address, unitNo, Property Type
-
-### Term: unitNo
-
-- **Acronym:** None
-
-- **Simple meaning:** The unit, flat, room, or sectional title number inside a property or building.
-
-- **Detailed explanation:** unitNo identifies a specific unit within a larger property. It is important for flats, sectional title, townhouse complexes, estates, commercial buildings, and multi-tenant properties.
-
-- **Example:** In “Sunrise Flats, Unit 8”, the unitNo is Unit 8.
-
-- **Related terms:** Premise, Address, name, Sectional Title, Flats
 
 ### Term: ERF
 
@@ -2436,13 +2352,13 @@ This section is the official iREPS terminology source for Sales Pipeline busines
 
 - **Acronym:** None
 
-- **Simple meaning:** A record that appears more than once when it should be unique.
+- **Simple meaning:** An unintended repeated record that appears more than once when the governed identity should be unique.
 
-- **Detailed explanation:** Duplicates are important in iREPS because duplicate meters, ERFs, premises, or IDs can cause incorrect links, wrong assignments, and bad reporting. The system needs predefined handling rules for duplicates during imports and operations.
+- **Detailed explanation:** In this generic data-quality meaning, a Duplicate is an accidental or conflicting repeated record such as a duplicate meter, ERF, premise, or identifier. It can create incorrect links, wrong assignments, and unreliable reporting, so iREPS uses governed duplicate-detection and handling rules. This meaning must not be confused with **Duplicate Premise**, which is an intentional user workflow for creating a new, distinct Premise on the same ERF from an approved repeatable source Premise.
 
-- **Example:** Two ERF records with the same ERF ID may be flagged as duplicates during cadastral import QA.
+- **Example:** Two imported ERF records with the same governed ERF identity may be flagged as Duplicates during cadastral QA. Creating Unit 2 from Unit 1 through Duplicate Premise is not an accidental Duplicate because the new Premise receives its own identity.
 
-- **Related terms:** QA, Cadastral, Data Quality, Overlap
+- **Related terms:** Duplicate Premise, Duplicate Resolution, QA, Cadastral, Data Quality, Deterministic Identity
 
 ### Term: Overlap
 
@@ -3368,6 +3284,1610 @@ This section is the official iREPS terminology source for Sales Pipeline busines
 
 - **Related terms:** Data Quality, Sales Repository, Meter Master, Normalisation
 
+## 18. FWR Monitoring Concepts
+
+This section is the official iREPS terminology source for live FWR and SPV field-location monitoring. The current implemented baseline stores one latest location document per eligible monitored user. GPS history remains a future enhancement and must not be confused with current live monitoring.
+
+### Term: FWR Monitoring
+
+- **Acronym:** None
+
+- **Simple meaning:** The iREPS function that shows the current monitored location and monitoring status of eligible field users.
+
+- **Detailed explanation:** FWR Monitoring automatically captures approved location information for eligible FWR and SPV users during an active authenticated mobile session. The phone sends location values through approved backend callables. iREPS Web reads the current live-location documents, joins them to existing user and organisation records, and displays authorised users on a live field map and user list. The current implementation stores only the latest state and does not store GPS history.
+
+- **Example:** When an eligible Fieldworker signs in to iREPS Mobile and grants the required location permissions, iREPS can show that user as Live on the FWR Monitoring map.
+
+- **Related terms:** Fieldworker, Supervisor, Monitored User, Live Field Map, Background Location Monitoring, Current GPS Location
+
+### Term: Monitored User
+
+- **Acronym:** None
+
+- **Simple meaning:** An eligible iREPS user whose current location can be submitted to FWR Monitoring.
+
+- **Detailed explanation:** The current monitored roles are FWR and SPV. Monitoring eligibility also requires a valid authenticated session, completed onboarding, and an active account. Being a Monitored User does not automatically mean the user can open the monitoring page; FWR users are monitored but do not have monitoring-page access.
+
+- **Example:** An active FWR with completed onboarding is a Monitored User, while an ADM may view monitoring but is not a monitored field role.
+
+- **Related terms:** FWR, SPV, Fieldworker, Supervisor, FWR Monitoring, Eligible Session
+
+### Term: Eligible Monitoring Session
+
+- **Acronym:** None
+
+- **Simple meaning:** A signed-in session that meets all rules required to start automatic monitoring.
+
+- **Detailed explanation:** An Eligible Monitoring Session exists when authentication is ready, the user is signed in, logout is not in progress, the UID is valid, the role is FWR or SPV, onboarding is complete, and the account is active. iREPS starts monitoring automatically for such a session.
+
+- **Example:** An active SPV who has completed onboarding and signs into the supported Android build creates an Eligible Monitoring Session.
+
+- **Related terms:** Monitored User, Automatic Monitoring, Account Status, Onboarding
+
+### Term: Automatic Monitoring
+
+- **Acronym:** None
+
+- **Simple meaning:** Location monitoring starts from an eligible sign-in without a Start Tracking button.
+
+- **Detailed explanation:** In the current FWR Monitoring design, monitoring is part of the eligible authenticated operational session. The user is not required to press Start Shift, Start Tracking, Check In, or another manual start control. Sign-out stops monitoring and updates the monitoring status.
+
+- **Example:** A Fieldworker signs in and approves location permission; iREPS starts field monitoring automatically.
+
+- **Related terms:** Eligible Monitoring Session, Background Location Monitoring, Sign-out, Monitoring Status
+
+### Term: Background Location Monitoring
+
+- **Acronym:** None
+
+- **Simple meaning:** Capturing approved location updates while iREPS is not the visible app on the phone.
+
+- **Detailed explanation:** Background Location Monitoring uses the Android location service and the iREPS background task so eligible FWR and SPV users can continue submitting current location updates while the app is backgrounded or the phone screen is locked. Android may delay or batch updates because of device and power policies.
+
+- **Example:** A Fieldworker locks the phone while travelling between premises, and the supported iREPS build continues submitting approved location updates.
+
+- **Related terms:** Foreground Location Service, Location Permission, Current GPS Location, FWR Monitoring
+
+### Term: Foreground Location Service
+
+- **Acronym:** None
+
+- **Simple meaning:** The Android service and visible notification that keep background monitoring active.
+
+- **Detailed explanation:** Android requires an active foreground service for the current iREPS background-location implementation. While monitoring is active, the phone displays the iREPS Field Monitoring notification. The word foreground refers to the Android service type and notification; the iREPS app itself may still be in the background.
+
+- **Example:** The phone shows “iREPS Field Monitoring — Location monitoring is active” while the monitoring task runs.
+
+- **Related terms:** Background Location Monitoring, Android, Location Permission, Monitoring Notification
+
+### Term: Monitoring Notification
+
+- **Acronym:** None
+
+- **Simple meaning:** The Android notification showing that iREPS location monitoring is active.
+
+- **Detailed explanation:** The Monitoring Notification gives the user visible notice that the foreground location service is running. The current title is “iREPS Field Monitoring” and the body is “Location monitoring is active.”
+
+- **Example:** An eligible FWR sees the monitoring notification after the background task starts successfully.
+
+- **Related terms:** Foreground Location Service, Background Location Monitoring, FWR Monitoring
+
+### Term: Current GPS Location
+
+- **Acronym:** GPS
+
+- **Simple meaning:** The latest accepted geographic position stored for a monitored user.
+
+- **Detailed explanation:** Current GPS Location contains latitude, longitude, and available accuracy, altitude, heading, and speed values. In Version 1, each new accepted point replaces the previous current point in the user’s live-location document. It is not a complete route or location history.
+
+- **Example:** The web map displays the latest accepted coordinates for a signed-in Fieldworker.
+
+- **Related terms:** GPS, Live Location Document, Location Accuracy, Heading, Speed, GPS History
+
+### Term: Live Location Document
+
+- **Acronym:** None
+
+- **Simple meaning:** The one Firestore document that stores a monitored user’s latest location and status.
+
+- **Detailed explanation:** The Live Location Document is stored at `fwr_live_locations/{uid}`. Its document ID and root UID equal the authenticated user’s Firebase UID. It stores the current canonical location, device capture time, server receipt time, and monitoring status. It intentionally excludes copied user and organisation details.
+
+- **Example:** `fwr_live_locations/xcAVDrza4uWqjrrQ68i6MXPIhyw2` stores that user’s latest accepted monitoring state.
+
+- **Related terms:** fwr_live_locations, Current GPS Location, Monitoring Status, UID
+
+### Term: fwr_live_locations
+
+- **Acronym:** None
+
+- **Simple meaning:** The Firestore collection containing the latest live-monitoring document for each monitored user.
+
+- **Detailed explanation:** `fwr_live_locations` is a latest-state collection. Each document is identified by the authenticated UID and is replaced when a newer approved location is received. It is not a GPS history collection and must not contain copied profile or organisation data.
+
+- **Example:** The FWR Monitoring web stream listens to `fwr_live_locations` and joins each UID to the approved user directory.
+
+- **Related terms:** Live Location Document, Current GPS Location, FWR Monitoring, Firestore
+
+### Term: Monitoring Status
+
+- **Acronym:** None
+
+- **Simple meaning:** The stored value showing whether the current monitoring document is active or signed out.
+
+- **Detailed explanation:** The canonical Version 1 values are `ACTIVE` and `SIGNED_OUT`. The web derives the display word Live from `ACTIVE`. Time since the last update is informational and does not automatically create a Stale or Offline status.
+
+- **Example:** A new accepted location writes `monitoringStatus: "ACTIVE"`; sign-out changes it to `SIGNED_OUT`.
+
+- **Related terms:** ACTIVE, LIVE, SIGNED_OUT, No GPS Yet, Relative Update Time
+
+### Term: ACTIVE Monitoring Status
+
+- **Acronym:** ACTIVE
+
+- **Simple meaning:** The stored monitoring document belongs to an active monitoring session.
+
+- **Detailed explanation:** `ACTIVE` is the canonical stored status written by every accepted location submission. An ACTIVE document remains active until an approved backend operation changes it. It does not automatically become stale or offline because time has passed.
+
+- **Example:** A background GPS submission updates the current location and sets `monitoringStatus` to `ACTIVE`.
+
+- **Related terms:** Monitoring Status, LIVE, Background Location Monitoring, SIGNED_OUT
+
+### Term: LIVE Monitoring State
+
+- **Acronym:** LIVE
+
+- **Simple meaning:** The web display state for a document whose stored status is ACTIVE.
+
+- **Detailed explanation:** LIVE is derived for the interface; the Firestore document stores `ACTIVE`. LIVE remains displayed until the backend changes the stored status. A relative time such as “5 minutes ago” does not change the state.
+
+- **Example:** Siya appears with a green Live status because Siya’s live-location document is ACTIVE.
+
+- **Related terms:** ACTIVE Monitoring Status, Monitoring Status, Relative Update Time, Live Field Map
+
+### Term: SIGNED_OUT Monitoring Status
+
+- **Acronym:** SIGNED_OUT
+
+- **Simple meaning:** The monitored user has signed out and automatic monitoring has been stopped.
+
+- **Detailed explanation:** `SIGNED_OUT` is written through the approved status callable during sign-out. The last accepted GPS values and their capture time remain in the document. The server receipt time is updated to record the status mutation.
+
+- **Example:** After an FWR signs out, the web list changes from Live to Signed out while keeping the last marker position available.
+
+- **Related terms:** Monitoring Status, ACTIVE Monitoring Status, Sign-out, Last Known Location
+
+### Term: No GPS Yet
+
+- **Acronym:** None
+
+- **Simple meaning:** The monitored user has no live-location document yet.
+
+- **Detailed explanation:** No GPS Yet is a derived web state used when an authorised FWR or SPV appears in the user directory but no `fwr_live_locations/{uid}` document exists. It is not a stored monitoring status.
+
+- **Example:** A newly created Fieldworker who has not signed into a monitoring-enabled build appears as No GPS yet.
+
+- **Related terms:** Monitoring Status, Monitored User, Live Location Document, Current GPS Location
+
+### Term: Last Known Location
+
+- **Acronym:** None
+
+- **Simple meaning:** The most recent accepted GPS location retained after monitoring stops or the user signs out.
+
+- **Detailed explanation:** The current implementation preserves the last location and `capturedAtMs` when status changes to `SIGNED_OUT`. Last Known Location does not prove the user is still at that point and must not be interpreted as a live movement history.
+
+- **Example:** A signed-out SPV may still have a marker at the final accepted position, while the status clearly says Signed out.
+
+- **Related terms:** SIGNED_OUT Monitoring Status, Current GPS Location, capturedAtMs, GPS History
+
+### Term: capturedAtMs
+
+- **Acronym:** None
+
+- **Simple meaning:** The phone time when the GPS point was captured, stored as epoch milliseconds.
+
+- **Detailed explanation:** `capturedAtMs` is supplied by the phone and validated by the backend as a positive finite millisecond value. It remains unchanged when sign-out only updates monitoring status.
+
+- **Example:** A captured location may store `capturedAtMs: 1784652000000`.
+
+- **Related terms:** Current GPS Location, receivedAt, Device Time, Timestamp
+
+### Term: receivedAt
+
+- **Acronym:** None
+
+- **Simple meaning:** The server time when the backend accepted the latest location or status change.
+
+- **Detailed explanation:** `receivedAt` is generated by the backend using a Firestore server timestamp. During a location submission it records server receipt of the location. During sign-out it is updated to record receipt of the SIGNED_OUT status while the last GPS values remain unchanged.
+
+- **Example:** A phone captures a point at 15:20:00 and the backend records `receivedAt` at 15:20:01.
+
+- **Related terms:** capturedAtMs, Server Timestamp, Monitoring Status, Live Location Document
+
+### Term: Relative Update Time
+
+- **Acronym:** None
+
+- **Simple meaning:** A user-friendly display of how long ago the latest stored monitoring event happened.
+
+- **Detailed explanation:** Relative Update Time may display values such as “1 min ago.” It is informational only. It does not change ACTIVE to stale or offline and is not persisted as a canonical field.
+
+- **Example:** An ACTIVE user can display Live and “8 min ago” at the same time.
+
+- **Related terms:** receivedAt, capturedAtMs, ACTIVE Monitoring Status, LIVE Monitoring State
+
+### Term: Location Accuracy
+
+- **Acronym:** None
+
+- **Simple meaning:** The phone’s estimate of how close the GPS point is to the user’s actual position.
+
+- **Detailed explanation:** Location Accuracy is stored in metres as `accuracyM`. A smaller value usually represents a more precise estimate. Accuracy may be null when the device does not provide it. It must not be treated as a guaranteed exact radius.
+
+- **Example:** `accuracyM: 12` means the phone estimated approximately 12-metre accuracy for that point.
+
+- **Related terms:** Current GPS Location, GPS, accuracyM, Live Field Map
+
+### Term: Heading
+
+- **Acronym:** None
+
+- **Simple meaning:** The direction of movement reported by the phone in degrees.
+
+- **Detailed explanation:** Heading is stored as `headingDegrees` from zero up to but not including 360. It may be null when the phone cannot provide a reliable direction.
+
+- **Example:** A heading near 180 degrees represents movement approximately south.
+
+- **Related terms:** Current GPS Location, Speed, headingDegrees
+
+### Term: Speed
+
+- **Acronym:** None
+
+- **Simple meaning:** The movement speed reported with the current GPS point.
+
+- **Detailed explanation:** The canonical stored value is `speedMps` in metres per second. The interface may convert it to kilometres per hour for display. Speed may be null and must not be used alone to infer a full trip, attendance, or productivity.
+
+- **Example:** The web user row may display 14 km/h after converting the canonical metres-per-second value.
+
+- **Related terms:** Current GPS Location, Heading, speedMps, Live Field Map
+
+### Term: Live Field Map
+
+- **Acronym:** None
+
+- **Simple meaning:** The FWR Monitoring map that shows current monitored-user markers inside the active LM and ward context.
+
+- **Detailed explanation:** The Live Field Map displays the active workbase boundary, ward boundaries, and authorised monitored-user markers with initials. Clicking a user focuses the map on that location. Selecting a ward returns camera control to the ward boundary.
+
+- **Example:** A manager clicks Siya in the users list and the Live Field Map zooms to Siya’s current marker.
+
+- **Related terms:** FWR Monitoring, User Map Focus, Ward Map Focus, Current GPS Location
+
+### Term: User Map Focus
+
+- **Acronym:** None
+
+- **Simple meaning:** Moving and zooming the monitoring map to a selected user.
+
+- **Detailed explanation:** User Map Focus happens when an authorised user clicks a focusable FWR or SPV row or marker. The selected row is highlighted, the information card opens, and the camera moves to the selected GPS position. Repeated selection can request focus again.
+
+- **Example:** Clicking a Fieldworker in the right-hand user list zooms the map to that Fieldworker.
+
+- **Related terms:** Live Field Map, Ward Map Focus, Monitored User, Map Marker
+
+### Term: Ward Map Focus
+
+- **Acronym:** None
+
+- **Simple meaning:** Using the ward selector to move the monitoring map to a ward boundary.
+
+- **Detailed explanation:** Ward Map Focus controls map navigation and does not filter the organisationally authorised users list. When the selected ward changes, user camera priority is cleared and the map fits the selected ward. All Wards returns the map to the LM boundary.
+
+- **Example:** After viewing one Fieldworker closely, the manager selects Ward 6 and the map fits Ward 6 while the full authorised users list remains visible.
+
+- **Related terms:** Live Field Map, User Map Focus, Ward, All Wards, Workbase
+
+### Term: GPS History
+
+- **Acronym:** None
+
+- **Simple meaning:** A future record of multiple location points captured over time.
+
+- **Detailed explanation:** GPS History is not implemented in the current FWR Monitoring baseline. The current `fwr_live_locations` collection stores only the latest state. A future history capability requires its own approved design, rules, schema, retention, privacy, cost, indexing, and user-interface decisions.
+
+- **Example:** A future daily route line made from ordered GPS points would use GPS History, not the current latest-state document.
+
+- **Related terms:** Current GPS Location, Last Known Location, Route History, FWR Monitoring
+
+## 19. Informal ERFs
+
+This section is the official iREPS terminology source for Informal ERF creation, identity, geometry, evidence, geofence membership, canonical storage, retries, and live propagation. Informal ERFs are ordinary canonical ERFs stored in `ireps_erfs`; they are not kept in a separate Informal ERF collection.
+
+## Approved Informal ERF contract language
+
+The only valid Informal ERF ID format is `IE-{wardPcode}-YYYYMMDD-hhmmss-XXXX`. The ward pCode embedded in the ID must equal the submitted and canonical ward pCode. The Firestore document ID, root `erfId`, and `sg.prclKey` must be identical. Every other Informal ERF ID format must be rejected.
+
+Any noncompliant pre-production Informal ERF record must be removed through the approved dry-run-first cleanup process. Cleanup must delete the noncompliant `ireps_erfs` document and matching `registry_erfs` projection, rebuild affected `registry_wards` counts, recompute affected geofence counts, leave `ireps_counters/informal_erfs.lastNumber` unchanged or higher, never reuse a deleted `sg.parcelNo`, never delete a Ward Registry document, and never delete Storage photographs unless separately approved.
+
+The callable accepts exactly these top-level payload fields and no others: `schemaVersion`, `formType`, `erfId`, `lmPcode`, `wardPcode`, `boundaryPoints`, `reasonCode`, `reasonOther`, `media`, `deviceLocation`, and `clientSubmittedAtMs`. Any unknown, extra, canonical, derived, or backend-owned top-level field must be rejected; it must not be ignored.
+
+Each submitted media item accepts exactly these fields and no others: `tag`, `type`, `storagePath`, `url`, `capturedAtMs`, and `gps`. `type` must equal `image`. Any unknown or backend-owned media field, including client-supplied `created` or `updated`, must be rejected.
+
+Each `media[].url` must be an HTTPS Firebase Storage download URL whose bucket equals the Firebase project's configured Storage bucket and whose decoded object path exactly equals `media[].storagePath`. The Storage object must exist before canonical creation.
+
+### Term: Informal ERF
+
+- **Acronym:** IE
+
+- **Simple meaning:** A user-created land parcel used where the correct formal cadastral ERF is missing or cannot be identified.
+
+- **Detailed explanation:** An Informal ERF is created from a boundary drawn by an authorised iREPS Mobile user. The backend validates the boundary, creates the canonical polygon geometry, calculates its bbox, centroid and area, assigns an Informal ERF number, resolves geofence membership, and stores the completed record in the normal `ireps_erfs` collection. It behaves like an ordinary ERF throughout iREPS, while its Informal-only evidence is stored under `informalErfData`.
+
+- **Example:** A fieldworker finds a service connection in an unmapped settlement, draws the occupied parcel boundary, takes the required site photograph, and submits a new Informal ERF.
+
+- **Related terms:** ERF, Formal ERF, Canonical ERF, Informal ERF Data, Boundary Points, Informal ERF Number
+
+### Term: Formal ERF
+
+- **Acronym:** None
+
+- **Simple meaning:** An ERF based on recognised formal cadastral or Surveyor-General parcel information.
+
+- **Detailed explanation:** A Formal ERF and an Informal ERF use the same common canonical ERF structure. The main difference is that an Informal ERF has the additional root property `informalErfData`. Formal and Informal ERFs are both checked when the backend tests a proposed Informal ERF for overlap or boundary contact.
+
+- **Example:** ERF 176 with official cadastral identity and geometry is a Formal ERF.
+
+- **Related terms:** ERF, Informal ERF, Canonical ERF, Cadastral
+
+### Term: Canonical ERF
+
+- **Acronym:** None
+
+- **Simple meaning:** The approved authoritative ERF record stored in `ireps_erfs`.
+
+- **Detailed explanation:** A Canonical ERF contains the approved common ERF properties such as `erfId`, `admin`, `bbox`, `centroid`, `erf`, `geometry`, `geofenceRefs`, `metadata`, `premises`, and `sg`. An Informal ERF adds only `informalErfData`. Client-supplied helper values such as `boundaryPoints`, upload-only `storagePath`, and media `capturedAtMs` are not stored as canonical ERF fields. Registry rows are derived read models and do not replace the canonical record.
+
+- **Example:** After successful validation, `ireps_erfs/IE-ZA7423006-20260725-001047-2589` becomes the authoritative ERF record.
+
+- **Related terms:** Informal ERF, Formal ERF, ireps_erfs, Canonical Geometry, Informal ERF Data, ERF Registry Projection
+
+### Term: ireps_erfs
+
+- **Acronym:** None
+
+- **Simple meaning:** The Firestore collection containing both Formal and Informal canonical ERFs.
+
+- **Detailed explanation:** `ireps_erfs` is the single canonical ERF collection. Informal ERFs must not be written to a separate Informal collection. Normal ERF listeners, warehouse data, maps, selectors, registries, and premise workflows read from this shared collection.
+
+- **Example:** A new Informal ERF is created at `ireps_erfs/{erfId}` and appears through the same ERF stream as Formal ERFs.
+
+- **Related terms:** Canonical ERF, Informal ERF Streaming, all.erfs, all.geoLibrary
+
+### Term: Informal ERF Data
+
+- **Acronym:** `informalErfData`
+
+- **Simple meaning:** The one additional root container holding information that applies only to an Informal ERF.
+
+- **Detailed explanation:** `informalErfData` contains `reasonCode`, `reasonOther`, `media`, and `deviceLocation`. These values must not be written separately at the Firestore root and must not be placed under `metadata`, `erf`, `admin`, or `sg`.
+
+- **Example:** The site photograph and creation reason are stored inside `informalErfData` on the completed ERF.
+
+- **Related terms:** Informal ERF, Creation Reason, Site Photograph, Device Location, Canonical ERF
+
+### Term: Informal ERF Full ID
+
+- **Acronym:** None
+
+- **Simple meaning:** The permanent ward-scoped technical identity created before the callable is invoked.
+
+- **Detailed explanation:** The only valid format is `IE-{wardPcode}-YYYYMMDD-hhmmss-XXXX`. The embedded ward pCode must match the submitted and canonical ward. This identity is used by the mobile controller, media Storage paths, offline retries, the callable, the Firestore document ID, root `erfId`, and `sg.prclKey`. Every other ID format is rejected, and noncompliant pre-production records are removed through the approved cleanup process.
+
+- **Example:** `IE-ZA7423006-20260725-001047-2589` is a valid Informal ERF Full ID for Ward ZA7423006.
+
+- **Related terms:** erfId, Ward-Scoped Identity, Informal ERF Number, Idempotent Retry, sg.prclKey, Pre-Production Cleanup
+
+### Term: Informal ERF Number
+
+- **Acronym:** IE Number
+
+- **Simple meaning:** The human-facing sequential number shown to users for an Informal ERF.
+
+- **Detailed explanation:** The approved format is `IE000001`, `IE000002`, and so on. The backend allocates the next number atomically from the global Informal ERF counter and stores it in `sg.parcelNo`. The mobile app does not allocate this number.
+
+- **Example:** The technical ID may be `IE-ZA7423006-20260724-031527-4821`, while the displayed ERF number is `IE000043`.
+
+- **Related terms:** Informal ERF Full ID, sg.parcelNo, Global Informal ERF Counter, Atomic Allocation
+
+### Term: erfId
+
+- **Acronym:** None
+
+- **Simple meaning:** The permanent ERF identity used as the Firestore document ID and root identifier.
+
+- **Detailed explanation:** For an Informal ERF, `erfId` must match the approved Full ID format. The Firestore document ID, root `erfId`, and `sg.prclKey` must be equal. The same `erfId` is reused during offline or network retries so that the backend can recognise the same submission.
+
+- **Example:** `ireps_erfs/IE-ZA7423006-20260724-031527-4821` has root `erfId: "IE-ZA7423006-20260724-031527-4821"`.
+
+- **Related terms:** Informal ERF Full ID, sg.prclKey, Idempotency
+
+### Term: sg.parcelNo
+
+- **Acronym:** None
+
+- **Simple meaning:** The canonical field containing the human-facing ERF number.
+
+- **Detailed explanation:** For an Informal ERF, `sg.parcelNo` stores the atomically allocated value such as `IE000043`. For a Formal ERF it may contain a normal parcel number such as `176`. iREPS screens should use `sg.parcelNo` and `sg.portion` to build the displayed ERF number rather than decoding the document ID.
+
+- **Example:** `sg.parcelNo: "IE000043"` and `sg.portion: 0` display as `IE000043`.
+
+- **Related terms:** Informal ERF Number, ERF Number, sg.portion, Atomic Allocation
+
+### Term: sg.prclKey
+
+- **Acronym:** None
+
+- **Simple meaning:** The SG-compatible canonical parcel key stored inside the ERF.
+
+- **Detailed explanation:** For an Informal ERF, `sg.prclKey` equals the Firestore document ID and root `erfId`. It does not equal the human-facing `sg.parcelNo`.
+
+- **Example:** `sg.prclKey` may be `IE-ZA7423006-20260724-031527-4821`, while `sg.parcelNo` is `IE000043`.
+
+- **Related terms:** erfId, Informal ERF Full ID, sg.parcelNo
+
+### Term: Boundary Point
+
+- **Acronym:** None
+
+- **Simple meaning:** One latitude-and-longitude vertex selected by the user while drawing an Informal ERF.
+
+- **Detailed explanation:** A Boundary Point is sent from mobile as `{ lat, lng }`. It is an input used to construct the polygon. It is not itself the canonical centroid, device location, or final geometry.
+
+- **Example:** The first selected point may be `{ lat: -26.56964, lng: 28.31933 }`.
+
+- **Related terms:** Boundary Points, Vertex, Polygon Geometry, Device Location
+
+### Term: Boundary Points
+
+- **Acronym:** None
+
+- **Simple meaning:** The ordered list of vertices supplied by the user to describe the proposed parcel boundary.
+
+- **Detailed explanation:** An Informal ERF requires between 3 and 100 valid unique Boundary Points. The backend removes an optional repeated closing point, rejects other duplicates, closes the polygon ring internally, and does not store `boundaryPoints` in the canonical ERF.
+
+- **Example:** Four ordered points can define a four-sided Informal ERF boundary.
+
+- **Related terms:** Boundary Point, Unique Vertex, Closed Polygon Ring, Geometry Validation
+
+### Term: Vertex
+
+- **Acronym:** None
+
+- **Simple meaning:** A corner point of a drawn polygon boundary.
+
+- **Detailed explanation:** Each valid Boundary Point becomes one polygon Vertex. Informal ERF validation requires at least 3 and no more than 100 unique vertices.
+
+- **Example:** A rectangular boundary normally contains four vertices.
+
+- **Related terms:** Boundary Point, Unique Vertex, Duplicate Boundary Point, Polygon Geometry
+
+### Term: Unique Vertex
+
+- **Acronym:** None
+
+- **Simple meaning:** A polygon vertex whose coordinate does not repeat another non-closing vertex.
+
+- **Detailed explanation:** The backend counts unique vertices after removing only an optional duplicate closing point. Repeated points elsewhere in the boundary are rejected because they can create ambiguous or invalid geometry.
+
+- **Example:** A, B, C, D are four unique vertices; A, B, C, B contains a duplicate and is rejected.
+
+- **Related terms:** Vertex, Duplicate Boundary Point, Boundary Points, Geometry Validation
+
+### Term: Duplicate Boundary Point
+
+- **Acronym:** None
+
+- **Simple meaning:** A repeated polygon coordinate that is not the approved optional closing point.
+
+- **Detailed explanation:** The last point may repeat the first point only to close the ring, and the backend normalises that repetition away. Any other repeated coordinate is rejected. The same rule is used to tighten new geofence creation.
+
+- **Example:** A boundary containing A, B, C, C, D is rejected because C is repeated.
+
+- **Related terms:** Unique Vertex, Closed Polygon Ring, Geometry Validation, Geofence
+
+### Term: Polygon Geometry
+
+- **Acronym:** None
+
+- **Simple meaning:** A closed mapped shape representing the full area and boundary of an ERF.
+
+- **Detailed explanation:** The callable converts ordered `{lat,lng}` points into GeoJSON coordinate order `[lng,lat]`, closes the ring, and creates a canonical GeoJSON `Polygon`. An Informal ERF must never be stored as a single Point geometry.
+
+- **Example:** Four valid vertices are transformed into a closed GeoJSON Polygon stored in `geometry`.
+
+- **Related terms:** Boundary Points, Closed Polygon Ring, Canonical Geometry, GeoJSON
+
+### Term: Closed Polygon Ring
+
+- **Acronym:** None
+
+- **Simple meaning:** A polygon coordinate ring whose last coordinate equals its first coordinate.
+
+- **Detailed explanation:** Mobile does not need to repeat the first point. The backend removes an optional submitted closing duplicate and then closes the canonical GeoJSON ring itself. This gives one predictable geometry format.
+
+- **Example:** A, B, C, D becomes A, B, C, D, A in the stored GeoJSON ring.
+
+- **Related terms:** Polygon Geometry, Boundary Points, Duplicate Boundary Point, GeoJSON
+
+### Term: Canonical Geometry
+
+- **Acronym:** None
+
+- **Simple meaning:** The server-validated GeoJSON geometry stored on the completed ERF.
+
+- **Detailed explanation:** Canonical Geometry is derived only by the backend from approved Boundary Points. The mobile app does not own `geometry`, `bbox`, `centroid`, or `area`. The geometry is stored as a JSON string containing a GeoJSON Polygon.
+
+- **Example:** The callable stores `{"type":"Polygon","coordinates":[...]}` after all checks pass.
+
+- **Related terms:** Polygon Geometry, Bounding Box, Canonical Centroid, ERF Area
+
+### Term: Bounding Box
+
+- **Acronym:** Bbox
+
+- **Simple meaning:** The smallest north-south and east-west rectangle that contains the whole polygon.
+
+- **Detailed explanation:** The backend derives `minLat`, `minLng`, `maxLat`, and `maxLng` from the canonical polygon. The bbox helps map focusing and efficiently narrows possible overlap or geofence candidates, but a bbox match alone does not prove that two polygons overlap.
+
+- **Example:** An ERF bbox may run from `minLat -26.5700` to `maxLat -26.5695`.
+
+- **Related terms:** Canonical Geometry, Canonical Centroid, ERF Overlap, Geofence Membership
+
+### Term: Canonical Centroid
+
+- **Acronym:** None
+
+- **Simple meaning:** The approved centre point calculated from the validated ERF polygon.
+
+- **Detailed explanation:** For Informal ERFs, the backend uses the polygon centre of mass as the canonical centroid. It is stored as `{ lat, lng }` and is used for map placement and existing iREPS geofence membership. It is not copied from device GPS, photograph GPS, the map long-press point, or a simple unvalidated average.
+
+- **Example:** The new polygon produces `centroid: { lat: -26.56961, lng: 28.31945 }`.
+
+- **Related terms:** Polygon Geometry, Device Location, Photograph GPS, Geofence Membership
+
+### Term: ERF Area
+
+- **Acronym:** None
+
+- **Simple meaning:** The calculated size of the ERF polygon in square metres.
+
+- **Detailed explanation:** The backend calculates geodesic area from the validated polygon. An Informal ERF with zero, invalid, or non-finite area is rejected. The client does not supply the canonical area.
+
+- **Example:** A valid Informal ERF may have `erf.area: 308.65` square metres.
+
+- **Related terms:** Polygon Geometry, Zero-Area Polygon, Geometry Validation
+
+### Term: Geometry Validation
+
+- **Acronym:** None
+
+- **Simple meaning:** The backend checks that decide whether a proposed polygon is safe and valid.
+
+- **Detailed explanation:** Geometry Validation includes coordinate-range checks, 3–100 unique vertices, duplicate rejection, self-intersection detection, valid non-zero area, full ward containment, and collision checks against all existing Formal and Informal ERFs. Mobile checks are helpful but remain preliminary.
+
+- **Example:** A visually drawn polygon is rejected if one edge crosses another edge.
+
+- **Related terms:** Self-Intersection, Zero-Area Polygon, Ward Containment, ERF Overlap
+
+### Term: Self-Intersection
+
+- **Acronym:** None
+
+- **Simple meaning:** A polygon defect where one boundary edge crosses another boundary edge.
+
+- **Detailed explanation:** A self-intersecting or bow-tie polygon does not represent one reliable parcel area and is rejected by the callable. New geofence creation must also reject this geometry.
+
+- **Example:** A four-point bow-tie shape is rejected even when all four coordinates are individually valid.
+
+- **Related terms:** Geometry Validation, Polygon Geometry, Invalid Geometry
+
+### Term: Zero-Area Polygon
+
+- **Acronym:** None
+
+- **Simple meaning:** A boundary whose points do not form a measurable parcel area.
+
+- **Detailed explanation:** A polygon may have zero area when its points are collinear, repeated, or otherwise degenerate. The backend rejects zero, invalid, or non-finite area rather than creating an ERF with `area: 0`.
+
+- **Example:** Three points placed along the same straight line create a Zero-Area Polygon.
+
+- **Related terms:** ERF Area, Geometry Validation, Invalid Geometry
+
+### Term: Ward Containment
+
+- **Acronym:** None
+
+- **Simple meaning:** The requirement that the complete Informal ERF polygon stays inside the selected ward.
+
+- **Detailed explanation:** The backend checks the whole polygon against the canonical ward geometry. Checking only the vertices is not enough because an edge can leave a concave ward and return. Crossing outside the ward is rejected.
+
+- **Example:** A polygon whose four points appear inside the ward is still rejected if one connecting edge crosses outside the ward boundary.
+
+- **Related terms:** Ward, Ward-Boundary Touching, Geometry Validation, Polygon Geometry
+
+### Term: Ward-Boundary Touching
+
+- **Acronym:** None
+
+- **Simple meaning:** A valid case where an Informal ERF boundary touches the selected ward boundary without crossing outside it.
+
+- **Detailed explanation:** The selected ward boundary is inclusive for Informal ERF creation. Touching it is allowed, but any part of the candidate polygon outside the selected ward is rejected.
+
+- **Example:** One edge may lie on the ward boundary, provided the parcel remains completely within the ward.
+
+- **Related terms:** Ward Containment, Existing-ERF Boundary Touching, Geometry Validation
+
+### Term: ERF Overlap
+
+- **Acronym:** None
+
+- **Simple meaning:** A spatial conflict where a proposed Informal ERF occupies any area already occupied by another ERF.
+
+- **Detailed explanation:** The callable checks the candidate against both Formal and Informal ERFs. It rejects partial overlap, complete containment in either direction, coincident polygons, crossing edges, and existing-ERF boundary contact.
+
+- **Example:** A proposed Informal ERF that covers part of Formal ERF 176 is rejected.
+
+- **Related terms:** Existing-ERF Boundary Touching, Formal ERF, Informal ERF, Geometry Validation
+
+### Term: Existing-ERF Boundary Touching
+
+- **Acronym:** None
+
+- **Simple meaning:** A conflict where a proposed Informal ERF touches the boundary of an existing Formal or Informal ERF.
+
+- **Detailed explanation:** For Informal ERF creation, touching an existing ERF is rejected. This is stricter than ward-boundary touching, which is allowed. The rule prevents ambiguous parcel adjacency or accidental coincidence.
+
+- **Example:** A new polygon sharing one edge or one point with an existing ERF is rejected.
+
+- **Related terms:** ERF Overlap, Ward-Boundary Touching, Geometry Validation
+
+### Term: Creation Reason
+
+- **Acronym:** `reasonCode`
+
+- **Simple meaning:** The approved reason explaining why an Informal ERF is being created.
+
+- **Detailed explanation:** The user selects one approved reason code. The callable validates the code and stores it at `informalErfData.reasonCode`. The reason is evidence for creation and does not define geometry.
+
+- **Example:** `NO_FORMAL_ERF` can be used where no correct Formal ERF can be found.
+
+- **Related terms:** Other Creation Reason, Informal ERF Data, Evidence
+
+### Term: Other Creation Reason
+
+- **Acronym:** `reasonOther`
+
+- **Simple meaning:** The user’s additional explanation when the selected Creation Reason is OTHER.
+
+- **Detailed explanation:** `reasonOther` is required only when `reasonCode` equals `OTHER`. For every other reason it is stored as `null`. The approved declaration remains suspended and is not part of this workflow.
+
+- **Example:** A user selecting OTHER may write a short explanation describing the unusual site condition.
+
+- **Related terms:** Creation Reason, Informal ERF Data, Evidence
+
+### Term: Informal ERF Site Photograph
+
+- **Acronym:** None
+
+- **Simple meaning:** The required photograph showing the physical site of the proposed Informal ERF.
+
+- **Detailed explanation:** At least one uploaded media item tagged `informalErfSitePhoto` is required. The client upload item contains exactly `tag`, `type`, `storagePath`, `url`, `capturedAtMs`, and `gps`; `type` must equal `image`, and client-supplied `created` or `updated` is rejected. Before creation, the backend verifies that the Storage object exists, the URL bucket equals the configured Firebase Storage bucket, and the decoded URL object path exactly equals `storagePath`. The backend then creates the canonical `created` and `updated` audit fields.
+
+- **Example:** The user photographs the occupied stand, uploads the image, and the ERF stores a clickable canonical media URL with creator and update details.
+
+- **Related terms:** Site Photograph, Canonical Media Record, Photograph GPS, Informal ERF Data, Firebase Storage
+
+### Term: Photograph GPS
+
+- **Acronym:** None
+
+- **Simple meaning:** The GPS coordinate captured specifically with one photograph.
+
+- **Detailed explanation:** Photograph GPS belongs to that media item as `media[].gps`. It must never be invented from the root Device Location, Boundary Points, or main-map long-press coordinate. When the photograph has no GPS, the stored value remains `null`.
+
+- **Example:** A site photo without embedded or captured GPS is stored with `gps: null`.
+
+- **Related terms:** Informal ERF Site Photograph, Device Location, Boundary Points, Evidence
+
+### Term: Device Location
+
+- **Acronym:** None
+
+- **Simple meaning:** The phone’s forensic GPS position captured for the Informal ERF submission.
+
+- **Detailed explanation:** Device Location is stored in `informalErfData.deviceLocation` with latitude, longitude, capture time, and available accuracy, altitude, heading, and speed. It helps audit where the device was during capture but does not define the ERF boundary, centroid, bbox, or area.
+
+- **Example:** The phone reports its position and accuracy while the user draws the boundary.
+
+- **Related terms:** Photograph GPS, Canonical Centroid, Informal ERF Data, Forensic Evidence
+
+### Term: Geofence Membership
+
+- **Acronym:** None
+
+- **Simple meaning:** The relationship showing that an ERF belongs to an active operational geofence.
+
+- **Detailed explanation:** For current iREPS ERF behaviour, the callable tests the canonical ERF centroid against active geofences in the same LM and ward. A bbox precheck is followed by a point-in-polygon test. Zero, one, or multiple geofence matches are possible.
+
+- **Example:** An Informal ERF whose centroid falls inside Gf Mochana Alley belongs to that geofence.
+
+- **Related terms:** Canonical Centroid, Geofence, geofenceRefs, Geofence Count
+
+### Term: Geofence Reference
+
+- **Acronym:** None
+
+- **Simple meaning:** A small `{id, name}` record linking an ERF to one geofence.
+
+- **Detailed explanation:** A Geofence Reference stores the geofence document ID and display name. References are normalized, de-duplicated, and stored in the root `geofenceRefs` array on the ERF.
+
+- **Example:** `{ id: "OBx1U9VMnVPOeniQjbOP", name: "Gf Mochana Alley" }` is a Geofence Reference.
+
+- **Related terms:** Geofence Membership, geofenceRefs, Geofence
+
+### Term: geofenceRefs
+
+- **Acronym:** None
+
+- **Simple meaning:** The canonical root array containing an ERF’s geofence memberships.
+
+- **Detailed explanation:** New Informal ERFs use `geofenceRefs` only. When no geofence matches, the callable stores `geofenceRefs: []`. When geofences match, it stores normalized `{id,name}` references before the ERF transaction commits.
+
+- **Example:** An ERF inside two overlapping geofences stores two entries in `geofenceRefs`.
+
+- **Related terms:** Geofence Reference, Geofence Membership, geofenceIds, Geofence Count
+
+### Term: geofenceIds
+
+- **Acronym:** None
+
+- **Simple meaning:** A legacy geofence-membership field that must not be written on new ERFs.
+
+- **Detailed explanation:** The current operational geofence model uses `geofenceRefs`. New Informal ERFs must not write `geofenceIds`. Existing legacy `geofenceIds` fields will be handled through a separate verified cleanup so valid membership information is not accidentally lost.
+
+- **Example:** A new Informal ERF stores `geofenceRefs` and contains no `geofenceIds` property.
+
+- **Related terms:** geofenceRefs, Legacy Field, Data Cleanup, Geofence Membership
+
+### Term: Geofence Count
+
+- **Acronym:** None
+
+- **Simple meaning:** The authoritative count of ERFs, premises, or meters currently linked to a geofence.
+
+- **Detailed explanation:** After an Informal ERF is committed with its `geofenceRefs`, the callable recomputes the matched geofence counts from actual canonical records. It does not blindly add one, because retries and stale counts could otherwise create incorrect totals.
+
+- **Example:** A geofence with 53 linked ERFs is recomputed as 54 after one matching Informal ERF is created.
+
+- **Related terms:** Geofence Membership, geofenceRefs, Idempotent Retry, Streaming
+
+### Term: Global Informal ERF Counter
+
+- **Acronym:** None
+
+- **Simple meaning:** The backend counter used to allocate the next human-facing Informal ERF number.
+
+- **Detailed explanation:** The global counter is stored at `ireps_counters/informal_erfs` in the field `lastNumber`. It is backend-only and is not part of the canonical ERF. All LMs and wards share the same Informal ERF sequence.
+
+- **Example:** `lastNumber: 42` results in the next allocated parcel number `IE000043`.
+
+- **Related terms:** Informal ERF Number, Atomic Allocation, Firestore Transaction
+
+### Term: Atomic Allocation
+
+- **Acronym:** None
+
+- **Simple meaning:** Allocating the Informal ERF number and creating the ERF as one protected transaction.
+
+- **Detailed explanation:** The callable reads the counter, determines the next `IE000001`-style number, updates the counter, and creates the ERF transactionally. Concurrent submissions cannot receive the same number. A retry of an existing `erfId` does not allocate another number.
+
+- **Example:** Two simultaneous valid submissions receive `IE000043` and `IE000044`, not the same number.
+
+- **Related terms:** Global Informal ERF Counter, Firestore Transaction, Idempotent Retry
+
+### Term: Idempotency
+
+- **Acronym:** None
+
+- **Simple meaning:** The rule that repeating the same valid submission does not create a second ERF.
+
+- **Detailed explanation:** The final `erfId` is the idempotency identity. When the same completed submission is retried, the callable returns the existing ERF and parcel number without incrementing the counter. The retry also runs the ERF Registry projection, Ward Registry projection, and matched-geofence count recomputation so it can heal a temporary post-commit failure.
+
+- **Example:** A network or projection timeout causes the phone to retry the same `erfId`; the backend returns the original `IE000043` and repairs missing derived data instead of creating another ERF.
+
+- **Related terms:** Idempotent Retry, Post-Commit Retry, Informal ERF Full ID, Atomic Allocation, Derived Projection
+
+### Term: Idempotent Retry
+
+- **Acronym:** None
+
+- **Simple meaning:** A repeat submission using the same final `erfId` that safely returns or repairs the original result.
+
+- **Detailed explanation:** The mobile offline queue and timeout recovery retry through the same controller, API, and callable route. The retry preserves the original `erfId` and Storage paths. When the canonical ERF already exists, the callable does not allocate another `sg.parcelNo`; it validates the existing identity and reruns the derived ERF Registry, Ward Registry, and geofence-count updates.
+
+- **Example:** A canonical ERF was created but its Ward Registry refresh failed. Retrying the same `erfId` repairs the Ward Registry and returns already-created success.
+
+- **Related terms:** Idempotency, Post-Commit Retry, Offline Queue, Informal ERF Callable, erfId
+
+### Term: Informal ERF Callable
+
+- **Acronym:** `submitInformalErfCallable`
+
+- **Simple meaning:** The approved backend function that validates, creates, projects, and finalises an Informal ERF.
+
+- **Detailed explanation:** The callable owns authentication, role and workbase checks, ward validation, media verification, polygon derivation, spatial collision validation, geofence membership, global parcel-number allocation, canonical metadata, Firestore creation, idempotency, ERF Registry projection, Ward Registry projection, and matched-geofence count recomputation. If a derived update fails after canonical creation, it returns a temporary retryable error and requires the same `erfId`.
+
+- **Example:** The mobile `informalErfsApi` invokes `submitInformalErfCallable` with a Version 2 payload and receives `INFORMAL_ERF_CREATED` or safe already-created success.
+
+- **Related terms:** Callable, Informal ERF, Geometry Validation, Atomic Allocation, ERF Registry Projection, Ward Registry Projection, Post-Commit Retry
+
+### Term: Informal ERF Streaming
+
+- **Acronym:** None
+
+- **Simple meaning:** The automatic live delivery of a newly created Informal ERF through the correct operational and registry data paths.
+
+- **Detailed explanation:** Mobile and web maps stream canonical geometry from `ireps_erfs`. The mobile `erfsApi` exposes the ERF through Warehouse, `all.erfs`, and `all.geoLibrary`. The web ERF Registry does not read the operational collection; it streams the complete selected ward from `registry_erfs`. The Ward Registry streams `registry_wards`. This separation keeps maps on canonical operational data and reports or registries on governed read models.
+
+- **Example:** A successful TEST creation appears as polygon `IE000001` on the purple TEST mobile map, then appears in the open web ERF Registry and updates the Ward Registry count without manual refresh.
+
+- **Related terms:** Operational ERF Stream, ERF Registry Streaming, Ward Registry Streaming, onSnapshot, ireps_erfs, registry_erfs, registry_wards
+
+
+### Term: Ward-Scoped Identity
+
+- **Acronym:** None
+
+- **Simple meaning:** An Informal ERF technical ID that includes the ward pCode where the ERF belongs.
+
+- **Detailed explanation:** Ward-Scoped Identity uses `IE-{wardPcode}-YYYYMMDD-hhmmss-XXXX`. Embedding the ward makes the technical identity easier to trace and allows the callable to validate that the ID, payload, canonical ward, and operational scope agree.
+
+- **Example:** `IE-ZA7423006-20260725-001047-2589` identifies an Informal ERF created for Ward ZA7423006.
+
+- **Related terms:** Informal ERF Full ID, Ward, Pcode, erfId, Idempotency
+
+### Term: Canonical Media Record
+
+- **Acronym:** None
+
+- **Simple meaning:** The approved stored photograph record used after upload validation.
+
+- **Detailed explanation:** For an Informal ERF, the canonical media record contains `created`, `updated`, `url`, `gps`, `tag`, and `type`. The backend creates the audit fields and creator identity. The client upload item is strictly limited to `tag`, `type`, `storagePath`, `url`, `capturedAtMs`, and `gps`; local `uri` never enters the callable payload, and upload-only `storagePath` and `capturedAtMs` are not stored in the canonical media item.
+
+- **Example:** A canonical site photo stores a clickable Firebase Storage URL and `created.byUser`, while the temporary upload path is omitted.
+
+- **Related terms:** Informal ERF Site Photograph, Photograph GPS, Firebase Storage, Informal ERF Data
+
+### Term: Derived Projection
+
+- **Acronym:** None
+
+- **Simple meaning:** A read-optimised record rebuilt from canonical operational data.
+
+- **Detailed explanation:** A Derived Projection supports fast registries, reports, counts, search, and filtering without replacing the canonical source. Informal ERF creation rebuilds both an ERF Registry projection and an affected Ward Registry projection after the canonical ERF transaction commits.
+
+- **Example:** `registry_erfs/{erfId}` is derived from `ireps_erfs/{erfId}`.
+
+- **Related terms:** Canonical ERF, ERF Registry Projection, Ward Registry Projection, Registry, Read Model
+
+### Term: ERF Registry Projection
+
+- **Acronym:** None
+
+- **Simple meaning:** The derived ERF row used by the web ERF Registry.
+
+- **Detailed explanation:** The callable rebuilds `registry_erfs/{erfId}` after canonical creation or a valid retry. The row preserves the alphanumeric number such as `IE000001`, the Informal type, LM, ward, status, searchable text, counts, and audit context. Registry pages must use this read model rather than merging operational ERFs directly into the frontend.
+
+- **Example:** Canonical ERF `IE-ZA7423006-...` produces a registry row whose displayed `erfNo` is `IE000001`.
+
+- **Related terms:** registry_erfs, Derived Projection, ERF Registry Streaming, Informal ERF Number
+
+### Term: Ward Registry Projection
+
+- **Acronym:** None
+
+- **Simple meaning:** The derived ward row whose counts are rebuilt after a new Informal ERF.
+
+- **Detailed explanation:** The callable rebuilds `registry_wards/{lmPcode}__{wardPcode}` after the ERF Registry projection. The row recalculates Formal ERFs, Informal ERFs, and Total ERFs, with `totalErfs = formalErfs + informalErfs`.
+
+- **Example:** Creating the first Informal ERF in Ward 6 changes the Ward Registry `informalErfs` count from 0 to 1.
+
+- **Related terms:** registry_wards, Derived Projection, Ward Registry Streaming, Ward Total ERFs
+
+### Term: registry_erfs
+
+- **Acronym:** None
+
+- **Simple meaning:** The Firestore read-model collection used by the ERF Registry.
+
+- **Detailed explanation:** `registry_erfs` contains derived ERF rows optimised for registry browsing, searching, filtering, sorting, counts, and downloads. It is not the canonical geometry collection. Maps continue to use `ireps_erfs`.
+
+- **Example:** The web ERF Registry streams Ward 6 rows from `registry_erfs`.
+
+- **Related terms:** ERF Registry Projection, ERF Registry Streaming, ireps_erfs, Registry
+
+### Term: registry_wards
+
+- **Acronym:** None
+
+- **Simple meaning:** The Firestore read-model collection used by the Ward Registry and ward totals.
+
+- **Detailed explanation:** `registry_wards` contains derived ward identity and count information. Informal ERF creation rebuilds the affected ward row so Formal, Informal, and Total ERF counts remain aligned with canonical ERFs.
+
+- **Example:** `registry_wards/ZA7423__ZA7423006` stores the current counts for Lesedi Ward 6.
+
+- **Related terms:** Ward Registry Projection, Ward Registry Streaming, Ward, Registry
+
+### Term: ERF Registry Streaming
+
+- **Acronym:** None
+
+- **Simple meaning:** Live loading of all projected ERF rows for the selected ward.
+
+- **Detailed explanation:** The web ERF Registry attaches a Firestore `onSnapshot` listener to `registry_erfs` for the selected `registry.wardPcode`. New or updated rows appear without browser refresh or ward reselection. Table filters, sorting, pagination, and downloads operate locally on the streamed ward rows.
+
+- **Example:** A newly projected `IE000001` row appears while the Ward 6 ERF Registry page remains open.
+
+- **Related terms:** registry_erfs, ERF Registry Projection, Streaming, onSnapshot
+
+### Term: Ward Registry Streaming
+
+- **Acronym:** None
+
+- **Simple meaning:** Live delivery of updated ward counts from `registry_wards`.
+
+- **Detailed explanation:** The Ward Registry uses a Firestore listener so a rebuilt ward projection updates the open page automatically. The same current ward total can also support the ERF Registry ward selector.
+
+- **Example:** Ward 6 displays one additional Informal ERF as soon as its projection is rebuilt.
+
+- **Related terms:** registry_wards, Ward Registry Projection, Streaming, Ward Total ERFs
+
+### Term: Post-Commit Retry
+
+- **Acronym:** None
+
+- **Simple meaning:** Retrying the same ERF after the canonical record was created but a derived update failed.
+
+- **Detailed explanation:** The callable creates the canonical ERF transaction first, then rebuilds `registry_erfs`, rebuilds `registry_wards`, and refreshes matched geofence counts. If one of these later steps fails, the client may receive a temporary error even though the ERF exists. The correct recovery is to retry the same `erfId`, not create a new identity.
+
+- **Example:** A Ward Registry refresh fails after ERF creation; the retry heals the projection without allocating a second `IE000001` number.
+
+- **Related terms:** Idempotent Retry, Derived Projection, Temporary Error, Informal ERF Callable
+
+### Term: Informal ERF Collision Index
+
+- **Acronym:** None
+
+- **Simple meaning:** The Firestore composite index required by the authoritative overlap prefilter.
+
+- **Detailed explanation:** The collision query combines `admin.ward.pcode` with the candidate bbox ranges. The required index is recorded in `firestore.indexes.json` with `admin.ward.pcode`, `bbox.maxLat`, `bbox.maxLng`, `bbox.minLat`, `bbox.minLng`, and `__name__` in ascending order. Functions deployment does not deploy this index; it must be deployed separately to every Firebase project.
+
+- **Example:** TEST initially failed until the collision index was created in `ireps-test`; after the index became Enabled, the first TEST Informal ERF succeeded.
+
+- **Related terms:** Firestore Composite Index, Geometry Validation, ERF Overlap, Environment Parity
+
+### Term: Environment Parity
+
+- **Acronym:** None
+
+- **Simple meaning:** Keeping DEV and TEST infrastructure aligned with the same governed configuration.
+
+- **Detailed explanation:** For Informal ERFs, parity requires the correct EAS environment, Firebase project, callable, Storage bucket, Firestore rules, collision index, users, geography documents, and operational or registry collections. Deploying Cloud Functions does not copy indexes, data, users, rules, or Storage objects from DEV to TEST.
+
+- **Example:** DEV uses `ireps2`; the purple TEST APK uses `ireps-test`. Both projects must have the same source-controlled collision index.
+
+- **Related terms:** DEV, TEST, EAS Build, Informal ERF Collision Index, Configuration Drift
+
+### Term: Registry Backfill
+
+- **Acronym:** None
+
+- **Simple meaning:** A controlled one-time process that creates missing registry projections for older canonical records.
+
+- **Detailed explanation:** Registry Backfill repairs records created before automatic projection was implemented. The approved Informal ERF tools build missing `registry_erfs` rows and refresh affected `registry_wards` counts while printing progress and a completion summary. Backfills are not part of normal new-ERF creation.
+
+- **Example:** Existing DEV Informal ERFs were backfilled into the ERF Registry before automatic projection was deployed.
+
+- **Related terms:** ERF Registry Projection, Ward Registry Projection, Historical Repair, Derived Projection
+
+### Term: all.erfs
+
+- **Acronym:** None
+
+- **Simple meaning:** The Warehouse list containing the ERF metadata available to the current mobile scope.
+
+- **Detailed explanation:** The mobile ERF stream transforms canonical Firestore documents into ERF metadata entries and Warehouse exposes them through `all.erfs`. Informal ERFs use `sg.parcelNo` for their displayed number and are not separated from Formal ERFs.
+
+- **Example:** `all.erfs` receives a new item whose `erfNo` is `IE000043`.
+
+- **Related terms:** Warehouse, Informal ERF Streaming, erfsApi, ERF Number
+
+### Term: all.geoLibrary
+
+- **Acronym:** None
+
+- **Simple meaning:** The Warehouse geometry library used by mobile maps and geography-aware screens.
+
+- **Detailed explanation:** The mobile ERF stream stores each ERF’s bbox, centroid, and parsed geometry by ERF ID. Warehouse exposes the result at `all.geoLibrary[erfId]`. A canonical Informal Polygon therefore follows the same map-rendering path as a Formal ERF.
+
+- **Example:** `all.geoLibrary["IE-ZA7423006-20260724-031527-4821"]` contains the new polygon geometry.
+
+- **Related terms:** Warehouse, Canonical Geometry, Informal ERF Streaming, Mobile Map
+
+### Term: Server Timestamp
+
+- **Acronym:** None
+
+- **Simple meaning:** A time value generated by Firestore rather than trusted from the phone.
+
+- **Detailed explanation:** Informal ERF `metadata.createdAt` and `metadata.updatedAt` use Firestore server timestamps. The authenticated creator UID and user name are stored alongside them. Client submission time may support transport or audit handling but does not replace canonical server metadata.
+
+- **Example:** The newly created ERF receives backend-controlled creation and update timestamps when the transaction commits.
+
+- **Related terms:** Metadata, Firestore, Informal ERF Callable, Audit Trail
+
+### Term: Informal ERF Status
+
+- **Acronym:** S
+
+- **Simple meaning:** The canonical parcel status value used for a newly created Informal ERF.
+
+- **Detailed explanation:** Informal ERFs use `erf.status: "S"`, matching the approved current Formal ERF parcel status. The type remains separately identified as `erf.type: "INFORMAL"`.
+
+- **Example:** A canonical new record contains `erf: { status: "S", type: "INFORMAL" }`.
+
+- **Related terms:** Informal ERF, Canonical ERF, Formal ERF, Status
+
+## 20. Premises
+
+This section is the official iREPS terminology source for Premise identity, ERF relationships, address and property structure, Property Type, Property Name, Unit Number, Property Status, repeatable Premises, same-ERF duplication, Backroom rules, Premise card identity, fresh Premise creation, editing safeguards, and Premise-to-meter relationships.
+
+The locked geography relationship remains:
+
+`Country → Province → District Municipality → Local Municipality / workbase / LM / Metro → Ward → ERF → Premise → Asset / AST / Meter`
+
+A Premise is therefore below an ERF in iREPS Geography. One ERF may contain one Premise or multiple distinct Premises. Multiple Premises on the same ERF are valid when they represent genuinely different dwellings, units, businesses, service locations, or other separately identifiable Premises.
+
+### Term: Premise
+
+- **Acronym:** None
+
+- **Simple meaning:** A property, dwelling, business, unit, or service location on an ERF where municipal service activity happens.
+
+- **Detailed explanation:** A Premise is the operational service location between the ERF and the Asset / AST / Meter in iREPS Geography. It carries its own identity and can hold structured address information, Property Context, Property Type, Property Name, Unit Number where applicable, Property Status, GPS, media, No Access information, and service or meter relationships. A Premise is not the ERF itself: the ERF is the land parcel, while the Premise is the building, dwelling, unit, business, or service location on that parcel. One ERF may therefore contain more than one valid Premise.
+
+- **Example:** ERF 5374 may contain Townhouse Complex units 1, 2, 3, and 4 as four distinct Premises, all linked to the same ERF.
+
+- **Related terms:** ERF, Premise ID, Property Type, Address, Unit Number, Asset, Meter, Repeatable Premise
+
+### Term: Premise ID
+
+- **Acronym:** None
+
+- **Simple meaning:** The unique system identity of one Premise record.
+
+- **Detailed explanation:** Every Premise must have its own Premise ID even when several Premises share the same ERF, address, development name, or Property Type. A Duplicate Premise creates a new Premise ID and never reuses or updates the Source Premise identity. The Premise ID is system identity; it must not be used as a substitute for a user-facing Unit Number or Property Name.
+
+- **Example:** Two Flats on the same ERF can share the name `Test Flats` but have different Premise IDs and different Unit Numbers such as A and B.
+
+- **Related terms:** Premise, Source Premise, Fresh Premise, Duplicate Premise, Unit Number
+
+### Term: Premise-to-ERF Relationship
+
+- **Acronym:** None
+
+- **Simple meaning:** The rule that every Premise belongs to one authoritative ERF.
+
+- **Detailed explanation:** In iREPS Geography, a Premise sits directly below an ERF. A Premise stores the ERF relationship used to preserve cadastral and operational context. Multiple distinct Premises may share the same ERF, but an individual Premise must not silently move from one ERF to another during Duplicate, Edit, or field capture. Same-ERF duplication preserves the Source Premise ERF relationship.
+
+- **Example:** Duplicating Townhouse Complex Unit 1 on ERF 5374 creates Unit 2 on ERF 5374, not on another selected ERF.
+
+- **Related terms:** ERF, Same-ERF Duplicate, Source Premise, iREPS Geography
+
+### Term: Property Context
+
+- **Acronym:** None
+
+- **Simple meaning:** The approved contextual classification describing the area or property setting of a Premise.
+
+- **Detailed explanation:** Property Context is stored separately from Property Type and address. It helps iREPS preserve the Source Premise context when creating a Same-ERF Duplicate while still allowing authorised editing according to the normal Premise form rules. Property Context must not be inferred from a different ERF during Duplicate.
+
+- **Example:** A Duplicate Premise keeps the validated Source Premise Property Context as its starting value.
+
+- **Related terms:** Premise, Property Type, Same-ERF Duplicate, Source Premise
+
+### Term: Address
+
+- **Acronym:** None
+
+- **Simple meaning:** The structured address used to identify where a Premise is located.
+
+- **Detailed explanation:** Address is kept as structured values so iREPS can search, display, navigate, report, and compare Premises consistently. The core street fields are `strNo`, `strName`, and `strType`. Property Name and Unit Number are separate Premise identity fields and must not be merged into the street name.
+
+- **Example:** `strNo: 12`, `strName: Nelson Mandela`, `strType: Drive`, with Property Name `Sunrise Flats` and Unit Number `8`.
+
+- **Related terms:** Premise, strNo, strName, strType, Property Name, Unit Number
+
+### Term: strNo
+
+- **Acronym:** None
+
+- **Simple meaning:** The street number of a Premise address.
+
+- **Detailed explanation:** `strNo` identifies the number assigned to the property or service location on a street. It is stored separately from the street name and street type.
+
+- **Example:** In `12 Nelson Mandela Drive`, `strNo` is `12`.
+
+- **Related terms:** Address, strName, strType
+
+### Term: strName
+
+- **Acronym:** None
+
+- **Simple meaning:** The street name of a Premise address.
+
+- **Detailed explanation:** `strName` stores the actual name of the street without the street type. Keeping it separate supports cleaner search and consistent address formatting.
+
+- **Example:** In `12 Nelson Mandela Drive`, `strName` is `Nelson Mandela`.
+
+- **Related terms:** Address, strNo, strType
+
+### Term: strType
+
+- **Acronym:** None
+
+- **Simple meaning:** The type of street used in a Premise address.
+
+- **Detailed explanation:** `strType` describes the kind of street or road, for example Street, Road, Avenue, Drive, Close, Crescent, Boulevard, or Way. It remains separate from `strName`.
+
+- **Example:** In `12 Nelson Mandela Drive`, `strType` is `Drive`.
+
+- **Related terms:** Address, strNo, strName
+
+### Term: Property Type
+
+- **Acronym:** None
+
+- **Simple meaning:** The approved classification describing what kind of Premise is being captured.
+
+- **Detailed explanation:** Property Type tells iREPS whether a Premise is Residential, Flats, Townhouse Complex, Sectional Title, Backroom, Commercial, Industrial, Estate, or another approved type. In the canonical Premise structure the type value is stored separately from Property Name and Unit Number. Property Type also controls which dependent fields are relevant or mandatory. During Duplicate, the Source Premise type determines whether Duplicate is allowed, but the copied Property Type remains editable and the final form validates against the worker's final selected type.
+
+- **Example:** A worker may Duplicate a Flats Premise and then change the new Premise Property Type to Residential before saving; the final Residential rules then apply.
+
+- **Related terms:** `propertyType.type`, Repeatable Property Type, Non-repeatable Property Type, Property Type Reconciliation
+
+### Term: propertyType.type
+
+- **Acronym:** None
+
+- **Simple meaning:** The canonical field containing the Premise Property Type.
+
+- **Detailed explanation:** `propertyType.type` stores the approved type label as a separate value. It must not be combined with Property Name or Unit Number. Repeatability eligibility is based on the Source Premise `propertyType.type` value.
+
+- **Example:** `propertyType.type: "Townhouse Complex"`.
+
+- **Related terms:** Property Type, `propertyType.name`, `propertyType.unitNo`, Repeatable Property Type
+
+### Term: Property Name
+
+- **Acronym:** None
+
+- **Simple meaning:** The name of the building, complex, business, estate, Backroom grouping, or other named Premise where applicable.
+
+- **Detailed explanation:** Property Name provides identity beyond the street address. It is stored separately from Property Type and Unit Number. For shared-name repeatable Premises, the name can be reused as an editable default when creating another Premise on the same ERF. For convenience-family duplication, the name starts blank so the worker can capture the new Premise's own identifying name.
+
+- **Example:** `Test Flats`, `Sunrise Villas`, or `ABC Fish & Chips` can be Property Names.
+
+- **Related terms:** `propertyType.name`, Unit Number, Shared-Name Repeatable Premise, Convenience Repeatable Premise
+
+### Term: propertyType.name
+
+- **Acronym:** None
+
+- **Simple meaning:** The canonical field containing the Premise Property Name.
+
+- **Detailed explanation:** `propertyType.name` stores the Property Name independently from `propertyType.type` and `propertyType.unitNo`. For Backroom, the default Property Name is `Backroom` when a new Backroom is selected and no other name has been entered, but the worker may edit that name.
+
+- **Example:** `{ type: "Backroom", name: "Backroom", unitNo: "2" }` stores three separate values.
+
+- **Related terms:** Property Name, Property Type, Unit Number, Backroom
+
+### Term: name
+
+- **Acronym:** None
+
+- **Simple meaning:** The Premise Property Name field in user and data language.
+
+- **Detailed explanation:** In Premise terminology, `name` refers to the property, building, complex, business, estate, Backroom grouping, or other identifying Property Name. In the canonical Premise structure it is stored at `propertyType.name`. The value must remain separate from Property Type and Unit Number.
+
+- **Example:** For `Sunrise Flats | Unit 8`, `name` is `Sunrise Flats` and the canonical field is `propertyType.name`.
+
+- **Related terms:** Property Name, `propertyType.name`, unitNo, Unit Number
+
+### Term: Unit Number
+
+- **Acronym:** None
+
+- **Simple meaning:** The identifier of a specific unit within a repeatable or multi-unit Premise setting.
+
+- **Detailed explanation:** Unit Number distinguishes separately identifiable Premises that may share an ERF, address, Property Type, or Property Name. All seven approved Repeatable Property Types support Unit Number. Unit Number is mandatory for Flats, Townhouse Complex, Sectional Title, and fresh Backroom Premises. It is optional for Commercial, Industrial, and Estate. A Duplicate Premise always starts with Unit Number cleared so the worker must capture the identity of the new unit where the final Property Type requires or supports it.
+
+- **Example:** `Test Flats | Unit B`, `TH Complex Test | Unit 4`, or `ABC Fish & Chips | Unit 3`.
+
+- **Related terms:** `propertyType.unitNo`, Repeatable Property Type, Backroom, Premise Card Identity
+
+### Term: propertyType.unitNo
+
+- **Acronym:** None
+
+- **Simple meaning:** The canonical field containing the Premise Unit Number.
+
+- **Detailed explanation:** `propertyType.unitNo` stores the specific unit identifier independently from Property Type and Property Name. It must not be concatenated into `propertyType.name`. Requiredness depends on the final selected Property Type.
+
+- **Example:** `{ type: "Flats", name: "Sunrise Flats", unitNo: "8" }`.
+
+- **Related terms:** Unit Number, Property Name, Property Type, Repeatable Property Type
+
+### Term: unitNo
+
+- **Acronym:** None
+
+- **Simple meaning:** The Premise Unit Number field used to identify a specific unit where applicable.
+
+- **Detailed explanation:** In Premise terminology, `unitNo` is the user and data shorthand for Unit Number. In the canonical Premise structure it is stored at `propertyType.unitNo`. All seven approved Repeatable Property Types support it; it is mandatory for Flats, Townhouse Complex, Sectional Title, and fresh Backroom, and optional for Commercial, Industrial, and Estate.
+
+- **Example:** In `TH Complex Test | Unit 4`, `unitNo` is `4`.
+
+- **Related terms:** Unit Number, `propertyType.unitNo`, Property Name, Repeatable Property Type
+
+### Term: Property Status
+
+- **Acronym:** None
+
+- **Simple meaning:** The current captured property or occupancy status of a Premise.
+
+- **Detailed explanation:** Property Status is a user-editable Premise value used to describe the current status captured through the Premise form. During Duplicate, a Source Premise status is copied only when it remains a currently valid capture value. Unsupported, deprecated, or historic values fall back safely to the normal selection state so the worker must choose a current value. Property Status must not be confused with meter Operational Status.
+
+- **Example:** A valid Source Premise status can be prefilled on a Duplicate and then changed by the worker before saving.
+
+- **Related terms:** Premise, Duplicate Premise, Operational Status, Property Type
+
+### Term: Repeatable Property Type
+
+- **Acronym:** None
+
+- **Simple meaning:** A Property Type from which iREPS allows the user to intentionally create another distinct Premise on the same ERF.
+
+- **Detailed explanation:** The approved Repeatable Property Types are exactly: **Flats, Townhouse Complex, Sectional Title, Backroom, Commercial, Industrial, and Estate**. Repeatability applies to the Source Premise type. It does not mean the new Premise is a copy with the same identity; it means the source may be used as an editable template for a fresh Premise on the same ERF.
+
+- **Example:** A worker can use Townhouse Complex Unit 1 as the source for Unit 2 on the same ERF.
+
+- **Related terms:** Repeatable Premise, Duplicate Premise, Non-repeatable Property Type, Same-ERF Duplicate
+
+### Term: Non-repeatable Property Type
+
+- **Acronym:** None
+
+- **Simple meaning:** A Property Type that does not currently offer the Duplicate Premise action.
+
+- **Detailed explanation:** The current non-repeatable Property Types are **Residential, Vacant Land, Church, School, and Government**. They continue to use the normal New and Edit Premise flows. Non-repeatable means the intentional Duplicate Premise action is not offered from that Source Premise; it does not mean only one such Premise can ever exist in all circumstances.
+
+- **Example:** A Residential Premise card does not show the Duplicate action used by Flats or Townhouse Complex.
+
+- **Related terms:** Repeatable Property Type, Duplicate Premise, Residential, Premise
+
+### Term: Repeatable Premise
+
+- **Acronym:** None
+
+- **Simple meaning:** A Premise whose Source Property Type is approved for the Duplicate Premise workflow.
+
+- **Detailed explanation:** A Repeatable Premise can be used as the Source Premise for creating another fresh Premise on the same ERF. Repeatability is a creation convenience and identity rule; it does not make the source mutable and does not turn sibling Premises into one shared record.
+
+- **Example:** A Flats Premise, Townhouse Complex Premise, or Backroom Premise may be repeatable.
+
+- **Related terms:** Repeatable Property Type, Source Premise, Duplicate Premise, Premise ID
+
+### Term: Duplicate Premise
+
+- **Acronym:** None
+
+- **Simple meaning:** The intentional iREPS action that creates a new Premise on the same ERF using an approved Source Premise as an editable template.
+
+- **Detailed explanation:** Duplicate Premise is not an accidental duplicate record. It creates a **fresh Premise ID** and preserves the validated ERF relationship while selectively prefilling reusable information. The source remains unchanged. Copied values remain editable. Unit Number, No Access, meters/services, photos/media, GPS, Premise ID, and metadata follow fresh-capture rules rather than being copied blindly. Duplicate eligibility is based on the Source Premise Property Type only; after the form opens, the final Property Type may be changed and the final type's normal validation rules apply.
+
+- **Example:** A worker duplicates `Test Flats | Unit A`; the new form starts on the same ERF with `Test Flats` retained and Unit Number blank, then the worker captures Unit B and saves a new Premise.
+
+- **Related terms:** Same-ERF Duplicate, Source Premise, Fresh Premise, Repeatable Property Type, Duplicate
+
+### Term: Same-ERF Duplicate
+
+- **Acronym:** None
+
+- **Simple meaning:** A Duplicate Premise that must remain linked to the same ERF as its Source Premise.
+
+- **Detailed explanation:** Same-ERF is a strict identity rule. The Source Premise ERF, route ERF, and canonical parent geography must agree before the Duplicate form is treated as valid. The worker does not select a destination ERF for Duplicate. This prevents one Premise from being used as a template to silently create a sibling on another parcel.
+
+- **Example:** A Source Premise on ERF 2607 can create another Premise on ERF 2607 only.
+
+- **Related terms:** Duplicate Premise, Premise-to-ERF Relationship, Source Premise, Canonical Source Premise
+
+### Term: Source Premise
+
+- **Acronym:** None
+
+- **Simple meaning:** The existing Premise selected as the approved template for a Duplicate Premise.
+
+- **Detailed explanation:** The Source Premise supplies validated reusable context such as the ERF relationship, address, initial Property Type, and other fields according to the repeatability policy. The Source Premise itself is immutable during Duplicate: iREPS creates a new Premise rather than updating the source.
+
+- **Example:** Townhouse Complex Unit 1 is the Source Premise when the worker taps Duplicate to create Unit 2.
+
+- **Related terms:** Duplicate Premise, Canonical Source Premise, Source Immutability, Fresh Premise
+
+### Term: Canonical Source Premise
+
+- **Acronym:** None
+
+- **Simple meaning:** The validated Source Premise record trusted by iREPS for Duplicate Premise creation.
+
+- **Detailed explanation:** Before a Duplicate Premise form is treated as valid, iREPS confirms the source identity, ERF relationship, required geography, Property Context, and repeatable Source Property Type. The approved source is projected through a strict field allowlist rather than copying the complete historic record. This prevents unrelated source data from leaking into the new Premise.
+
+- **Example:** If the requested source Premise belongs to another ERF, the Duplicate flow fails closed instead of silently correcting or moving it.
+
+- **Related terms:** Source Premise, Same-ERF Duplicate, Canonical Source Projection, Source Immutability
+
+### Term: Canonical Source Projection
+
+- **Acronym:** None
+
+- **Simple meaning:** The limited approved set of Source Premise fields that may be used to prepare a Duplicate Premise.
+
+- **Detailed explanation:** Canonical Source Projection prevents iREPS from spreading an entire historic Source Premise into a new record. Only approved reusable identity, geography, address, Property Context, Property Type, Property Name, and valid Property Status information is projected. Fresh-state data such as source metadata, source media, source services, and other unrelated fields are not copied.
+
+- **Example:** Duplicate uses the validated source address but does not clone the source photos or meter arrays.
+
+- **Related terms:** Canonical Source Premise, Duplicate Premise, Fresh Premise, Source Immutability
+
+### Term: Source Immutability
+
+- **Acronym:** None
+
+- **Simple meaning:** The rule that Duplicate Premise never changes the Source Premise.
+
+- **Detailed explanation:** Duplicate creates a new Premise through the create lifecycle with a fresh identity. Editing values in the Duplicate form affects only the new Premise. The original source remains a separate independent record.
+
+- **Example:** Changing Unit B to Unoccupied while creating it does not alter Unit A, even when Unit A was the source template.
+
+- **Related terms:** Source Premise, Duplicate Premise, Fresh Premise, Premise ID
+
+### Term: Fresh Premise
+
+- **Acronym:** None
+
+- **Simple meaning:** A newly created Premise with its own identity and fresh Premise-specific state.
+
+- **Detailed explanation:** A Fresh Premise receives a new Premise ID and fresh metadata. In Duplicate, source-specific operational state such as No Access history, meters/services, media/photos, and source GPS must not be inherited as if they belonged to the new Premise. The worker captures new evidence and operational details for the new Premise.
+
+- **Example:** Duplicating Flats Unit A to create Unit B does not copy Unit A's property photo or meter relationships into Unit B.
+
+- **Related terms:** Duplicate Premise, Premise ID, Fresh GPS, Premise Media, Premise Services, Premise No Access
+
+### Term: Shared-Name Repeatable Premise
+
+- **Acronym:** None
+
+- **Simple meaning:** A Repeatable Premise type where sibling Premises normally share the same development or grouping name.
+
+- **Detailed explanation:** The shared-name family is **Flats, Townhouse Complex, Sectional Title, and Backroom**. During Duplicate, Property Name is retained as an editable starting value while Unit Number starts blank. Backroom uses `Backroom` as the default name when no other name exists.
+
+- **Example:** Duplicating `TH Complex Test | Unit 1` opens the new Premise with `TH Complex Test` retained and Unit Number blank.
+
+- **Related terms:** Repeatable Premise, Property Name, Unit Number, Backroom, Convenience Repeatable Premise
+
+### Term: Convenience Repeatable Premise
+
+- **Acronym:** None
+
+- **Simple meaning:** A Repeatable Premise type where Duplicate reuses location context but starts Property Name and Unit Number blank.
+
+- **Detailed explanation:** The convenience family is **Commercial, Industrial, and Estate**. During Duplicate, ERF relationship, context, address, initial Property Type, and valid Property Status can be reused as editable defaults, while Property Name and Unit Number start blank. Unit Number is optional for these three types.
+
+- **Example:** Duplicating a Commercial Premise on the same ERF can save re-entering the address while allowing the worker to capture a new business name and optional unit identifier.
+
+- **Related terms:** Repeatable Premise, Property Name, Unit Number, Shared-Name Repeatable Premise
+
+### Term: Backroom
+
+- **Acronym:** None
+
+- **Simple meaning:** An iREPS repeatable Premise type used for separately identifiable Backroom service locations on the same ERF.
+
+- **Detailed explanation:** Backroom is stored as a normal Premise with `propertyType.type = "Backroom"`. A fresh Backroom defaults Property Name to `Backroom` when no other name has been entered, and Unit Number is mandatory so sibling Backrooms can be distinguished. The canonical values remain separate: Property Type `Backroom`, Property Name `Backroom` or an edited name, and Unit Number such as `1`. iREPS must not store `Backroom 1` as a combined Property Name merely to represent the unit.
+
+- **Example:** `{ type: "Backroom", name: "Backroom", unitNo: "2" }` identifies Backroom Unit 2.
+
+- **Related terms:** Repeatable Property Type, Unit Number, Legacy Backroom, Premise Card Identity
+
+### Term: Legacy Backroom
+
+- **Acronym:** None
+
+- **Simple meaning:** An older Backroom Premise captured before the current mandatory Unit Number rule.
+
+- **Detailed explanation:** Some historic Backroom Premises or pre-v3 queued Backroom edits may have no Unit Number. iREPS does not force historic remediation during an unrelated same-type Edit or Queue Edit. Fresh New and Duplicate Backroom Premises require Unit Number, while qualifying older blank-unit Backrooms are grandfathered for editing.
+
+- **Example:** An existing Backroom with no stored Unit Number may have its address corrected without forcing the worker to invent a Unit Number merely to save that unrelated edit.
+
+- **Related terms:** Backroom, Grandfathering, Unit Number, Queue Edit, Property Type Reconciliation
+
+### Term: Grandfathering
+
+- **Acronym:** None
+
+- **Simple meaning:** Allowing an older valid record to continue under an approved legacy exception while new records follow the current rule.
+
+- **Detailed explanation:** In the current Premises contract, Grandfathering applies to qualifying historic Backroom Edit and pre-v3 Queue Edit records that have no Unit Number. It prevents a new rule from silently turning unrelated historic edits into forced data remediation. Grandfathering does not make Unit Number optional for fresh New or Duplicate Backroom Premises.
+
+- **Example:** A legacy Backroom without Unit Number can still be edited, while a newly created Backroom must have Unit Number.
+
+- **Related terms:** Legacy Backroom, Backroom, Unit Number, Historic Data Preservation
+
+### Term: Property Type Reconciliation
+
+- **Acronym:** None
+
+- **Simple meaning:** Clearing or defaulting dependent Premise fields when the worker deliberately changes Property Type.
+
+- **Detailed explanation:** Property Type Reconciliation prevents hidden values from the previous type being silently stored under the new type. When Property Type changes, stale Property Name and Unit Number values are reconciled immediately and the new type's defaults and validation rules apply. Selecting Backroom may default a blank Property Name to `Backroom`. If the worker does not change Property Type during an ordinary same-type Edit, approved historic hidden values are preserved rather than silently deleted.
+
+- **Example:** Changing `Flats / Block A / Unit 3` to Residential clears the old Block A and Unit 3 values before submission.
+
+- **Related terms:** Property Type, Historic Data Preservation, Backroom, Property Name, Unit Number
+
+### Term: Historic Data Preservation
+
+- **Acronym:** None
+
+- **Simple meaning:** The rule that an unrelated same-type Edit must not silently erase older stored Premise values.
+
+- **Detailed explanation:** Premise validation and sanitisation may evolve, but iREPS must not use an ordinary same-type Edit as accidental historic data remediation. When the stored and final Property Type remain the same, approved historic hidden Property Name or Unit Number values are preserved. When the worker deliberately changes Property Type, stale dependent values are reconciled according to the final type.
+
+- **Example:** Editing the street address of a historic Residential Premise does not silently delete an older stored Property Name or Unit Number simply because those fields are hidden in the current Residential form.
+
+- **Related terms:** Property Type Reconciliation, Grandfathering, Edit Premise, Data Quality
+
+### Term: Premise Card Identity
+
+- **Acronym:** None
+
+- **Simple meaning:** The user-facing name and/or Unit Number shown on a Premise card to distinguish one Premise from another.
+
+- **Detailed explanation:** Premise Card Identity helps workers distinguish sibling Premises that share an ERF or address. Repeatable Premises can display Property Name and Unit Number together, Property Name only, or Unit Number only when appropriate. A useful Unit Number must not disappear merely because Property Name is blank.
+
+- **Example:** `Test Flats | Unit B`, `TH Complex Test | Unit 4`, `Backroom | Unit 2`, or `Unit 3` for a valid unit-only identity.
+
+- **Related terms:** Property Name, Unit Number, Repeatable Premise, Premise Card
+
+### Term: Premise GPS
+
+- **Acronym:** GPS
+
+- **Simple meaning:** The geographic position captured for a specific Premise.
+
+- **Detailed explanation:** Premise GPS belongs to the Premise being created or edited. A Duplicate Premise must not copy the Source Premise GPS as if both Premises occupy the same exact point. Duplicate starts from the authoritative ERF-based reset position where available and the worker can position the new Premise correctly. A worker-moved point must not be overwritten by later background geometry hydration.
+
+- **Example:** Two Flats on the same ERF may have different Premise GPS points even though they share the ERF polygon.
+
+- **Related terms:** Fresh Premise, ERF, GPS, Duplicate Premise, Premise Media
+
+### Term: Premise Media
+
+- **Acronym:** None
+
+- **Simple meaning:** Photos or other evidence captured specifically for one Premise.
+
+- **Detailed explanation:** Premise Media belongs to the Premise record that captured it. Duplicate Premise starts with fresh media rather than cloning Source Premise photos. This protects evidence integrity because a photograph proving one unit or property must not automatically become evidence for another unit.
+
+- **Example:** Unit B requires its own Premise photo instead of inheriting Unit A's property photo.
+
+- **Related terms:** Media, Evidence, Fresh Premise, Duplicate Premise, Premise GPS
+
+### Term: Premise Services
+
+- **Acronym:** None
+
+- **Simple meaning:** The electricity and water service or meter relationships associated with one Premise.
+
+- **Detailed explanation:** Premise Services connect the Premise to the meters or service assets that belong to that service location. A Duplicate Premise starts with fresh service relationships; it must not inherit the Source Premise's electricity or water meter arrays. Meter relationships are captured for the new Premise through the normal operational workflows.
+
+- **Example:** Duplicating Townhouse Unit 1 to create Unit 2 does not automatically attach Unit 1's electricity meter to Unit 2.
+
+- **Related terms:** Premise-to-Meter Relationship, Meter, Fresh Premise, Duplicate Premise
+
+### Term: Premise No Access
+
+- **Acronym:** None
+
+- **Simple meaning:** No Access information associated with fieldwork at a specific Premise.
+
+- **Detailed explanation:** No Access history or references belong to the Premise where the access problem occurred. A Duplicate Premise starts with fresh No Access state and must not inherit Source Premise No Access history simply because both Premises share an ERF or address.
+
+- **Example:** A locked gate recorded against Unit 1 is not automatically copied to newly created Unit 2.
+
+- **Related terms:** No Access, Fresh Premise, Duplicate Premise, Fieldwork
+
+### Term: Premise-to-Meter Relationship
+
+- **Acronym:** None
+
+- **Simple meaning:** The link showing which meter or service asset belongs to which Premise.
+
+- **Detailed explanation:** Premise-to-Meter Relationship lets iREPS connect a physical meter to the correct dwelling, unit, business, or service location rather than only to the wider ERF. This is essential when one ERF contains multiple Premises. Meter Discovery, Installation, and related operations should act on the correct Premise relationship.
+
+- **Example:** Townhouse Unit 3 and Unit 4 can each have their own electricity meter while sharing ERF 5374.
+
+- **Related terms:** Premise, Meter, Asset, Premise Services, ERF
+
+### Term: KEEP
+
+- **Acronym:** None
+
+- **Simple meaning:** In Duplicate Premise design, prefill a Source Premise value and keep it editable.
+
+- **Detailed explanation:** KEEP is a design shorthand used to describe Duplicate Premise field behaviour. A KEEP field is copied as a starting value but is not locked. The worker may change it before saving the new Premise.
+
+- **Example:** Address can be KEEP for Same-ERF Duplicate because sibling units may share the street address while the worker can still correct it.
+
+- **Related terms:** CLEAR, RESET, NEW, Duplicate Premise
+
+### Term: CLEAR
+
+- **Acronym:** None
+
+- **Simple meaning:** In Duplicate Premise design, start the field blank and allow fresh capture.
+
+- **Detailed explanation:** CLEAR means the Source Premise value is deliberately not copied into the new Premise. The field remains editable. Unit Number is CLEAR for all Duplicate Premises so a new unit identity can be captured.
+
+- **Example:** Duplicating `Unit 1` opens the new Unit Number field blank.
+
+- **Related terms:** KEEP, RESET, NEW, Duplicate Premise
+
+### Term: RESET
+
+- **Acronym:** None
+
+- **Simple meaning:** In Duplicate Premise design, initialise a field for fresh capture rather than copying the Source Premise value.
+
+- **Detailed explanation:** RESET is used for values such as Premise GPS where the Source Premise value must not become the new Premise's evidence. The new flow starts from a safe reset state and allows the worker to capture the correct new value.
+
+- **Example:** Duplicate Premise GPS resets to the ERF-based starting point rather than copying the Source Premise GPS.
+
+- **Related terms:** KEEP, CLEAR, NEW, Premise GPS, Duplicate Premise
+
+### Term: NEW
+
+- **Acronym:** None
+
+- **Simple meaning:** In Duplicate Premise design, create a fresh system-owned value for the new Premise.
+
+- **Detailed explanation:** NEW is used for system identity or audit fields that must be unique to the new Premise. These values are generated for the new record rather than copied from the Source Premise.
+
+- **Example:** Premise ID and creation metadata are NEW during Duplicate Premise.
+
+- **Related terms:** KEEP, CLEAR, RESET, Fresh Premise, Premise ID
+
+
 ## Dictionary changelog
 
 ### Version 1.5 — 2026-07-19
@@ -3390,3 +4910,135 @@ Version 1.6 confirms:
 - the Sales Pipeline remains prohibited from writing visibility;
 - the current Sales All Meters schema contains no metadata, so the bridge must not write `metadata.updated*`;
 - recurring Sales All Meters pipeline refresh remains separate from create-only loading and controlled resume.
+
+## Version 1.7 Change Record
+
+### 2026-07-21 — FWR Monitoring live-location terminology confirmed
+
+Version 1.7 confirms:
+
+- FWR Monitoring applies automatically to eligible `FWR` and `SPV` sessions;
+- the current implementation stores one latest-state document per monitored UID in `fwr_live_locations`;
+- the canonical stored statuses are `ACTIVE` and `SIGNED_OUT`;
+- the web display state `LIVE` is derived from `ACTIVE`;
+- an `ACTIVE` document remains Live until the backend changes it and does not age into Stale or Offline;
+- no document means `No GPS yet`;
+- sign-out preserves the last accepted GPS values while updating status to `SIGNED_OUT`;
+- `capturedAtMs` is device capture time and `receivedAt` is backend server time;
+- user-map focus and ward-map focus are separate camera priorities;
+- ward selection changes map focus but does not filter the authorised users list;
+- GPS History is a future enhancement and is not part of the current live-location collection.
+
+## Version 1.8 Change Record
+
+### 2026-07-24 — Informal ERF terminology confirmed
+
+Version 1.8 confirms:
+
+- Informal ERFs are ordinary canonical ERFs stored in `ireps_erfs`;
+- the only Informal-specific root property is `informalErfData`;
+- the only approved technical identity is the ward-scoped `IE-{wardPcode}-YYYYMMDD-hhmmss-XXXX` format; every other format is noncompliant and must be rejected;
+- the human-facing number uses the global `IE000001` sequence in `sg.parcelNo`;
+- user-supplied Boundary Points are input only and canonical geometry is server-derived;
+- valid boundaries require 3–100 unique vertices;
+- duplicate non-closing points, self-intersections, zero area, ward escape, ERF overlap, and existing-ERF boundary touching are rejected;
+- selected ward-boundary touching is allowed without crossing outside the ward;
+- site-photo GPS and forensic Device Location remain separate evidence;
+- current ERF geofence membership uses canonical centroid membership and root `geofenceRefs`;
+- new writes must not use legacy `geofenceIds`;
+- matched geofence counts are authoritatively recomputed;
+- parcel-number allocation is atomic and the final `erfId` provides idempotency;
+- new Informal ERFs stream through `erfsApi`, Warehouse, `all.erfs`, `all.geoLibrary`, the ERFs screen, and the mobile map.
+
+## Version 1.9 Change Record
+
+### 2026-07-25 — Informal ERF runtime, registry, and environment terminology aligned
+
+Version 1.9 confirms:
+
+- new Informal ERF technical IDs use `IE-{wardPcode}-YYYYMMDD-hhmmss-XXXX`;
+- every Informal ERF ID outside the approved ward-scoped format is rejected, including retries;
+- the canonical media record stores `created`, `updated`, `url`, `gps`, `tag`, and `type`;
+- upload-only `storagePath`, local `uri`, and `capturedAtMs` are not stored in canonical media;
+- canonical creation is followed by ERF Registry projection, Ward Registry projection, and matched-geofence count recomputation;
+- post-commit failures are temporary and must be retried with the same `erfId`;
+- web and mobile maps stream canonical ERFs from `ireps_erfs`;
+- the web ERF Registry streams the complete selected ward from `registry_erfs`;
+- the Ward Registry streams `registry_wards`;
+- alphanumeric Informal ERF numbers must not be converted through numeric parsing;
+- the required collision-query composite index is governed in `firestore.indexes.json`;
+- Functions deployment does not deploy Firestore indexes;
+- DEV `ireps2` and TEST `ireps-test` require separately deployed, matching infrastructure;
+- the current strict remediation follows DEV-first validation; TEST deployment and runtime acceptance remain pending until DEV passes;
+- historical registry backfills remain one-time repair tools and are not part of the normal creation path.
+
+## Version 2.0 Change Record
+
+### 2026-07-25 — Informal ERF strict identity and payload governance aligned
+
+Version 2.0 confirms:
+
+- `IE-{wardPcode}-YYYYMMDD-hhmmss-XXXX` is the only valid Informal ERF ID format;
+- every other Informal ERF ID format is rejected, including retries;
+- noncompliant pre-production records are removed through the approved dry-run-first cleanup process;
+- the callable top-level payload and each media item use exact allowlists;
+- unknown, extra, canonical, derived, and backend-owned fields are rejected rather than ignored;
+- client media sends only `tag`, `type`, `storagePath`, `url`, `capturedAtMs`, and `gps`;
+- `type` must equal `image`;
+- the Firebase Storage URL bucket and decoded object path must match the configured bucket and submitted `storagePath`;
+- DEV runtime testing precedes any TEST deployment.
+
+## Version 2.1 Change Record
+
+### 2026-08-29 — Premises terminology and repeatability contract aligned
+
+Version 2.1 confirms:
+
+- Premises now have a dedicated governed dictionary section;
+- the locked geography relationship remains Ward → ERF → Premise → Asset / AST / Meter;
+- one ERF may contain one or multiple distinct Premises;
+- every Premise has its own Premise ID even when sibling Premises share the same ERF, address, Property Type, or Property Name;
+- the approved Repeatable Property Types are Flats, Townhouse Complex, Sectional Title, Backroom, Commercial, Industrial, and Estate;
+- the current non-repeatable Property Types are Residential, Vacant Land, Church, School, and Government;
+- Duplicate Premise is an intentional same-ERF creation workflow and is explicitly distinguished from an accidental data-quality Duplicate;
+- Duplicate Premise creates a fresh Premise ID and never updates the Source Premise;
+- Property Type remains editable after Duplicate opens, and final validation follows the final selected type;
+- the shared-name repeatable family is Flats, Townhouse Complex, Sectional Title, and Backroom;
+- the convenience repeatable family is Commercial, Industrial, and Estate;
+- all seven repeatable types support Unit Number;
+- Unit Number is mandatory for Flats, Townhouse Complex, Sectional Title, and fresh Backroom, and optional for Commercial, Industrial, and Estate;
+- fresh Backroom defaults Property Name to Backroom when blank while keeping Property Name editable;
+- qualifying historic Backroom Edit and Queue Edit records without Unit Number are grandfathered rather than forced through historic remediation;
+- a deliberate Property Type change reconciles stale Property Name and Unit Number values, while same-type Edit preserves approved historic hidden values;
+- Duplicate Premise starts fresh for Premise ID, metadata, media, GPS, No Access, and meter/service relationships;
+- Premise Card Identity must distinguish repeatable siblings using available Property Name and Unit Number;
+- the generic Duplicate dictionary term now explicitly means unintended data-quality duplication and cross-references the intentional Duplicate Premise workflow.
+
+## Sales Monthly Refresh and Population — 2026-09-05
+
+These terms describe the approved final-state contract. They do not assert that deployment or migration has completed.
+
+### Term: Monthly Categories
+
+- **Simple meaning:** Authoritative supplied category, risk tier and risk score for one specific month.
+- **Detailed explanation:** `monthlyCategories` stores sparse month-keyed history. A view resolves its selected/report month only. Missing month evidence displays unavailable/NAv; no legacy scalar or other-month fallback is permitted. Normal refresh appends absent month children and rejects differing existing values without rewriting history.
+
+### Term: Governed Sales Month
+
+- **Simple meaning:** A scope month whose data and supplier membership have completed verification and publication.
+- **Detailed explanation:** The latest published governed month is the default for the entire LM/provider view, not separately per meter. A local plan, preflight or partial batch run cannot publish a month. Immutable supplier snapshots and a verified publication manifest are served through the authorized backend.
+
+### Term: Supplier Population Snapshot
+
+- **Simple meaning:** Complete, immutable evidence of the supplier's meter membership for a month.
+- **Detailed explanation:** Category workbook membership and purchase activity do not prove supplier population. Snapshots retain canonical membership, source hashes, prior-snapshot linkage, replacement evidence and explicit exceptions. No `monthlyPopulation` map or population business collection is introduced.
+
+### Term: Sales Retired
+
+- **Simple meaning:** A known meter absent from the selected governed supplier population.
+- **Detailed explanation:** This is a derived Sales population state, not operational meter removal and not a change to `salesStatus`. Replacements require explicit predecessor/successor evidence. Exceptions can overlap membership states and must not be added to them as though all counts form one partition.
+
+### Term: Frozen Legacy Sales Categories
+
+- **Simple meaning:** Old scalar category fields retained for preservation but no longer used as authority.
+- **Detailed explanation:** Root `leakageCategory`, `riskTier` and `riskScore` remain stored unchanged. Current consumers read exact-month `monthlyCategories`; normal writers do not update or delete the scalar fields. Demo Sales restoration is outside this cutover.

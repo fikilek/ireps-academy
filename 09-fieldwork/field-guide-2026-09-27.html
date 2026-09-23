@@ -1,0 +1,737 @@
+<title>iREPS Field Guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+  :root{
+    --ground:#f3f6f4; --surface:#ffffff; --ink:#1b2a27; --muted:#55645f; --line:#d6dfdb;
+    --accent:#0f7a6c; --accent-soft:#e0f1ed; --on-accent:#ffffff;
+    --choose:#534ab7; --choose-soft:#eeedfe; --choose-ink:#26215c;
+    --find:#5f5e5a; --find-soft:#efede6; --find-ink:#2c2c2a;
+    --mark:#fff1c2; --mark-ink:#5c4400;
+    --bad:#b42318; --bad-soft:#fdecea;
+    --good:#1e7a3c; --good-soft:#e3f4e8;
+    --bezel:#1f2926; --screen:#fbfcfb; --dim:rgba(20,30,28,.45);
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#111816; --surface:#18211e; --ink:#e3ebe8; --muted:#9db0aa; --line:#2c3a35;
+      --accent:#3cc0a8; --accent-soft:#16332d; --on-accent:#08201b;
+      --choose:#a9a3f5; --choose-soft:#25224a; --choose-ink:#dedcff;
+      --find:#b9b6ab; --find-soft:#2a2925; --find-ink:#ecebe5;
+      --mark:#4a3d12; --mark-ink:#ffe39a;
+      --bad:#ff8a7a; --bad-soft:#3a1916;
+      --good:#6fd58f; --good-soft:#15301d;
+      --bezel:#050807; --screen:#141c19; --dim:rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#111816; --surface:#18211e; --ink:#e3ebe8; --muted:#9db0aa; --line:#2c3a35;
+    --accent:#3cc0a8; --accent-soft:#16332d; --on-accent:#08201b;
+    --choose:#a9a3f5; --choose-soft:#25224a; --choose-ink:#dedcff;
+    --find:#b9b6ab; --find-soft:#2a2925; --find-ink:#ecebe5;
+    --mark:#4a3d12; --mark-ink:#ffe39a;
+    --bad:#ff8a7a; --bad-soft:#3a1916;
+    --good:#6fd58f; --good-soft:#15301d;
+    --bezel:#050807; --screen:#141c19; --dim:rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--ground); color:var(--ink);
+    font-family:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+    font-size:15px; line-height:1.55; margin:0;
+    padding-block:0 64px; padding-left:16px; padding-right:16px;
+  }
+  main{max-width:720px; margin:0 auto;}
+  .mono{font-family:"IBM Plex Mono",ui-monospace,monospace; font-weight:500;}
+  h1,h2,h3{font-family:"IBM Plex Sans Condensed","IBM Plex Sans","Arial Narrow",sans-serif; text-wrap:balance;}
+  h1{font-size:34px; line-height:1.1; margin:0 0 12px; font-weight:700;}
+  h2{font-size:24px; line-height:1.2; margin:0 0 6px; font-weight:700;}
+  h3{font-size:18px; margin:0 0 6px; font-weight:600;}
+  p{margin:0 0 12px;}
+  .eyebrow{font-family:"IBM Plex Mono",ui-monospace,monospace; font-weight:500; font-size:12px;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin:0 0 10px;}
+  .lede{font-size:17px; margin:0 0 10px; max-width:60ch;}
+  .who{color:var(--muted); font-style:italic; margin:0;}
+  .sub{color:var(--muted); margin:0 0 18px; max-width:60ch;}
+  a{color:var(--accent); text-underline-offset:2px;}
+  a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+
+  header.top{padding-block:32px 20px;}
+  nav.jump{
+    position:sticky; top:env(safe-area-inset-top,0px); z-index:5;
+    background:var(--ground); border-bottom:1px solid var(--line);
+    display:flex; gap:6px; overflow-x:auto; padding-block:10px; margin:0 -16px; padding-inline:16px;
+    scrollbar-width:none;
+  }
+  nav.jump::-webkit-scrollbar{display:none;}
+  nav.jump a{flex:0 0 auto; text-decoration:none; color:var(--ink); background:var(--surface);
+    border:1px solid var(--line); border-radius:999px; padding:6px 13px; font-size:14px; font-weight:600;}
+  nav.jump a:hover{border-color:var(--accent);}
+  section.part{padding-top:34px; scroll-margin-top:60px;}
+
+  .coming{display:inline-block; font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11px;
+    letter-spacing:.06em; text-transform:uppercase; background:var(--mark); color:var(--mark-ink);
+    padding:2px 7px; border-radius:3px; vertical-align:2px; font-weight:500;}
+  .formtag{display:inline-block; font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11px;
+    letter-spacing:.05em; text-transform:uppercase; color:var(--accent); font-weight:500;}
+
+  /* What's new */
+  .news{list-style:none; margin:0; padding:0; display:grid; gap:10px;}
+  .news li{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:12px 14px;}
+  .news li p{margin:2px 0 0;}
+  .news b{font-weight:600;}
+
+  /* Big picture picker */
+  .seg{display:flex; gap:6px; flex-wrap:wrap; margin:0 0 16px;}
+  .seg button{font:inherit; font-weight:600; font-size:14px; color:var(--ink); background:var(--surface);
+    border:1px solid var(--line); border-radius:999px; padding:7px 14px; cursor:pointer;}
+  .seg button[aria-pressed="true"]{background:var(--ink); color:var(--ground); border-color:var(--ink);}
+  .chain{display:flex; flex-direction:column; align-items:stretch; max-width:420px;}
+  .node{border-radius:6px; padding:10px 14px; border:1px solid;}
+  .node b{display:block; font-size:15px;}
+  .node span{font-size:13px;}
+  .node.find{background:var(--find-soft); border-color:var(--find); color:var(--find-ink);}
+  .node.choose{background:var(--choose-soft); border-color:var(--choose); color:var(--choose-ink);}
+  .node.next{background:var(--accent-soft); border-color:var(--accent); color:var(--ink);}
+  .node.stop{background:var(--surface); border-color:var(--line); color:var(--muted); border-style:dashed;}
+  .node.submit{background:var(--surface); border-color:var(--find); color:var(--ink); text-align:center; border-radius:999px; padding:6px 14px;}
+  .arrow{align-self:center; width:2px; height:18px; background:var(--find); position:relative; margin:2px 0 6px;}
+  .arrow::after{content:""; position:absolute; left:-4px; bottom:-5px; border:5px solid transparent; border-top:6px solid var(--find);}
+  .fork{display:grid; grid-template-columns:1fr 1fr; gap:10px; align-items:start;}
+  .fork > div{display:flex; flex-direction:column;}
+  .fork .lbl{font-size:12px; color:var(--muted); margin:0 0 4px; font-family:"IBM Plex Mono",ui-monospace,monospace; text-transform:uppercase; letter-spacing:.05em;}
+  .key{display:flex; gap:14px; flex-wrap:wrap; font-size:13px; color:var(--muted); margin:14px 0 0;}
+  .key i{display:inline-block; width:12px; height:12px; border-radius:3px; border:1px solid; vertical-align:-1px; margin-right:5px;}
+
+  /* Flow player */
+  .flowpick{display:flex; gap:6px; overflow-x:auto; padding-bottom:6px; margin:0 0 14px; scrollbar-width:thin;}
+  .flowpick button{flex:0 0 auto; font:inherit; font-size:14px; font-weight:600; color:var(--ink);
+    background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:8px 12px; cursor:pointer; text-align:left;}
+  .flowpick button small{display:block; font-weight:400; color:var(--muted); font-size:12px;}
+  .flowpick button[aria-pressed="true"]{border-color:var(--accent); box-shadow:inset 0 0 0 1px var(--accent);}
+  .player{display:grid; gap:14px; justify-items:center;}
+  .phone{width:100%; max-width:330px; background:var(--bezel); border-radius:30px; padding:12px 10px 16px; position:relative;}
+  .phone::before{content:""; display:block; width:60px; height:5px; border-radius:3px; background:#3a4642; margin:0 auto 10px;}
+  .screen{background:var(--screen); border-radius:18px; overflow:hidden; min-height:470px; position:relative; display:flex; flex-direction:column;}
+  .bar{background:var(--accent); color:var(--on-accent); padding:10px 14px;}
+  .bar b{display:block; font-size:15px; line-height:1.25;}
+  .bar small{font-size:12px; opacity:.9;}
+  .rows{padding:10px 12px 14px; display:flex; flex-direction:column; gap:8px; flex:1;}
+  .row{border:1px solid var(--line); border-radius:8px; padding:6px 9px; background:var(--surface); transition:opacity .25s, border-color .25s, box-shadow .25s;}
+  .row .l{font-size:11px; color:var(--muted); display:flex; justify-content:space-between; gap:6px; align-items:center;}
+  .row .v{font-size:14px; font-weight:600; min-height:1.3em;}
+  .row .v.empty{color:var(--muted); font-weight:400; font-style:italic;}
+  .row .x{font-size:11px; color:var(--muted);}
+  .row.dim{opacity:.42;}
+  .row.focus{border-color:var(--accent); box-shadow:0 0 0 2px var(--accent); animation:pulse 1.6s ease-in-out infinite;}
+  .row.err{border-color:var(--bad); background:var(--bad-soft);}
+  .row.err .x{color:var(--bad);}
+  .row.locked{background:var(--find-soft);}
+  .row.choose.focus{border-color:var(--choose); box-shadow:0 0 0 2px var(--choose);}
+  .chip{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:10px; font-weight:500; letter-spacing:.04em;
+    border-radius:4px; padding:1px 6px; border:1px solid var(--line); color:var(--ink); background:var(--screen); white-space:nowrap;}
+  .chip.hot{background:var(--accent); color:var(--on-accent); border-color:var(--accent);}
+  .chip.lock{background:var(--find); color:var(--screen); border-color:var(--find);}
+  .btnrow{display:flex; gap:6px; flex-wrap:wrap;}
+  .btnrow span{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12px; font-weight:500; border:1px solid var(--line); border-radius:5px; padding:4px 8px; background:var(--surface);}
+  .btnrow span.hot{background:var(--accent); color:var(--on-accent); border-color:var(--accent); animation:pulse 1.6s ease-in-out infinite;}
+  .ticks{display:flex; flex-direction:column; gap:3px; font-size:13px; font-weight:400;}
+  .ticks .on::before{content:"\2611  "; color:var(--choose);}
+  .ticks .off::before{content:"\2610  "; color:var(--muted);}
+  .ticks .off{color:var(--muted);}
+  .ticks .gone{text-decoration:line-through; color:var(--muted);}
+  .ticks .gone::before{content:"\2610  ";}
+  .scrnote{margin:0 12px 12px; border-radius:8px; padding:8px 10px; font-size:13px; border:1px solid;}
+  .scrnote.info{background:var(--accent-soft); border-color:var(--accent);}
+  .scrnote.warn{background:var(--mark); border-color:var(--mark-ink); color:var(--mark-ink);}
+  .scrnote.err{background:var(--bad-soft); border-color:var(--bad); color:var(--ink);}
+  .scrnote.ok{background:var(--good-soft); border-color:var(--good);}
+  .scrnote b{display:block;}
+  .dialog{position:absolute; inset:0; background:var(--dim); display:flex; align-items:center; justify-content:center; padding:18px;}
+  .dialog > div{background:var(--surface); border-radius:12px; padding:14px 16px; width:100%; box-shadow:0 10px 30px rgba(0,0,0,.25);}
+  .dialog b{display:block; font-size:15px; margin-bottom:4px;}
+  .dialog p{font-size:13px; margin:0 0 10px;}
+  .dialog .btnrow{justify-content:flex-end;}
+  .spinner{display:inline-block; width:14px; height:14px; border:2px solid var(--line); border-top-color:var(--accent); border-radius:50%; animation:spin .9s linear infinite; vertical-align:-2px; margin-right:6px;}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 2px var(--accent);} 50%{box-shadow:0 0 0 5px var(--accent-soft);}}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .caption{max-width:460px; width:100%; min-height:5.5em;}
+  .caption .n{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12px; color:var(--muted); margin:0 0 4px;}
+  .caption p{font-size:16px; margin:0;}
+  .controls{display:flex; gap:8px; align-items:center; justify-content:center; flex-wrap:wrap;}
+  .controls button{font:inherit; font-weight:600; font-size:14px; border-radius:999px; padding:8px 16px; cursor:pointer;
+    border:1px solid var(--line); background:var(--surface); color:var(--ink); min-width:76px;}
+  .controls button.primary{background:var(--accent); color:var(--on-accent); border-color:var(--accent);}
+  .controls button:disabled{opacity:.4; cursor:default;}
+  .dots{display:flex; gap:5px; justify-content:center; flex-wrap:wrap; max-width:330px;}
+  .dots button{width:9px; height:9px; border-radius:50%; border:0; padding:0; background:var(--line); cursor:pointer;}
+  .dots button[aria-current="step"]{background:var(--accent);}
+  .flowintro{margin:0 0 14px; color:var(--muted); max-width:60ch;}
+  .placeholder{background:var(--surface); border:1px dashed var(--line); border-radius:10px; padding:18px; max-width:460px;}
+
+  /* Fields & errors */
+  details.form{background:var(--surface); border:1px solid var(--line); border-radius:8px; margin:0 0 10px;}
+  details.form > summary{cursor:pointer; padding:12px 14px; font-weight:600; font-size:16px; list-style:none; display:flex; justify-content:space-between; gap:10px; align-items:center;}
+  details.form > summary::-webkit-details-marker{display:none;}
+  details.form > summary::after{content:"+"; font-family:"IBM Plex Mono",ui-monospace,monospace; color:var(--accent); font-size:18px;}
+  details.form[open] > summary::after{content:"\2212";}
+  details.form > summary small{display:block; font-weight:400; font-size:13px; color:var(--muted);}
+  .inner{padding:0 14px 14px;}
+  .inner > p.how{color:var(--muted); font-size:14px;}
+  dl.fields{margin:0; display:grid; gap:0;}
+  dl.fields > div{padding:9px 0; border-top:1px solid var(--line);}
+  dl.fields dt{font-weight:600;}
+  dl.fields dt .req{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:10px; font-weight:500; color:var(--accent); letter-spacing:.05em; margin-left:6px; text-transform:uppercase;}
+  dl.fields dd{margin:2px 0 0; color:var(--ink); font-size:14px;}
+  dl.fields dd .opts{display:block; color:var(--muted); font-size:13px; margin-top:2px;}
+  h4.group{font-family:"IBM Plex Mono",ui-monospace,monospace; font-weight:500; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin:14px 0 2px;}
+  .filter{margin:0 0 14px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+  .filter input{flex:1 1 220px; min-width:0; font:inherit; color:var(--ink); background:var(--surface);
+    border:1px solid var(--line); border-radius:999px; padding:9px 16px;}
+  .count{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12px; color:var(--muted);}
+  .err-entry{padding:10px 0; border-top:1px solid var(--line);}
+  .err-entry q{display:block; font-weight:600; quotes:"\201C" "\201D";}
+  .err-entry .kind{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:10px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted);}
+  .err-entry p{margin:3px 0 0; font-size:14px;}
+  .err-entry p.do{font-weight:600;}
+  .err-entry p.do::before{content:"Do this: "; color:var(--accent);}
+  .foot{margin-top:40px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:14px;}
+
+  @media (max-width:520px){ h1{font-size:28px;} .fork{grid-template-columns:1fr;} .screen{min-height:440px;} }
+  @media (prefers-reduced-motion:reduce){ *{animation:none!important; transition:none!important;} }
+  @media print{ nav.jump,.controls,.flowpick,.filter{display:none;} }
+</style>
+
+<main>
+  <header class="top">
+    <p class="eyebrow">iREPS · field guide · new app from Sunday 27 September 2026</p>
+    <h1>What changes on Sunday</h1>
+    <p class="lede">The new app reaches your phone on Sunday. Five minutes here saves you a refused form in the field.</p>
+    <p class="who">For field workers and supervisors. Tap a flow and press Play. Everything here is how the app works from Sunday.</p>
+  </header>
+
+  <nav class="jump" aria-label="Sections">
+    <a href="#new">What's new</a>
+    <a href="#picture">Finding → action</a>
+    <a href="#flows">Flows</a>
+    <a href="#fields">What each box means</a>
+    <a href="#errors">Errors</a>
+  </nav>
+
+  <section class="part" id="new">
+    <h2>What's new</h2>
+    <p class="sub">Ten changes. The flows below show each one on the phone.</p>
+    <ul class="news"><li><span class="formtag">Meter Inspection</span><p><b>Start an inspection yourself.</b> Open the meter and press INSP. No office instruction is needed.</p></li><li><span class="formtag">Discovery · Inspection</span><p><b>Found a problem? Act on it, or say why not.</b> For anything other than Meter Ok, None is no longer offered. Tick the action, or pick the reason you could not.</p></li><li><span class="formtag">Disconnection</span><p><b>Illegally Connected opens the disconnection by itself.</b> Tick Disconnect meter. The disconnection opens with the instruction filled in and locked: Illegal Connection. You choose the level.</p></li><li><span class="formtag">Meter Inspection</span><p><b>SAME on every box.</b> The same on the meter? Press SAME. If iREPS holds nothing, SAME puts NAv, and that is accepted.</p></li><li><span class="formtag">Meter Inspection</span><p><b>The status you find is what the meter becomes.</b> Found a disconnected meter live again? Record Connected, then disconnect it again. When iREPS holds no status, the box starts empty and you choose.</p></li><li><span class="formtag">Meter Inspection</span><p><b>If it is there, photograph it.</b> The CB size, the seal number and the keypad serial number now each carry a photo, the same picture the office gets from a discovery. Nothing there — NAv, or a reason why there is none — and no photo is asked for.</p></li><li><span class="formtag">Meter Inspection</span><p><b>What you confirm becomes the meter's record.</b> An inspection used to change only the status, so a meter found fine could still show an old finding on its card. Now the finding and the details you confirm are written to the meter, and the card shows them straight after. Not the meter number, and not the GPS.</p></li><li><span class="formtag">Inspection · Disconnection · Removal</span><p><b>Every submit now has a window before and after.</b> Before: what is about to be sent and what opens next. After: sent, or saved on this phone and not sent. No window means it did not send. Work that stayed on the phone waits under Admin → Storage, on the screen headed Offline Submission Forms, and only a Meter Discovery sends itself.</p></li><li><span class="formtag">Disconnection · Removal</span><p><b>A disconnection or removal you start yourself needs its instruction.</b> Disconnection: Credit Control Instruction, Illegal Connection or Non Payment. Removal: Remove meter or Replace meter. After a finding it is filled in for you and locked.</p></li><li><span class="formtag">Disconnection</span><p><b>Meter off, but the supply is stolen?</b> An illegal connection can bypass a meter that is already off. After a finding, the disconnection is accepted on a meter recorded as Disconnected.</p></li><li><span class="formtag">Removal · Installation</span><p><b>Replace meter: remove, then install.</b> Faulty or Damaged: the removal opens, and the new meter goes in after it. Safety confirmed is gone, the removal is confirmed by one photo of the meter out, and a prepaid meter's reading is Remaining Credit, as on Discovery.</p></li><li><span class="formtag">Removal · Reconnection</span><p><b>Doing the work is the answer: one photo confirms it.</b> The old Yes/No questions are gone. The removal asks for the photo that shows the meter is out; the reconnection for the photo that shows the supply is back on. Sending the form is the confirmation.</p></li><li><span class="formtag">All forms</span><p><b>Every list works without signal.</b> The dropdowns are kept on the phone, so a new phone or a dead zone no longer leaves them empty.</p></li></ul>
+  </section>
+
+  <section class="part" id="picture">
+    <h2>What you found decides what you do</h2>
+    <p class="sub">Meter Discovery and Meter Inspection work the same way. Pick what you found.</p>
+    <div class="seg" role="group" aria-label="What you found">
+      <button type="button" data-find="ok" aria-pressed="false">Meter Ok</button>
+      <button type="button" data-find="fd" aria-pressed="false">Faulty or Damaged</button>
+      <button type="button" data-find="ic" aria-pressed="true">Illegally Connected</button>
+    </div>
+    <div id="chain" class="chain" aria-live="polite"></div>
+    <div class="key">
+      <span><i style="background:var(--find-soft);border-color:var(--find)"></i>What you found</span>
+      <span><i style="background:var(--choose-soft);border-color:var(--choose)"></i>What you tick</span>
+      <span><i style="background:var(--accent-soft);border-color:var(--accent)"></i>The form that opens next</span>
+    </div>
+  </section>
+
+  <section class="part" id="flows">
+    <h2>The flows, step by step</h2>
+    <p class="sub">Choose a flow. Press <b>Play</b> to watch it, or <b>Next</b> to go at your own speed.</p>
+    <div class="flowpick" id="flowpick" role="group" aria-label="Choose a flow"></div>
+    <p class="flowintro" id="flowintro"></p>
+    <div class="player" id="player">
+      <div class="phone" aria-hidden="true"><div class="screen" id="screen"></div></div>
+      <div class="caption" aria-live="polite"><p class="n" id="stepn"></p><p id="cap"></p></div>
+      <div class="dots" id="dots" role="group" aria-label="Steps"></div>
+      <div class="controls">
+        <button type="button" id="back">Back</button>
+        <button type="button" id="play" class="primary">Play</button>
+        <button type="button" id="next">Next</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="part" id="fields">
+    <h2>What each box means</h2>
+    <p class="sub">Tap a form. Required boxes are marked.</p>
+<details class="form"><summary><span>Meter Inspection<small>INSP · check a meter iREPS already holds</small></span></summary><div class="inner"><p class="how">Field channel: open the meter and press INSP (a meter that is Field, Connected, Disconnected or Removed). Office channel: accept the instruction in My Work Orders. A manager who presses INSP issues it to a field worker instead.</p><h4 class="group">Access</h4><dl class="fields"><div><dt>Access Outcome<span class="req">required</span></dt><dd>ACCESS YES carries on. NO ACCESS saves the visit; the meter does not change.<span class="opts">ACCESS YES · NO ACCESS</span></dd></div><div><dt>NA Reason and photo<span class="req">no access</span></dt><dd>Why you could not get to the meter, and a photo that shows it.<span class="opts">Property Locked · Access Refused by Occupant · Unsafe / Dangerous Environment · Meter Box Inaccessible · Meter Obstructed · Property Demolished · Property Vacant · Other</span></dd></div></dl><h4 class="group">The meter · SAME, or change it</h4><dl class="fields"><div><dt>Why this matters</dt><dd>What you confirm here is written to the meter record when the office accepts the inspection, and the meter card shows it straight after. That is why each box shows the Existing iREPS value, marks a change DIFFERENT, and asks you to confirm the differences before it sends. Two are never written from an inspection: the meter number (a wrong one is a supervisor's correction) and the GPS (that belongs to the discovery). A box you were never asked for is left alone — nothing is blanked because a question did not appear. A NO ACCESS visit changes nothing at all.</dd></div><div><dt>Meter Number<span class="req">required + photo</span></dt><dd>The number printed on the meter. Photograph it.</dd></div><div><dt>Manufacturer<span class="req">required</span></dt><dd>The make on the meter.<span class="opts">Electricity: Conlog · Landis+gyr · Cashpower · Hexing · Powercom · Itron · Other. Water: Conlog · Sensus · Elster Kent · Itron · Kamstrup · Lesira Teq · Aqua Loc · Reonet · Other.</span></dd></div><div><dt>Meter Model / Name<span class="req">required</span></dt><dd>As printed on the meter.</dd></div><div><dt>Meter Kind<span class="req">required</span></dt><dd>Pick it from the list.<span class="opts">Prepaid · Conventional</span></dd></div><div><dt>Meter Category<span class="req">required</span></dt><dd>Pick it from the list.<span class="opts">Normal · Bulk</span></dd></div><div><dt>Phase<span class="req">required</span></dt><dd>Electricity only.<span class="opts">Single · Three</span></dd></div><div><dt>CB Size (Amps)<span class="req">value + photo, or why</span></dt><dd>The circuit breaker size, typed in amps: record one and photograph it. None? DELETE and pick why — then no photo is asked for.<span class="opts">Circuit Breaker Missing · Circuit Breaker Size Not Visible · Circuit Breaker Size Unreadable · Circuit Breaker Damaged · Circuit Breaker Inaccessible · No Dedicated Circuit Breaker · Distribution Board Inaccessible · Other</span></dd></div><div><dt>Seal Number<span class="req">value + photo</span></dt><dd>The number on the meter seal: record one and photograph it. None? DELETE and pick why — then no photo is asked for.<span class="opts">Seal Missing · Seal Broken · Seal Damaged · Seal Number Not Visible · Seal Number Unreadable · Seal Removed · Meter Not Sealed · Other</span></dd></div><div><dt>Keypad Serial Number<span class="req">value + photo, or why</span></dt><dd>Prepaid electricity meters only: record one and photograph it. None? DELETE and pick why — then no photo is asked for.<span class="opts">Keypad Missing · Keypad Not Installed · Keypad Integrated With Meter · Keypad Serial Number Not Visible · Keypad Serial Number Unreadable · Keypad Damaged · Keypad Inaccessible · Other</span></dd></div><div><dt>Placement<span class="req">required</span></dt><dd>Where the meter sits.<span class="opts">Kiosk · Pole Top · Pole Bottom · Boundary Wall · Meter Room · Wall Indoors · Inside Property · Other</span></dd></div><div><dt>Off-grid Supply<span class="req">required</span></dt><dd>Is there a supply at the premise that does not come from the grid?<span class="opts">Yes · No</span></dd></div><div><dt>Meter GPS</dt><dd>Put the pin on the meter. More than 5 m from iREPS shows up as a difference before you submit.</dd></div></dl><h4 class="group">What you found</h4><dl class="fields"><div><dt>Current Status<span class="req">required</span></dt><dd>What you find now. The meter takes this status when you submit. It is filled in only when iREPS holds Connected or Disconnected; otherwise the box starts empty and you choose. A status that differs from iREPS is one of the differences you confirm before submitting.<span class="opts">Connected · Disconnected</span></dd></div><div><dt>Meter Anomaly and Anomaly Detail<span class="req">required</span></dt><dd>What is wrong, if anything. Every detail except Operationally Ok needs an anomaly photo.<span class="opts">Meter Ok: Operationally Ok, Bridge Suspicion, Bypass Suspicion. Meter Faulty: Not Accepting Sgc Tokens, Meter Display Blank, Negative Credit Units, Zero Reading - Conventional Meter, Meter Wheel Not Moving, Meter Wheel Running In Reverse. Meter Damaged: Meter Number Not Clearly Visible, Meter Burnt, Meter Button(s) Not Working, Meter Broken. Illegally Connected: Straight Connection (Meter Bypassed), Bridge Wire On The Meter.</span></dd></div><div><dt>Other Anomalies</dt><dd>Anything else you saw. Tick all that apply.<span class="opts">Meter Blocked (By Munic) · Meter Bridged (By Munic) · Incomplete Service Points · Meter Not Registered · Keypad Faulty</span></dd></div><div><dt>Normalisation<span class="req">required</span></dt><dd>What you did about the finding. See Finding → action above. A fix on the spot needs a normalisation photo; Disconnect meter and Replace meter do not. Electricity only: a water inspection has no normalisation and records None.<span class="opts">Meter Ok: None · Tamper removed · Keypad normalised · Service point completed · Meter registered. Anything else: Disconnect meter · Replace meter · and the four fixes.</span></dd></div><div><dt>Reason for not acting<span class="req">when not ticked</span></dt><dd>Why the action that follows the finding was not done. No photo.<span class="opts">Threatened or chased away · Customer refused · Unsafe to work on · Meter could not be reached · No meter available to replace · Office said to leave it · Other (type it)</span></dd></div></dl><h4 class="group">Before and after Submit</h4><dl class="fields"><div><dt>Submit this inspection?<span class="req">before</span></dt><dd>What is about to be sent: the meter, the status you found, the finding, and what opens next. GO BACK or SUBMIT.</dd></div><div><dt>Confirm Differences<span class="req">when they differ</span></dt><dd>Shown instead when what you captured differs from iREPS, listing every difference. GO BACK AND CORRECT or CONFIRM AND SUBMIT.</dd></div><div><dt>SYNCING<span class="req">while sending</span></dt><dd>Submitting meter inspection. Do not close the app.</dd></div><div><dt>Inspection sent<span class="req">after</span></dt><dd>It reached the office, and what opens next, or what the meter now is.</dd></div><div><dt>Saved on this phone, not sent<span class="req">after</span></dt><dd>It did not send: you are offline or the network was too slow. It waits in Admin → Offline Submission Forms and does not send itself. A disconnection or removal cannot start until it is sent.</dd></div></dl><h4 class="group">Reading · conventional meters only</h4><dl class="fields"><div><dt>Meter Reading<span class="req">reading or reason</span></dt><dd>Type the reading and photograph it.</dd></div><div><dt>No Reading Reason<span class="req">when blank</span></dt><dd>Why there is no reading.<span class="opts">Customer refused access · Display blank · Display damaged · Display not working · Meter box locked · Meter not accessible · Meter removed or missing · No access to premises · Other</span></dd></div></dl></div></details>
+<details class="form"><summary><span>Disconnection<small>DISC · cut the supply</small></span></summary><div class="inner"><p class="how">After a finding: opens by itself when you tick Disconnect meter. Field channel: open the meter and press DISC. Office channel: accept it in My Work Orders. Only a Connected meter can be disconnected.</p><h4 class="group">The instruction</h4><dl class="fields"><div><dt>Disconnection Instruction<span class="req">required</span></dt><dd>What you are disconnecting for. After a finding it is filled in and locked: Illegal Connection. From the office, the office's instruction is filled in. When you start it yourself you must pick one.<span class="opts">Credit Control Instruction · Illegal Connection · Non Payment · Other</span></dd></div><div><dt>From</dt><dd>Shown when it follows a finding.<span class="opts">Meter Inspection · Meter Discovery</span></dd></div><div><dt>Instruction Notes and Instruction Photo<span class="req">optional</span></dt><dd>Field channel only. A photo of a written instruction, if you have one.</dd></div></dl><h4 class="group">On site</h4><dl class="fields"><div><dt>Site Access Outcome<span class="req">required</span></dt><dd>ACCESS YES carries on. NO ACCESS: reason and photo; the meter stays Connected.<span class="opts">ACCESS YES · NO ACCESS</span></dd></div><div><dt>Disconnection Level<span class="req">required</span></dt><dd>What you physically did.<span class="opts">Level 1 - Flip circuit breaker only · Level 2 - Remove wire on circuit breaker · Level 3 - Remove whole supply cable</span></dd></div><div><dt>Disconnection Level Photo<span class="req">required</span></dt><dd>A photo of the level you did.</dd></div><div><dt>FWR General Comment<span class="req">optional</span></dt><dd>A comment and a photo, if you need them.</dd></div></dl><p class="how" style="margin-top:10px">Only a Connected meter can be disconnected, with one exception: a disconnection that follows a finding is accepted on a meter recorded as Disconnected, because an illegal connection can bypass a meter that is already off. Before Submit: “Submit this disconnection?” with the meter, the instruction and the level. After: “Disconnection sent”, and the meter is Disconnected. Saved on the phone instead? It does not send itself.</p></div></details>
+<details class="form"><summary><span>Meter Installation<small>Install · a new meter at a premise</small></span></summary><div class="inner"><p class="how">Open the premise, press Install and choose ELEC or WATER, or NO ACCESS. After a Replace meter removal it opens by itself, for the new meter at the same premise.</p><h4 class="group">Electricity</h4><dl class="fields"><div><dt>Meter Number<span class="req">required + photo</span></dt><dd>Letters and digits only, as printed. Photograph it.</dd></div><div><dt>Manufacturer<span class="req">required</span></dt><dd>Starts empty: pick the make on the meter.<span class="opts">Conlog · Landis+gyr · Cashpower · Hexing · Powercom · Itron</span></dd></div><div><dt>Model (Name)<span class="req">required</span></dt><dd>As printed on the meter.</dd></div><div><dt>Phase · Type · Category<span class="req">required</span></dt><dd>The same words as Meter Discovery.<span class="opts">Single · Three | Prepaid · Conventional | Normal · Bulk</span></dd></div><div><dt>Seal No<span class="req">number or reason</span></dt><dd>Type or scan it. None? Pick why.<span class="opts">Seal Missing · Seal Broken · Seal Damaged · Seal Number Not Visible · Seal Number Unreadable · Seal Removed · Meter Not Sealed · Other</span></dd></div><div><dt>Keypad Serial No</dt><dd>Prepaid only. Type or scan it. None? Pick why.<span class="opts">Keypad Missing · Keypad Not Installed · Keypad Integrated With Meter · Keypad Serial Number Not Visible · Keypad Serial Number Unreadable · Keypad Damaged · Keypad Inaccessible · Other</span></dd></div><div><dt>CB Size (Amps)</dt><dd>None? Pick why.<span class="opts">Circuit Breaker Missing · Circuit Breaker Size Not Visible · Circuit Breaker Size Unreadable · Circuit Breaker Damaged · Circuit Breaker Inaccessible · No Dedicated Circuit Breaker · Distribution Board Inaccessible · Other</span></dd></div><div><dt>Meter Placement<span class="req">required</span></dt><dd>Where the meter sits.<span class="opts">Kiosk · Pole Top · Pole Bottom · Boundary Wall · Meter Room · Wall Indoors · Inside Property · Other</span></dd></div><div><dt>Meter GPS Position<span class="req">required</span></dt><dd>Put the pin on the meter.</dd></div><div><dt>Off-grid Supply?<span class="req">required</span></dt><dd>Yes needs a photo.<span class="opts">yes · no</span></dd></div><div><dt>Anomaly and Anomaly Detail<span class="req">required</span></dt><dd>The same list as Meter Discovery. Every detail except Operationally Ok needs an anomaly photo.<span class="opts">Meter Ok: Operationally Ok, Bridge Suspicion, Bypass Suspicion. Meter Faulty: Not Accepting Sgc Tokens, Meter Display Blank, Negative Credit Units, Zero Reading - Conventional Meter, Meter Wheel Not Moving, Meter Wheel Running In Reverse. Meter Damaged: Meter Number Not Clearly Visible, Meter Burnt, Meter Button(s) Not Working, Meter Broken. Illegally Connected: Straight Connection (Meter Bypassed), Bridge Wire On The Meter.</span></dd></div></dl><h4 class="group">Water</h4><dl class="fields"><div><dt>Meter Number<span class="req">required + photo</span></dt><dd></dd></div><div><dt>Category · Type · Manufacture · Model Name<span class="req">required</span></dt><dd><span class="opts">Makes: Conlog · Sensus · Elster Kent · Itron · Kamstrup · Lesira Teq · Aqua Loc · Reonet</span></dd></div><div><dt>Token Reading or Meter Reading<span class="req">required + photo</span></dt><dd>Token Reading on a prepaid meter; Meter Reading on a conventional one.</dd></div><div><dt>Anomaly and GPS<span class="req">required</span></dt><dd>As for electricity. No placement.</dd></div></dl></div></details>
+<details class="form"><summary><span>Meter Reconnection<small>RECON · put the supply back on</small></span></summary><div class="inner"><p class="how">Open a meter that iREPS holds as Disconnected and press RECON, or accept the office's instruction in My Work Orders. Only the confirmation changed on Sunday; the rest of the form is as you know it.</p><h4 class="group">What changed</h4><dl class="fields"><div><dt>Confirm supply reconnected<span class="req">photo required</span></dt><dd>“Take the photo that shows the supply is back on and safe. Submitting this form confirms the reconnection.” There is no Yes/No and no notes box any more: sending the form is the confirmation.</dd></div></dl><h4 class="group">The rest of the form</h4><dl class="fields"><div><dt>Reconnection Instruction</dt><dd>Locked when the office issued it. Started yourself: pick it from the list, or Other and type it.<span class="opts">Reconnect meter supply and confirm the supply has been made good again · Other</span></dd></div><div><dt>Instruction Notes<span class="req">optional</span></dt><dd>What you were told, in your own words.</dd></div><div><dt>Site Access Outcome<span class="req">required</span></dt><dd>NO ACCESS saves the visit; the meter stays Disconnected.<span class="opts">ACCESS YES · NO ACCESS</span></dd></div></dl></div></details>
+<details class="form"><summary><span>Meter Discovery<small>DISCOVER · what is new on Sunday</small></span></summary><div class="inner"><p class="how">Everything else about Meter Discovery is on its own pages: <a href="https://claude.ai/artifact/3ATyax5CnEhpHsxYpNAdvT">the fields</a> · <a href="https://claude.ai/artifact/DUKvC3Khiibof3fJe7QMxu">the rules</a> · <a href="https://claude.ai/artifact/GWgWkiECF5J53KTYGycYxb">the errors</a>. New on Sunday is the normalisation part, electricity only:</p><h4 class="group">Normalisation</h4><dl class="fields"><div><dt>Normalisation<span class="req">required</span></dt><dd>Meter Ok: None, or a fix you did. Anything else: None is gone; tick the action that follows, or give a reason.<span class="opts">Illegally Connected → Disconnect meter · Meter Faulty or Meter Damaged → Replace meter</span></dd></div><div><dt>Reason for not acting<span class="req">when not ticked</span></dt><dd>Why the action was not done. No photo.<span class="opts">Threatened or chased away · Customer refused · Unsafe to work on · Meter could not be reached · No meter available to replace · Office said to leave it · Other (type it)</span></dd></div><div><dt>Normalisation photo<span class="req">for a fix</span></dt><dd>Only when you tick a fix done on the spot.</dd></div><div><dt>After Submit</dt><dd>Disconnect meter: “Preparing the disconnection…”, then the disconnection opens. Replace meter: “Preparing the removal…”, then the removal opens (being tested).</dd></div></dl></div></details>
+<details class="form"><summary><span>Meter Removal<small>REM · take a meter out</small></span></summary><div class="inner"><p class="how">Three ways in, all ending in the same form. Open it only when the meter is really coming out: if you cannot remove it, give the reason on the finding instead.</p><h4 class="group">How it starts</h4><dl class="fields"><div><dt>The office issues it<span class="req">office channel</span></dt><dd>You accept it in My Work Orders. The office's instruction, notes and photo are filled in and locked.</dd></div><div><dt>You open it with REM<span class="req">field channel</span></dt><dd>On a meter that is still there (Field, Connected or Disconnected). You have the instruction on paper or by phone: pick it from the list, type the notes, photograph the paper.</dd></div><div><dt>It follows a finding<span class="req">linked</span></dt><dd>You ticked Replace meter on an inspection or a discovery. It opens by itself, locked to Replace meter, with From: Meter Inspection.</dd></div><div><dt>Any of the three</dt><dd>Can end in NO ACCESS: the visit is saved, nothing is removed and nothing follows.</dd></div></dl><h4 class="group">The instruction</h4><dl class="fields"><div><dt>Removal Instruction<span class="req">required</span></dt><dd>What you are doing. Under each choice the app says what will happen. Locked after a finding; when you start it yourself you must pick one.<span class="opts">Remove meter — “The meter is taken away. Nothing follows.” · Replace meter — “The new meter goes in: the installation opens after this.” · Other</span></dd></div><div><dt>From</dt><dd>Shown when it follows a finding.<span class="opts">Meter Inspection · Meter Discovery</span></dd></div><div><dt>Instruction Notes<span class="req">optional</span></dt><dd>What you were told, in your own words.</dd></div><div><dt>Instruction Photo<span class="req">optional</span></dt><dd>“Optional. Capture the written instruction if available.” The same as the disconnection and the reconnection.</dd></div></dl><h4 class="group">On site</h4><dl class="fields"><div><dt>Site Access Outcome<span class="req">required</span></dt><dd>ACCESS YES carries on. NO ACCESS saves the visit; nothing is removed and nothing follows.<span class="opts">ACCESS YES · NO ACCESS</span></dd></div><div><dt>NA Reason and photo<span class="req">no access</span></dt><dd>Why you could not reach the meter, and a photo.<span class="opts">Property Locked · Access Refused by Occupant · Unsafe / Dangerous Environment · Meter Box Inaccessible · Meter Obstructed · Property Demolished · Property Vacant · Other</span></dd></div><div><dt>Confirm meter removed<span class="req">photo required</span></dt><dd>“Take the photo that shows the meter is out. Submitting this form confirms the removal.” There is nothing to tick: sending the form is the confirmation. Could not remove the meter? Do not open this form — give the reason on the finding. Could not reach it? Use NO ACCESS.</dd></div></dl><h4 class="group">The reading</h4><dl class="fields"><div><dt>Remaining Credit<span class="req">prepaid</span></dt><dd>The credit left on the meter when it was removed. Type it and photograph it, or pick why you could not read it. The same as Meter Discovery.<span class="opts">Display blank / no reading · Display damaged · Display unreadable · Unable to obtain balance · Meter not responding · Other</span></dd></div><div><dt>Meter Reading<span class="req">conventional</span></dt><dd>The reading when the meter was removed. Type it and photograph it, or pick why there is none.<span class="opts">Customer refused access · Display blank · Display damaged · Display not working · Meter box locked · Meter not accessible · Meter removed or missing · No access to premises · Other</span></dd></div><div><dt>Safety confirmed<span class="req">gone</span></dt><dd>No longer asked.</dd></div></dl><p class="how" style="margin-top:10px">Remove meter: “Removal sent” and the meter is Removed. Replace meter: “Meter Installation opens now”, linked to the removal, and the new meter is created in Field — it still needs COMM. From the meter card, Replace meter opens the installation too, but it is not linked to an earlier finding: the ERF and the premise tie them together.</p></div></details>
+  </section>
+
+  <section class="part" id="errors">
+    <h2>When the app refuses your work</h2>
+    <p class="sub">Find the message by its first few words. Each one says what it means and what to do. <b>Refused means nothing was saved:</b> fix it and submit again.</p>
+    <div class="filter"><input id="q" type="search" placeholder="Type the first words of the message" aria-label="Search the messages"><span class="count" id="count"></span></div>
+<details class="form"><summary><span>Meter Inspection<small>28 messages</small></span></summary><div class="inner"><div class="err-entry"><span class="kind">Before submit</span><q>Not ready to submit yet</q><p>A red box above SUBMIT names the first thing still missing. Fix it and the next one shows, until the box is gone.</p><p class="do">Read the line, fix that box, look again.</p></div><div class="err-entry"><span class="kind">Before submit</span><q>Choose the status you found: Connected or Disconnected</q><p>The status box is empty. iREPS holds no status for this meter, so nothing was filled in for you.</p><p class="do">Pick Connected or Disconnected: what you see at the meter now.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>An inspection records the meter as Connected or Disconnected only</q><p>The status that reached the office was neither.</p><p class="do">Open the form again and pick Connected or Disconnected.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>Say why the meter was not disconnected.</q><q>Say why the meter was not replaced.</q><p>The finding needs an action, and it is not ticked and has no reason.</p><p class="do">Tick Disconnect meter or Replace meter, or pick the reason you could not.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>Say what was done about this finding.</q><p>Nothing is ticked under Normalisation for a finding that needs action.</p><p class="do">Tick the action, or give the reason.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>Choose one: disconnect or replace.</q><p>Both jobs are ticked. A meter is either disconnected or replaced.</p><p class="do">Untick one.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>None cannot be used with another action.</q><p>None is ticked together with work you did.</p><p class="do">Untick None.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>The work was done, so there is no reason for not acting.</q><p>The action is ticked and a reason is given too.</p><p class="do">Clear the reason.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>A reason for not acting belongs to a finding that needs action.</q><p>Meter Ok with a reason.</p><p class="do">Clear the reason.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>Type the reason.</q><p>The reason is Other with nothing typed.</p><p class="do">Type the real reason.</p></div><div class="err-entry"><span class="kind">Before submit</span><q>Photo proof of the normalisation is required.</q><p>You ticked a fix done on the spot without photographing it.</p><p class="do">Photograph what you fixed.</p></div><div class="err-entry"><span class="kind">Before submit</span><q>An anomaly photo is required for this finding</q><p>The finding needs a picture. Only Operationally Ok needs none.</p><p class="do">Photograph what you found.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>Meter number photo is required</q><p>No photo of the meter number.</p><p class="do">Photograph the meter number.</p></div><div class="err-entry"><span class="kind">Before submit</span><q>A photo of the CB size is required</q><q>A photo of the seal number is required</q><q>A photo of the keypad serial number is required</q><p>You recorded a circuit breaker size, a seal number or a keypad serial number and did not photograph it. What is there is photographed.</p><p class="do">Photograph it. If there is nothing there, clear the box and pick why instead — then no photo is asked for.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>CB size is required, or say why there is none</q><q>Keypad serial number is required, or say why there is none</q><p>The box is empty and no reason is picked.</p><p class="do">Press SAME, type it, or DELETE and pick why.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>Inspection reading or no-reading reason is required for conventional meters</q><q>Inspection meter reading must be numeric</q><q>Meter reading photo is required when inspection reading is captured</q><p>The conventional meter reading is missing, not a number, or has no photo.</p><p class="do">Type the reading in digits and photograph it, or pick the No Reading Reason.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>Inspection comparison differences must be confirmed before submit</q><p>What you captured differs from iREPS and was not confirmed.</p><p class="do">Submit again and confirm the differences, if they are real.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>No-access reason is required</q><q>No access photo is required</q><p>NO ACCESS without a reason or a photo.</p><p class="do">Pick the reason and take the photo.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>Meter inspection requires a known meter kind: prepaid or conventional</q><q>Inspection is blocked because the existing iREPS meter kind is unknown. Update the meter record before creating an INSPECTION.</q><p>iREPS does not know whether this meter is prepaid or conventional.</p><p class="do">Tell your supervisor with the meter number. The office must fix the meter record first.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>DECOMMISSIONED meters cannot be inspected</q><q>Only FIELD, CONNECTED, DISCONNECTED, or REMOVED meters can be inspected</q><p>The meter is not in a state that can be inspected.</p><p class="do">If the meter is really there, tell your supervisor with the meter number.</p></div><div class="err-entry"><span class="kind">On the phone</span><q>Not Allowed</q><q>Only MNG, SPV(MNC), FWR, or SPV(SUBC) can start this lifecycle action.</q><p>Your role cannot start this work.</p><p class="do">Tell your supervisor.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>Only FWR or SPV actors can originate this lifecycle transaction from the field</q><p>Only a field worker or supervisor can start work in the field.</p><p class="do">Tell your supervisor. A manager issues the work instead.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>Inspection instruction is required</q><p>The office instruction was issued with no words.</p><p class="do">Tell your supervisor: the instruction must be issued again.</p></div><div class="err-entry"><span class="kind">On the phone</span><q>Offline</q><q>You are offline. Use SAVE to keep this INSP execution form locally, then submit when online.</q><p>No signal.</p><p class="do">Press SAVE. Submit when you have signal.</p></div><div class="err-entry"><span class="kind">After submit</span><q>Saved on this phone, not sent</q><q>You are offline, so the inspection was NOT sent. It is saved on this phone. When you are online, open it from Admin → Offline Submission Forms and press SUBMIT.</q><q>The network was too slow, so the inspection was NOT sent.</q><p>The inspection is on the phone only. It does not send itself. If your finding called for work, the window adds: the disconnection cannot start until the inspection has been sent.</p><p class="do">When you have signal, open Admin → Offline Submission Forms and press SUBMIT. Then do the disconnection or removal.</p></div><div class="err-entry"><span class="kind">On the phone</span><q>Offline: nothing was sent</q><q>You are offline. Press SAVE to keep this inspection on the phone, then submit it when you are online.</q><p>You pressed SUBMIT with no signal.</p><p class="do">Press SAVE, then send it from Admin → Offline Submission Forms when you are online.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>Submission Failed</q><q>Meter inspection submission failed.</q><p>Something went wrong with no better message.</p><p class="do">Try once more. If it fails again, report it with the meter number and the time.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>inspection payload is required</q><q>TRN id is required</q><q>accessData is required</q><q>assignment.instruction.code is required</q><p>The phone sent something the office did not expect, usually from an old app.</p><p class="do">Close the app and open it again to update it. Then report it with a screenshot.</p></div></div></details>
+<details class="form"><summary><span>Disconnection<small>15 messages</small></span></summary><div class="inner"><div class="err-entry"><span class="kind">On the phone</span><q>Not Eligible</q><q>Only CONNECTED meters can be disconnected.</q><q>Meter Not Eligible For Disconnection</q><p>You started the disconnection yourself on a meter iREPS does not hold as Connected. A disconnection that follows a finding is accepted on a meter recorded as Disconnected; one you start with DISC is not.</p><p class="do">Inspect it first (INSP), record what you found, and tick Disconnect meter. The disconnection then opens by itself.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>Only CONNECTED meters can be disconnected</q><p>The same, from the office.</p><p class="do">As above: inspect first, and let the disconnection open from the finding.</p></div><div class="err-entry"><span class="kind">Before submit</span><q>Disconnection instruction is required</q><p>You started the disconnection yourself and picked no instruction.</p><p class="do">Pick one: Credit Control Instruction, Illegal Connection or Non Payment.</p></div><div class="err-entry"><span class="kind">Before submit</span><q>Disconnection level is required</q><q>Valid disconnection level is required</q><p>No level chosen.</p><p class="do">Choose the level you did.</p></div><div class="err-entry"><span class="kind">Before submit</span><q>Disconnection level evidence required</q><q>Disconnection level evidence media is required</q><p>No photo of the level.</p><p class="do">Photograph the level you did.</p></div><div class="err-entry"><span class="kind">Before submit</span><q>No-access reason is required</q><q>No access photo is required</q><p>NO ACCESS without a reason or a photo.</p><p class="do">Pick the reason and take the photo.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>Disconnection instruction is required</q><q>assignment.instruction.text is required</q><p>The instruction did not reach the office, or an office instruction was issued with no words.</p><p class="do">If you started it yourself, pick the instruction. If the office issued it, tell your supervisor.</p></div><div class="err-entry"><span class="kind">On the phone</span><q>Missing DCN Instruction</q><q>DCN execution must be opened from an accepted WMS instruction.</q><p>The form was opened without an instruction or a meter.</p><p class="do">Open it from My Work Orders (office channel), or open the meter and press DISC (field channel).</p></div><div class="err-entry"><span class="kind">On the phone</span><q>Offline: nothing was sent</q><q>You are offline. Press SAVE to keep this disconnection on the phone, then submit it when you are online.</q><p>You pressed SUBMIT with no signal.</p><p class="do">Press SAVE, then send it from Admin → Offline Submission Forms when you are online.</p></div><div class="err-entry"><span class="kind">After submit</span><q>Saved on this phone, not sent</q><q>The network was too slow, so the disconnection was NOT sent. It is saved on this phone. Open it from Admin → Offline Submission Forms and press SUBMIT again.</q><p>The office did not answer in time. On the record the meter is not disconnected yet, and the form does not send itself.</p><p class="do">Open Admin → Offline Submission Forms and press SUBMIT. Do not do a second disconnection.</p></div><div class="err-entry"><span class="kind">After SAVE</span><q>Saved on this phone</q><q>This disconnection is saved on this phone only. It has NOT been sent. To send it, open it from Admin → Offline Submission Forms and press SUBMIT.</q><p>You pressed SAVE, so nothing went to the office.</p><p class="do">Send it from Admin → Offline Submission Forms before the end of the day.</p></div><div class="err-entry"><span class="kind">On the phone</span><q>Draft Save Failed</q><q>Failed to save disconnection draft locally.</q><p>The phone could not store the form. Nothing is kept.</p><p class="do">Do not leave the form. Free space on the phone and try again.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>Only FWR or SPV actors can originate this lifecycle transaction from the field</q><p>Only a field worker or supervisor can start work in the field.</p><p class="do">Tell your supervisor.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>Submission Failed</q><q>Meter disconnection submission failed.</q><p>Something went wrong with no better message.</p><p class="do">Try once more. If it fails again, report it with the meter number and the time.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>assignment.targets must contain at least one USER, TEAM, or SP target</q><q>TRN id is required</q><q>ast.astData.astId is required</q><p>The phone sent something the office did not expect.</p><p class="do">Report it with a screenshot.</p></div></div></details>
+<details class="form"><summary><span>Meter Installation<small>12 messages</small></span></summary><div class="inner"><div class="err-entry"><span class="kind">Office refused</span><q>Duplicate Meter</q><q>Meter already exists in AST collection</q><p>That meter number is already in iREPS.</p><p class="do">Check the number digit by digit. If it is right, report it: one meter cannot be in two places.</p></div><div class="err-entry"><span class="kind">On the phone</span><q>Meter number may only contain letters and digits. Remove dashes, slashes, dots or other symbols.</q><p>The number has a symbol in it.</p><p class="do">Type only the letters and digits. Keep noughts at the front.</p></div><div class="err-entry"><span class="kind">On the phone</span><q>Saved as Draft</q><q>This meter draft was saved locally. It can only be submitted after the parent premise has been successfully saved.</q><p>The premise has not reached the office yet.</p><p class="do">Sync the premise first, then the meter.</p></div><div class="err-entry"><span class="kind">On the phone</span><q>Saved Offline</q><q>No internet connection. This submission was saved locally and will sync automatically when online.</q><p>No signal. It goes by itself later.</p><p class="do">Carry on. Check the queue before the end of the day.</p></div><div class="err-entry"><span class="kind">On the phone</span><q>Saved Locally</q><q>The submission is taking too long. Your meter data has been safely saved locally and can be submitted again later.</q><p>The office did not answer in time. The work is safe on the phone.</p><p class="do">Do not capture the meter again. It sends from the queue.</p></div><div class="err-entry"><span class="kind">On the phone</span><q>Draft Save Failed</q><q>Failed to save meter Installation draft locally.</q><p>The phone could not store the form. Nothing is kept.</p><p class="do">Do not leave the form. Free space on the phone and try again.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>A valid saved premise id is required before meter installation can be submitted</q><q>Parent premise does not exist in premises collection</q><p>The premise is not in the office system.</p><p class="do">Sync the premise. If it was deleted, make it again.</p></div><div class="err-entry"><span class="kind">On the phone</span><q>Permission Denied</q><q>Location is required for forensic evidence.</q><p>iREPS is not allowed to use the phone's location.</p><p class="do">Allow location for iREPS in the phone's settings.</p></div><div class="err-entry"><span class="kind">On the phone</span><q>Error</q><q>Premise data not found.</q><p>The form lost the premise.</p><p class="do">Open the premise again and start again.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>Meter number photo is required</q><q>Anomaly photo is required</q><q>Electricity meter placement is required</q><q>Meter category must be Normal or Bulk</q><q>Meter type must be prepaid or conventional</q><q>Electricity meter phase must be single or three</q><p>A box or photo reached the office empty or wrong.</p><p class="do">Open the form again and fix the box named.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>Failed to submit meter installation transaction</q><p>Something went wrong with no better message.</p><p class="do">Try once more. If it fails again, report it with the meter number and the time.</p></div><div class="err-entry"><span class="kind">After submit</span><q>Meter removed</q><q>Meter removed. The new meter still needs to be installed: open Meter Installation at this premise.</q><p>After a Replace meter removal, the installation could not open by itself.</p><p class="do">Open the premise, press Install, choose ELEC. Nothing is lost.</p></div></div></details>
+<details class="form"><summary><span>Meter Reconnection<small>2 messages</small></span></summary><div class="inner"><div class="err-entry"><span class="kind">Before submit</span><q>The photo showing the supply is back on is required</q><p>No photo of the reconnected supply. That photo is the confirmation.</p><p class="do">Photograph the supply back on and safe, then submit.</p></div><div class="err-entry"><span class="kind">Gone</span><q>Supply reconnected answer is required</q><q>Supply must be confirmed as reconnected before submit</q><p>These two can no longer happen: the Yes/No question is gone.</p><p class="do">Nothing to do. If you ever see them, the phone is running an old app: close it and open it again.</p></div></div></details>
+<details class="form"><summary><span>Meter Discovery · normalisation<small>11 messages</small></span></summary><div class="inner"><p class="how">Every other Meter Discovery message is on <a href="https://claude.ai/artifact/GWgWkiECF5J53KTYGycYxb">the Meter Discovery errors page</a>.</p><div class="err-entry"><span class="kind">Before submit</span><q>Say why the meter was not disconnected.</q><q>Say why the meter was not replaced.</q><p>The finding needs an action, and it is not ticked and has no reason.</p><p class="do">Tick the action, or pick the reason.</p></div><div class="err-entry"><span class="kind">Before submit</span><q>Choose one: disconnect or replace.</q><p>Both jobs are ticked.</p><p class="do">Untick one.</p></div><div class="err-entry"><span class="kind">Before submit</span><q>None cannot be used with another action.</q><p>None is ticked with work you did.</p><p class="do">Untick None.</p></div><div class="err-entry"><span class="kind">Before submit</span><q>Type the reason.</q><p>Other with nothing typed.</p><p class="do">Type the real reason.</p></div><div class="err-entry"><span class="kind">Before submit</span><q>Photo proof of Normalisation required</q><p>A fix on the spot without a photo.</p><p class="do">Photograph what you fixed.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>The work was done, so there is no reason for not acting.</q><p>The action is ticked and a reason is given too.</p><p class="do">Clear the reason.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>A reason for not acting belongs to a finding that needs action.</q><p>Meter Ok with a reason.</p><p class="do">Clear the reason.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>This action is not on the list.</q><p>An old word reached the office, usually from an app that was not updated.</p><p class="do">Close the app and open it again to update it.</p></div><div class="err-entry"><span class="kind">On the phone</span><q>Meter saved, disconnection still to do</q><q>The meter is not ready yet. Open the disconnection from the meter card on the ASTs screen.</q><p>The meter took longer than 20 seconds to be ready. The meter is saved.</p><p class="do">Open the meter and press DISC.</p></div><div class="err-entry"><span class="kind">On the phone</span><q>Saved Offline</q><q>No internet connection. This meter was saved on the phone and will be sent when you are online. The disconnection cannot be started until it has been sent.</q><p>No signal. The meter waits on the phone.</p><p class="do">Get signal. Once the meter has been sent, open it and press DISC.</p></div><div class="err-entry"><span class="kind">For managers</span><q>Meter saved</q><q>This meter still needs to be disconnected. Issue the disconnection to a field worker from the meter card (DISC).</q><p>A manager does not do field work.</p><p class="do">Issue the disconnection to a field worker.</p></div></div></details>
+<details class="form"><summary><span>Meter Removal<small>18 messages</small></span></summary><div class="inner"><div class="err-entry"><span class="kind">Before submit</span><q>Removal instruction is required</q><p>You started the removal yourself and picked no instruction.</p><p class="do">Pick one: Remove meter or Replace meter.</p></div><div class="err-entry"><span class="kind">Before submit</span><q>The photo showing the meter is out is required</q><p>No photo of the removed meter. That photo is the confirmation.</p><p class="do">Photograph the meter out of the wall. If it is still in place, do not submit a removal: give the reason on the finding instead.</p></div><div class="err-entry"><span class="kind">Before submit</span><q>The reading, or why it could not be captured, is required</q><p>Neither a reading nor a reason.</p><p class="do">Type the Remaining Credit (prepaid) or the Meter Reading (conventional), or pick why you could not read it.</p></div><div class="err-entry"><span class="kind">Before submit</span><q>Remaining credit photo is required</q><q>Removal meter reading evidence required</q><p>You typed a reading but did not photograph it.</p><p class="do">Photograph the display showing what you typed.</p></div><div class="err-entry"><span class="kind">Before submit</span><q>No-access reason is required</q><q>No access photo is required</q><p>NO ACCESS without a reason or a photo.</p><p class="do">Pick the reason and take the photo.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>Remaining credit, or why it could not be captured, is required</q><q>Meter reading or no-reading reason is required</q><p>The reading reached the office empty with no reason.</p><p class="do">Open the form again, type the reading or pick why.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>Meter reading must be numeric</q><q>Token reading must be numeric</q><p>The reading is not a number.</p><p class="do">Digits only, with a decimal point if you need one.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>Prepaid meters must use token reading, not meter reading</q><q>Conventional meters must use meter reading, not token reading</q><p>The wrong kind of reading was sent for this meter.</p><p class="do">Report it with the meter number: the meter record may say the wrong kind.</p></div><div class="err-entry"><span class="kind">On the phone</span><q>Meter Not Eligible For Removal</q><q>Only FIELD, CONNECTED, or DISCONNECTED meters can be removed.</q><p>The meter is in a state that cannot be removed. REM is only offered on a meter that is still there, so you see this only when the record changed while you were working.</p><p class="do">Sync the phone and open the meter again. If it still refuses, tell your supervisor with the meter number.</p></div><div class="err-entry"><span class="kind">On the phone</span><q>Missing REMOVAL Instruction</q><q>REMOVAL execution must be opened from an accepted WMS instruction.</q><p>The form was opened without an instruction or a meter.</p><p class="do">Open it from My Work Orders (office channel), or open the meter and press REM (field channel).</p></div><div class="err-entry"><span class="kind">After submit</span><q>Meter removed</q><q>Meter removed. The new meter still needs to be installed: open Meter Installation at this premise.</q><p>The removal went through, but the installation could not open by itself.</p><p class="do">Open the premise, press Install and choose ELEC. Nothing is lost.</p></div><div class="err-entry"><span class="kind">On the phone</span><q>Offline: nothing was sent</q><q>You are offline. Press SAVE to keep this removal on the phone, then submit it when you are online.</q><p>You pressed SUBMIT with no signal.</p><p class="do">Press SAVE, then send it from Admin → Offline Submission Forms when you are online.</p></div><div class="err-entry"><span class="kind">After submit</span><q>Saved on this phone, not sent</q><q>The network was too slow, so the removal was NOT sent. It is saved on this phone. Open it from Admin → Offline Submission Forms and press SUBMIT again. The new meter cannot be installed until the removal has been sent.</q><p>The removal is on the phone only and does not send itself.</p><p class="do">Open Admin → Offline Submission Forms and press SUBMIT. The new meter waits until it has gone.</p></div><div class="err-entry"><span class="kind">After SAVE</span><q>Saved on this phone</q><q>This removal is saved on this phone only. It has NOT been sent. To send it, open it from Admin → Offline Submission Forms and press SUBMIT.</q><p>You pressed SAVE, so nothing went to the office.</p><p class="do">Send it from Admin → Offline Submission Forms before the end of the day.</p></div><div class="err-entry"><span class="kind">On the phone</span><q>Draft Save Failed</q><q>Failed to save removal draft locally.</q><p>The phone could not store the form. Nothing is kept.</p><p class="do">Do not leave the form. Free space on the phone and try again.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>Only FWR or SPV actors can originate this lifecycle transaction from the field</q><p>Only a field worker or supervisor can start work in the field.</p><p class="do">Tell your supervisor. A manager issues the removal instead.</p></div><div class="err-entry"><span class="kind">For managers</span><q>Inspection sent</q><q>This meter still needs to be replaced. Issue the removal to a field worker from the meter card (REM).</q><p>A manager does not do field work.</p><p class="do">Issue the removal to a field worker.</p></div><div class="err-entry"><span class="kind">Office refused</span><q>Submission Failed</q><q>Meter removal submission failed.</q><p>Something went wrong with no better message.</p><p class="do">Try once more. If it fails again, report it with the meter number and the time.</p></div></div></details>
+  </section>
+
+  <p class="foot">Written from the app's own code on 22 and 23 September 2026, for the release of Sunday 27 September (rules MN-R001 1.4.0 and UI-R003 1.4.0). Meter Discovery has its own pages: <a href="https://claude.ai/artifact/3ATyax5CnEhpHsxYpNAdvT">fields</a> · <a href="https://claude.ai/artifact/DUKvC3Khiibof3fJe7QMxu">rules</a> · <a href="https://claude.ai/artifact/GWgWkiECF5J53KTYGycYxb">errors</a>. A message that is not here? Send a screenshot to the office and it gets added.</p>
+</main>
+
+<script>
+window.FLOWS = [
+{
+  name:"Meter Inspection", short:"The whole form, Meter Ok",
+  intro:"From the meter to Submit. <b>From the office?</b> Accept the instruction in My Work Orders and open it there: the form is the same.",
+  steps:[
+    {title:"Meter 04040404040", tag:"CONNECTED · CONVENTIONAL", rows:[
+      {l:"Meter No", v:"04040404040"},{l:"Status", v:"Connected"},
+      {l:"Actions", btns:["COMM","*INSP","DISC","RECON","REM","MREAD"]}],
+     cap:"Field channel: you start it yourself. Open the meter and press INSP. No office instruction is needed."},
+    {title:"Meter Inspection", tag:"Meter 04040404040", rows:[
+      {l:"Meter No", v:"04040404040"},{l:"Current Status", v:"Connected"},
+      {l:"Access Outcome", btns:["*ACCESS YES","NO ACCESS"], s:"focus"}],
+     cap:"Can you get to the meter? ACCESS YES carries on. NO ACCESS: pick the reason, take the photo, submit. The meter does not change."},
+    {title:"Meter Inspection", tag:"Inspection Capture", rows:[
+      {l:"Meter Number", x:"Existing iREPS value: 04040404040", v:"", c:["*SAME"], s:"focus"},
+      {l:"Manufacturer", x:"Existing iREPS value: NAv", v:"", c:["SAME"]},
+      {l:"Meter Model / Name", x:"Existing iREPS value: CL-2000", v:"", c:["SAME"]}],
+     cap:"Every box starts empty. Above it is what iREPS holds. The same on the meter? Press SAME."},
+    {title:"Meter Inspection", tag:"Inspection Capture", rows:[
+      {l:"Meter Number", x:"Existing iREPS value: 04040404040", v:"04040404040", c:["DELETE"]},
+      {l:"Manufacturer", x:"Existing iREPS value: NAv", v:"NAv", c:["DELETE"], s:"focus"},
+      {l:"Meter Model / Name", x:"Existing iREPS value: CL-2000", v:"", c:["SAME"]}],
+     cap:"SAME copies what iREPS holds. When iREPS holds nothing, SAME puts NAv, and NAv is accepted."},
+    {title:"Meter Inspection", tag:"Inspection Capture", rows:[
+      {l:"Placement", x:"Existing iREPS value: Kiosk", v:"Boundary Wall", c:["DIFFERENT","DELETE"], s:"focus"},
+      {l:"Phase", x:"Existing iREPS value: Single", v:"Single", c:["DELETE"]}],
+     cap:"Different on the meter? Press DELETE, then pick or type what you really see. The app marks it DIFFERENT — and what you confirm is written to the meter, so put in what is really there."},
+    {title:"Meter Inspection", tag:"Inspection Capture", rows:[
+      {l:"CB Size (Amps)", x:"Existing iREPS value: 60", v:"", c:["SAME"]},
+      {l:"CB Comment", v:"Circuit Breaker Missing", x:"Select why", s:"focus"},
+      {l:"Seal Number", x:"Existing iREPS value: NAv", v:"SE-44821", c:["*PHOTO","DELETE"]}],
+     cap:"Record a size, a seal number or a keypad serial and you photograph it too. No circuit breaker, seal or keypad? DELETE the box and pick why, for example Circuit Breaker Missing — then there is nothing to photograph. CB size is typed in amps; the keypad serial is only asked on prepaid meters."},
+    {title:"Meter Inspection", tag:"Inspection Capture", rows:[
+      {l:"Current Status", x:"Existing iREPS value: Connected", v:"Connected", c:["DELETE"], s:"focus"},
+      {l:"Meter GPS", v:"Captured · 3 m from iREPS"}],
+     cap:"Current Status is what you find now: Connected or Disconnected. When you submit, the meter takes this status."},
+    {title:"Meter Inspection", tag:"Anomaly · Normalisation", rows:[
+      {l:"Meter Anomaly", v:"Meter Ok"},{l:"Anomaly Detail", v:"Operationally Ok"},
+      {l:"Normalisation", t:["+None","~Tamper removed","~Keypad normalised","~Service point completed","~Meter registered"], s:"choose focus"}],
+     cap:"Meter Ok: None stays ticked. Fixed something on the spot? Tick it and take the normalisation photo. A Bridge or Bypass Suspicion needs an anomaly photo."},
+    {title:"Meter Inspection", tag:"Conventional Meter Reading", rows:[
+      {l:"Meter Reading", v:"018452", c:["PHOTO"], s:"focus"},
+      {l:"No Reading Reason", v:"", x:"Only when there is no reading"}],
+     cap:"Conventional meter: type the reading and photograph it, or pick why there is no reading. Prepaid meters have no reading here."},
+    {title:"Meter Inspection", tag:"SUBMIT INSP", rows:[],
+     dialog:{h:"Submit this inspection?", p:"Meter 04040404040. Status found: Connected. Finding: Meter Ok. Nothing opens after this.", btns:["GO BACK","*SUBMIT"]},
+     cap:"Press SUBMIT INSP. The app shows you what it is about to send, and what opens next. Read it, then press SUBMIT."},
+    {title:"Meter Inspection", tag:"SUBMIT INSP", rows:[],
+     dialog:{h:"Confirm Differences", p:"iREPS found 1 field difference(s). Placement. iREPS: Kiosk. Captured: Boundary Wall. Confirm only if these are true field differences and not capture mistakes.", btns:["GO BACK AND CORRECT","*CONFIRM AND SUBMIT"]},
+     cap:"When something differs from iREPS you get this window instead: it lists every difference. Confirm only real differences, never a typing mistake."},
+    {title:"Meter Inspection", tag:"Sending", rows:[],
+     dialog:{spin:true, h:"SYNCING", p:"Submitting meter inspection. DO NOT CLOSE THE APP OR NAVIGATE AWAY"},
+     cap:"Wait while it sends. Do not close the app."},
+    {title:"Meter Inspection", tag:"Sent", rows:[],
+     dialog:{h:"Inspection sent", p:"Meter 04040404040 is recorded as Connected.", btns:["*OK"]},
+     cap:"The result window tells you it was sent, and what the meter now is. What you confirmed is now the meter's record: open the card and it reads the way you left it."},
+    {title:"Meter Inspection", tag:"No signal", rows:[],
+     dialog:{h:"Saved on this phone, not sent", p:"You are offline, so the inspection was NOT sent. It is saved on this phone. When you are online, open it from Admin \u2192 Offline Submission Forms and press SUBMIT.", btns:["*OK"]},
+     cap:"No signal or too slow: the inspection waits on the phone. It does NOT send itself. Open Admin \u2192 Offline Submission Forms and press SUBMIT."}
+  ]
+},
+{
+  name:"Disconnect meter", short:"Bypass found on an inspection",
+  intro:"You find the meter bypassed. The inspection records it, and the disconnection opens by itself. It works the same on a Meter Discovery.",
+  steps:[
+    {title:"Meter Inspection", tag:"Anomaly", rows:[
+      {l:"Meter Anomaly", v:"Illegally Connected"},{l:"Anomaly Detail", v:"Straight Connection (Meter Bypassed)"},
+      {l:"Anomaly photo", v:"", c:["*REQUIRED"], s:"focus"}],
+     cap:"Record what you found: Illegally Connected, and the detail. Take the anomaly photo: it is required."},
+    {title:"Meter Inspection", tag:"Normalisation", rows:[
+      {l:"Normalisation", t:["~Disconnect meter","~Replace meter","~Tamper removed","~Keypad normalised","~Service point completed","~Meter registered"], s:"choose focus"}],
+     note:{k:"warn", t:"This meter needs to be disconnected. Tick it, or say below why it was not done."},
+     cap:"None is no longer offered. Tick Disconnect meter, or say why you could not."},
+    {title:"Meter Inspection", tag:"Normalisation", rows:[
+      {l:"Normalisation", t:["+Disconnect meter","~Replace meter","~Tamper removed","~Keypad normalised","~Service point completed","~Meter registered"], s:"choose"}],
+     note:{k:"info", t:"Disconnect meter recorded."},
+     cap:"No normalisation photo for this. The disconnection that follows carries the proof."},
+    {title:"Meter Inspection", tag:"SUBMIT INSP", rows:[],
+     dialog:{h:"Submit this inspection?", p:"Meter 04040404040. Status found: Connected. Finding: Illegally Connected. Next: the disconnection form opens.", btns:["GO BACK","*SUBMIT"]},
+     cap:"Before it sends, the app names the finding and tells you the disconnection opens next."},
+    {title:"Meter Inspection", tag:"Sent", rows:[],
+     dialog:{h:"Inspection sent", p:"The disconnection form opens now.", btns:["*OK"]},
+     cap:"Sent. Press OK and the disconnection opens."},
+    {title:"Disconnect 04040404040", tag:"CONNECTED", rows:[
+      {l:"Disconnection Instruction", v:"Illegal Connection", c:["LOCKED"], s:"locked focus"},
+      {l:"From", v:"Meter Inspection", s:"locked"},
+      {l:"Site Access Outcome", btns:["*ACCESS YES","NO ACCESS"]}],
+     cap:"The disconnection opens by itself. The instruction is already filled in, Illegal Connection, and cannot be changed. From shows it came from your inspection."},
+    {title:"Disconnect 04040404040", tag:"Disconnection Level", rows:[
+      {l:"Level", v:"Level 2 - Remove wire on circuit breaker", s:"choose focus",
+       x:"Level 1 - Flip circuit breaker only · Level 2 - Remove wire on circuit breaker · Level 3 - Remove whole supply cable"},
+      {l:"Disconnection Level Photo", v:"", c:["REQUIRED"]}],
+     cap:"You choose the level you actually did on site."},
+    {title:"Disconnect 04040404040", tag:"Disconnection Level", rows:[
+      {l:"Level", v:"Level 2 - Remove wire on circuit breaker"},
+      {l:"Disconnection Level Photo", v:"", c:["*REQUIRED"], s:"focus"}],
+     cap:"Photograph the level you did. Without it the form will not submit."},
+    {title:"Disconnect 04040404040", tag:"SUBMIT DISCONNECTION", rows:[],
+     dialog:{h:"Submit this disconnection?", p:"Meter 04040404040. Instruction: Illegal Connection. Level: Level 2 - Remove wire on circuit breaker.", btns:["GO BACK","*SUBMIT"]},
+     cap:"The app shows what it is about to send. Check the level, then press SUBMIT."},
+    {title:"Disconnect 04040404040", tag:"Sent", rows:[],
+     dialog:{h:"Disconnection sent", p:"Meter 04040404040 is now Disconnected.", btns:["*OK"]},
+     cap:"The meter is now Disconnected, and this disconnection is linked to your inspection."}
+  ]
+},
+{
+  name:"Found live again", short:"The re-offender",
+  intro:"iREPS says the meter is Disconnected, but it is live again. Record what you found, then disconnect it again.",
+  steps:[
+    {title:"Meter 04040404040", tag:"DISCONNECTED · PRE-PAID", rows:[
+      {l:"Status", v:"Disconnected"},
+      {l:"Actions", btns:["COMM","*INSP","DISC","RECON","REM","MREAD"]}],
+     cap:"The meter shows Disconnected but it is live. Do not press RECON: that is for a reconnection. Press INSP."},
+    {title:"Meter Inspection", tag:"Inspection Capture", rows:[
+      {l:"Current Status", x:"Existing iREPS value: Disconnected", v:"Connected", c:["DELETE"], s:"focus"}],
+     cap:"Current Status: record what you found, Connected. The meter takes this status."},
+    {title:"Meter Inspection", tag:"Anomaly · Normalisation", rows:[
+      {l:"Meter Anomaly", v:"Illegally Connected"},{l:"Anomaly Detail", v:"Bridge Wire On The Meter"},
+      {l:"Normalisation", t:["+Disconnect meter","~Replace meter","~Tamper removed"], s:"choose focus"}],
+     cap:"Anomaly: Illegally Connected. Tick Disconnect meter. Take the anomaly photo, then submit."},
+    {title:"Disconnect 04040404040", tag:"CONNECTED", rows:[
+      {l:"Disconnection Instruction", v:"Illegal Connection", c:["LOCKED"], s:"locked"},
+      {l:"From", v:"Meter Inspection", s:"locked"},
+      {l:"Level", v:"Level 3 - Remove whole supply cable", s:"choose focus"},
+      {l:"Disconnection Level Photo", v:"Taken", c:["PHOTO"]}],
+     cap:"The disconnection opens by itself. Choose the level, photograph it, submit."},
+    {title:"Disconnect 04040404040", tag:"Sent", rows:[],
+     dialog:{h:"Disconnection sent", p:"Meter 04040404040 is now Disconnected.", btns:["*OK"]},
+     cap:"Disconnected again, on the record."},
+    {title:"What the office sees", tag:"Not a phone screen", rows:[
+      {l:"Earlier", v:"Disconnection · meter Disconnected"},
+      {l:"Today", v:"Meter Inspection · found Connected · Illegally Connected"},
+      {l:"Today, linked to the inspection", v:"Disconnection · Level 3"}],
+     note:{k:"ok", t:"Each step has its own number and its own photos, linked to the one before."},
+     cap:"Each step has its own record and photos, linked together. That is the proof of a repeat offender."}
+  ]
+},
+{
+  name:"Could not do it", short:"A reason instead of the action",
+  intro:"You found a bypass but could not disconnect. Say why. Nothing opens after it.",
+  steps:[
+    {title:"Meter Inspection", tag:"Normalisation", rows:[
+      {l:"Meter Anomaly", v:"Illegally Connected"},
+      {l:"Normalisation", t:["~Disconnect meter","~Replace meter","~Tamper removed"], s:"choose"},
+      {l:"Reason for not acting", v:"Threatened or chased away", s:"choose focus",
+       x:"Threatened or chased away · Customer refused · Unsafe to work on · Meter could not be reached · No meter available to replace · Office said to leave it · Other"}],
+     note:{k:"warn", t:"This meter needs to be disconnected. Tick it, or say below why it was not done."},
+     cap:"Leave Disconnect meter unticked and pick the reason. No photo is needed for the reason."},
+    {title:"Meter Inspection", tag:"Normalisation", rows:[
+      {l:"Reason for not acting", v:"Other", s:"choose"},
+      {l:"Type the reason", v:"Dog loose in the yard", s:"focus"}],
+     cap:"Other? Type the reason. Other on its own is not accepted."},
+    {title:"Meter Inspection", tag:"SUBMIT INSP", rows:[],
+     dialog:{h:"Submit this inspection?", p:"Meter 04040404040. Status found: Connected. Finding: Illegally Connected. Nothing opens after this.", btns:["GO BACK","*SUBMIT"]},
+     cap:"The window says it plainly: nothing opens after this. That is what a reason means."},
+    {title:"Meter Inspection", tag:"Sent", rows:[],
+     dialog:{h:"Inspection sent", p:"Meter 04040404040 is recorded as Connected.", btns:["*OK"]},
+     cap:"Sent. The office sees your reason and decides what happens next."}
+  ]
+},
+{
+  name:"From a Meter Discovery", short:"New meter, illegally connected",
+  intro:"On a Meter Discovery the meter is created first, so the disconnection waits a few seconds.",
+  steps:[
+    {title:"Meter Discovery", tag:"Anomalies & Actions", rows:[
+      {l:"Anomaly", v:"Illegally Connected"},{l:"Anomaly Detail", v:"Straight Connection (Meter Bypassed)"},
+      {l:"Normalisation", t:["+Disconnect meter","~Replace meter","~Tamper removed"], s:"choose focus"}],
+     cap:"The same as an inspection: Illegally Connected, tick Disconnect meter, take the anomaly photo, submit."},
+    {title:"Meter Discovery", tag:"Sent", rows:[],
+     dialog:{spin:true, h:"METER SAVED", p:"Preparing the disconnection…"},
+     cap:"The meter is saved first. Wait a few seconds while the app gets it ready."},
+    {title:"Disconnect 04040404041", tag:"CONNECTED", rows:[
+      {l:"Disconnection Instruction", v:"Illegal Connection", c:["LOCKED"], s:"locked focus"},
+      {l:"From", v:"Meter Discovery", s:"locked"},
+      {l:"Level", v:"", x:"Choose the level you did"}],
+     cap:"The disconnection opens by itself, locked to Illegal Connection, from Meter Discovery. Choose the level, photograph it, submit."},
+    {title:"Meter Discovery", tag:"If it takes too long", rows:[],
+     dialog:{h:"Meter saved, disconnection still to do", p:"The meter is not ready yet. Open the disconnection from the meter card on the ASTs screen.", btns:["*OK"]},
+     cap:"Not ready within 20 seconds? Nothing is lost. Open the meter and press DISC."},
+    {title:"Meter Discovery", tag:"No signal", rows:[],
+     dialog:{h:"Saved Offline", p:"No internet connection. This meter was saved on the phone and will be sent when you are online. The disconnection cannot be started until it has been sent.", btns:["*OK"]},
+     cap:"No signal: the meter waits on the phone and the disconnection cannot start. Once the meter has been sent, open it and press DISC."}
+  ]
+},
+{
+  name:"Disconnection on its own", short:"Field channel, DISC",
+  intro:"No finding in front of it. <b>From the office?</b> Accept it in My Work Orders: the office's instruction is already filled in.",
+  steps:[
+    {title:"Meter 04040404040", tag:"CONNECTED · PRE-PAID", rows:[
+      {l:"Status", v:"Connected"},
+      {l:"Actions", btns:["COMM","INSP","*DISC","RECON","REM","MREAD"]}],
+     cap:"Press DISC. Only a Connected meter can be disconnected."},
+    {title:"Disconnect 04040404040", tag:"CONNECTED", rows:[
+      {l:"Disconnection Instruction", v:"Non Payment", s:"choose focus", x:"Credit Control Instruction · Illegal Connection · Non Payment · Other"},
+      {l:"Instruction Notes", v:"", x:"Optional"},
+      {l:"Instruction Photo", v:"", x:"Optional. Capture the written instruction if available."}],
+     cap:"Pick the instruction you are working to: it is now required. Notes and a photo of a written instruction stay optional."},
+    {title:"Disconnect 04040404040", tag:"Site Access Outcome", rows:[
+      {l:"Site Access Outcome", btns:["*ACCESS YES","NO ACCESS"]},
+      {l:"Level", v:"Level 1 - Flip circuit breaker only", s:"choose focus"},
+      {l:"Disconnection Level Photo", v:"Taken", c:["PHOTO"]}],
+     cap:"ACCESS YES: choose the level and photograph it. NO ACCESS: reason and photo, and the meter stays Connected."},
+    {title:"Disconnect 04040404040", tag:"SUBMIT DISCONNECTION", rows:[],
+     dialog:{h:"Submit this disconnection?", p:"Meter 04040404040. Instruction: Non Payment. Level: Level 1 - Flip circuit breaker only.", btns:["GO BACK","*SUBMIT"]},
+     cap:"Check what it is about to send, then SUBMIT."},
+    {title:"Disconnect 04040404040", tag:"Sent", rows:[],
+     dialog:{h:"Disconnection sent", p:"Meter 04040404040 is now Disconnected.", btns:["*OK"]},
+     cap:"The meter is now Disconnected."}
+  ]
+},
+{
+  name:"Meter off, supply stolen", short:"The bypass",
+  intro:"The meter is off but the house has power: the supply never passes through the meter. You can still cut it.",
+  steps:[
+    {title:"Meter Inspection", tag:"Inspection Capture", rows:[
+      {l:"Current Status", x:"Existing iREPS value: Disconnected", v:"Disconnected", c:["DELETE"], s:"focus"},
+      {l:"Meter Anomaly", v:"Illegally Connected"},
+      {l:"Anomaly Detail", v:"Straight Connection (Meter Bypassed)"}],
+     cap:"Record what you found: the meter is off, Disconnected, and the supply goes around it. Photograph it."},
+    {title:"Meter Inspection", tag:"Normalisation", rows:[
+      {l:"Normalisation", t:["+Disconnect meter","~Replace meter","~Tamper removed"], s:"choose focus"}],
+     cap:"Tick Disconnect meter, the same as always."},
+    {title:"Disconnect 04040404040", tag:"DISCONNECTED", rows:[
+      {l:"Disconnection Instruction", v:"Illegal Connection", c:["LOCKED"], s:"locked"},
+      {l:"From", v:"Meter Inspection", s:"locked"},
+      {l:"Level", v:"Level 3 - Remove whole supply cable", s:"choose focus"}],
+     note:{k:"info", t:"A disconnection that follows a finding is accepted on a meter that is already off."},
+     cap:"The disconnection opens even though the meter is recorded as Disconnected. Cut the illegal supply and record the level you did."},
+    {title:"Disconnect 04040404040", tag:"Sent", rows:[],
+     dialog:{h:"Disconnection sent", p:"Meter 04040404040 is now Disconnected.", btns:["*OK"]},
+     cap:"Started on its own with DISC, this would be refused: only a Connected meter can be disconnected. After a finding it goes through."}
+  ]
+},
+{
+  name:"Replace meter", short:"Remove the old, install the new",
+  intro:"A damaged or faulty meter. One instruction, Replace meter, in two stages: the removal, then the installation.",
+  steps:[
+    {title:"Meter Inspection", tag:"Anomaly \u00b7 Normalisation", rows:[
+      {l:"Meter Anomaly", v:"Meter Damaged"},{l:"Anomaly Detail", v:"Meter Button(s) Not Working"},
+      {l:"Normalisation", t:["+Replace meter","~Disconnect meter","~Tamper removed"], s:"choose focus"}],
+     cap:"Damaged or faulty: tick Replace meter. Take the anomaly photo. No normalisation photo here \u2014 the removal and the installation carry the proof."},
+    {title:"Meter Inspection", tag:"SUBMIT INSP", rows:[],
+     dialog:{h:"Submit this inspection?", p:"Meter 04298620077. Status found: Connected. Finding: Meter Damaged. Next: the removal form opens. The new meter goes in after it.", btns:["GO BACK","*SUBMIT"]},
+     cap:"The window tells you both stages are coming."},
+    {title:"Meter Inspection", tag:"Sent", rows:[],
+     dialog:{h:"Inspection sent", p:"The removal form opens now. The new meter goes in after it.", btns:["*OK"]},
+     cap:"Press OK and the removal opens."},
+    {title:"Remove 04298620077", tag:"The old meter comes out", rows:[
+      {l:"Removal Instruction", v:"Replace meter", c:["LOCKED"], s:"locked focus", x:"The new meter goes in: the installation opens after this."},
+      {l:"From", v:"Meter Inspection", s:"locked"},
+      {l:"Site Access Outcome", btns:["*ACCESS YES","NO ACCESS"]}],
+     cap:"The instruction is filled in and locked, and shows it came from your inspection."},
+    {title:"Remove 04298620077", tag:"Confirm meter removed", rows:[
+      {l:"Confirm meter removed", v:"", c:["*PHOTO REQUIRED"], s:"focus",
+       x:"Take the photo that shows the meter is out. Submitting this form confirms the removal."}],
+     cap:"One photo: the meter out of the wall. There is nothing to tick — submitting the form is the confirmation. Safety confirmed is no longer asked."},
+    {title:"Remove 04298620077", tag:"The reading", rows:[
+      {l:"Remaining Credit", v:"", x:"The credit left on the meter when it was removed. If it cannot be read, pick why."},
+      {l:"Reason Remaining Credit Could Not Be Captured", v:"Display damaged", s:"choose focus",
+       x:"Display blank / no reading \u00b7 Display damaged \u00b7 Display unreadable \u00b7 Unable to obtain balance \u00b7 Meter not responding \u00b7 Other"}],
+     cap:"Prepaid: type the credit and photograph it, or pick why you could not read it. Take that photo before you pull the meter out — it is your before picture. A conventional meter asks for Meter Reading instead, with the no-reading reasons."},
+    {title:"Remove 04298620077", tag:"SUBMIT REMOVAL", rows:[],
+     dialog:{h:"Submit this removal?", p:"Meter 04298620077. Instruction: Replace meter. Next: Meter Installation opens.", btns:["GO BACK","*SUBMIT"]},
+     cap:"Check it, then SUBMIT."},
+    {title:"Remove 04298620077", tag:"Sent", rows:[],
+     dialog:{h:"Removal sent", p:"Meter 04298620077 is removed. Meter Installation opens now.", btns:["*OK"]},
+     cap:"Press OK and the installation opens for the new meter."},
+    {title:"Meter Installation", tag:"The new meter goes in", rows:[
+      {l:"Meter Number", v:"0426777553", c:["PHOTO"], s:"focus"},
+      {l:"Manufacturer", v:"", x:"Starts empty: pick the make on the new meter"},
+      {l:"Anomaly", v:"Meter Ok"}],
+     cap:"The new meter at the same premise. Fill it in as usual and submit."},
+    {title:"What the office sees", tag:"Not a phone screen", rows:[
+      {l:"Old meter 04298620077", v:"Removed"},
+      {l:"New meter 0426777553", v:"Created, state Field \u2014 it still needs COMM"},
+      {l:"The installation", v:"Replaces the old meter, linked to the removal"},
+      {l:"Your inspection", v:"Holds the removal number and the installation number"}],
+     note:{k:"ok", t:"One finding, three records, each linked to the one before."},
+     cap:"The new meter starts in Field, the same as any new meter: it still needs COMM."}
+  ]
+},
+{
+  name:"Meter Removal", short:"Take a meter out, on its own",
+  intro:"No finding in front of it. <b>From the office?</b> Accept it in My Work Orders: the office's instruction stands.",
+  steps:[
+    {title:"Meter 04040404040", tag:"CONNECTED \u00b7 CONVENTIONAL", rows:[
+      {l:"Status", v:"Connected"},
+      {l:"Actions", btns:["COMM","INSP","DISC","RECON","*REM","MREAD"]}],
+     cap:"Press REM. A meter that is Field, Connected or Disconnected can be removed."},
+    {title:"Remove 04040404040", tag:"Removal Instruction", rows:[
+      {l:"Removal Instruction", v:"Remove meter", s:"choose focus",
+       x:"Remove meter \u2014 the meter is taken away, nothing follows \u00b7 Replace meter \u2014 the new meter goes in, the installation opens after this \u00b7 Other"},
+      {l:"Instruction Notes", v:"", x:"Optional"}],
+     cap:"Pick one, it is required. Under each choice the app tells you what will happen. Replace meter opens the installation after this one, but it is not linked to an earlier finding: the ERF and the premise tie them together."},
+    {title:"Remove 04040404040", tag:"Confirm meter removed", rows:[
+      {l:"Site Access Outcome", btns:["*ACCESS YES","NO ACCESS"]},
+      {l:"Confirm meter removed", v:"", c:["*PHOTO REQUIRED"], s:"focus",
+       x:"Take the photo that shows the meter is out. Submitting this form confirms the removal."}],
+     cap:"NO ACCESS saves the visit and nothing is removed. Otherwise: the photo of the meter out. Could not remove it at all? Do not open this form — give the reason on the finding."},
+    {title:"Remove 04040404040", tag:"The reading", rows:[
+      {l:"Meter Reading", v:"018452", c:["PHOTO"], s:"focus"},
+      {l:"No Reading Reason", v:"", x:"Only when there is no reading"}],
+     cap:"Conventional: type the reading and photograph it, or pick why there is none."},
+    {title:"Remove 04040404040", tag:"SUBMIT REMOVAL", rows:[],
+     dialog:{h:"Submit this removal?", p:"Meter 04040404040. Instruction: Remove meter. Nothing opens after this.", btns:["GO BACK","*SUBMIT"]},
+     cap:"The window says plainly that nothing follows a Remove meter."},
+    {title:"Remove 04040404040", tag:"Sent", rows:[],
+     dialog:{h:"Removal sent", p:"Meter 04040404040 is now Removed.", btns:["*OK"]},
+     cap:"The meter is Removed."}
+  ]
+}
+];
+
+
+</script>
+<script>
+(function(){
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+  /* ---------- finding → action ---------- */
+  var CHAINS = {
+    ok: [
+      ['find','Meter Ok','Operationally Ok, or a Bridge / Bypass Suspicion'],
+      ['choose','None','or a fix you did on the spot: Tamper removed, Keypad normalised, Service point completed, Meter registered'],
+      ['submit','Submit'],
+      ['stop','Nothing opens next','A fix on the spot needs a normalisation photo. A suspicion needs an anomaly photo.']
+    ],
+    ic: [
+      ['find','Illegally Connected','Straight Connection (Meter Bypassed) or Bridge Wire On The Meter'],
+      ['fork',
+        [['choose','Disconnect meter','None is no longer offered'],['submit','Submit'],['next','Meter Disconnection opens by itself','Illegal Connection, locked. You choose the level.'],['submit','Submit'],['stop','The meter is Disconnected','Linked to the finding']],
+        [['choose','A reason why not','For example: Threatened or chased away'],['submit','Submit'],['stop','The finding is saved','Nothing opens. No photo for the reason.']]
+      ]
+    ],
+    fd: [
+      ['find','Meter Faulty or Meter Damaged','For example: Meter Display Blank, Meter Burnt'],
+      ['fork',
+        [['choose','Replace meter','None is no longer offered'],['submit','Submit'],['next','Meter Removal opens by itself','Replace meter, locked'],['submit','Submit'],['next','Meter Installation opens by itself','The new meter, at the same premise, linked to the removal']],
+        [['choose','A reason why not','For example: No meter available to replace'],['submit','Submit'],['stop','The finding is saved','Nothing opens. The meter can be replaced later.']]
+      ]
+    ]
+  };
+  function nodeHtml(n){
+    if(n[0]==='submit') return '<div class="node submit"><b>'+esc(n[1])+'</b></div>';
+    return '<div class="node '+n[0]+'"><b>'+esc(n[1])+(n[3]?' <span class="coming">coming</span>':'')+'</b>'+(n[2]?'<span>'+esc(n[2])+'</span>':'')+'</div>';
+  }
+  function col(list){ return list.map(nodeHtml).join('<div class="arrow"></div>'); }
+  function drawChain(k){
+    var c = CHAINS[k], html = '';
+    c.forEach(function(n,i){
+      if(i) html += '<div class="arrow"></div>';
+      if(n[0]==='fork'){
+        html += '<div class="fork"><div><p class="lbl">You do the work</p>'+col(n[1])+'</div><div><p class="lbl">You cannot</p>'+col(n[2])+'</div></div>';
+      } else html += nodeHtml(n);
+    });
+    document.getElementById('chain').innerHTML = html;
+    document.querySelectorAll('[data-find]').forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-find')===k?'true':'false'); });
+  }
+  document.querySelectorAll('[data-find]').forEach(function(b){ b.addEventListener('click', function(){ drawChain(b.getAttribute('data-find')); }); });
+  drawChain('ic');
+
+  /* ---------- flow player ---------- */
+  var FLOWS = window.FLOWS || [];
+  var cur = 0, step = 0, timer = null;
+  var pick = document.getElementById('flowpick');
+  FLOWS.forEach(function(f,i){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.innerHTML = esc(f.name) + (f.coming?' <span class="coming">coming</span>':'') + '<small>'+esc(f.short)+'</small>';
+    b.addEventListener('click', function(){ choose(i); });
+    pick.appendChild(b);
+  });
+
+  function rowHtml(r){
+    if(r.btns){
+      return '<div class="row'+(r.s?' '+r.s:'')+'"><div class="l"><span>'+esc(r.l||'')+'</span></div><div class="btnrow">'+
+        r.btns.map(function(b){ var hot = b.charAt(0)==='*'; return '<span'+(hot?' class="hot"':'')+'>'+esc(hot?b.slice(1):b)+'</span>'; }).join('')+'</div></div>';
+    }
+    var chips = (r.c||[]).map(function(c){ var cls = c==='LOCKED'?'chip lock':(c.charAt(0)==='*'?'chip hot':'chip'); return '<span class="'+cls+'">'+esc(c.replace(/^\*/,''))+'</span>'; }).join(' ');
+    var val;
+    if(r.t){
+      val = '<div class="v ticks">'+r.t.map(function(t){ var m=t.charAt(0), cls = m==='+'?'on':(m==='-'?'gone':'off'); return '<span class="'+cls+'">'+esc(t.replace(/^[+\-~]/,''))+'</span>'; }).join('')+'</div>';
+    } else {
+      val = '<div class="v'+(r.v?'':' empty')+'">'+(r.v?esc(r.v):'empty')+'</div>';
+    }
+    return '<div class="row'+(r.s?' '+r.s.split(' ').join(' '):'')+'"><div class="l"><span>'+esc(r.l)+'</span><span>'+chips+'</span></div>'+val+(r.x?'<div class="x">'+esc(r.x)+'</div>':'')+'</div>';
+  }
+  function render(){
+    var f = FLOWS[cur]; if(!f) return;
+    var s = f.steps[step];
+    var html = '<div class="bar"><b>'+esc(s.title||f.name)+'</b>'+(s.tag?'<small>'+esc(s.tag)+'</small>':'')+'</div>';
+    html += '<div class="rows">'+(s.rows||[]).map(rowHtml).join('')+'</div>';
+    if(s.note) html += '<div class="scrnote '+s.note.k+'">'+(s.note.spin?'<span class="spinner"></span>':'')+(s.note.h?'<b>'+esc(s.note.h)+'</b>':'')+esc(s.note.t||'')+'</div>';
+    if(s.dialog){
+      html += '<div class="dialog"><div>'+(s.dialog.spin?'<span class="spinner"></span>':'')+'<b>'+esc(s.dialog.h)+'</b><p>'+esc(s.dialog.p||'')+'</p>'+
+        (s.dialog.btns?'<div class="btnrow">'+s.dialog.btns.map(function(b){ var hot=b.charAt(0)==='*'; return '<span'+(hot?' class="hot"':'')+'>'+esc(hot?b.slice(1):b)+'</span>'; }).join('')+'</div>':'')+'</div></div>';
+    }
+    document.getElementById('screen').innerHTML = html;
+    document.getElementById('stepn').textContent = 'Step '+(step+1)+' of '+f.steps.length;
+    document.getElementById('cap').textContent = s.cap;
+    var dots = document.getElementById('dots'); dots.innerHTML = '';
+    f.steps.forEach(function(_,i){
+      var d = document.createElement('button'); d.type='button'; d.setAttribute('aria-label','Step '+(i+1));
+      if(i===step) d.setAttribute('aria-current','step');
+      d.addEventListener('click', function(){ stop(); step=i; render(); });
+      dots.appendChild(d);
+    });
+    document.getElementById('back').disabled = step===0;
+    document.getElementById('next').disabled = step===f.steps.length-1;
+  }
+  function choose(i){
+    stop(); cur=i; step=0;
+    Array.prototype.forEach.call(pick.children, function(b,j){ b.setAttribute('aria-pressed', j===i?'true':'false'); });
+    document.getElementById('flowintro').innerHTML = FLOWS[i].intro || '';
+    render();
+  }
+  function stop(){ if(timer){ clearInterval(timer); timer=null; } document.getElementById('play').textContent='Play'; }
+  function play(){
+    if(timer){ stop(); return; }
+    var f = FLOWS[cur];
+    if(step===f.steps.length-1) { step=0; render(); }
+    document.getElementById('play').textContent='Pause';
+    timer = setInterval(function(){
+      if(step < FLOWS[cur].steps.length-1){ step++; render(); } else stop();
+    }, 3800);
+  }
+  document.getElementById('play').addEventListener('click', play);
+  document.getElementById('next').addEventListener('click', function(){ stop(); if(step<FLOWS[cur].steps.length-1){ step++; render(); } });
+  document.getElementById('back').addEventListener('click', function(){ stop(); if(step>0){ step--; render(); } });
+  if(FLOWS.length) choose(0);
+
+  /* ---------- error search ---------- */
+  var q = document.getElementById('q');
+  if(q){
+    var entries = Array.prototype.slice.call(document.querySelectorAll('.err-entry'));
+    var forms = Array.prototype.slice.call(document.querySelectorAll('#errors details.form'));
+    var count = document.getElementById('count');
+    function show(){
+      var t = q.value.trim().toLowerCase(), n = 0;
+      entries.forEach(function(e){ var hit = !t || e.textContent.toLowerCase().indexOf(t)>-1; e.hidden=!hit; if(hit) n++; });
+      forms.forEach(function(d){
+        var any = d.querySelectorAll('.err-entry:not([hidden])').length>0;
+        d.hidden = !!t && !any;
+        if(t && any) d.open = true;
+      });
+      count.textContent = t ? n+' of '+entries.length+' messages' : entries.length+' messages';
+    }
+    q.addEventListener('input', show); show();
+  }
+})();
+</script>

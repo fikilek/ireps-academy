@@ -1,0 +1,402 @@
+<title>iREPS Field Guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+  :root{
+    --ground:#f3f6f4; --surface:#ffffff; --ink:#1b2a27; --muted:#55645f; --line:#d6dfdb;
+    --accent:#0f7a6c; --accent-soft:#e0f1ed; --on-accent:#ffffff;
+    --choose:#534ab7; --choose-soft:#eeedfe; --choose-ink:#26215c;
+    --find:#5f5e5a; --find-soft:#efede6; --find-ink:#2c2c2a;
+    --mark:#fff1c2; --mark-ink:#5c4400;
+    --bad:#b42318; --bad-soft:#fdecea;
+    --good:#1e7a3c; --good-soft:#e3f4e8;
+    --bezel:#1f2926; --screen:#fbfcfb; --dim:rgba(20,30,28,.45);
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#111816; --surface:#18211e; --ink:#e3ebe8; --muted:#9db0aa; --line:#2c3a35;
+      --accent:#3cc0a8; --accent-soft:#16332d; --on-accent:#08201b;
+      --choose:#a9a3f5; --choose-soft:#25224a; --choose-ink:#dedcff;
+      --find:#b9b6ab; --find-soft:#2a2925; --find-ink:#ecebe5;
+      --mark:#4a3d12; --mark-ink:#ffe39a;
+      --bad:#ff8a7a; --bad-soft:#3a1916;
+      --good:#6fd58f; --good-soft:#15301d;
+      --bezel:#050807; --screen:#141c19; --dim:rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#111816; --surface:#18211e; --ink:#e3ebe8; --muted:#9db0aa; --line:#2c3a35;
+    --accent:#3cc0a8; --accent-soft:#16332d; --on-accent:#08201b;
+    --choose:#a9a3f5; --choose-soft:#25224a; --choose-ink:#dedcff;
+    --find:#b9b6ab; --find-soft:#2a2925; --find-ink:#ecebe5;
+    --mark:#4a3d12; --mark-ink:#ffe39a;
+    --bad:#ff8a7a; --bad-soft:#3a1916;
+    --good:#6fd58f; --good-soft:#15301d;
+    --bezel:#050807; --screen:#141c19; --dim:rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--ground); color:var(--ink);
+    font-family:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+    font-size:15px; line-height:1.55; margin:0;
+    padding-block:0 64px; padding-left:16px; padding-right:16px;
+  }
+  main{max-width:720px; margin:0 auto;}
+  .mono{font-family:"IBM Plex Mono",ui-monospace,monospace; font-weight:500;}
+  h1,h2,h3{font-family:"IBM Plex Sans Condensed","IBM Plex Sans","Arial Narrow",sans-serif; text-wrap:balance;}
+  h1{font-size:34px; line-height:1.1; margin:0 0 12px; font-weight:700;}
+  h2{font-size:24px; line-height:1.2; margin:0 0 6px; font-weight:700;}
+  h3{font-size:18px; margin:0 0 6px; font-weight:600;}
+  p{margin:0 0 12px;}
+  .eyebrow{font-family:"IBM Plex Mono",ui-monospace,monospace; font-weight:500; font-size:12px;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin:0 0 10px;}
+  .lede{font-size:17px; margin:0 0 10px; max-width:60ch;}
+  .who{color:var(--muted); font-style:italic; margin:0;}
+  .sub{color:var(--muted); margin:0 0 18px; max-width:60ch;}
+  a{color:var(--accent); text-underline-offset:2px;}
+  a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+
+  header.top{padding-block:32px 20px;}
+  nav.jump{
+    position:sticky; top:env(safe-area-inset-top,0px); z-index:5;
+    background:var(--ground); border-bottom:1px solid var(--line);
+    display:flex; gap:6px; overflow-x:auto; padding-block:10px; margin:0 -16px; padding-inline:16px;
+    scrollbar-width:none;
+  }
+  nav.jump::-webkit-scrollbar{display:none;}
+  nav.jump a{flex:0 0 auto; text-decoration:none; color:var(--ink); background:var(--surface);
+    border:1px solid var(--line); border-radius:999px; padding:6px 13px; font-size:14px; font-weight:600;}
+  nav.jump a:hover{border-color:var(--accent);}
+  section.part{padding-top:34px; scroll-margin-top:60px;}
+
+  .coming{display:inline-block; font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11px;
+    letter-spacing:.06em; text-transform:uppercase; background:var(--mark); color:var(--mark-ink);
+    padding:2px 7px; border-radius:3px; vertical-align:2px; font-weight:500;}
+  .formtag{display:inline-block; font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11px;
+    letter-spacing:.05em; text-transform:uppercase; color:var(--accent); font-weight:500;}
+
+  /* What's new */
+  .news{list-style:none; margin:0; padding:0; display:grid; gap:10px;}
+  .news li{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:12px 14px;}
+  .news li p{margin:2px 0 0;}
+  .news b{font-weight:600;}
+
+  /* Big picture picker */
+  .seg{display:flex; gap:6px; flex-wrap:wrap; margin:0 0 16px;}
+  .seg button{font:inherit; font-weight:600; font-size:14px; color:var(--ink); background:var(--surface);
+    border:1px solid var(--line); border-radius:999px; padding:7px 14px; cursor:pointer;}
+  .seg button[aria-pressed="true"]{background:var(--ink); color:var(--ground); border-color:var(--ink);}
+  .chain{display:flex; flex-direction:column; align-items:stretch; max-width:420px;}
+  .node{border-radius:6px; padding:10px 14px; border:1px solid;}
+  .node b{display:block; font-size:15px;}
+  .node span{font-size:13px;}
+  .node.find{background:var(--find-soft); border-color:var(--find); color:var(--find-ink);}
+  .node.choose{background:var(--choose-soft); border-color:var(--choose); color:var(--choose-ink);}
+  .node.next{background:var(--accent-soft); border-color:var(--accent); color:var(--ink);}
+  .node.stop{background:var(--surface); border-color:var(--line); color:var(--muted); border-style:dashed;}
+  .node.submit{background:var(--surface); border-color:var(--find); color:var(--ink); text-align:center; border-radius:999px; padding:6px 14px;}
+  .arrow{align-self:center; width:2px; height:18px; background:var(--find); position:relative; margin:2px 0 6px;}
+  .arrow::after{content:""; position:absolute; left:-4px; bottom:-5px; border:5px solid transparent; border-top:6px solid var(--find);}
+  .fork{display:grid; grid-template-columns:1fr 1fr; gap:10px; align-items:start;}
+  .fork > div{display:flex; flex-direction:column;}
+  .fork .lbl{font-size:12px; color:var(--muted); margin:0 0 4px; font-family:"IBM Plex Mono",ui-monospace,monospace; text-transform:uppercase; letter-spacing:.05em;}
+  .key{display:flex; gap:14px; flex-wrap:wrap; font-size:13px; color:var(--muted); margin:14px 0 0;}
+  .key i{display:inline-block; width:12px; height:12px; border-radius:3px; border:1px solid; vertical-align:-1px; margin-right:5px;}
+
+  /* Flow player */
+  .flowpick{display:flex; gap:6px; overflow-x:auto; padding-bottom:6px; margin:0 0 14px; scrollbar-width:thin;}
+  .flowpick button{flex:0 0 auto; font:inherit; font-size:14px; font-weight:600; color:var(--ink);
+    background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:8px 12px; cursor:pointer; text-align:left;}
+  .flowpick button small{display:block; font-weight:400; color:var(--muted); font-size:12px;}
+  .flowpick button[aria-pressed="true"]{border-color:var(--accent); box-shadow:inset 0 0 0 1px var(--accent);}
+  .player{display:grid; gap:14px; justify-items:center;}
+  .phone{width:100%; max-width:330px; background:var(--bezel); border-radius:30px; padding:12px 10px 16px; position:relative;}
+  .phone::before{content:""; display:block; width:60px; height:5px; border-radius:3px; background:#3a4642; margin:0 auto 10px;}
+  .screen{background:var(--screen); border-radius:18px; overflow:hidden; min-height:470px; position:relative; display:flex; flex-direction:column;}
+  .bar{background:var(--accent); color:var(--on-accent); padding:10px 14px;}
+  .bar b{display:block; font-size:15px; line-height:1.25;}
+  .bar small{font-size:12px; opacity:.9;}
+  .rows{padding:10px 12px 14px; display:flex; flex-direction:column; gap:8px; flex:1;}
+  .row{border:1px solid var(--line); border-radius:8px; padding:6px 9px; background:var(--surface); transition:opacity .25s, border-color .25s, box-shadow .25s;}
+  .row .l{font-size:11px; color:var(--muted); display:flex; justify-content:space-between; gap:6px; align-items:center;}
+  .row .v{font-size:14px; font-weight:600; min-height:1.3em;}
+  .row .v.empty{color:var(--muted); font-weight:400; font-style:italic;}
+  .row .x{font-size:11px; color:var(--muted);}
+  .row.dim{opacity:.42;}
+  .row.focus{border-color:var(--accent); box-shadow:0 0 0 2px var(--accent); animation:pulse 1.6s ease-in-out infinite;}
+  .row.err{border-color:var(--bad); background:var(--bad-soft);}
+  .row.err .x{color:var(--bad);}
+  .row.locked{background:var(--find-soft);}
+  .row.choose.focus{border-color:var(--choose); box-shadow:0 0 0 2px var(--choose);}
+  .chip{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:10px; font-weight:500; letter-spacing:.04em;
+    border-radius:4px; padding:1px 6px; border:1px solid var(--line); color:var(--ink); background:var(--screen); white-space:nowrap;}
+  .chip.hot{background:var(--accent); color:var(--on-accent); border-color:var(--accent);}
+  .chip.lock{background:var(--find); color:var(--screen); border-color:var(--find);}
+  .btnrow{display:flex; gap:6px; flex-wrap:wrap;}
+  .btnrow span{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12px; font-weight:500; border:1px solid var(--line); border-radius:5px; padding:4px 8px; background:var(--surface);}
+  .btnrow span.hot{background:var(--accent); color:var(--on-accent); border-color:var(--accent); animation:pulse 1.6s ease-in-out infinite;}
+  .ticks{display:flex; flex-direction:column; gap:3px; font-size:13px; font-weight:400;}
+  .ticks .on::before{content:"\2611  "; color:var(--choose);}
+  .ticks .off::before{content:"\2610  "; color:var(--muted);}
+  .ticks .off{color:var(--muted);}
+  .ticks .gone{text-decoration:line-through; color:var(--muted);}
+  .ticks .gone::before{content:"\2610  ";}
+  .scrnote{margin:0 12px 12px; border-radius:8px; padding:8px 10px; font-size:13px; border:1px solid;}
+  .scrnote.info{background:var(--accent-soft); border-color:var(--accent);}
+  .scrnote.warn{background:var(--mark); border-color:var(--mark-ink); color:var(--mark-ink);}
+  .scrnote.err{background:var(--bad-soft); border-color:var(--bad); color:var(--ink);}
+  .scrnote.ok{background:var(--good-soft); border-color:var(--good);}
+  .scrnote b{display:block;}
+  .dialog{position:absolute; inset:0; background:var(--dim); display:flex; align-items:center; justify-content:center; padding:18px;}
+  .dialog > div{background:var(--surface); border-radius:12px; padding:14px 16px; width:100%; box-shadow:0 10px 30px rgba(0,0,0,.25);}
+  .dialog b{display:block; font-size:15px; margin-bottom:4px;}
+  .dialog p{font-size:13px; margin:0 0 10px;}
+  .dialog .btnrow{justify-content:flex-end;}
+  .spinner{display:inline-block; width:14px; height:14px; border:2px solid var(--line); border-top-color:var(--accent); border-radius:50%; animation:spin .9s linear infinite; vertical-align:-2px; margin-right:6px;}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 2px var(--accent);} 50%{box-shadow:0 0 0 5px var(--accent-soft);}}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .caption{max-width:460px; width:100%; min-height:5.5em;}
+  .caption .n{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12px; color:var(--muted); margin:0 0 4px;}
+  .caption p{font-size:16px; margin:0;}
+  .controls{display:flex; gap:8px; align-items:center; justify-content:center; flex-wrap:wrap;}
+  .controls button{font:inherit; font-weight:600; font-size:14px; border-radius:999px; padding:8px 16px; cursor:pointer;
+    border:1px solid var(--line); background:var(--surface); color:var(--ink); min-width:76px;}
+  .controls button.primary{background:var(--accent); color:var(--on-accent); border-color:var(--accent);}
+  .controls button:disabled{opacity:.4; cursor:default;}
+  .dots{display:flex; gap:5px; justify-content:center; flex-wrap:wrap; max-width:330px;}
+  .dots button{width:9px; height:9px; border-radius:50%; border:0; padding:0; background:var(--line); cursor:pointer;}
+  .dots button[aria-current="step"]{background:var(--accent);}
+  .flowintro{margin:0 0 14px; color:var(--muted); max-width:60ch;}
+  .placeholder{background:var(--surface); border:1px dashed var(--line); border-radius:10px; padding:18px; max-width:460px;}
+
+  /* Fields & errors */
+  details.form{background:var(--surface); border:1px solid var(--line); border-radius:8px; margin:0 0 10px;}
+  details.form > summary{cursor:pointer; padding:12px 14px; font-weight:600; font-size:16px; list-style:none; display:flex; justify-content:space-between; gap:10px; align-items:center;}
+  details.form > summary::-webkit-details-marker{display:none;}
+  details.form > summary::after{content:"+"; font-family:"IBM Plex Mono",ui-monospace,monospace; color:var(--accent); font-size:18px;}
+  details.form[open] > summary::after{content:"\2212";}
+  details.form > summary small{display:block; font-weight:400; font-size:13px; color:var(--muted);}
+  .inner{padding:0 14px 14px;}
+  .inner > p.how{color:var(--muted); font-size:14px;}
+  dl.fields{margin:0; display:grid; gap:0;}
+  dl.fields > div{padding:9px 0; border-top:1px solid var(--line);}
+  dl.fields dt{font-weight:600;}
+  dl.fields dt .req{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:10px; font-weight:500; color:var(--accent); letter-spacing:.05em; margin-left:6px; text-transform:uppercase;}
+  dl.fields dd{margin:2px 0 0; color:var(--ink); font-size:14px;}
+  dl.fields dd .opts{display:block; color:var(--muted); font-size:13px; margin-top:2px;}
+  h4.group{font-family:"IBM Plex Mono",ui-monospace,monospace; font-weight:500; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin:14px 0 2px;}
+  .filter{margin:0 0 14px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+  .filter input{flex:1 1 220px; min-width:0; font:inherit; color:var(--ink); background:var(--surface);
+    border:1px solid var(--line); border-radius:999px; padding:9px 16px;}
+  .count{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12px; color:var(--muted);}
+  .err-entry{padding:10px 0; border-top:1px solid var(--line);}
+  .err-entry q{display:block; font-weight:600; quotes:"\201C" "\201D";}
+  .err-entry .kind{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:10px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted);}
+  .err-entry p{margin:3px 0 0; font-size:14px;}
+  .err-entry p.do{font-weight:600;}
+  .err-entry p.do::before{content:"Do this: "; color:var(--accent);}
+  .foot{margin-top:40px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:14px;}
+
+  @media (max-width:520px){ h1{font-size:28px;} .fork{grid-template-columns:1fr;} .screen{min-height:440px;} }
+  @media (prefers-reduced-motion:reduce){ *{animation:none!important; transition:none!important;} }
+  @media print{ nav.jump,.controls,.flowpick,.filter{display:none;} }
+</style>
+
+<main>
+  <header class="top">
+    <p class="eyebrow">iREPS · field guide · new app from Sunday 27 September 2026</p>
+    <h1>What changes on Sunday</h1>
+    <p class="lede">The new app reaches your phone on Sunday. Five minutes here saves you a refused form in the field.</p>
+    <p class="who">For field workers and supervisors. Tap a flow and press Play. Everything here is how the app works from Sunday.</p>
+  </header>
+
+  <nav class="jump" aria-label="Sections">
+    <a href="#new">What's new</a>
+    <a href="#picture">Finding → action</a>
+    <a href="#flows">Flows</a>
+    <a href="#fields">What each box means</a>
+    <a href="#errors">Errors</a>
+  </nav>
+
+  <!--NEW-->
+
+  <section class="part" id="picture">
+    <h2>What you found decides what you do</h2>
+    <p class="sub">Meter Discovery and Meter Inspection work the same way. Pick what you found.</p>
+    <div class="seg" role="group" aria-label="What you found">
+      <button type="button" data-find="ok" aria-pressed="false">Meter Ok</button>
+      <button type="button" data-find="fd" aria-pressed="false">Faulty or Damaged</button>
+      <button type="button" data-find="ic" aria-pressed="true">Illegally Connected</button>
+    </div>
+    <div id="chain" class="chain" aria-live="polite"></div>
+    <div class="key">
+      <span><i style="background:var(--find-soft);border-color:var(--find)"></i>What you found</span>
+      <span><i style="background:var(--choose-soft);border-color:var(--choose)"></i>What you tick</span>
+      <span><i style="background:var(--accent-soft);border-color:var(--accent)"></i>The form that opens next</span>
+    </div>
+  </section>
+
+  <section class="part" id="flows">
+    <h2>The flows, step by step</h2>
+    <p class="sub">Choose a flow. Press <b>Play</b> to watch it, or <b>Next</b> to go at your own speed.</p>
+    <div class="flowpick" id="flowpick" role="group" aria-label="Choose a flow"></div>
+    <p class="flowintro" id="flowintro"></p>
+    <div class="player" id="player">
+      <div class="phone" aria-hidden="true"><div class="screen" id="screen"></div></div>
+      <div class="caption" aria-live="polite"><p class="n" id="stepn"></p><p id="cap"></p></div>
+      <div class="dots" id="dots" role="group" aria-label="Steps"></div>
+      <div class="controls">
+        <button type="button" id="back">Back</button>
+        <button type="button" id="play" class="primary">Play</button>
+        <button type="button" id="next">Next</button>
+      </div>
+    </div>
+  </section>
+
+  <!--FIELDS-->
+
+  <!--ERRORS-->
+
+  <p class="foot"><!--FOOT--></p>
+</main>
+
+<script>
+/*FLOWS*/
+
+</script>
+<script>
+(function(){
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+  /* ---------- finding → action ---------- */
+  var CHAINS = {
+    ok: [
+      ['find','Meter Ok','Operationally Ok, or a Bridge / Bypass Suspicion'],
+      ['choose','None','or a fix you did on the spot: Tamper removed, Keypad normalised, Service point completed, Meter registered'],
+      ['submit','Submit'],
+      ['stop','Nothing opens next','A fix on the spot needs a normalisation photo. A suspicion needs an anomaly photo.']
+    ],
+    ic: [
+      ['find','Illegally Connected','Straight Connection (Meter Bypassed) or Bridge Wire On The Meter'],
+      ['fork',
+        [['choose','Disconnect meter','None is no longer offered'],['submit','Submit'],['next','Meter Disconnection opens by itself','Illegal Connection, locked. You choose the level.'],['submit','Submit'],['stop','The meter is Disconnected','Linked to the finding']],
+        [['choose','A reason why not','For example: Threatened or chased away'],['submit','Submit'],['stop','The finding is saved','Nothing opens. No photo for the reason.']]
+      ]
+    ],
+    fd: [
+      ['find','Meter Faulty or Meter Damaged','For example: Meter Display Blank, Meter Burnt'],
+      ['fork',
+        [['choose','Replace meter','None is no longer offered'],['submit','Submit'],['next','Meter Removal opens by itself','Replace meter, locked'],['submit','Submit'],['next','Meter Installation opens by itself','The new meter, at the same premise, linked to the removal']],
+        [['choose','A reason why not','For example: No meter available to replace'],['submit','Submit'],['stop','The finding is saved','Nothing opens. The meter can be replaced later.']]
+      ]
+    ]
+  };
+  function nodeHtml(n){
+    if(n[0]==='submit') return '<div class="node submit"><b>'+esc(n[1])+'</b></div>';
+    return '<div class="node '+n[0]+'"><b>'+esc(n[1])+(n[3]?' <span class="coming">coming</span>':'')+'</b>'+(n[2]?'<span>'+esc(n[2])+'</span>':'')+'</div>';
+  }
+  function col(list){ return list.map(nodeHtml).join('<div class="arrow"></div>'); }
+  function drawChain(k){
+    var c = CHAINS[k], html = '';
+    c.forEach(function(n,i){
+      if(i) html += '<div class="arrow"></div>';
+      if(n[0]==='fork'){
+        html += '<div class="fork"><div><p class="lbl">You do the work</p>'+col(n[1])+'</div><div><p class="lbl">You cannot</p>'+col(n[2])+'</div></div>';
+      } else html += nodeHtml(n);
+    });
+    document.getElementById('chain').innerHTML = html;
+    document.querySelectorAll('[data-find]').forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-find')===k?'true':'false'); });
+  }
+  document.querySelectorAll('[data-find]').forEach(function(b){ b.addEventListener('click', function(){ drawChain(b.getAttribute('data-find')); }); });
+  drawChain('ic');
+
+  /* ---------- flow player ---------- */
+  var FLOWS = window.FLOWS || [];
+  var cur = 0, step = 0, timer = null;
+  var pick = document.getElementById('flowpick');
+  FLOWS.forEach(function(f,i){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.innerHTML = esc(f.name) + (f.coming?' <span class="coming">coming</span>':'') + '<small>'+esc(f.short)+'</small>';
+    b.addEventListener('click', function(){ choose(i); });
+    pick.appendChild(b);
+  });
+
+  function rowHtml(r){
+    if(r.btns){
+      return '<div class="row'+(r.s?' '+r.s:'')+'"><div class="l"><span>'+esc(r.l||'')+'</span></div><div class="btnrow">'+
+        r.btns.map(function(b){ var hot = b.charAt(0)==='*'; return '<span'+(hot?' class="hot"':'')+'>'+esc(hot?b.slice(1):b)+'</span>'; }).join('')+'</div></div>';
+    }
+    var chips = (r.c||[]).map(function(c){ var cls = c==='LOCKED'?'chip lock':(c.charAt(0)==='*'?'chip hot':'chip'); return '<span class="'+cls+'">'+esc(c.replace(/^\*/,''))+'</span>'; }).join(' ');
+    var val;
+    if(r.t){
+      val = '<div class="v ticks">'+r.t.map(function(t){ var m=t.charAt(0), cls = m==='+'?'on':(m==='-'?'gone':'off'); return '<span class="'+cls+'">'+esc(t.replace(/^[+\-~]/,''))+'</span>'; }).join('')+'</div>';
+    } else {
+      val = '<div class="v'+(r.v?'':' empty')+'">'+(r.v?esc(r.v):'empty')+'</div>';
+    }
+    return '<div class="row'+(r.s?' '+r.s.split(' ').join(' '):'')+'"><div class="l"><span>'+esc(r.l)+'</span><span>'+chips+'</span></div>'+val+(r.x?'<div class="x">'+esc(r.x)+'</div>':'')+'</div>';
+  }
+  function render(){
+    var f = FLOWS[cur]; if(!f) return;
+    var s = f.steps[step];
+    var html = '<div class="bar"><b>'+esc(s.title||f.name)+'</b>'+(s.tag?'<small>'+esc(s.tag)+'</small>':'')+'</div>';
+    html += '<div class="rows">'+(s.rows||[]).map(rowHtml).join('')+'</div>';
+    if(s.note) html += '<div class="scrnote '+s.note.k+'">'+(s.note.spin?'<span class="spinner"></span>':'')+(s.note.h?'<b>'+esc(s.note.h)+'</b>':'')+esc(s.note.t||'')+'</div>';
+    if(s.dialog){
+      html += '<div class="dialog"><div>'+(s.dialog.spin?'<span class="spinner"></span>':'')+'<b>'+esc(s.dialog.h)+'</b><p>'+esc(s.dialog.p||'')+'</p>'+
+        (s.dialog.btns?'<div class="btnrow">'+s.dialog.btns.map(function(b){ var hot=b.charAt(0)==='*'; return '<span'+(hot?' class="hot"':'')+'>'+esc(hot?b.slice(1):b)+'</span>'; }).join('')+'</div>':'')+'</div></div>';
+    }
+    document.getElementById('screen').innerHTML = html;
+    document.getElementById('stepn').textContent = 'Step '+(step+1)+' of '+f.steps.length;
+    document.getElementById('cap').textContent = s.cap;
+    var dots = document.getElementById('dots'); dots.innerHTML = '';
+    f.steps.forEach(function(_,i){
+      var d = document.createElement('button'); d.type='button'; d.setAttribute('aria-label','Step '+(i+1));
+      if(i===step) d.setAttribute('aria-current','step');
+      d.addEventListener('click', function(){ stop(); step=i; render(); });
+      dots.appendChild(d);
+    });
+    document.getElementById('back').disabled = step===0;
+    document.getElementById('next').disabled = step===f.steps.length-1;
+  }
+  function choose(i){
+    stop(); cur=i; step=0;
+    Array.prototype.forEach.call(pick.children, function(b,j){ b.setAttribute('aria-pressed', j===i?'true':'false'); });
+    document.getElementById('flowintro').innerHTML = FLOWS[i].intro || '';
+    render();
+  }
+  function stop(){ if(timer){ clearInterval(timer); timer=null; } document.getElementById('play').textContent='Play'; }
+  function play(){
+    if(timer){ stop(); return; }
+    var f = FLOWS[cur];
+    if(step===f.steps.length-1) { step=0; render(); }
+    document.getElementById('play').textContent='Pause';
+    timer = setInterval(function(){
+      if(step < FLOWS[cur].steps.length-1){ step++; render(); } else stop();
+    }, 3800);
+  }
+  document.getElementById('play').addEventListener('click', play);
+  document.getElementById('next').addEventListener('click', function(){ stop(); if(step<FLOWS[cur].steps.length-1){ step++; render(); } });
+  document.getElementById('back').addEventListener('click', function(){ stop(); if(step>0){ step--; render(); } });
+  if(FLOWS.length) choose(0);
+
+  /* ---------- error search ---------- */
+  var q = document.getElementById('q');
+  if(q){
+    var entries = Array.prototype.slice.call(document.querySelectorAll('.err-entry'));
+    var forms = Array.prototype.slice.call(document.querySelectorAll('#errors details.form'));
+    var count = document.getElementById('count');
+    function show(){
+      var t = q.value.trim().toLowerCase(), n = 0;
+      entries.forEach(function(e){ var hit = !t || e.textContent.toLowerCase().indexOf(t)>-1; e.hidden=!hit; if(hit) n++; });
+      forms.forEach(function(d){
+        var any = d.querySelectorAll('.err-entry:not([hidden])').length>0;
+        d.hidden = !!t && !any;
+        if(t && any) d.open = true;
+      });
+      count.textContent = t ? n+' of '+entries.length+' messages' : entries.length+' messages';
+    }
+    q.addEventListener('input', show); show();
+  }
+})();
+</script>
