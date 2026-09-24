@@ -1,6 +1,6 @@
-# Meter Discover — Body of Knowledge
+# Meter Discovery — Body of Knowledge
 
-**Module:** MDIS · **Content version:** 0.2 · **Status:** expanded visual draft for review, 23 September 2026. The owner calls the module **Meter Discover**. Existing screens, rules and transaction records use **Meter Discovery** and `METER_DISCOVERY`; these names refer to the same module in this package. No application labels are renamed here.
+**Module:** MDIS · **Content version:** 0.2 · **Status:** expanded visual draft for review, 23 September 2026. The canonical module name is **Meter Discovery**, confirmed by the owner on 24 September 2026. The transaction operation is `METER_DISCOVERY`.
 
 This knowledge base explains what is being discovered, why it matters, where the meter belongs, how different routes converge, what evidence is collected and what happens to the resulting records. It serves prospective customers as well as every operational role. Source observations describe the [recorded development snapshots](../00-academy-governance/source-assessments/meter-discover-source-baseline-2026-09-23.md), not a certified production release.
 
@@ -8,7 +8,7 @@ This knowledge base explains what is being discovered, why it matters, where the
 
 | Part | What it answers |
 | --- | --- |
-| This document | What Meter Discover means, why it exists and how its physical and business context fits together |
+| This document | What Meter Discovery means, why it exists and how its physical and business context fits together |
 | [Field catalogue](meter-discover-field-catalogue.md) | Every catalogued input and context field: meaning, type, prerequisites, validation and storage |
 | [Rules and data lifecycle](meter-discover-rules-and-data.md) | Roles, server processing, record identities, offline states, retries, outputs and integrations |
 | [Error register](meter-discover-error-register.md) | Validation messages, server codes, failure stages, remedies and escalation |
@@ -18,7 +18,7 @@ This knowledge base explains what is being discovered, why it matters, where the
 
 ## 1. What is being discovered?
 
-Meter Discover records an **existing meter encountered in the field** and its relationship to the service location. It captures identity, electricity or water service, physical position, equipment description, observed connection status, findings and evidence. It creates a field record where one is needed; a meter can already be known in a Sales dataset without having been registered as an iREPS field asset.
+Meter Discovery records an **existing meter encountered in the field** and its relationship to the service location. It captures identity, electricity or water service, physical position, equipment description, observed connection status, findings and evidence. It creates a field record where one is needed; a meter can already be known in a Sales dataset without having been registered as an iREPS field asset.
 
 Discovery is therefore more than photographing a number. The important questions are: which meter is this; which premise does it serve; which ERF contains that premise; where is the equipment actually mounted; what condition and connection state were observed; what was done or must follow; and what evidence supports those statements?
 

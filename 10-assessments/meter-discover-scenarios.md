@@ -1,4 +1,4 @@
-# Meter Discover — scenarios and acceptance evidence
+# Meter Discovery — scenarios and acceptance evidence
 
 **MDIS · version 0.1 · proposed training and release-review pack.** These are scenarios to execute and assess, not results obtained by the Academy documentation task. Source TP-001 contains its own historical claims and an empty repeat-test table; this pack does not turn those claims into a new pass result.
 

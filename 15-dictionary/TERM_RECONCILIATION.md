@@ -32,4 +32,9 @@ Propose additions and revisions against the one master dictionary, citing the ow
 
 ## Confirmed entry-path terminology — 23 September 2026
 
-Added **Normal Path** and **Sales Path** from the owner's direct correction. The Meter Discover Body of Knowledge, user manual, field catalogue, scenarios and explanatory data guide use these names. The 412 pre-existing term headings are preserved; the master now contains 414. Existing runtime identifiers and quoted error messages are not renamed.
+Added **Normal Path** and **Sales Path** from the owner's direct correction. The Meter Discovery Body of Knowledge, user manual, field catalogue, scenarios and explanatory data guide use these names. The 412 pre-existing term headings are preserved; the master now contains 414. Existing runtime identifiers and quoted error messages are not renamed.
+
+
+## Confirmed module name — 24 September 2026
+
+The owner confirmed **Meter Discovery** as the canonical module name. Academy titles, references and the existing Meter Discovery dictionary entry use that name. Existing file paths, links, source fingerprints and runtime identifiers remain unchanged.

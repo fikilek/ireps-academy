@@ -1,6 +1,6 @@
-# Meter Discover media register
+# Meter Discovery media register
 
-Status: **visual review draft, 23 September 2026**. Owner: iREPS Academy. Topic: [Meter Discover placement examples](../01-body-of-knowledge/meter-discover-body-of-knowledge.md#placement-examples-context-and-closer-views).
+Status: **visual review draft, 23 September 2026**. Owner: iREPS Academy. Topic: [Meter Discovery placement examples](../01-body-of-knowledge/meter-discover-body-of-knowledge.md#placement-examples-context-and-closer-views).
 
 ## Origin and use
 

@@ -1,6 +1,6 @@
 # Academy module content standard
 
-Owner direction: 23 September 2026. First application: **Meter Discover**, module ID **MDIS**. Status: working content standard established from the owner's request; individual lessons still require review.
+Owner direction: 23 September 2026. First application: **Meter Discovery**, module ID **MDIS**. Status: working content standard established from the owner's request; individual lessons still require review.
 
 Every module has two connected legs. Its **Body of Knowledge** explains the subject comprehensively to field staff, supervisors, managers, administrators, technical contributors, utilities and prospective customers. Its **User Manual** explains how a person performs and checks a task in a specified application release. Neither leg substitutes for the other.
 
@@ -37,14 +37,14 @@ Use four separate labels: **owner direction**, **documented rule**, **observed s
 
 For publication, a reviewer must be able to trace each workflow, field and error to evidence, reproduce the instructions on the named release, inspect representative screens, and see which product questions are still open. Use synthetic examples in training. The master dictionary remains the single terminology authority; a module may explain terms but must link proposed dictionary changes for review.
 
-## Meter Discover implementation
+## Meter Discovery implementation
 
-Begin at [Meter Discover — Body of Knowledge](../01-body-of-knowledge/meter-discover-body-of-knowledge.md). Its field catalogue, error register, data lifecycle, manual and acceptance scenarios form the first worked module package. This standard defines required outputs; it does not declare every output published or every future module complete.
+Begin at [Meter Discovery — Body of Knowledge](../01-body-of-knowledge/meter-discover-body-of-knowledge.md). Its field catalogue, error register, data lifecycle, manual and acceptance scenarios form the first worked module package. This standard defines required outputs; it does not declare every output published or every future module complete.
 
 
 ## Consistent terminology and visual examples
 
-Use the exact master-dictionary term whenever naming a concept. Do not introduce alternate labels for the same path to vary the prose. Meter Discover uses **Normal Path** and **Sales Path**. Keep verbatim runtime labels/error messages recognisable as source quotations when their wording differs; do not rename code through documentation.
+Use the exact master-dictionary term whenever naming a concept. Do not introduce alternate labels for the same path to vary the prose. Meter Discovery uses **Normal Path** and **Sales Path**. Keep verbatim runtime labels/error messages recognisable as source quotations when their wording differs; do not rename code through documentation.
 
 Relationship diagrams must distinguish conceptual grouping from saved records. Cover every current controlled Property Type, while making absence of a service, shared meters and mixed-type sites explicit. Physical-location diagrams must show boundaries, the equipment position and the served premise separately.
 

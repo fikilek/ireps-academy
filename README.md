@@ -31,4 +31,4 @@ Engineering rules, database schemas, application runtime code, tests and deploym
 
 ## First comprehensive module
 
-[Meter Discover — Body of Knowledge](01-body-of-knowledge/meter-discover-body-of-knowledge.md) and [User Manual](02-user-manual/mobile/meter-discover-user-manual.md) are source-based review drafts, with detailed field/error references, diagrams and acceptance scenarios. The [module standard](00-academy-governance/MODULE_CONTENT_STANDARD.md) defines the two legs for subsequent modules.
+[Meter Discovery — Body of Knowledge](01-body-of-knowledge/meter-discover-body-of-knowledge.md) and [User Manual](02-user-manual/mobile/meter-discover-user-manual.md) are source-based review drafts, with detailed field/error references, diagrams and acceptance scenarios. The [module standard](00-academy-governance/MODULE_CONTENT_STANDARD.md) defines the two legs for subsequent modules.

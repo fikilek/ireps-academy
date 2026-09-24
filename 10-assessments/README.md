@@ -4,4 +4,4 @@ Planned. Define knowledge questions and observed practical tasks for each course
 
 See the [content index](../00-academy-governance/CONTENT_INDEX.md) and [owner decisions](../00-academy-governance/OWNER_DECISIONS.md).
 
-- [Meter Discover scenarios](meter-discover-scenarios.md): proposed practical assessment and release-review cases; no completed test results claimed.
+- [Meter Discovery scenarios](meter-discover-scenarios.md): proposed practical assessment and release-review cases; no completed test results claimed.

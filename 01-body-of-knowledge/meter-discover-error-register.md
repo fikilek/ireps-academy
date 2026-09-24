@@ -1,4 +1,4 @@
-# Meter Discover — error and outcome register
+# Meter Discovery — error and outcome register
 
 **MDIS · version 0.1 · review draft.** Runtime codes below are extracted from the inspected discovery validator/callable, master helper, batch linkage/membership helpers and local queue. `MD-E...` identifiers are Academy references, **not application error codes**. A code can occur at more than one stage. Variable templates retain placeholders. Sources identify file and line through the [source baseline](../00-academy-governance/source-assessments/meter-discover-source-baseline-2026-09-23.md).
 

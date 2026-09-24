@@ -1,6 +1,6 @@
-# Meter Discover — mobile user manual
+# Meter Discovery — mobile user manual
 
-**MDIS-UM · version 0.2 · review draft.** This guide follows the recorded mobile normalisation feature, with the branch differences and unresolved behaviour listed in the [source baseline](../../00-academy-governance/source-assessments/meter-discover-source-baseline-2026-09-23.md). It must be walked through on the intended release before field publication. Screens may still say **Meter Discovery**.
+**MDIS-UM · version 0.2 · review draft.** This guide follows the recorded mobile normalisation feature, with the branch differences and unresolved behaviour listed in the [source baseline](../../00-academy-governance/source-assessments/meter-discover-source-baseline-2026-09-23.md). It must be walked through on the intended release before field publication. The canonical module name is **Meter Discovery**.
 
 For explanations use the [Body of Knowledge](../../01-body-of-knowledge/meter-discover-body-of-knowledge.md). For mounting examples use the [placement image guide](../../01-body-of-knowledge/meter-discover-body-of-knowledge.md#placement-examples-context-and-closer-views). For any field's detailed meaning, allowed values or photograph requirement use the [field catalogue](../../01-body-of-knowledge/meter-discover-field-catalogue.md). For refusals and recovery use the [error register](../../01-body-of-knowledge/meter-discover-error-register.md).
 

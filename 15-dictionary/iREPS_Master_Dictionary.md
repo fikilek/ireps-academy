@@ -162,7 +162,7 @@ This is Version 2.1 of the iREPS Master Dictionary. It preserves the locked mean
 
 ### Term: Meter Discovery
 
-- **Academy module label:** Meter Discover. The owner uses this label for the module; existing screens and `METER_DISCOVERY` records retain Meter Discovery. See the [module Body of Knowledge](../01-body-of-knowledge/meter-discover-body-of-knowledge.md).
+- **Academy module label:** Meter Discovery, confirmed by the owner on 24 September 2026. Use this name consistently across Academy content. The transaction operation is `METER_DISCOVERY`. See the [module Body of Knowledge](../01-body-of-knowledge/meter-discover-body-of-knowledge.md).
 
 - **Acronym:** None
 
@@ -5050,20 +5050,20 @@ These terms describe the approved final-state contract. They do not assert that 
 
 <a id="meter-discover-entry-paths"></a>
 
-## Meter Discover entry paths — owner terminology, 23 September 2026
+## Meter Discovery entry paths — owner terminology, 23 September 2026
 
 ### Term: Normal Path
 
 - **Acronym:** None
-- **Simple meaning:** The Meter Discover entry path that starts with the fieldworker selecting the ERF and the correct premise through the property/geography navigation.
+- **Simple meaning:** The Meter Discovery entry path that starts with the fieldworker selecting the ERF and the correct premise through the property/geography navigation.
 - **Detailed explanation:** Normal Path identifies how the worker enters the work. It can encounter a meter with or without a Sales match. Server checks can still enforce batch ownership and assignment, so the name does not grant a bypass. Reopening a local draft continues its original path.
-- **Example:** Select the ERF, open its premises, select Flat 1, then start Meter Discover.
+- **Example:** Select the ERF, open its premises, select Flat 1, then start Meter Discovery.
 - **Related terms:** Sales Path, ERF, Premise, Meter Discovery
 
 ### Term: Sales Path
 
 - **Acronym:** None
-- **Simple meaning:** The Meter Discover entry path that starts from Sales-led work and follows an assigned, accepted Targeted Batch item in My Work Orders to its ERF and premise.
+- **Simple meaning:** The Meter Discovery entry path that starts from Sales-led work and follows an assigned, accepted Targeted Batch item in My Work Orders to its ERF and premise.
 - **Detailed explanation:** Sales Path carries the expected Sales meter and batch/row context into fieldwork. The worker verifies the actual meter found. Targeted Batch and My Work Orders retain their own meanings as the work structure and interface used within this path; they are not alternative names for the path. The Normal Path can also find a Sales-listed meter; that fact alone does not turn it into the Sales Path.
 - **Example:** Open the assigned row in My Work Orders, follow it to the premise and discover the meter physically found there.
 - **Related terms:** Normal Path, Targeted Batch, My Work Orders, Premise, Meter Discovery

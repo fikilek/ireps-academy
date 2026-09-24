@@ -1,6 +1,6 @@
-# Meter Discover — source baseline and review gaps
+# Meter Discovery — source baseline and review gaps
 
-**MDIS version 0.1 · 23 September 2026 · content draft.** The owner requested a comprehensive Body of Knowledge and User Manual for each module, beginning with Meter Discover. This package provides both legs, diagrams, field/evidence references, errors, data lifecycle and review scenarios. It is an Academy documentation change, not an application implementation or production certification.
+**MDIS version 0.1 · 23 September 2026 · content draft.** The owner requested a comprehensive Body of Knowledge and User Manual for each module, beginning with Meter Discovery. This package provides both legs, diagrams, field/evidence references, errors, data lifecycle and review scenarios. It is an Academy documentation change, not an application implementation or production certification.
 
 ## Baseline and reproducibility
 

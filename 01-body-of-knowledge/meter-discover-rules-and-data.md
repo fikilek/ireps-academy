@@ -1,4 +1,4 @@
-# Meter Discover — rules and data lifecycle
+# Meter Discovery — rules and data lifecycle
 
 **MDIS · version 0.1 · source-based draft.** Read alongside the [Body of Knowledge](meter-discover-body-of-knowledge.md), [field catalogue](meter-discover-field-catalogue.md) and [source baseline](../00-academy-governance/source-assessments/meter-discover-source-baseline-2026-09-23.md). Observed implementation is not proof of a deployed release, nor a new decision on the owner's open permissions/offline/QA questions.
 

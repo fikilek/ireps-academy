@@ -1,4 +1,4 @@
-# Meter Discover — field catalogue
+# Meter Discovery — field catalogue
 
 **MDIS · version 0.1 · source-based review draft.** This catalogue covers the inspected discovery form's named inputs, composite media input, generated context and batch payload context. It distinguishes UI helpers from canonical fields. Every reference is to the [source baseline](../00-academy-governance/source-assessments/meter-discover-source-baseline-2026-09-23.md); backend validation references use the normalisation feature snapshot unless marked otherwise.
 

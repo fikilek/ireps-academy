@@ -1,4 +1,4 @@
-# Meter Discover visual and terminology revision — 23 September 2026
+# Meter Discovery visual and terminology revision — 23 September 2026
 
 Status: **version 0.2 review draft**. This supplements the original [source baseline](meter-discover-source-baseline-2026-09-23.md); it does not claim an application release or new runtime behaviour.
 

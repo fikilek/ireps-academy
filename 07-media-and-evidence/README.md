@@ -2,7 +2,7 @@
 
 Academy owns teaching assets, synthetic demonstration material and evidence-quality lessons. Keep source topic, origin, usage information and publication status with each asset. Do not put production customer exports or private keys into the learning repository.
 
-## Meter Discover — visual review draft
+## Meter Discovery — visual review draft
 
 - [Placement media register and generation prompts](meter-discover-media-register.md): eight paired AI-generated plates, 16 realistic views, clearly distinguished from actual field photographs.
 - [Outside-ERF site plan](meter-discover-outside-erf.svg): two meters in a roadside kiosk serving different premises.
