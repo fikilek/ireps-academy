@@ -1,0 +1,60 @@
+source_id,line,function,schema_path,kind,expression
+FS-027,397,,,test,"object()
+  .shape({
+    accessData: object().shape({
+      access: object().shape({
+        hasAccess: string()
+          .oneOf([""yes"", ""no""])
+          .required(""Access outcome is required""),
+        reason: string().notRequired(),
+        reasonSelect: object().shape({
+          code: string().notRequired(),
+          label: string().notRequired(),
+          otherText: string().notRequired(),
+        }),
+      }),
+    }),
+
+    assignment: object().shape({
+      instructionSelect: object().shape({
+        code: string().notRequired(),
+        label: string().notRequired(),
+        otherText: string().notRequired(),
+      }),
+    }),
+
+    reconnection: object().shape({
+      supplyReconnected: object().shape({
+        answer: string().notRequired(),
+        notes: string().notRequired(),
+      }),
+    }),
+
+    fieldComment: object().shape({
+      text: string().notRequired(),
+    }),
+
+    media: array().of(object()),
+  })
+  .test(""rcn-v01-validation"", ""RCN validation failed"", function (values = {}) {
+    const access = values?.accessData?.access || {};
+    const reconnection = values?.reconnection || {};
+    const media = values?.media || [];
+
+    if (String(access?.hasAccess || """").toLowerCase() === ""no"") {
+      if (!isSelectWithOtherFilled(access?.reasonSelect)) {
+        return this.createError({
+          path: ""accessData.access.reasonSelect"",
+          message: ""No-access reason is required"",
+        });
+      }
+
+      if (!hasMediaTag(media, ""noAccessPhoto"")) {
+        return this.createError({
+          path: ""media"",
+          message: ""No access photo is requir"
+FS-027,401,,accessData.access.hasAccess,required,"string()
+          .oneOf([""yes"", ""no""])
+          .required(""Access outcome is required"")"
+FS-027,401,,accessData.access.hasAccess,oneOf,"string()
+          .oneOf([""yes"", ""no""])"

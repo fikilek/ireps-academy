@@ -1,0 +1,2 @@
+source_id,line,function,schema_path,kind,expression
+FS-022,131,CreateSupervisorScreen,,test,/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim().toLowerCase())

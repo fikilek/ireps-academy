@@ -1,0 +1,392 @@
+source_id,line,function,schema_path,kind,expression
+FS-042,515,FormMeterInstallation,accessData.access.hasAccess,required,"string()
+          .oneOf([""yes"", ""no""], ""Access status is required"")
+          .required(""Access status is required"")"
+FS-042,515,FormMeterInstallation,accessData.access.hasAccess,oneOf,"string()
+          .oneOf([""yes"", ""no""], ""Access status is required"")"
+FS-042,519,FormMeterInstallation,accessData.access.reason,when,"string().when(""hasAccess"", {
+          is: (val) => val === ""no"",
+          then: (s) =>
+            s
+              .trim()
+              .required(""Please provide a reason for no access"")
+              .test(
+                ""complete-no-access-reason"",
+                ""Please provide details for Other"",
+                (value) =>
+                  !String(value || """").trim() ||
+                  isCompleteNoAccessReason(value),
+              ),
+          otherwise: (s) => s.nullable().notRequired(),
+        })"
+FS-042,522,FormMeterInstallation,accessData.access.reason.then,test,"s
+              .trim()
+              .required(""Please provide a reason for no access"")
+              .test(
+                ""complete-no-access-reason"",
+                ""Please provide details for Other"",
+                (value) =>
+                  !String(value || """").trim() ||
+                  isCompleteNoAccessReason(value),
+              )"
+FS-042,522,FormMeterInstallation,accessData.access.reason.then,required,"s
+              .trim()
+              .required(""Please provide a reason for no access"")"
+FS-042,537,FormMeterInstallation,meterType,required,"string().oneOf([""NA""]).required()"
+FS-042,537,FormMeterInstallation,meterType,oneOf,"string().oneOf([""NA""])"
+FS-042,539,FormMeterInstallation,media,test,"array()
+      .of(object())
+      .test(""na-forensics"", ""No Access photo required"", function (value) {
+        const hasAccess = this.parent?.accessData?.access?.hasAccess;
+        const reason = this.parent?.accessData?.access?.reason;
+
+        if (hasAccess === ""no"" && reason && reason.trim() !== """") {
+          return value?.some((item) => item.tag === ""noAccessPhoto"");
+        }
+
+        return true;
+      })"
+FS-042,560,FormMeterInstallation,ast.astData.astNo,matches,"string()
+          .required(""Meter number is required"")
+          .matches(METER_NUMBER_PATTERN, METER_NUMBER_INVALID_MESSAGE)"
+FS-042,560,FormMeterInstallation,ast.astData.astNo,required,"string()
+          .required(""Meter number is required"")"
+FS-042,563,FormMeterInstallation,ast.astData.astManufacturer,required,"string().required(""Manufacturer is required"")"
+FS-042,564,FormMeterInstallation,ast.astData.astName,required,"string().required(""Model is required"")"
+FS-042,566,FormMeterInstallation,ast.astData.meter.category,required,"string()
+            .oneOf([""Normal"", ""Bulk""])
+            .required(""Meter category is required"")"
+FS-042,566,FormMeterInstallation,ast.astData.meter.category,oneOf,"string()
+            .oneOf([""Normal"", ""Bulk""])"
+FS-042,569,FormMeterInstallation,ast.astData.meter.type,required,"string()
+            .oneOf([""prepaid"", ""conventional""])
+            .required(""Meter type is required"")"
+FS-042,569,FormMeterInstallation,ast.astData.meter.type,oneOf,"string()
+            .oneOf([""prepaid"", ""conventional""])"
+FS-042,576,FormMeterInstallation,ast.anomalies.anomaly,required,"string().required(""Anomaly Required"")"
+FS-042,579,FormMeterInstallation,ast.anomalies.anomalyDetail,when,"string().when(""anomaly"", {
+          is: (val) => !!String(val || """").trim(),
+          then: (schema) => schema.required(""Anomaly detail is required""),
+          otherwise: (schema) => schema.notRequired().nullable(),
+        })"
+FS-042,581,FormMeterInstallation,ast.anomalies.anomalyDetail.then,required,"schema.required(""Anomaly detail is required"")"
+FS-042,586,FormMeterInstallation,ast.location.gps,test,"object()
+          .nullable()
+          .required(""GPS location is required"")
+          .test(""is-valid-gps"", ""Invalid GPS coordinates"", isValidMeterGps)"
+FS-042,586,FormMeterInstallation,ast.location.gps,required,"object()
+          .nullable()
+          .required(""GPS location is required"")"
+FS-042,591,FormMeterInstallation,ast.meterReading,when,"string().when(""astData.meter.type"", {
+        is: ""conventional"",
+        then: (schema) => schema.required(""Meter reading is required""),
+        otherwise: (schema) => schema.notRequired().nullable(),
+      })"
+FS-042,593,FormMeterInstallation,ast.meterReading.then,required,"schema.required(""Meter reading is required"")"
+FS-042,596,FormMeterInstallation,ast.tokenReading,when,"string().when(""astData.meter.type"", {
+        is: ""prepaid"",
+        then: (schema) => schema.required(""Token reading is required""),
+        otherwise: (schema) => schema.notRequired().nullable(),
+      })"
+FS-042,598,FormMeterInstallation,ast.tokenReading.then,required,"schema.required(""Token reading is required"")"
+FS-042,604,FormMeterInstallation,meterType,required,"string().oneOf([""water""]).required()"
+FS-042,604,FormMeterInstallation,meterType,oneOf,"string().oneOf([""water""])"
+FS-042,607,FormMeterInstallation,media,test,"array()
+      .of(object())
+      .test(""water-forensics"", ""Forensic photo missing"", function (value) {
+        const { accessData, ast } = this.parent; // 🎯 ACCESS SIBLINGS
+        const hasAccess = accessData?.access?.hasAccess;
+        const meterNo = ast?.astData?.astNo;
+        const anomaly = ast?.anomalies?.anomaly;
+        const meterReading = ast?.meterReading;
+        const tokenReading = ast?.tokenReading;
+        const meterSubtype = ast?.astData?.meter?.type;
+
+        // 🚩 Rule 1: No Access (Only trigger if a reason is selected)
+        if (hasAccess === ""no"" && accessData?.access?.reason) {
+          if (!value?.some((m) => m.tag === ""noAccessPhoto"")) {
+            return this.createError({ message: ""No Access photo required"" });
+          }
+        }
+
+        // 🚩 Rule 2: Meter Photo (Only trigger if the agent started typing the Meter No)
+        if (meterNo?.trim() && !value?.some((m) => m.tag === ""astNoPhoto"")) {
+          return this.createError({ message: ""Meter photo required"" });
+        }
+
+        // 🚩 Rule 2: Meter Reading Photo (Only trigger if there is a reading
+        if (
+          meterSubtype === ""conventional"" &&
+          meterReading?.trim() &&
+          !value?.some((m) => m.tag === ""meterReadingPhoto"")
+        ) {
+          return this.createError({ message: ""Meter reading photo required"" });
+        }
+
+        if (
+          meterSubtype === ""prepaid"" &&
+          tokenReading?.trim() &&
+          !value?.some((m) => m.tag === ""tokenReadingPhoto"")
+        ) {
+          return this.createError({ mes"
+FS-042,664,FormMeterInstallation,ast.astData.astNo,matches,"string()
+          .required(""Meter number is required"")
+          .matches(METER_NUMBER_PATTERN, METER_NUMBER_INVALID_MESSAGE)"
+FS-042,664,FormMeterInstallation,ast.astData.astNo,required,"string()
+          .required(""Meter number is required"")"
+FS-042,668,FormMeterInstallation,ast.astData.astManufacturer,required,"string().required(""Manufacturer is required"")"
+FS-042,670,FormMeterInstallation,ast.astData.astName,when,"string().when(""astManufacturer"", {
+          is: (val) => val && val.length > 0,
+          then: (schema) => schema.required(""Model name is required""),
+          otherwise: (schema) => schema.notRequired(),
+        })"
+FS-042,672,FormMeterInstallation,ast.astData.astName.then,required,"schema.required(""Model name is required"")"
+FS-042,677,FormMeterInstallation,ast.astData.meter.phase,required,"string().oneOf([""single"", ""three""]).required(""Phase Required"")"
+FS-042,677,FormMeterInstallation,ast.astData.meter.phase,oneOf,"string().oneOf([""single"", ""three""])"
+FS-042,679,FormMeterInstallation,ast.astData.meter.type,required,"string()
+            .oneOf([""prepaid"", ""conventional""])
+            .required(""Meter Type Required"")"
+FS-042,679,FormMeterInstallation,ast.astData.meter.type,oneOf,"string()
+            .oneOf([""prepaid"", ""conventional""])"
+FS-042,683,FormMeterInstallation,ast.astData.meter.category,required,"string()
+            .oneOf([""Normal"", ""Bulk""])
+            .required(""Meter Category Required"")"
+FS-042,683,FormMeterInstallation,ast.astData.meter.category,oneOf,"string()
+            .oneOf([""Normal"", ""Bulk""])"
+FS-042,688,FormMeterInstallation,ast.astData.meter.seal.sealNo,test,"string().test(
+              ""seal-number-or-comment"",
+              ""Seal number or comment is required"",
+              (value, context) => {
+                const hasSealNumber = !!String(value || """").trim();
+                const hasComment = !!String(
+                  context.parent?.comment || """",
+                ).trim();
+                return hasSealNumber || hasComment;
+              },
+            )"
+FS-042,700,FormMeterInstallation,ast.astData.meter.seal.comment,when,"string().when(""sealNo"", {
+              is: (val) => !val || String(val).trim().length === 0,
+              then: (schema) =>
+                schema
+                  .oneOf(
+                    SEAL_NUMBER_COMMENT_REASONS,
+                    ""Select a valid Seal Number Comment"",
+                  )
+                  .required(""Seal Number Comment is required""),
+              otherwise: (schema) => schema.notRequired().nullable(),
+            })"
+FS-042,703,FormMeterInstallation,ast.astData.meter.seal.comment.then,required,"schema
+                  .oneOf(
+                    SEAL_NUMBER_COMMENT_REASONS,
+                    ""Select a valid Seal Number Comment"",
+                  )
+                  .required(""Seal Number Comment is required"")"
+FS-042,703,FormMeterInstallation,ast.astData.meter.seal.comment.then,oneOf,"schema
+                  .oneOf(
+                    SEAL_NUMBER_COMMENT_REASONS,
+                    ""Select a valid Seal Number Comment"",
+                  )"
+FS-042,712,FormMeterInstallation,ast.astData.meter.seal.commentOther,test,"string().test(
+              ""seal-other-reason"",
+              ""Other Seal Number Reason is required"",
+              (value, context) => {
+                const hasSealNumber = !!String(
+                  context.parent?.sealNo || """",
+                ).trim();
+                if (hasSealNumber || context.parent?.comment !== ""Other"") {
+                  return true;
+                }
+                return !!String(value || """").trim();
+              },
+            )"
+FS-042,727,FormMeterInstallation,ast.astData.meter.keypad,test,"object()
+            .shape({
+              serialNo: string().nullable(),
+              comment: string().nullable(),
+              commentOther: string().nullable(),
+            })
+            .test(
+              ""prepaid-keypad-comment-valid"",
+              ""Select a valid Keypad Serial Number Comment"",
+              (value, context) => {
+                if (context.parent?.type !== ""prepaid"") return true;
+
+                const hasSerialNumber = !!String(value?.serialNo || """").trim();
+                const comment = String(value?.comment || """").trim();
+
+                if (hasSerialNumber || !comment) return true;
+                if (KEYPAD_SERIAL_NUMBER_COMMENT_REASONS.includes(comment)) {
+                  return true;
+                }
+
+                return context.createError({
+                  path: context.path + "".comment"",
+                  message: ""Select a valid Keypad Serial Number Comment"",
+                });
+              },
+            )
+            .test(
+              ""prepaid-keypad-other-reason"",
+              ""Other Keypad Serial Number Reason is required"",
+              (value, context) => {
+                if (context.parent?.type !== ""prepaid"") return true;
+
+                const hasSerialNumber = !!String(value?.serialNo || """").trim();
+                const comment = String(value?.comment || """").trim();
+
+                if (hasSerialNumber || comment !== ""Other"") return true;
+                if (String(value?.commentOther || """").trim()) return true;
+
+                return context.createError({
+        "
+FS-042,727,FormMeterInstallation,ast.astData.meter.keypad,test,"object()
+            .shape({
+              serialNo: string().nullable(),
+              comment: string().nullable(),
+              commentOther: string().nullable(),
+            })
+            .test(
+              ""prepaid-keypad-comment-valid"",
+              ""Select a valid Keypad Serial Number Comment"",
+              (value, context) => {
+                if (context.parent?.type !== ""prepaid"") return true;
+
+                const hasSerialNumber = !!String(value?.serialNo || """").trim();
+                const comment = String(value?.comment || """").trim();
+
+                if (hasSerialNumber || !comment) return true;
+                if (KEYPAD_SERIAL_NUMBER_COMMENT_REASONS.includes(comment)) {
+                  return true;
+                }
+
+                return context.createError({
+                  path: context.path + "".comment"",
+                  message: ""Select a valid Keypad Serial Number Comment"",
+                });
+              },
+            )"
+FS-042,772,FormMeterInstallation,ast.astData.meter.cb,test,"object()
+            .shape({
+              size: string().nullable(),
+              comment: string().nullable(),
+              commentOther: string().nullable(),
+            })
+            .test(
+              ""cb-comment-valid"",
+              ""Select a valid CB Comment"",
+              (value, context) => {
+                const hasSize = !!String(value?.size || """").trim();
+                const comment = String(value?.comment || """").trim();
+
+                if (hasSize || !comment) return true;
+                if (CB_COMMENT_REASONS.includes(comment)) return true;
+
+                return context.createError({
+                  path: context.path + "".comment"",
+                  message: ""Select a valid CB Comment"",
+                });
+              },
+            )
+            .test(
+              ""cb-other-reason"",
+              ""Other Circuit Breaker Reason is required"",
+              (value, context) => {
+                const hasSize = !!String(value?.size || """").trim();
+                const comment = String(value?.comment || """").trim();
+
+                if (hasSize || comment !== ""Other"") return true;
+                if (String(value?.commentOther || """").trim()) return true;
+
+                return context.createError({
+                  path: context.path + "".commentOther"",
+                  message: ""Other Circuit Breaker Reason is required"",
+                });
+              },
+            )"
+FS-042,772,FormMeterInstallation,ast.astData.meter.cb,test,"object()
+            .shape({
+              size: string().nullable(),
+              comment: string().nullable(),
+              commentOther: string().nullable(),
+            })
+            .test(
+              ""cb-comment-valid"",
+              ""Select a valid CB Comment"",
+              (value, context) => {
+                const hasSize = !!String(value?.size || """").trim();
+                const comment = String(value?.comment || """").trim();
+
+                if (hasSize || !comment) return true;
+                if (CB_COMMENT_REASONS.includes(comment)) return true;
+
+                return context.createError({
+                  path: context.path + "".comment"",
+                  message: ""Select a valid CB Comment"",
+                });
+              },
+            )"
+FS-042,814,FormMeterInstallation,ast.anomalies.anomaly,required,"string().required(""Anomaly Required"")"
+FS-042,816,FormMeterInstallation,ast.anomalies.anomalyDetail,when,"string().when(""anomaly"", {
+          is: (val) => !!String(val || """").trim(),
+          then: (schema) => schema.required(""Anomaly detail is required""),
+          otherwise: (schema) => schema.notRequired().nullable(),
+        })"
+FS-042,818,FormMeterInstallation,ast.anomalies.anomalyDetail.then,required,"schema.required(""Anomaly detail is required"")"
+FS-042,824,FormMeterInstallation,ast.ogs.hasOffGridSupply,required,"string().required(""Off Grid Status Required"")"
+FS-042,828,FormMeterInstallation,ast.location.placement,oneOf,"string()
+          .required(""Placement Required"")
+          .oneOf(METER_PLACEMENT_VALUES, ""Select a valid Meter Placement"")"
+FS-042,828,FormMeterInstallation,ast.location.placement,required,"string()
+          .required(""Placement Required"")"
+FS-042,831,FormMeterInstallation,ast.location.gps,test,"object()
+          .nullable()
+          .required(""GPS location is required"")
+          .test(""is-valid-gps"", ""Invalid GPS coordinates"", isValidMeterGps)"
+FS-042,831,FormMeterInstallation,ast.location.gps,required,"object()
+          .nullable()
+          .required(""GPS location is required"")"
+FS-042,838,FormMeterInstallation,meterType,required,"string().oneOf([""electricity""]).required()"
+FS-042,838,FormMeterInstallation,meterType,oneOf,"string().oneOf([""electricity""])"
+FS-042,840,FormMeterInstallation,media,test,"array()
+      .of(object())
+      .test(
+        ""elec-top-level-forensics"",
+        ""Forensic photos missing"",
+        function (value) {
+          const { accessData, ast } = this.parent;
+
+          const hasAccess = accessData?.access?.hasAccess;
+          const meterNo = ast?.astData?.astNo;
+          const sealNo = ast?.astData?.meter?.seal?.sealNo;
+          const keypadSerial = ast?.astData?.meter?.keypad?.serialNo;
+          const meterSubtype = ast?.astData?.meter?.type;
+          const cbSize = ast?.astData?.meter?.cb?.size;
+          const hasOffGrid = ast?.ogs?.hasOffGridSupply;
+          const anomaly = ast?.anomalies?.anomaly;
+
+          if (hasAccess === ""no"") {
+            return value?.some((m) => m.tag === ""noAccessPhoto"")
+              ? true
+              : this.createError({ message: ""No Access photo required"" });
+          }
+
+          if (meterNo?.trim() && !value?.some((m) => m.tag === ""astNoPhoto"")) {
+            return this.createError({ message: ""Meter No. photo required"" });
+          }
+
+          const sealComment = ast?.astData?.meter?.seal?.comment;
+          const sealPhotoRequired =
+            !!sealNo?.trim() ||
+            (!sealNo?.trim() &&
+              isFormOptionPhotoRequired(
+                ""seal_number_comment_reasons"",
+                sealComment,
+              ));
+
+          if (sealPhotoRequired && !value?.some((m) => m.tag === ""sealPhoto"")) {
+            return this.createError({ message: ""Seal photo required"" });
+          }
+
+          const keypadComment = ast?.astData?.meter?.keypad?"
+FS-036,76,formatSeconds,,max,"Math.max(0, Math.floor(value))"
+FS-036,136,togglePlayback,,max,"Math.max(0, duration - 0.05)"

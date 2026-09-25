@@ -1,0 +1,68 @@
+field_id,label,component,binding,description,input_type,prerequisites,requirement,allowed_values,validation,default,disabled,transformation,storage_mapping,source_id,source_path,line
+FRM-010-C001,"values.context === ""Township""",Switch,"values.context === ""Township""",Township or Suburb contextual selection.,Switch,No direct enclosing conditional captured; check caller and route prerequisites.,Not established by control prop alone,See schema / owning shared component,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(v) =>
+                          setFieldValue(""context"", v ? ""Township"" : ""Suburb"")",UI binding shown; persisted path must be verified against payload builder,FS-048,ireps-mobile/src/features/premises/formPremise.js,1769
+FRM-010-C002,Property Status,FormSelect,occupancy.status,Observed occupancy/status of this premise.,FormSelect,No direct enclosing conditional captured; check caller and route prerequisites.,Not established by control prop alone,premiseOccupancySatusOptions,"Yup.string()
+          .oneOf(
+            [
+              ""Occupied"",
+              ""Unoccupied"",
+              ""Vandalised"",
+              ""Under Construction"",
+              ""Dilapidated"",
+              ""Accessed"",
+            ],
+            ""Invalid Status"",
+          )
+          .required(""Required"")
+Yup.string()
+          .oneOf(
+            [
+              ""Occupied"",
+              ""Unoccupied"",
+              ""Vandalised"",
+              ""Under Construction"",
+              ""Dilapidated"",
+              ""Accessed"",
+            ],
+            ""Invalid Status"",
+          )",Inherited binding shown; default not established by this extraction,No direct prop captured,Handled by parent/shared component,UI binding shown; persisted path must be verified against payload builder,FS-048,ireps-mobile/src/features/premises/formPremise.js,1778
+FRM-010-C003,Property Type,FormSelect,propertyType.type,Kind of premises represented; names and unit requirements depend on it.,FormSelect,No direct enclosing conditional captured; check caller and route prerequisites.,Not established by control prop alone,propertyTypeOptions,"Yup.string()
+          .notOneOf([""Select...""], ""Please select a property type"")
+          .required(""Required"")",Inherited binding shown; default not established by this extraction,No direct prop captured,"(nextType) => {
+                        if (nextType === values?.propertyType?.type) return;
+
+                        const reconciled = reconcilePropertyTypeChange(nextType);
+                        setValues(
+                          {
+                            ...values,
+                            propertyType: {
+                              ...values.propertyType,
+                              type: nextType,
+                              name: reconciled.name,
+                              unitNo: reconciled.unitNo,
+                            },
+                          },
+                          true,
+                        );
+                      }",UI binding shown; persisted path must be verified against payload builder,FS-048,ireps-mobile/src/features/premises/formPremise.js,1789
+FRM-010-C004,premiseNameLabel(values?.propertyType?.type),FormInput,propertyType.name,Source control for premiseNameLabel(values?.propertyType?.type); interpret in the business definitions and its enclosing section.,default,requiresPropertyName(values?.propertyType?.type),Not established by control prop alone,See schema / owning shared component,"Yup.string().when(""type"", ([type], schema) =>
+          requiresPropertyName(type)
+            ? schema.trim().required(`${premiseNameLabel(type)} is mandatory`)
+            : schema.optional(),
+        )
+schema.trim().required(`${premiseNameLabel(type)} is mandatory`)",Inherited binding shown; default not established by this extraction,No direct prop captured,Handled by parent/shared component,UI binding shown; persisted path must be verified against payload builder,FS-048,ireps-mobile/src/features/premises/formPremise.js,1817
+FRM-010-C005,Unit Number,FormInput,propertyType.unitNo,"Individual unit, preserving leading zeros and suffixes.",default,supportsUnitNo(values?.propertyType?.type),Not established by control prop alone,See schema / owning shared component,"Yup.string().when(""type"", {
+          is: (val) => requiresUnitNo(val, unitNoValidationContext),
+          then: (schema) => schema.trim().required(""Unit No is mandatory""),
+          otherwise: (schema) => schema.optional(),
+        })",Inherited binding shown; default not established by this extraction,No direct prop captured,Handled by parent/shared component,UI binding shown; persisted path must be verified against payload builder,FS-048,ireps-mobile/src/features/premises/formPremise.js,1830
+FRM-010-C006,SUBURB NAME,FormInput,address.suburbName,Source control for SUBURB NAME; interpret in the business definitions and its enclosing section.,default,No direct enclosing conditional captured; check caller and route prerequisites.,Not established by control prop alone,See schema / owning shared component,"Yup.string().trim().required(""Mandatory"")",Inherited binding shown; default not established by this extraction,No direct prop captured,Handled by parent/shared component,UI binding shown; persisted path must be verified against payload builder,FS-048,ireps-mobile/src/features/premises/formPremise.js,1852
+FRM-010-C007,STR NO,FormInput,address.strNo,Source control for STR NO; interpret in the business definitions and its enclosing section.,default,No direct enclosing conditional captured; check caller and route prerequisites.,Not established by control prop alone,See schema / owning shared component,"Yup.string().trim().required(""Mandatory"")",Inherited binding shown; default not established by this extraction,No direct prop captured,Handled by parent/shared component,UI binding shown; persisted path must be verified against payload builder,FS-048,ireps-mobile/src/features/premises/formPremise.js,1864
+FRM-010-C008,STR NAME,FormInput,address.strName,Source control for STR NAME; interpret in the business definitions and its enclosing section.,FormInput,No direct enclosing conditional captured; check caller and route prerequisites.,Not established by control prop alone,See schema / owning shared component,"Yup.string().trim().required(""Mandatory"")",Inherited binding shown; default not established by this extraction,No direct prop captured,"(text) =>
+                            setFieldValue(
+                              ""address.strName"",
+                              formatStreetName(text),
+                            )",UI binding shown; persisted path must be verified against payload builder,FS-048,ireps-mobile/src/features/premises/formPremise.js,1872
+FRM-010-C009,STREET TYPE,FormSelect,address.strType,Source control for STREET TYPE; interpret in the business definitions and its enclosing section.,FormSelect,No direct enclosing conditional captured; check caller and route prerequisites.,Not established by control prop alone,streetTypeOptions,"Yup.string()
+          .notOneOf([""Select...""], ""Please select a street type"")
+          .required(""Required"")",Inherited binding shown; default not established by this extraction,No direct prop captured,Handled by parent/shared component,UI binding shown; persisted path must be verified against payload builder,FS-048,ireps-mobile/src/features/premises/formPremise.js,1887

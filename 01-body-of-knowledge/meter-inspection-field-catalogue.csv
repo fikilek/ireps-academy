@@ -1,0 +1,125 @@
+field_id,label,component,binding,description,input_type,prerequisites,requirement,allowed_values,validation,default,disabled,transformation,storage_mapping,source_id,source_path,line
+FRM-016-C001,Type the reason,TextInput,"normalisation?.noActionReasonOther || """"",Source control for Type the reason; interpret in the business definitions and its enclosing section.,TextInput,needsReason; normalisation?.noActionReason === NO_ACTION_REASON_OTHER,Not established by control prop alone,See schema / owning shared component,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(text) =>
+                setFieldValue(`${base}.noActionReasonOther`, text)",UI binding shown; persisted path must be verified against payload builder,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1294
+FRM-016-C002,`Enter ${label.toLowerCase()}`,TextInput,"value || """"",Source control for `Enter ${label.toLowerCase()}`; interpret in the business definitions and its enclosing section.,keyboardType,No direct enclosing conditional captured; check caller and route prerequisites.,Not established by control prop alone,See schema / owning shared component,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(text) => {
+            if (!String(text || """").trim()) setCleared(true);
+            onChangeText(text);
+          }",UI binding shown; persisted path must be verified against payload builder,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,2217
+FRM-016-C003,whyMissing.label,IrepsSelectWithOther,whyMissing.value,Source control for whyMissing.label; interpret in the business definitions and its enclosing section.,IrepsSelectWithOther,showWhy,Not established by control prop alone,whyMissing.reasons,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,whyMissing.onChange,UI binding shown; persisted path must be verified against payload builder,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,2265
+FRM-016-C004,label,IrepsSelectWithOther,value,Source control for label; interpret in the business definitions and its enclosing section.,IrepsSelectWithOther,No direct enclosing conditional captured; check caller and route prerequisites.,Not established by control prop alone,options,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,onChange,UI binding shown; persisted path must be verified against payload builder,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,2317
+FRM-016-C005,Meter Number,SameDeleteTextField,astData?.astNo,Source control for Meter Number; interpret in the business definitions and its enclosing section.,SameDeleteTextField,conditional branch: noAccess,Not established by control prop alone,See schema / owning shared component,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(text) =>
+                          setFieldValue(
+                            ""inspection.captured.ast.astData.astNo"",
+                            text,
+                          )",UI binding shown; persisted path must be verified against payload builder,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,3928
+FRM-016-C006,Manufacturer,SameDeleteSelectField,astData?.astManufacturerSelect,Source control for Manufacturer; interpret in the business definitions and its enclosing section.,SameDeleteSelectField,conditional branch: noAccess,Not established by control prop alone,manufacturerOptions,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(nextValue) => {
+                          setFieldValue(
+                            ""inspection.captured.ast.astData.astManufacturerSelect"",
+                            nextValue,
+                          );
+                          setFieldValue(
+                            ""inspection.captured.ast.astData.astManufacturer"",
+                            selectWithOtherToText(nextValue),
+                          );
+                        }",UI binding shown; persisted path must be verified against payload builder,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,3970
+FRM-016-C007,Meter Model / Name,SameDeleteTextField,astData?.astName,Source control for Meter Model / Name; interpret in the business definitions and its enclosing section.,SameDeleteTextField,conditional branch: noAccess,Not established by control prop alone,See schema / owning shared component,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(text) =>
+                          setFieldValue(
+                            ""inspection.captured.ast.astData.astName"",
+                            text,
+                          )",UI binding shown; persisted path must be verified against payload builder,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,4018
+FRM-016-C008,Placement,SameDeleteSelectField,capturedAst?.location?.placementSelect,Source control for Placement; interpret in the business definitions and its enclosing section.,SameDeleteSelectField,conditional branch: noAccess; isElectricityInspectionService,Not established by control prop alone,placementLookup.options,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(nextValue) => {
+                              setFieldValue(
+                                ""inspection.captured.ast.location.placementSelect"",
+                                nextValue,
+                              );
+                              setFieldValue(
+                                ""inspection.captured.ast.location.placement"",
+                                selectWithOtherToText(nextValue),
+                              );
+                            }",UI binding shown; persisted path must be verified against payload builder,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,4155
+FRM-016-C009,Off-grid Supply,SameDeleteSelectField,capturedAst?.ogs?.hasOffGridSupplySelect,Source control for Off-grid Supply; interpret in the business definitions and its enclosing section.,SameDeleteSelectField,conditional branch: noAccess; isElectricityInspectionService,Not established by control prop alone,OFF_GRID_SUPPLY_OPTIONS,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(nextValue) => {
+                              setFieldValue(
+                                ""inspection.captured.ast.ogs.hasOffGridSupplySelect"",
+                                nextValue,
+                              );
+                              setFieldValue(
+                                ""inspection.captured.ast.ogs.hasOffGridSupply"",
+                                nextValue?.code ||
+                                  selectWithOtherToText(nextValue),
+                              );
+                            }",UI binding shown; persisted path must be verified against payload builder,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,4203
+FRM-016-C010,METER GPS CAPTURE,SovereignLocationPicker,inspection.captured.ast.location.gps,Source control for METER GPS CAPTURE; interpret in the business definitions and its enclosing section.,SovereignLocationPicker,conditional branch: noAccess,Not established by control prop alone,See schema / owning shared component,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,Handled by parent/shared component,UI binding shown; persisted path must be verified against payload builder,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,4279
+FRM-016-C011,Meter Anomaly,IrepsSelectWithOther,capturedAst?.anomalies?.anomalySelect,Source control for Meter Anomaly; interpret in the business definitions and its enclosing section.,IrepsSelectWithOther,conditional branch: noAccess,Not established by control prop alone,anomalyLookup.options,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(nextValue) => {
+                          setFieldValue(
+                            ""inspection.captured.ast.anomalies.anomalySelect"",
+                            nextValue,
+                          );
+                          setFieldValue(
+                            ""inspection.captured.ast.anomalies.anomaly"",
+                            selectWithOtherToText(nextValue),
+                          );
+                          setFieldValue(
+                            ""inspection.captured.ast.anomalies.anomalyDetailSelect"",
+                            makeEmptySelectWithOther(),
+                          );
+                          setFieldValue(
+                            ""inspection.captured.ast.anomalies.anomalyDetail"",
+                            """",
+                          );
+                        }",UI binding shown; persisted path must be verified against payload builder,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,4316
+FRM-016-C012,Anomaly Detail,IrepsSelectWithOther,capturedAst?.anomalies?.anomalyDetailSelect,Source control for Anomaly Detail; interpret in the business definitions and its enclosing section.,IrepsSelectWithOther,conditional branch: noAccess,Not established by control prop alone,anomalyDetailOptions,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(nextValue) => {
+                          setFieldValue(
+                            ""inspection.captured.ast.anomalies.anomalyDetailSelect"",
+                            nextValue,
+                          );
+                          setFieldValue(
+                            ""inspection.captured.ast.anomalies.anomalyDetail"",
+                            selectWithOtherToText(nextValue),
+                          );
+                        }",UI binding shown; persisted path must be verified against payload builder,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,4351
+FRM-016-C013,Current Status,SameDeleteSelectField,values?.status?.stateSelect,Source control for Current Status; interpret in the business definitions and its enclosing section.,SameDeleteSelectField,conditional branch: noAccess; !noAccess,Not established by control prop alone,foundStatusOptions,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(nextValue) => {
+                            setFieldValue(""status.stateSelect"", nextValue);
+                            setFieldValue(
+                              ""status.state"",
+                              nextValue?.code ||
+                                selectWithOtherToText(nextValue),
+                            );
+                            setFieldValue(
+                              ""status.id"",
+                              values?.status?.id ||
+                                values?.accessData?.parents?.lmPcode ||
+                                ""NAv"",
+                            );
+                            setFieldValue(
+                              ""status.detail"",
+                              values?.status?.detail ||
+                                values?.accessData?.parents?.lmPcode ||
+                                ""NAv"",
+                            );
+                          }",UI binding shown; persisted path must be verified against payload builder,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,4448
+FRM-016-C014,Meter Reading,TextInput,values?.inspection?.captured?.mreading?.reading,Source control for Meter Reading; interpret in the business definitions and its enclosing section.,numeric,conditional branch: noAccess; isConventional,Not established by control prop alone,See schema / owning shared component,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(text) => {
+                            const cleanText = text.replace(/[^\d.]/g, """");
+                            setFieldValue(
+                              ""inspection.captured.mreading.reading"",
+                              cleanText,
+                            );
+
+                            if (cleanText) {
+                              setFieldValue(
+                                ""inspection.captured.mreading.readingAt"",
+                                new Date().toISOString(),
+                              );
+                              setFieldValue(
+                                ""inspection.captured.mreading.noReadingReason"",
+                                makeEmptySelectWithOther(),
+                              );
+                            }
+                          }",UI binding shown; persisted path must be verified against payload builder,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,4557
+FRM-016-C015,No Reading Reason,IrepsSelectWithOther,"values?.inspection?.captured?.mreading
+                                ?.noReadingReason",Source control for No Reading Reason; interpret in the business definitions and its enclosing section.,IrepsSelectWithOther,"conditional branch: noAccess; isConventional; !String(
+                          values?.inspection?.captured?.mreading?.reading || """",
+                        ).trim()",Not established by control prop alone,noReadingLookup.options,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(nextValue) =>
+                              setFieldValue(
+                                ""inspection.captured.mreading.noReadingReason"",
+                                nextValue,
+                              )",UI binding shown; persisted path must be verified against payload builder,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,4630

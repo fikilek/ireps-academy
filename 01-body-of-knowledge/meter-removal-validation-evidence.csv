@@ -1,0 +1,71 @@
+source_id,line,function,schema_path,kind,expression
+FS-028,417,,,test,"object()
+  .shape({
+    accessData: object().shape({
+      access: object().shape({
+        hasAccess: string()
+          .oneOf([""yes"", ""no""])
+          .required(""Access outcome is required""),
+        reason: string().notRequired(),
+        reasonSelect: object().shape({
+          code: string().notRequired(),
+          label: string().notRequired(),
+          otherText: string().notRequired(),
+        }),
+      }),
+    }),
+
+    assignment: object().shape({
+      // MN-R001 6.1: every removal says why. A locked instruction (office or
+      // finding) is already filled in.
+      instructionSelect: object()
+        .shape({
+          code: string().notRequired(),
+          label: string().notRequired(),
+          otherText: string().notRequired(),
+        })
+        .test(
+          ""removal-instruction-required"",
+          ""Removal instruction is required"",
+          (value) => isSelectWithOtherFilled(value),
+        ),
+    }),
+
+    removal: object().shape({
+      meterRemoved: object().shape({
+        answer: string().notRequired(),
+        notes: string().notRequired(),
+      }),
+
+      meterReading: string().notRequired(),
+      tokenReading: string().notRequired(),
+
+      noReadingReason: object().shape({
+        code: string().notRequired(),
+        label: string().notRequired(),
+        otherText: string().notRequired(),
+      }),
+    }),
+
+    media: array().of(object()),
+  })
+  .test(""rem-v01-validation"", ""REM validation failed"", function (values = {}) {
+    const access = values?.accessData?.access || {};
+    const removal = values?.removal || {};
+    const media "
+FS-028,421,,accessData.access.hasAccess,required,"string()
+          .oneOf([""yes"", ""no""])
+          .required(""Access outcome is required"")"
+FS-028,421,,accessData.access.hasAccess,oneOf,"string()
+          .oneOf([""yes"", ""no""])"
+FS-028,436,,assignment.instructionSelect,test,"object()
+        .shape({
+          code: string().notRequired(),
+          label: string().notRequired(),
+          otherText: string().notRequired(),
+        })
+        .test(
+          ""removal-instruction-required"",
+          ""Removal instruction is required"",
+          (value) => isSelectWithOtherFilled(value),
+        )"

@@ -1,0 +1,138 @@
+field_id,label,component,binding,description,input_type,prerequisites,requirement,allowed_values,validation,default,disabled,transformation,storage_mapping,source_id,source_path,line
+FRM-015-C001,value,RadioButton.Group,value,Source control for value; interpret in the business definitions and its enclosing section.,RadioButton.Group,No direct enclosing conditional captured; check caller and route prerequisites.,Not established by control prop alone,See schema / owning shared component,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(nextValue) => setFieldValue(answerPath, nextValue)",UI binding shown; persisted path must be verified against payload builder,FS-026,ireps-mobile/app/(tabs)/asts/meter-reading.js,741
+FRM-015-C002,Reason / Notes,TextInput,notes,Source control for Reason / Notes; interpret in the business definitions and its enclosing section.,TextInput,"value === ""no""",Not established by control prop alone,See schema / owning shared component,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(text) => setFieldValue(notesPath, text)",UI binding shown; persisted path must be verified against payload builder,FS-026,ireps-mobile/app/(tabs)/asts/meter-reading.js,768
+FRM-015-C003,value,RadioButton.Group,value,Source control for value; interpret in the business definitions and its enclosing section.,RadioButton.Group,No direct enclosing conditional captured; check caller and route prerequisites.,Not established by control prop alone,See schema / owning shared component,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(nextValue) => {
+          setFieldValue(""accessData.access.hasAccess"", nextValue);
+
+          if (nextValue === ""yes"") {
+            setFieldValue(""accessData.access.reason"", ""NAv"");
+            setFieldValue(
+              ""accessData.access.reasonSelect"",
+              makeEmptySelectWithOther(),
+            );
+          }
+        }",UI binding shown; persisted path must be verified against payload builder,FS-026,ireps-mobile/app/(tabs)/asts/meter-reading.js,799
+FRM-015-C004,Meter Reading Instruction,IrepsSelectWithOther,values?.assignment?.instructionSelect,Reason for this reading visit.,IrepsSelectWithOther,conditional branch: instructionLocked,Not established by control prop alone,meterReadingInstructionLookup.options,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(nextValue) => {
+                      setFieldValue(""assignment.instructionSelect"", nextValue);
+                      setFieldValue(
+                        ""assignment.instruction.text"",
+                        selectWithOtherToText(nextValue),
+                      );
+                    }",UI binding shown; persisted path must be verified against payload builder,FS-026,ireps-mobile/app/(tabs)/asts/meter-reading.js,2422
+FRM-015-C005,Token Reading,TextInput,values?.meterReading?.tokenReading,Observed conventional register value.,numeric,conditional branch: noAccess; conditional branch: isPrepaidReading,Not established by control prop alone,See schema / owning shared component,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(text) => {
+                              const cleanText = text.replace(/[^\d.]/g, """");
+                              const previousText = String(
+                                values?.meterReading?.tokenReading || """",
+                              ).trim();
+
+                              setFieldValue(
+                                ""meterReading.tokenReading"",
+                                cleanText,
+                              );
+
+                              if (cleanText) {
+                                setFieldValue(
+                                  ""meterReading.noReadingReason"",
+                                  makeEmptySelectWithOther(),
+                                );
+                                setFieldValue(
+                                  ""meterReading.noReadingMode"",
+                                  false,
+                                );
+                                stampReadingAtIfNeeded();
+
+                                if (!previousText) {
+                                  captureReadingGpsIfNeeded();
+                                }
+                              } else {
+                                setFieldValue(""meterReading.readingGps"", null);
+                                setFieldValue(
+                                  ""meterReading.readingVarianceReasonSelect"",
+                                  makeEmptySelectWithOther(),
+                                );
+                                setFieldValue(
+                                  ""meterReading.readingVarianceReason"",
+                                  """",
+                                );
+                                setCurrentGps(null);
+                              }
+                            }",UI binding shown; persisted path must be verified against payload builder,FS-026,ireps-mobile/app/(tabs)/asts/meter-reading.js,2605
+FRM-015-C006,Meter Reading,TextInput,values?.meterReading?.reading,Observed conventional register value.,numeric,conditional branch: noAccess; conditional branch: isPrepaidReading,Not established by control prop alone,See schema / owning shared component,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(text) => {
+                              const cleanText = text.replace(/[^\d.]/g, """");
+                              const previousText = String(
+                                values?.meterReading?.reading || """",
+                              ).trim();
+
+                              setFieldValue(""meterReading.reading"", cleanText);
+
+                              if (cleanText) {
+                                if (
+                                  !isReadingLowerThanPrevious(
+                                    cleanText,
+                                    latestSuccessfulReading,
+                                  )
+                                ) {
+                                  setFieldValue(
+                                    ""meterReading.readingVarianceReasonSelect"",
+                                    makeEmptySelectWithOther(),
+                                  );
+                                  setFieldValue(
+                                    ""meterReading.readingVarianceReason"",
+                                    """",
+                                  );
+                                }
+
+                                setFieldValue(
+                                  ""meterReading.noReadingReason"",
+                                  makeEmptySelectWithOther(),
+                                );
+                                setFieldValue(
+                                  ""meterReading.noReadingMode"",
+                                  false,
+                                );
+                                stampReadingAtIfNeeded();
+
+                                if (!previousText) {
+                                  captureReadingGpsIfNeeded();
+                                }
+                              } else {
+                                setFieldValue(""meterReading.readingGps"", null);
+                                setFieldValue(
+                                  ""meterReading.readingVarianceReasonSelect"",
+                                  makeEmptySelectWithOther(),
+                                );
+                                setFieldValue(
+                                  ""meterReading.readingVarianceReason"",
+                                  """",
+                                );
+                                setCurrentGps(null);
+                              }
+                            }",UI binding shown; persisted path must be verified against payload builder,FS-026,ireps-mobile/app/(tabs)/asts/meter-reading.js,2674
+FRM-015-C007,Reason for lower reading,IrepsSelectWithOther,"values?.meterReading
+                                    ?.readingVarianceReasonSelect",Observed conventional register value.,IrepsSelectWithOther,conditional branch: noAccess; conditional branch: isPrepaidReading; lowerReadingRequiresReason,true,LOWER_READING_REASON_OPTIONS,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(nextValue) => {
+                                  const normalized =
+                                    normalizeSelectWithOtherValue(nextValue);
+
+                                  setFieldValue(
+                                    ""meterReading.readingVarianceReasonSelect"",
+                                    normalized,
+                                  );
+                                  setFieldValue(
+                                    ""meterReading.readingVarianceReason"",
+                                    selectWithOtherToText(normalized),
+                                  );
+                                }",UI binding shown; persisted path must be verified against payload builder,FS-026,ireps-mobile/app/(tabs)/asts/meter-reading.js,2765
+FRM-015-C008,No Reading Reason,IrepsSelectWithOther,values?.meterReading?.noReadingReason,Observed conventional register value.,IrepsSelectWithOther,"conditional branch: noAccess; !String(values?.meterReading?.reading || """").trim() &&
+                        !String(
+                          values?.meterReading?.tokenReading || """",
+                        ).trim() &&
+                        values?.meterReading?.noReadingMode",Not established by control prop alone,noReadingReasonLookup.options,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(nextValue) => {
+                                setFieldValue(
+                                  ""meterReading.noReadingReason"",
+                                  nextValue,
+                                );
+
+                                if (isSelectWithOtherFilled(nextValue)) {
+                                  stampReadingAtIfNeeded();
+                                }
+                              }",UI binding shown; persisted path must be verified against payload builder,FS-026,ireps-mobile/app/(tabs)/asts/meter-reading.js,2859

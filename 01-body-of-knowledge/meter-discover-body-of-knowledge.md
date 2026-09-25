@@ -1,5 +1,10 @@
 # Meter Discovery — Body of Knowledge
 
+> **25 September update:** Read the [current Normal Path, Sales Path and Premise Picker guidance](meter-discovery-path-update-2026-09-25.md) alongside this earlier detailed baseline. Source handover and reported tests do not establish production acceptance.
+
+
+
+
 **Module:** MDIS · **Content version:** 0.2 · **Status:** expanded visual draft for review, 23 September 2026. The canonical module name is **Meter Discovery**, confirmed by the owner on 24 September 2026. The transaction operation is `METER_DISCOVERY`.
 
 This knowledge base explains what is being discovered, why it matters, where the meter belongs, how different routes converge, what evidence is collected and what happens to the resulting records. It serves prospective customers as well as every operational role. Source observations describe the [recorded development snapshots](../00-academy-governance/source-assessments/meter-discover-source-baseline-2026-09-23.md), not a certified production release.

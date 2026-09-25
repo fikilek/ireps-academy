@@ -1,0 +1,34 @@
+field_id,label,component,binding,description,input_type,prerequisites,requirement,allowed_values,validation,default,disabled,transformation,storage_mapping,source_id,source_path,line
+FRM-017-C001,value,RadioButton.Group,value,Source control for value; interpret in the business definitions and its enclosing section.,RadioButton.Group,No direct enclosing conditional captured; check caller and route prerequisites.,Not established by control prop alone,See schema / owning shared component,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(nextValue) => {
+          setFieldValue(""accessData.access.hasAccess"", nextValue);
+
+          if (nextValue === ""yes"") {
+            setFieldValue(""accessData.access.reason"", ""NAv"");
+            setFieldValue(
+              ""accessData.access.reasonSelect"",
+              makeEmptySelectWithOther(),
+            );
+          }
+        }",UI binding shown; persisted path must be verified against payload builder,FS-024,ireps-mobile/app/(tabs)/asts/disconnection.jsx,531
+FRM-017-C002,Disconnection Instruction,IrepsSelectWithOther,values?.assignment?.instructionSelect,The requested disconnection work.,IrepsSelectWithOther,conditional branch: instructionLocked,Not established by control prop alone,FIELD_DISCONNECTION_INSTRUCTION_OPTIONS,"object()
+        .shape({
+          code: string().notRequired(),
+          label: string().notRequired(),
+          otherText: string().notRequired(),
+        })
+        .test(
+          ""disconnection-instruction-required"",
+          ""Disconnection instruction is required"",
+          (value) => isSelectWithOtherFilled(value),
+        )",Inherited binding shown; default not established by this extraction,No direct prop captured,"(nextValue) => {
+                      setFieldValue(""assignment.instructionSelect"", nextValue);
+                      setFieldValue(
+                        ""assignment.instruction.text"",
+                        selectWithOtherToText(nextValue),
+                      );
+                    }",UI binding shown; persisted path must be verified against payload builder,FS-024,ireps-mobile/app/(tabs)/asts/disconnection.jsx,2118
+FRM-017-C003,Instruction Notes,TextInput,"values?.assignment?.instruction?.notes || """"",The requested disconnection work.,TextInput,conditional branch: instructionLocked,Not established by control prop alone,See schema / owning shared component,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(text) =>
+                      setFieldValue(""assignment.instruction.notes"", text)",UI binding shown; persisted path must be verified against payload builder,FS-024,ireps-mobile/app/(tabs)/asts/disconnection.jsx,2140
+FRM-017-C004,Level,IrepsSelectWithOther,values?.disconnection?.level,Source control for Level; interpret in the business definitions and its enclosing section.,IrepsSelectWithOther,conditional branch: noAccess,Not established by control prop alone,FIELD_DISCONNECTION_LEVEL_OPTIONS,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(nextValue) =>
+                          setFieldValue(""disconnection.level"", nextValue)",UI binding shown; persisted path must be verified against payload builder,FS-024,ireps-mobile/app/(tabs)/asts/disconnection.jsx,2230
+FRM-017-C005,IrepsFieldCommentSection,IrepsFieldCommentSection,,Source control for IrepsFieldCommentSection; interpret in the business definitions and its enclosing section.,IrepsFieldCommentSection,No direct enclosing conditional captured; check caller and route prerequisites.,Not established by control prop alone,See schema / owning shared component,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,inProgress || saveInProgress,Handled by parent/shared component,UI binding shown; persisted path must be verified against payload builder,FS-024,ireps-mobile/app/(tabs)/asts/disconnection.jsx,2274

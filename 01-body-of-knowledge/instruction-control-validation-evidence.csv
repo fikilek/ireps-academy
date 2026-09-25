@@ -1,0 +1,2 @@
+source_id,line,function,schema_path,kind,expression
+FS-008,88,getAgeLabel,,max,"Math.max(Math.floor((Date.now() - millis) / 1000), 0)"

@@ -38,3 +38,7 @@ Added **Normal Path** and **Sales Path** from the owner's direct correction. The
 ## Confirmed module name — 24 September 2026
 
 The owner confirmed **Meter Discovery** as the canonical module name. Academy titles, references and the existing Meter Discovery dictionary entry use that name. Existing file paths, links, source fingerprints and runtime identifiers remain unchanged.
+
+## Forms and lifecycle vocabulary — 25 September 2026
+
+Added Meter Lifecycle, Premise Picker, Store Check-in, Store Check-out, Meter Custody, Return to Store, Meter Retirement and Meter Disposal to the master. Entries distinguish confirmed subject coverage, development terminology and proposed meanings. Existing 414 term headings are preserved; the total is now 422. Decommissioning's exact relationship to removal/retirement remains a product question rather than an invented approved definition.

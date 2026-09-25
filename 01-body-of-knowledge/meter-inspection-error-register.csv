@@ -1,0 +1,646 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-016-E001,LOCAL_MESSAGE,"{
+          path: ""inspection.captured.ast.astData.meter.type"",
+          message:
+            ""Inspection is blocked because the existing iREPS meter kind is unknown. Update the meter record before creating an INSPECTION."",
+        }",Client source: ,"this.createError({
+          path: ""inspection.captured.ast.astData.meter.type"",
+          message:
+            ""Inspection is blocked because the existing iREPS meter kind is unknown. Update the meter record before creating an INSPECTION."",
+        })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1517
+FRM-016-E002,LOCAL_MESSAGE,"{
+            path: ""accessData.access.reasonSelect"",
+            message: ""No-access reason is required"",
+          }",Client source: ,"this.createError({
+            path: ""accessData.access.reasonSelect"",
+            message: ""No-access reason is required"",
+          })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1528
+FRM-016-E003,LOCAL_MESSAGE,"{
+            path: ""media"",
+            message: ""No access photo is required"",
+          }",Client source: ,"this.createError({
+            path: ""media"",
+            message: ""No access photo is required"",
+          })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1535
+FRM-016-E004,LOCAL_MESSAGE,"{
+          path: ""inspection.captured.ast.astData.astNo"",
+          message: ""Meter number is required"",
+        }",Client source: ,"this.createError({
+          path: ""inspection.captured.ast.astData.astNo"",
+          message: ""Meter number is required"",
+        })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1553
+FRM-016-E005,LOCAL_MESSAGE,"{
+          path: ""inspection.captured.ast.astData.astManufacturer"",
+          message: ""Manufacturer is required"",
+        }",Client source: ,"this.createError({
+          path: ""inspection.captured.ast.astData.astManufacturer"",
+          message: ""Manufacturer is required"",
+        })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1560
+FRM-016-E006,LOCAL_MESSAGE,"{
+          path: ""inspection.captured.ast.astData.astName"",
+          message: ""Meter model/name is required"",
+        }",Client source: ,"this.createError({
+          path: ""inspection.captured.ast.astData.astName"",
+          message: ""Meter model/name is required"",
+        })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1567
+FRM-016-E007,LOCAL_MESSAGE,"{
+          path: ""inspection.captured.ast.astData.meter.type"",
+          message: ""Meter kind is required"",
+        }",Client source: ,"this.createError({
+          path: ""inspection.captured.ast.astData.meter.type"",
+          message: ""Meter kind is required"",
+        })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1574
+FRM-016-E008,LOCAL_MESSAGE,"{
+          path: ""inspection.captured.ast.astData.meter.category"",
+          message: ""Meter category is required"",
+        }",Client source: ,"this.createError({
+          path: ""inspection.captured.ast.astData.meter.category"",
+          message: ""Meter category is required"",
+        })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1581
+FRM-016-E009,LOCAL_MESSAGE,"{
+            path: ""inspection.captured.ast.astData.meter.phaseSelect"",
+            message: ""Phase is required"",
+          }",Client source: ,"this.createError({
+            path: ""inspection.captured.ast.astData.meter.phaseSelect"",
+            message: ""Phase is required"",
+          })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1589
+FRM-016-E010,LOCAL_MESSAGE,"{
+            path: ""inspection.captured.ast.astData.meter.cb.size"",
+            message:
+              ""CB size is required: press SAME, type it, or pick why there is none"",
+          }",Client source: ,"this.createError({
+            path: ""inspection.captured.ast.astData.meter.cb.size"",
+            message:
+              ""CB size is required: press SAME, type it, or pick why there is none"",
+          })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1599
+FRM-016-E011,LOCAL_MESSAGE,"{
+            path: ""inspection.captured.ast.astData.meter.keypad.serialNo"",
+            message:
+              ""Keypad serial number is required: press SAME, type it, or pick why there is none"",
+          }",Client source: ,"this.createError({
+            path: ""inspection.captured.ast.astData.meter.keypad.serialNo"",
+            message:
+              ""Keypad serial number is required: press SAME, type it, or pick why there is none"",
+          })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1611
+FRM-016-E012,LOCAL_MESSAGE,"{
+              path: ""media"",
+              message: `A photo of the ${label} is required`,
+            }",Client source: ,"this.createError({
+              path: ""media"",
+              message: `A photo of the ${label} is required`,
+            })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1627
+FRM-016-E013,LOCAL_MESSAGE,"{
+            path: ""inspection.captured.ast.location.placementSelect"",
+            message: ""Placement is required"",
+          }",Client source: ,"this.createError({
+            path: ""inspection.captured.ast.location.placementSelect"",
+            message: ""Placement is required"",
+          })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1635
+FRM-016-E014,LOCAL_MESSAGE,"{
+            path: ""inspection.captured.ast.ogs.hasOffGridSupplySelect"",
+            message: ""Off-grid supply is required"",
+          }",Client source: ,"this.createError({
+            path: ""inspection.captured.ast.ogs.hasOffGridSupplySelect"",
+            message: ""Off-grid supply is required"",
+          })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1642
+FRM-016-E015,LOCAL_MESSAGE,"{
+          path: ""status.stateSelect"",
+          message: ""Choose the status you found: Connected or Disconnected"",
+        }",Client source: ,"this.createError({
+          path: ""status.stateSelect"",
+          message: ""Choose the status you found: Connected or Disconnected"",
+        })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1650
+FRM-016-E016,LOCAL_MESSAGE,"{
+          path: ""inspection.captured.ast.anomalies.anomalySelect"",
+          message: ""Anomaly is required"",
+        }",Client source: ,"this.createError({
+          path: ""inspection.captured.ast.anomalies.anomalySelect"",
+          message: ""Anomaly is required"",
+        })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1657
+FRM-016-E017,LOCAL_MESSAGE,"{
+          path: ""inspection.captured.ast.anomalies.anomalyDetailSelect"",
+          message: ""Anomaly detail is required"",
+        }",Client source: ,"this.createError({
+          path: ""inspection.captured.ast.anomalies.anomalyDetailSelect"",
+          message: ""Anomaly detail is required"",
+        })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1666
+FRM-016-E018,LOCAL_MESSAGE,"{
+          path: `inspection.captured.ast.normalisation.${normalisationError.path}`,
+          message: normalisationError.message,
+        }",Client source: ,"this.createError({
+          path: `inspection.captured.ast.normalisation.${normalisationError.path}`,
+          message: normalisationError.message,
+        })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1682
+FRM-016-E019,LOCAL_MESSAGE,"{
+          path: ""media"",
+          message: ""Meter number photo is required"",
+        }",Client source: ,"this.createError({
+          path: ""media"",
+          message: ""Meter number photo is required"",
+        })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1689
+FRM-016-E020,LOCAL_MESSAGE,"{
+          path: ""media"",
+          message: ""An anomaly photo is required for this finding"",
+        }",Client source: ,"this.createError({
+          path: ""media"",
+          message: ""An anomaly photo is required for this finding"",
+        })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1699
+FRM-016-E021,LOCAL_MESSAGE,"{
+          path: ""media"",
+          message: ""Photo proof of the normalisation is required."",
+        }",Client source: ,"this.createError({
+          path: ""media"",
+          message: ""Photo proof of the normalisation is required."",
+        })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1709
+FRM-016-E022,LOCAL_MESSAGE,"{
+          path: ""inspection.captured.mreading.noReadingReason"",
+          message:
+            ""Meter reading is required for a conventional meter. If no reading is available, select a no-reading reason."",
+        }",Client source: ,"this.createError({
+          path: ""inspection.captured.mreading.noReadingReason"",
+          message:
+            ""Meter reading is required for a conventional meter. If no reading is available, select a no-reading reason."",
+        })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1721
+FRM-016-E023,LOCAL_MESSAGE,"{
+          path: ""inspection.captured.mreading.readingAt"",
+          message: ""Meter reading date/time is required"",
+        }",Client source: ,"this.createError({
+          path: ""inspection.captured.mreading.readingAt"",
+          message: ""Meter reading date/time is required"",
+        })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1729
+FRM-016-E024,LOCAL_MESSAGE,"{
+          path: ""media"",
+          message: ""Meter reading photo is required when reading is captured"",
+        }",Client source: ,"this.createError({
+          path: ""media"",
+          message: ""Meter reading photo is required when reading is captured"",
+        })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1736
+FRM-016-E025,LOCAL_MESSAGE,"{
+          path: ""inspection.comparison.confirmation.confirmed"",
+          message: ""Confirm comparison differences before submit"",
+        }",Client source: ,"this.createError({
+          path: ""inspection.comparison.confirmation.confirmed"",
+          message: ""Confirm comparison differences before submit"",
+        })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1748
+FRM-016-E026,LOCAL_MESSAGE,Could not open this instruction media item.,Client source: openActiveMediaExternal,"Alert.alert(
+        ""Open Media Failed"",
+        ""Could not open this instruction media item."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,1837
+FRM-016-E027,"queueStatus === ""PENDING""
+                ? ""SUBMISSION_NOT_CONFIRMED""
+                : ""LOCAL_SAVE_ONLY""","queueStatus === ""PENDING""
+                ? ""Submission was not confirmed by backend. Draft remains pending for retry.""
+                : ""Saved locally only. Not submitted.""",Client source: saveDraftToQueue,"{
+            success: false,
+            code:
+              queueStatus === ""PENDING""
+                ? ""SUBMISSION_NOT_CONFIRMED""
+                : ""LOCAL_SAVE_ONLY"",
+            message:
+              queueStatus === ""PENDING""
+                ? ""Submission was not confirmed by backend. Draft remains pending for retry.""
+                : ""Saved locally only. Not submitted."",
+            trnId: inspectionTrnId || ""NAv"",
+          }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,3004
+FRM-016-E028,LOCAL_MESSAGE,Failed to save inspection draft locally.,Client source: saveDraftToQueue,"Alert.alert(
+        ""Draft Save Failed"",
+        ""Failed to save inspection draft locally."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,3036
+FRM-016-E029,LOCAL_MESSAGE,"error?.message || ""Failed to save this INSP form locally.""",Client source: handleSaveInspection,"Alert.alert(
+        ""Save Failed"",
+        error?.message || ""Failed to save this INSP form locally."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,3066
+FRM-016-E030,LOCAL_MESSAGE,This INSP execution form must be opened from an accepted WMS instruction.,Client source: handleSubmitInspection,"Alert.alert(
+        ""Missing Instruction"",
+        ""This INSP execution form must be opened from an accepted WMS instruction."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,3076
+FRM-016-E031,LOCAL_MESSAGE,AST data not found.,Client source: handleSubmitInspection,"Alert.alert(""Error"", ""AST data not found."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,3086
+FRM-016-E032,LOCAL_MESSAGE,"eligibilityBlockMessage || ""This meter cannot be inspected.""",Client source: handleSubmitInspection,"Alert.alert(
+        ""Not Eligible"",
+        eligibilityBlockMessage || ""This meter cannot be inspected."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,3092
+FRM-016-E033,LOCAL_MESSAGE,"You are offline. Press SAVE to keep this inspection on the phone, then submit it when you are online.",Client source: handleSubmitInspection,"Alert.alert(
+            ""Offline: nothing was sent"",
+            ""You are offline. Press SAVE to keep this inspection on the phone, then submit it when you are online."",
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,3269
+FRM-016-E034,LOCAL_MESSAGE,"error?.message || ""Meter inspection submission failed.""",Client source: handleSubmitInspection,"Alert.alert(
+          ""Submission Failed"",
+          error?.message || ""Meter inspection submission failed."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,3314
+FRM-016-E035,LOCAL_MESSAGE,"result?.message || ""Meter inspection submission failed.""",Client source: handleSubmitInspection,"Alert.alert(
+          ""Submission Failed"",
+          result?.message || ""Meter inspection submission failed."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,3326
+FRM-016-E036,"result?.code || ""SUCCESS""","result?.message || ""Meter inspection synced successfully.""",Client source: handleSubmitInspection,"{
+              success: true,
+              code: result?.code || ""SUCCESS"",
+              message:
+                result?.message || ""Meter inspection synced successfully."",
+              trnId: result?.trnId || inspectionTrnId || ""NAv"",
+            }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,3339
+FRM-016-E037,LOCAL_MESSAGE,"followOnWork === ""DISCONNECTION""
+            ? MANAGER_DISCONNECTION_MESSAGE
+            : MANAGER_REPLACEMENT_MESSAGE",Client source: handleSubmitInspection,"Alert.alert(
+          ""Inspection sent"",
+          followOnWork === ""DISCONNECTION""
+            ? MANAGER_DISCONNECTION_MESSAGE
+            : MANAGER_REPLACEMENT_MESSAGE,
+          [{ text: ""OK"", onPress: routeBackAfterInspection }],
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,3368
+FRM-016-E038,LOCAL_MESSAGE,"error?.message || ""Submission failed""",Client source: handleSubmitInspection,"Alert.alert(""Error"", error?.message || ""Submission failed"")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,3427
+FRM-016-E039,LOCAL_MESSAGE,This will clear your changes and return the form to the state it had when it first loaded.,Client source: InspectionScreen,"Alert.alert(
+                    ""Reset Form?"",
+                    ""This will clear your changes and return the form to the state it had when it first loaded."",
+                    [
+                      { text: ""KEEP EDITING"", style: ""cancel"" },
+                      {
+                        text: ""RESET"",
+                        style: ""destructive"",
+                        onPress: () => {
+                          resetForm();
+
+                          setTimeout(() => {
+                            validateForm();
+                          }, 0);
+                        },
+                      },
+                    ],
+                  )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-025,ireps-mobile/app/(tabs)/asts/inspection.js,4686
+FRM-016-E040,LCT_TYPE_NOT_IMPLEMENTED,`${trnType} is not implemented yet`,Server source: getActionCheck,"{
+    ok: false,
+    code: ""LCT_TYPE_NOT_IMPLEMENTED"",
+    message: `${trnType} is not implemented yet`,
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,385
+FRM-016-E041,UNAUTHENTICATED,Authentication is required,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+        ""UNAUTHENTICATED"",
+        ""Authentication is required"",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,400
+FRM-016-E042,dynamic code,commonCheck.message,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(commonCheck.code, commonCheck.message)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,413
+FRM-016-E043,LCT_TYPE_NOT_IMPLEMENTED,`${trnType} is not implemented yet`,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+        ""LCT_TYPE_NOT_IMPLEMENTED"",
+        `${trnType} is not implemented yet`,
+        {
+          trnId,
+          trnType,
+          astId,
+        },
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,445
+FRM-016-E044,INSPECTION_OFFICE_WMS_ONLY,Meter inspection execution must complete an accepted office-originated instruction TRN,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+        ""INSPECTION_OFFICE_WMS_ONLY"",
+        ""Meter inspection execution must complete an accepted office-originated instruction TRN"",
+        {
+          trnId,
+          trnType,
+          astId,
+        },
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,463
+FRM-016-E045,UNAUTHORIZED_FIELD_ORIGIN,Only FWR or SPV actors can originate this lifecycle transaction from the field,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+          ""UNAUTHORIZED_FIELD_ORIGIN"",
+          ""Only FWR or SPV actors can originate this lifecycle transaction from the field"",
+          {
+            trnId,
+            trnType,
+            astId,
+            actorRole: fieldAuthority.role,
+            actorServiceProviderId: fieldAuthority.spId,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,486
+FRM-016-E046,dynamic code,assignmentCheck.message,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(assignmentCheck.code, assignmentCheck.message, {
+        trnId,
+        trnType,
+        astId,
+      })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,507
+FRM-016-E047,AST_NOT_FOUND,The referenced AST does not exist,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+          ""AST_NOT_FOUND"",
+          ""The referenced AST does not exist"",
+          {
+            trnId,
+            trnType,
+            astId,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,537
+FRM-016-E048,PREMISE_NOT_FOUND,The referenced premise does not exist,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+          ""PREMISE_NOT_FOUND"",
+          ""The referenced premise does not exist"",
+          {
+            trnId,
+            trnType,
+            astId,
+            premiseId,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,551
+FRM-016-E049,dynamic code,batchWorkCheck.message,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+          batchWorkCheck.code,
+          batchWorkCheck.message,
+          {
+            trnId,
+            trnType,
+            astId,
+            batch: batchWorkCheck.details,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,591
+FRM-016-E050,INSTRUCTION_TRN_NOT_FOUND,The lifecycle instruction TRN does not exist,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+            ""INSTRUCTION_TRN_NOT_FOUND"",
+            ""The lifecycle instruction TRN does not exist"",
+            {
+              trnId,
+              trnType,
+              astId,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,612
+FRM-016-E051,INVALID_INSTRUCTION_TRN_TYPE,The referenced instruction TRN type does not match the execution payload,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+            ""INVALID_INSTRUCTION_TRN_TYPE"",
+            ""The referenced instruction TRN type does not match the execution payload"",
+            {
+              trnId,
+              existingTrnType,
+              trnType,
+              astId,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,630
+FRM-016-E052,INSTRUCTION_NOT_EXECUTABLE,Rejected or cancelled lifecycle instructions cannot be executed,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+            ""INSTRUCTION_NOT_EXECUTABLE"",
+            ""Rejected or cancelled lifecycle instructions cannot be executed"",
+            {
+              trnId,
+              trnType,
+              workflowState,
+              astId,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,670
+FRM-016-E053,INSTRUCTION_NOT_ACCEPTED,Lifecycle instruction must be accepted before execution can be submitted,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+            ""INSTRUCTION_NOT_ACCEPTED"",
+            ""Lifecycle instruction must be accepted before execution can be submitted"",
+            {
+              trnId,
+              trnType,
+              workflowState,
+              astId,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,685
+FRM-016-E054,dynamic code,actionCheck?.message,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+            actionCheck?.code,
+            actionCheck?.message,
+            {
+              trnId,
+              trnType,
+              astId,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,708
+FRM-016-E055,dynamic code,servicePatchResult.message,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+              servicePatchResult.code,
+              servicePatchResult.message,
+              {
+                trnId,
+                trnType,
+                astId,
+              },
+            )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,744
+FRM-016-E056,dynamic code,actionCheck?.message,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+          actionCheck?.code,
+          actionCheck?.message,
+          {
+            trnId,
+            trnType,
+            astId,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,969
+FRM-016-E057,dynamic code,servicePatchResult.message,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+            servicePatchResult.code,
+            servicePatchResult.message,
+            {
+              trnId,
+              trnType,
+              astId,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,1005
+FRM-016-E058,UNKNOWN_ERROR,Lifecycle TRN was not processed,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(""UNKNOWN_ERROR"", ""Lifecycle TRN was not processed"", {
+        trnId,
+        trnType,
+        astId,
+      })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,1146
+FRM-016-E059,dynamic code,"error?.message || ""Failed to submit lifecycle transaction""",Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+      error?.irepsCode || ""UNKNOWN_ERROR"",
+      error?.message || ""Failed to submit lifecycle transaction"",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,1160
+FRM-016-E060,INVALID_AST_STATE,DECOMMISSIONED meters cannot be inspected,Server source: validateMeterInspection,"{
+      ok: false,
+      code: ""INVALID_AST_STATE"",
+      message: ""DECOMMISSIONED meters cannot be inspected"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1614
+FRM-016-E061,INVALID_AST_STATE,"Only FIELD, CONNECTED, DISCONNECTED, or REMOVED meters can be inspected",Server source: validateMeterInspection,"{
+      ok: false,
+      code: ""INVALID_AST_STATE"",
+      message:
+        ""Only FIELD, CONNECTED, DISCONNECTED, or REMOVED meters can be inspected"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1624
+FRM-016-E062,INVALID_METER_TYPE,Only electricity or water meters can be inspected,Server source: validateMeterInspection,"{
+      ok: false,
+      code: ""INVALID_METER_TYPE"",
+      message: ""Only electricity or water meters can be inspected"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1633
+FRM-016-E063,INSPECTION_UNKNOWN_METER_KIND,Meter inspection requires a known meter kind: prepaid or conventional,Server source: validateMeterInspection,"{
+      ok: false,
+      code: ""INSPECTION_UNKNOWN_METER_KIND"",
+      message:
+        ""Meter inspection requires a known meter kind: prepaid or conventional"",
+      meterKind: meterKind || ""UNKNOWN"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1641
+FRM-016-E064,INSPECTION_INSTRUCTION_REQUIRED,Inspection instruction is required,Server source: validateMeterInspection,"{
+      ok: false,
+      code: ""INSPECTION_INSTRUCTION_REQUIRED"",
+      message: ""Inspection instruction is required"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1658
+FRM-016-E065,NO_ACCESS_REASON_REQUIRED,No-access reason is required,Server source: validateMeterInspection,"{
+        ok: false,
+        code: ""NO_ACCESS_REASON_REQUIRED"",
+        message: ""No-access reason is required"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1667
+FRM-016-E066,MISSING_NO_ACCESS_PHOTO,No access photo is required,Server source: validateMeterInspection,"{
+        ok: false,
+        code: ""MISSING_NO_ACCESS_PHOTO"",
+        message: ""No access photo is required"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1679
+FRM-016-E067,INSPECTION_PAYLOAD_REQUIRED,inspection payload is required,Server source: validateMeterInspection,"{
+      ok: false,
+      code: ""INSPECTION_PAYLOAD_REQUIRED"",
+      message: ""inspection payload is required"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1704
+FRM-016-E068,INSPECTION_METER_NUMBER_REQUIRED,Meter number is required,Server source: validateMeterInspection,"{
+      ok: false,
+      code: ""INSPECTION_METER_NUMBER_REQUIRED"",
+      message: ""Meter number is required"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1712
+FRM-016-E069,INSPECTION_MANUFACTURER_REQUIRED,Manufacturer is required,Server source: validateMeterInspection,"{
+      ok: false,
+      code: ""INSPECTION_MANUFACTURER_REQUIRED"",
+      message: ""Manufacturer is required"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1720
+FRM-016-E070,INSPECTION_MODEL_REQUIRED,Meter model/name is required,Server source: validateMeterInspection,"{
+      ok: false,
+      code: ""INSPECTION_MODEL_REQUIRED"",
+      message: ""Meter model/name is required"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1728
+FRM-016-E071,INSPECTION_METER_KIND_REQUIRED,Meter kind is required,Server source: validateMeterInspection,"{
+      ok: false,
+      code: ""INSPECTION_METER_KIND_REQUIRED"",
+      message: ""Meter kind is required"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1736
+FRM-016-E072,INSPECTION_METER_CATEGORY_REQUIRED,Meter category is required,Server source: validateMeterInspection,"{
+      ok: false,
+      code: ""INSPECTION_METER_CATEGORY_REQUIRED"",
+      message: ""Meter category is required"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1744
+FRM-016-E073,INSPECTION_PHASE_REQUIRED,Phase is required,Server source: validateMeterInspection,"{
+        ok: false,
+        code: ""INSPECTION_PHASE_REQUIRED"",
+        message: ""Phase is required"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1753
+FRM-016-E074,code,"`${label} is required, or say why there is none`",Server source: validateMeterInspection,"{
+          ok: false,
+          code,
+          message: `${label} is required, or say why there is none`,
+        }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1779
+FRM-016-E075,MISSING_INSPECTION_PART_PHOTO,`A photo of the ${label} is required`,Server source: validateMeterInspection,"{
+          ok: false,
+          code: ""MISSING_INSPECTION_PART_PHOTO"",
+          message: `A photo of the ${label} is required`,
+        }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1801
+FRM-016-E076,INSPECTION_PLACEMENT_REQUIRED,Placement is required,Server source: validateMeterInspection,"{
+        ok: false,
+        code: ""INSPECTION_PLACEMENT_REQUIRED"",
+        message: ""Placement is required"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1810
+FRM-016-E077,INSPECTION_OFF_GRID_SUPPLY_REQUIRED,Off-grid supply is required,Server source: validateMeterInspection,"{
+        ok: false,
+        code: ""INSPECTION_OFF_GRID_SUPPLY_REQUIRED"",
+        message: ""Off-grid supply is required"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1818
+FRM-016-E078,INVALID_METER_TYPE,Only electricity or water meters can be inspected,Server source: validateMeterInspection,"{
+      ok: false,
+      code: ""INVALID_METER_TYPE"",
+      message: ""Only electricity or water meters can be inspected"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1827
+FRM-016-E079,INSPECTION_STATUS_REQUIRED,Meter status is required,Server source: validateMeterInspection,"{
+      ok: false,
+      code: ""INSPECTION_STATUS_REQUIRED"",
+      message: ""Meter status is required"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1835
+FRM-016-E080,INSPECTION_ANOMALY_REQUIRED,Anomaly is required,Server source: validateMeterInspection,"{
+      ok: false,
+      code: ""INSPECTION_ANOMALY_REQUIRED"",
+      message: ""Anomaly is required"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1843
+FRM-016-E081,INSPECTION_ANOMALY_DETAIL_REQUIRED,Anomaly detail is required,Server source: validateMeterInspection,"{
+      ok: false,
+      code: ""INSPECTION_ANOMALY_DETAIL_REQUIRED"",
+      message: ""Anomaly detail is required"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1851
+FRM-016-E082,normalisationError.code,normalisationError.message,Server source: validateMeterInspection,"{
+        ok: false,
+        code: normalisationError.code,
+        message: normalisationError.message,
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1867
+FRM-016-E083,otherAnomaliesError.code,otherAnomaliesError.message,Server source: validateMeterInspection,"{
+        ok: false,
+        code: otherAnomaliesError.code,
+        message: otherAnomaliesError.message,
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1878
+FRM-016-E084,INSPECTION_NORMALISATION_REQUIRED,Normalisation action is required,Server source: validateMeterInspection,"{
+      ok: false,
+      code: ""INSPECTION_NORMALISATION_REQUIRED"",
+      message: ""Normalisation action is required"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1885
+FRM-016-E085,MISSING_INSPECTION_METER_NUMBER_PHOTO,Meter number photo is required,Server source: validateMeterInspection,"{
+      ok: false,
+      code: ""MISSING_INSPECTION_METER_NUMBER_PHOTO"",
+      message: ""Meter number photo is required"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1897
+FRM-016-E086,MISSING_INSPECTION_ANOMALY_PHOTO,Anomaly photo is required for this anomaly,Server source: validateMeterInspection,"{
+      ok: false,
+      code: ""MISSING_INSPECTION_ANOMALY_PHOTO"",
+      message: ""Anomaly photo is required for this anomaly"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1921
+FRM-016-E087,MISSING_INSPECTION_NORMALISATION_PHOTO,Photo proof of the normalisation is required.,Server source: validateMeterInspection,"{
+      ok: false,
+      code: ""MISSING_INSPECTION_NORMALISATION_PHOTO"",
+      message: ""Photo proof of the normalisation is required."",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1939
+FRM-016-E088,INSPECTION_READING_OR_REASON_REQUIRED,Inspection reading or no-reading reason is required for conventional meters,Server source: validateMeterInspection,"{
+      ok: false,
+      code: ""INSPECTION_READING_OR_REASON_REQUIRED"",
+      message:
+        ""Inspection reading or no-reading reason is required for conventional meters"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1947
+FRM-016-E089,INVALID_INSPECTION_METER_READING,Inspection meter reading must be numeric,Server source: validateMeterInspection,"{
+        ok: false,
+        code: ""INVALID_INSPECTION_METER_READING"",
+        message: ""Inspection meter reading must be numeric"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1957
+FRM-016-E090,INSPECTION_READING_AT_REQUIRED,Inspection reading date/time is required,Server source: validateMeterInspection,"{
+        ok: false,
+        code: ""INSPECTION_READING_AT_REQUIRED"",
+        message: ""Inspection reading date/time is required"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1965
+FRM-016-E091,MISSING_INSPECTION_READING_PHOTO,Meter reading photo is required when inspection reading is captured,Server source: validateMeterInspection,"{
+        ok: false,
+        code: ""MISSING_INSPECTION_READING_PHOTO"",
+        message:
+          ""Meter reading photo is required when inspection reading is captured"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1977
+FRM-016-E092,INSPECTION_DIFFERENCES_NOT_CONFIRMED,Inspection comparison differences must be confirmed before submit,Server source: validateMeterInspection,"{
+      ok: false,
+      code: ""INSPECTION_DIFFERENCES_NOT_CONFIRMED"",
+      message:
+        ""Inspection comparison differences must be confirmed before submit"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,1990
+FRM-016-E093,INSPECTION_STATUS_NOT_ALLOWED,An inspection records the meter as Connected or Disconnected only,Server source: validateMeterInspection,"{
+      ok: false,
+      code: ""INSPECTION_STATUS_NOT_ALLOWED"",
+      message:
+        ""An inspection records the meter as Connected or Disconnected only"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,2079
+FRM-016-E094,NAv,NAv,Client source: addSubmissionQueueItem,"{
+        success: false,
+        code: ""NAv"",
+        message: ""NAv"",
+        trnId: ""NAv"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-058,ireps-mobile/src/utils/submissionQueue.js,87
+FRM-016-E095,"result?.code || ""SUCCESS""","result?.message || ""Synced successfully""",Client source: markSubmissionQueueItemSuccess,"{
+        success: true,
+        code: result?.code || ""SUCCESS"",
+        message: result?.message || ""Synced successfully"",
+        trnId: result?.trnId || ""NAv"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-058,ireps-mobile/src/utils/submissionQueue.js,288
+FRM-016-E096,"result?.code || ""SYNC_FAILED""","result?.message || ""Sync failed. This draft remains pending for retry.""",Client source: markSubmissionQueueItemFailed,"{
+    queueItemId,
+    previousStatus: existingItem?.status,
+    code: result?.code || ""SYNC_FAILED"",
+    message:
+      result?.message || ""Sync failed. This draft remains pending for retry."",
+    trnId: result?.trnId || ""NAv"",
+    result,
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-058,ireps-mobile/src/utils/submissionQueue.js,319
+FRM-016-E097,"result?.code || ""SYNC_FAILED""","result?.message ||
+          ""Sync failed. This draft remains pending for retry.""",Client source: markSubmissionQueueItemFailed,"{
+        success: false,
+        code: result?.code || ""SYNC_FAILED"",
+        message:
+          result?.message ||
+          ""Sync failed. This draft remains pending for retry."",
+        trnId: result?.trnId || ""NAv"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-058,ireps-mobile/src/utils/submissionQueue.js,333
+FRM-016-E098,error?.code,error?.message,Client source: removeSubmissionQueueItemsByInstructionTrnId,"{
+      instructionTrnId,
+      code: error?.code,
+      message: error?.message,
+      stack: error?.stack,
+      raw: error,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-058,ireps-mobile/src/utils/submissionQueue.js,510
+FRM-016-E099,SERVER_CONFIRMED,Server confirmed this queued TRN was saved successfully.,Client source: reconcileSubmissionQueueWithServerTrns,"{
+          success: true,
+          code: ""SERVER_CONFIRMED"",
+          message:
+            ""Server confirmed this queued TRN was saved successfully."",
+          trnId: readServerTrnId(serverTrn),
+        }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-058,ireps-mobile/src/utils/submissionQueue.js,664

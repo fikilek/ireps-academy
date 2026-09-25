@@ -1,0 +1,481 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-028-E001,LOCAL_MESSAGE,The premise could not be joined to this meter. Please try again.,Client source: WorkorderManagementSystem,"Alert.alert(
+          ""Targeted Batch Row Not Ready"",
+          ""The premise could not be joined to this meter. Please try again."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,1016
+FRM-028-E002,LOCAL_MESSAGE,My Workorders is only available to FWR and SPV(SUBC) users.,Client source: WorkorderManagementSystem,"Alert.alert(
+      ""WMS Access Blocked"",
+      ""My Workorders is only available to FWR and SPV(SUBC) users."",
+      [
+        {
+          text: ""OK"",
+          onPress: () => {
+            if (router?.canGoBack?.()) {
+              router.back();
+            }
+          },
+        },
+      ],
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,1205
+FRM-028-E003,LOCAL_MESSAGE,"currentRow ? ""Targeted Batch no longer available."" : ""Targeted Batch row no longer available.""",Client source: WorkorderManagementSystem,"Alert.alert(currentRow ? ""Targeted Batch no longer available."" : ""Targeted Batch row no longer available."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,1547
+FRM-028-E004,LOCAL_MESSAGE,The row linkage changed while the action was preparing. Please try again.,Client source: WorkorderManagementSystem,"Alert.alert(""Targeted Batch row changed"", ""The row linkage changed while the action was preparing. Please try again."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,1552
+FRM-028-E005,LOCAL_MESSAGE,"becameCompletedWithoutPremise
+            ? ""This meter became Completed while it was opening. Tap Premise again to open its premise.""
+            : TARGETED_BATCH_COMPLETED_MESSAGE",Client source: WorkorderManagementSystem,"Alert.alert(
+          TARGETED_BATCH_COMPLETED_TITLE,
+          becameCompletedWithoutPremise
+            ? ""This meter became Completed while it was opening. Tap Premise again to open its premise.""
+            : TARGETED_BATCH_COMPLETED_MESSAGE,
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,1574
+FRM-028-E006,LOCAL_MESSAGE,TARGETED_BATCH_NOT_IN_WORK_ORDERS_MESSAGE,Client source: WorkorderManagementSystem,"Alert.alert(
+          TARGETED_BATCH_NOT_IN_WORK_ORDERS_TITLE,
+          TARGETED_BATCH_NOT_IN_WORK_ORDERS_MESSAGE,
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,1597
+FRM-028-E007,LOCAL_MESSAGE,TARGETED_BATCH_SALES_NOT_READABLE_MESSAGE,Client source: WorkorderManagementSystem,"Alert.alert(
+          TARGETED_BATCH_SALES_NOT_READABLE_TITLE,
+          TARGETED_BATCH_SALES_NOT_READABLE_MESSAGE,
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,1617
+FRM-028-E008,LOCAL_MESSAGE,"`Meter ${lookup.meterNo || ""of this row""} could not be looked up. ${
+              connectionFailed
+                ? ""Check your connection and try again.""
+                : ""Try again; if it keeps failing, tell the office.""
+            }`",Client source: WorkorderManagementSystem,"Alert.alert(
+            ""Meter not looked up"",
+            `Meter ${lookup.meterNo || ""of this row""} could not be looked up. ${
+              connectionFailed
+                ? ""Check your connection and try again.""
+                : ""Try again; if it keeps failing, tell the office.""
+            }`,
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,1651
+FRM-028-E009,LOCAL_MESSAGE,"foundMeterMessage(choice, lookup.meterNo)",Client source: WorkorderManagementSystem,"Alert.alert(""Meter found outside this batch"", foundMeterMessage(choice, lookup.meterNo))",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,1667
+FRM-028-E010,LOCAL_MESSAGE,"`Meter ${lookup.meterNo || ""of this row""} was found outside this batch, and its record has no premise.`",Client source: WorkorderManagementSystem,"Alert.alert(
+              ""No premise"",
+              `Meter ${lookup.meterNo || ""of this row""} was found outside this batch, and its record has no premise.`,
+            )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,1685
+FRM-028-E011,LOCAL_MESSAGE,"error?.message || ""The meter could not be opened.""",Client source: WorkorderManagementSystem,"Alert.alert(
+            ""Targeted Batch Navigation Failed"",
+            error?.message || ""The meter could not be opened."",
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,1724
+FRM-028-E012,LOCAL_MESSAGE,A meter is already linked. No Access cannot be recorded.,Client source: WorkorderManagementSystem,"Alert.alert(
+          ""Discovery Complete"",
+          ""A meter is already linked. No Access cannot be recorded."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,1742
+FRM-028-E013,LOCAL_MESSAGE,The exact linked premise belongs to another ERF.,Client source: WorkorderManagementSystem,"Alert.alert(""Premise Linkage Error"", ""The exact linked premise belongs to another ERF."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,1756
+FRM-028-E014,LOCAL_MESSAGE,The exact linked AST could not be safely validated.,Client source: WorkorderManagementSystem,"Alert.alert(""AST Linkage Error"", ""The exact linked AST could not be safely validated."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,1769
+FRM-028-E015,LOCAL_MESSAGE,Meter Discovery requires a premise.,Client source: WorkorderManagementSystem,"Alert.alert(""Meter Discovery requires a premise."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,1801
+FRM-028-E016,LOCAL_MESSAGE,The Meter Discovery context could not be prepared.,Client source: WorkorderManagementSystem,"Alert.alert(
+              ""Targeted Batch Row Not Ready"",
+              ""The Meter Discovery context could not be prepared."",
+            )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,1814
+FRM-028-E017,LOCAL_MESSAGE,"error?.message || ""Required action context is missing.""",Client source: WorkorderManagementSystem,"Alert.alert(
+          ""Targeted Batch Row Not Ready"",
+          error?.message || ""Required action context is missing."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,1867
+FRM-028-E018,LOCAL_MESSAGE,"error?.message ||
+            ""The selected Targeted Batch action could not be opened.""",Client source: WorkorderManagementSystem,"Alert.alert(
+          ""Targeted Batch Navigation Failed"",
+          error?.message ||
+            ""The selected Targeted Batch action could not be opened."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,1896
+FRM-028-E019,LOCAL_MESSAGE,"readFirstString(
+          wardErfsSync?.lastError,
+          `The ERFs for ${pending.wardName} could not be loaded.`,
+        )",Client source: WorkorderManagementSystem,"Alert.alert(
+        ""Targeted Batch Ward Failed"",
+        readFirstString(
+          wardErfsSync?.lastError,
+          `The ERFs for ${pending.wardName} could not be loaded.`,
+        ),
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,1909
+FRM-028-E020,LOCAL_MESSAGE,`ERF ${pending.erfId} was not found inside the batch ward ${pending.wardName}.`,Client source: WorkorderManagementSystem,"Alert.alert(
+      ""Targeted Batch ERF Not Found"",
+      `ERF ${pending.erfId} was not found inside the batch ward ${pending.wardName}.`,
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,1935
+FRM-028-E021,LOCAL_MESSAGE,`${what} did not load within 30 seconds. Check your connection and try again.`,Client source: WorkorderManagementSystem,"Alert.alert(
+        ""Could not open the batch action"",
+        `${what} did not load within 30 seconds. Check your connection and try again.`,
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,1998
+FRM-028-E022,LOCAL_MESSAGE,This Targeted Batch is no longer available in your allocated worklist.,Client source: WorkorderManagementSystem,"Alert.alert(
+        ""Targeted Batch Unavailable"",
+        ""This Targeted Batch is no longer available in your allocated worklist."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2102
+FRM-028-E023,LOCAL_MESSAGE,This Targeted Batch is no longer available for field execution.,Client source: WorkorderManagementSystem,"Alert.alert(
+        ""Targeted Batch Locked"",
+        ""This Targeted Batch is no longer available for field execution."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2111
+FRM-028-E024,LOCAL_MESSAGE,TARGETED_BATCH_NOT_IN_WORK_ORDERS_MESSAGE,Client source: WorkorderManagementSystem,"Alert.alert(
+            TARGETED_BATCH_NOT_IN_WORK_ORDERS_TITLE,
+            TARGETED_BATCH_NOT_IN_WORK_ORDERS_MESSAGE,
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2224
+FRM-028-E025,LOCAL_MESSAGE,"isBmd
+            ? ""This MD-BGO bucket must be accepted before its ERF worklist can be opened.""
+            : ""This BGO bucket must be accepted before its TRNs can be viewed for execution.""",Client source: openBucket,"Alert.alert(
+          ""BGO Bucket Locked"",
+          isBmd
+            ? ""This MD-BGO bucket must be accepted before its ERF worklist can be opened.""
+            : ""This BGO bucket must be accepted before its TRNs can be viewed for execution."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2376
+FRM-028-E026,LOCAL_MESSAGE,This Targeted Batch is no longer available in your allocated worklist.,Client source: openBucket,"Alert.alert(
+          ""Targeted Batch Unavailable"",
+          ""This Targeted Batch is no longer available in your allocated worklist."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2404
+FRM-028-E027,LOCAL_MESSAGE,This Targeted Batch must be accepted before its rows can be opened for field execution.,Client source: openBucket,"Alert.alert(
+          ""Targeted Batch Locked"",
+          ""This Targeted Batch must be accepted before its rows can be opened for field execution."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2412
+FRM-028-E028,LOCAL_MESSAGE,This Targeted Batch is no longer available in your allocated worklist.,Client source: openBucket,"Alert.alert(
+                ""Targeted Batch Unavailable"",
+                ""This Targeted Batch is no longer available in your allocated worklist."",
+              )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2450
+FRM-028-E029,LOCAL_MESSAGE,This Targeted Batch is no longer available for field execution.,Client source: openBucket,"Alert.alert(
+                ""Targeted Batch Locked"",
+                ""This Targeted Batch is no longer available for field execution."",
+              )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2459
+FRM-028-E030,LOCAL_MESSAGE,"result?.message ||
+          (action === ""ACCEPT""
+            ? ""Lifecycle work item accepted.""
+            : ""Lifecycle work item rejected."")",Client source: submitDecision,"Alert.alert(
+        action === ""ACCEPT"" ? ""Work Accepted"" : ""Work Rejected"",
+        result?.message ||
+          (action === ""ACCEPT""
+            ? ""Lifecycle work item accepted.""
+            : ""Lifecycle work item rejected.""),
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2515
+FRM-028-E031,LOCAL_MESSAGE,"err?.data?.message || err?.message || ""Could not update work item.""",Client source: submitDecision,"Alert.alert(
+        ""Action Failed"",
+        err?.data?.message || err?.message || ""Could not update work item."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2527
+FRM-028-E032,LOCAL_MESSAGE,"result?.message ||
+          (action === ""ACCEPT""
+            ? isBmdBucket
+              ? ""MD-BGO bucket accepted. The ERF worklist is now ready for field discovery.""
+              : ""BGO bucket accepted and child TRNs released to execution.""
+            : isBmdBucket
+              ? ""MD-BGO bucket rejected.""
+              : ""BGO bucket rejected."")",Client source: submitBgoDecision,"Alert.alert(
+        action === ""ACCEPT""
+          ? isBmdBucket
+            ? ""MD-BGO Bucket Accepted""
+            : ""BGO Bucket Accepted""
+          : isBmdBucket
+            ? ""MD-BGO Bucket Rejected""
+            : ""BGO Bucket Rejected"",
+        result?.message ||
+          (action === ""ACCEPT""
+            ? isBmdBucket
+              ? ""MD-BGO bucket accepted. The ERF worklist is now ready for field discovery.""
+              : ""BGO bucket accepted and child TRNs released to execution.""
+            : isBmdBucket
+              ? ""MD-BGO bucket rejected.""
+              : ""BGO bucket rejected.""),
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2560
+FRM-028-E033,LOCAL_MESSAGE,"getActionErrorMessage(err, ""Could not update BGO bucket."")",Client source: submitBgoDecision,"Alert.alert(
+        ""BGO Action Failed"",
+        getActionErrorMessage(err, ""Could not update BGO bucket.""),
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2586
+FRM-028-E034,LOCAL_MESSAGE,"result?.message ||
+            ""The Targeted Batch row worklist is now ready for field execution.""",Client source: submitTargetedBatchDecision,"Alert.alert(
+          ""Targeted Batch Accepted"",
+          result?.message ||
+            ""The Targeted Batch row worklist is now ready for field execution."",
+          [
+            {
+              text: ""LATER"",
+              style: ""cancel"",
+            },
+            {
+              text: ""VIEW TRANSACTIONS"",
+              onPress: () => {
+                setPreparingBgoDetail(false);
+                setSelectedBucket(acceptedBucket);
+                setSelectedGroup(null);
+                setStateFilter(""ALL"");
+              },
+            },
+          ],
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2637
+FRM-028-E035,LOCAL_MESSAGE,"result?.message ||
+            ""The Targeted Batch was rejected before execution started.""",Client source: submitTargetedBatchDecision,"Alert.alert(
+          ""Targeted Batch Rejected"",
+          result?.message ||
+            ""The Targeted Batch was rejected before execution started."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2658
+FRM-028-E036,LOCAL_MESSAGE,"getActionErrorMessage(
+          err,
+          ""Could not update the Targeted Batch."",
+        )",Client source: submitTargetedBatchDecision,"Alert.alert(
+        ""Targeted Batch Action Failed"",
+        getActionErrorMessage(
+          err,
+          ""Could not update the Targeted Batch."",
+        ),
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2669
+FRM-028-E037,LOCAL_MESSAGE,"`Accept ${item?.id || ""this work item""}?`",Client source: handleAccept,"Alert.alert(""Accept Work"", `Accept ${item?.id || ""this work item""}?`, [
+      { text: ""CANCEL"", style: ""cancel"" },
+      {
+        text: ""ACCEPT"",
+        onPress: () => submitDecision({ item, action: ""ACCEPT"" }),
+      },
+    ])",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2686
+FRM-028-E038,LOCAL_MESSAGE,Only FWR and SPV(SUBC) users may accept BGO buckets from My Workorders.,Client source: handleAcceptBgoBucket,"Alert.alert(
+        ""WMS Access Blocked"",
+        ""Only FWR and SPV(SUBC) users may accept BGO buckets from My Workorders."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2697
+FRM-028-E039,LOCAL_MESSAGE,"isBmdBucket
+        ? `Accept ${bucket?.title || ""this MD-BGO bucket""}? The ERF worklist will be released for field discovery.`
+        : `Accept ${bucket?.title || ""this BGO bucket""}? All child TRNs will become executable.`",Client source: handleAcceptBgoBucket,"Alert.alert(
+      isBmdBucket ? ""Accept MD-BGO Bucket"" : ""Accept BGO Bucket"",
+      isBmdBucket
+        ? `Accept ${bucket?.title || ""this MD-BGO bucket""}? The ERF worklist will be released for field discovery.`
+        : `Accept ${bucket?.title || ""this BGO bucket""}? All child TRNs will become executable.`,
+      [
+        { text: ""CANCEL"", style: ""cancel"" },
+        {
+          text: ""ACCEPT"",
+          onPress: () =>
+            submitBgoDecision({ bucket, action: ""ACCEPT"" }),
+        },
+      ],
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2706
+FRM-028-E040,LOCAL_MESSAGE,Only FWR and SPV(SUBC) users may accept Targeted Batches from My Workorders.,Client source: handleAcceptTargetedBatch,"Alert.alert(
+        ""WMS Access Blocked"",
+        ""Only FWR and SPV(SUBC) users may accept Targeted Batches from My Workorders."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2724
+FRM-028-E041,LOCAL_MESSAGE,"`Accept ${bucket?.id || ""this Targeted Batch""}? Its rows will be opened for premise and meter discovery work.`",Client source: handleAcceptTargetedBatch,"Alert.alert(
+      ""Accept Targeted Batch"",
+      `Accept ${bucket?.id || ""this Targeted Batch""}? Its rows will be opened for premise and meter discovery work.`,
+      [
+        { text: ""CANCEL"", style: ""cancel"" },
+        {
+          text: ""ACCEPT"",
+          onPress: () =>
+            submitTargetedBatchDecision({
+              bucket,
+              action: ""ACCEPT"",
+            }),
+        },
+      ],
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2731
+FRM-028-E042,LOCAL_MESSAGE,This is online-only and will only work if no child TRN has started execution. Reverse this BGO bucket acceptance?,Client source: handleReverseBgoBucket,"Alert.alert(
+      ""Reverse BGO Acceptance"",
+      ""This is online-only and will only work if no child TRN has started execution. Reverse this BGO bucket acceptance?"",
+      [
+        { text: ""CANCEL"", style: ""cancel"" },
+        {
+          text: ""REVERSE"",
+          style: ""destructive"",
+          onPress: async () => {
+            try {
+              const result = await reverseBgoBatchAcceptance({
+                batchId: bucket.id,
+                reason: ""Manager reversed BGO acceptance before execution started"",
+              }).unwrap();
+
+              if (result?.success === false) {
+                throw {
+                  data: result,
+                  message: result?.message || ""Reverse acceptance failed."",
+                };
+              }
+
+              Alert.alert(
+                ""BGO Acceptance Reversed"",
+                result?.message || ""BGO bucket acceptance was reversed."",
+              );
+
+              safeRefetch(refetchBgo, ""BGO buckets"");
+              safeRefetch(refetch, ""individual work"");
+              safeRefetch(refetchBgoDetail, ""BGO detail TRNs"");
+              backToBuckets();
+            } catch (err) {
+              console.log(""BGO reverse acceptance ERROR"", err);
+
+              Alert.alert(
+                ""Reverse Failed"",
+                getActionErrorMessage(err, ""Could not reverse BGO acceptance.""),
+              );
+            }
+          },
+        },
+      ],
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2749
+FRM-028-E043,LOCAL_MESSAGE,"result?.message || ""BGO bucket acceptance was reversed.""",Client source: handleReverseBgoBucket,"Alert.alert(
+                ""BGO Acceptance Reversed"",
+                result?.message || ""BGO bucket acceptance was reversed."",
+              )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2771
+FRM-028-E044,LOCAL_MESSAGE,"getActionErrorMessage(err, ""Could not reverse BGO acceptance."")",Client source: handleReverseBgoBucket,"Alert.alert(
+                ""Reverse Failed"",
+                getActionErrorMessage(err, ""Could not reverse BGO acceptance.""),
+              )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2783
+FRM-028-E045,LOCAL_MESSAGE,Only FWR and SPV(SUBC) users may reject Targeted Batches from My Workorders.,Client source: handleReject,"Alert.alert(
+          ""WMS Access Blocked"",
+          ""Only FWR and SPV(SUBC) users may reject Targeted Batches from My Workorders."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2797
+FRM-028-E046,LOCAL_MESSAGE,Only FWR and SPV(SUBC) users may reject BGO buckets from My Workorders.,Client source: handleReject,"Alert.alert(
+          ""WMS Access Blocked"",
+          ""Only FWR and SPV(SUBC) users may reject BGO buckets from My Workorders."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2823
+FRM-028-E047,error?.code,error?.message,Client source: handleReject,"{
+          rejectedInstructionTrnId,
+          code: error?.code,
+          message: error?.message,
+          stack: error?.stack,
+          raw: error,
+        }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2875
+FRM-028-E048,LOCAL_MESSAGE,Only ACCEPTED or IN_PROGRESS work items can be opened for execution.,Client source: handleExecute,"Alert.alert(
+        ""TRN Not Executable"",
+        ""Only ACCEPTED or IN_PROGRESS work items can be opened for execution."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2892
+FRM-028-E049,LOCAL_MESSAGE,"This work type can be issued and accepted, but execution is not enabled on this screen yet.",Client source: handleExecute,"Alert.alert(
+        ""Execution Route"",
+        ""This work type can be issued and accepted, but execution is not enabled on this screen yet."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2902
+FRM-028-E050,LOCAL_MESSAGE,This WMS item does not have a lifecycle instruction TRN id.,Client source: handleExecute,"Alert.alert(
+        ""Work Item Not Ready"",
+        ""This WMS item does not have a lifecycle instruction TRN id."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2918
+FRM-028-E051,LOCAL_MESSAGE,This ERF work item is missing its batch or ERF reference.,Client source: handleOpenBmdErf,"Alert.alert(
+        ""MD-BGO ERF Not Ready"",
+        ""This ERF work item is missing its batch or ERF reference."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,2995
+FRM-028-E052,LOCAL_MESSAGE,TARGETED_BATCH_COMPLETED_MESSAGE,Client source: prepareTargetedBatchAction,"Alert.alert(TARGETED_BATCH_COMPLETED_TITLE, TARGETED_BATCH_COMPLETED_MESSAGE)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,3046
+FRM-028-E053,LOCAL_MESSAGE,TARGETED_BATCH_NOT_IN_WORK_ORDERS_MESSAGE,Client source: prepareTargetedBatchAction,"Alert.alert(
+        TARGETED_BATCH_NOT_IN_WORK_ORDERS_TITLE,
+        TARGETED_BATCH_NOT_IN_WORK_ORDERS_MESSAGE,
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,3065
+FRM-028-E054,LOCAL_MESSAGE,TARGETED_BATCH_SALES_NOT_READABLE_MESSAGE,Client source: prepareTargetedBatchAction,"Alert.alert(
+        TARGETED_BATCH_SALES_NOT_READABLE_TITLE,
+        TARGETED_BATCH_SALES_NOT_READABLE_MESSAGE,
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,3081
+FRM-028-E055,LOCAL_MESSAGE,blocked.message,Client source: prepareTargetedBatchAction,"Alert.alert(blocked.title, blocked.message)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,3097
+FRM-028-E056,LOCAL_MESSAGE,A meter is already linked. No Access cannot be recorded.,Client source: prepareTargetedBatchAction,"Alert.alert(
+        ""Discovery Complete"",
+        ""A meter is already linked. No Access cannot be recorded."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,3105
+FRM-028-E057,LOCAL_MESSAGE,This row is missing its Targeted Batch or ERF reference.,Client source: prepareTargetedBatchAction,"Alert.alert(
+        ""Targeted Batch Row Not Ready"",
+        ""This row is missing its Targeted Batch or ERF reference."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,3113
+FRM-028-E058,LOCAL_MESSAGE,This Targeted Batch does not carry its required LM and ward scope.,Client source: prepareTargetedBatchAction,"Alert.alert(
+        ""Targeted Batch Ward Scope Missing"",
+        ""This Targeted Batch does not carry its required LM and ward scope."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,3121
+FRM-028-E059,LOCAL_MESSAGE,This row does not match the Targeted Batch municipality scope.,Client source: prepareTargetedBatchAction,"Alert.alert(
+        ""Targeted Batch LM Scope Conflict"",
+        ""This row does not match the Targeted Batch municipality scope."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,3132
+FRM-028-E060,LOCAL_MESSAGE,This row does not match the Targeted Batch ward scope.,Client source: prepareTargetedBatchAction,"Alert.alert(
+        ""Targeted Batch Ward Scope Conflict"",
+        ""This row does not match the Targeted Batch ward scope."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,3143
+FRM-028-E061,LOCAL_MESSAGE,"`This batch belongs to ${scope.lmPcode}, but the active workbase is ${activeLmPcode || ""NAv""}.`",Client source: prepareTargetedBatchAction,"Alert.alert(
+        ""Targeted Batch Workbase Mismatch"",
+        `This batch belongs to ${scope.lmPcode}, but the active workbase is ${activeLmPcode || ""NAv""}.`,
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,3153
+FRM-028-E062,LOCAL_MESSAGE,`Ward ${scope.wardPcode} is not available in the active ${scope.lmPcode} workbase.`,Client source: prepareTargetedBatchAction,"Alert.alert(
+        ""Targeted Batch Ward Not Available"",
+        `Ward ${scope.wardPcode} is not available in the active ${scope.lmPcode} workbase.`,
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,3166
+FRM-028-E063,LOCAL_MESSAGE,TARGETED_BATCH_NOT_IN_WORK_ORDERS_MESSAGE,Client source: WorkorderManagementSystem,"Alert.alert(
+          TARGETED_BATCH_NOT_IN_WORK_ORDERS_TITLE,
+          TARGETED_BATCH_NOT_IN_WORK_ORDERS_MESSAGE,
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-010,ireps-mobile/app/(tabs)/admin/operations/my-workorders.js,3339
+FRM-028-E064,UNAUTHENTICATED,Authentication is required,Server source: onAcceptRejectLifecycleInstructionCallable,"buildFailureResult(
+          ""UNAUTHENTICATED"",
+          ""Authentication is required"",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-075,ireps-web-normalisation/functions/meterLifecycle/acceptRejectCallable.js,330
+FRM-028-E065,UNAUTHORIZED_LCT_ASSIGNEE_ACTION,Only field workers or supervisors can accept or reject assigned lifecycle instructions,Server source: onAcceptRejectLifecycleInstructionCallable,"buildFailureResult(
+          ""UNAUTHORIZED_LCT_ASSIGNEE_ACTION"",
+          ""Only field workers or supervisors can accept or reject assigned lifecycle instructions"",
+          {
+            actorRole: actorRole || ""UNKNOWN"",
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-075,ireps-web-normalisation/functions/meterLifecycle/acceptRejectCallable.js,349
+FRM-028-E066,INVALID_TRN_IDS,At least one TRN id is required,Server source: onAcceptRejectLifecycleInstructionCallable,"buildFailureResult(
+          ""INVALID_TRN_IDS"",
+          ""At least one TRN id is required"",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-075,ireps-web-normalisation/functions/meterLifecycle/acceptRejectCallable.js,373
+FRM-028-E067,TOO_MANY_TRNS,A maximum of 50 TRNs can be accepted or rejected at once,Server source: onAcceptRejectLifecycleInstructionCallable,"buildFailureResult(
+          ""TOO_MANY_TRNS"",
+          ""A maximum of 50 TRNs can be accepted or rejected at once"",
+          {
+            count: trnIds.length,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-075,ireps-web-normalisation/functions/meterLifecycle/acceptRejectCallable.js,380
+FRM-028-E068,INVALID_ACCEPT_REJECT_ACTION,action must be ACCEPT or REJECT,Server source: onAcceptRejectLifecycleInstructionCallable,"buildFailureResult(
+          ""INVALID_ACCEPT_REJECT_ACTION"",
+          ""action must be ACCEPT or REJECT"",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-075,ireps-web-normalisation/functions/meterLifecycle/acceptRejectCallable.js,390
+FRM-028-E069,REJECT_REASON_REQUIRED,Reject reason is required when rejecting assigned work,Server source: onAcceptRejectLifecycleInstructionCallable,"buildFailureResult(
+          ""REJECT_REASON_REQUIRED"",
+          ""Reject reason is required when rejecting assigned work"",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-075,ireps-web-normalisation/functions/meterLifecycle/acceptRejectCallable.js,397
+FRM-028-E070,TRN_NOT_FOUND,One or more TRNs were not found,Server source: onAcceptRejectLifecycleInstructionCallable,"buildFailureResult(
+            ""TRN_NOT_FOUND"",
+            ""One or more TRNs were not found"",
+            {
+              missingTrnIds,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-075,ireps-web-normalisation/functions/meterLifecycle/acceptRejectCallable.js,426
+FRM-028-E071,TRN_ALREADY_COMPLETED,Completed lifecycle instructions cannot be accepted or rejected,Server source: onAcceptRejectLifecycleInstructionCallable,"buildFailureResult(
+              ""TRN_ALREADY_COMPLETED"",
+              ""Completed lifecycle instructions cannot be accepted or rejected"",
+              {
+                trnId: row.trnId,
+                trnType,
+                workflowState: workflowState || ""NAv"",
+              },
+            )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-075,ireps-web-normalisation/functions/meterLifecycle/acceptRejectCallable.js,478
+FRM-028-E072,TRN_CANCELLED,Cancelled TRNs cannot be accepted or rejected,Server source: onAcceptRejectLifecycleInstructionCallable,"buildFailureResult(
+              ""TRN_CANCELLED"",
+              ""Cancelled TRNs cannot be accepted or rejected"",
+              {
+                trnId: row.trnId,
+                trnType,
+                workflowState: workflowState || ""NAv"",
+              },
+            )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-075,ireps-web-normalisation/functions/meterLifecycle/acceptRejectCallable.js,495
+FRM-028-E073,INVALID_WORKFLOW_STATE,getInvalidWorkflowStateMessage(action),Server source: onAcceptRejectLifecycleInstructionCallable,"buildFailureResult(
+              ""INVALID_WORKFLOW_STATE"",
+              getInvalidWorkflowStateMessage(action),
+              {
+                trnId: row.trnId,
+                trnType,
+                workflowState: workflowState || ""NAv"",
+                allowedWorkflowStates,
+              },
+            )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-075,ireps-web-normalisation/functions/meterLifecycle/acceptRejectCallable.js,512
+FRM-028-E074,TRN_NOT_ASSIGNED_TO_ACTOR,This TRN is not assigned to the current field actor,Server source: onAcceptRejectLifecycleInstructionCallable,"buildFailureResult(
+              ""TRN_NOT_ASSIGNED_TO_ACTOR"",
+              ""This TRN is not assigned to the current field actor"",
+              {
+                trnId: row.trnId,
+                trnType,
+                targets,
+              },
+            )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-075,ireps-web-normalisation/functions/meterLifecycle/acceptRejectCallable.js,534
+FRM-028-E075,INVALID_AST_ID,TRN is missing ast.astData.astId,Server source: onAcceptRejectLifecycleInstructionCallable,"buildFailureResult(
+              ""INVALID_AST_ID"",
+              ""TRN is missing ast.astData.astId"",
+              {
+                trnId: row.trnId,
+                trnType,
+              },
+            )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-075,ireps-web-normalisation/functions/meterLifecycle/acceptRejectCallable.js,548
+FRM-028-E076,AST_NOT_FOUND,The referenced AST does not exist,Server source: onAcceptRejectLifecycleInstructionCallable,"buildFailureResult(
+              ""AST_NOT_FOUND"",
+              ""The referenced AST does not exist"",
+              {
+                trnId: row.trnId,
+                trnType,
+                astId,
+              },
+            )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-075,ireps-web-normalisation/functions/meterLifecycle/acceptRejectCallable.js,563
+FRM-028-E077,UNKNOWN_ERROR,Lifecycle instruction accept/reject was not processed,Server source: onAcceptRejectLifecycleInstructionCallable,"buildFailureResult(
+          ""UNKNOWN_ERROR"",
+          ""Lifecycle instruction accept/reject was not processed"",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-075,ireps-web-normalisation/functions/meterLifecycle/acceptRejectCallable.js,646
+FRM-028-E078,UNKNOWN_ERROR,"error?.message || ""Failed to accept/reject lifecycle instruction""",Server source: onAcceptRejectLifecycleInstructionCallable,"buildFailureResult(
+        ""UNKNOWN_ERROR"",
+        error?.message || ""Failed to accept/reject lifecycle instruction"",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-075,ireps-web-normalisation/functions/meterLifecycle/acceptRejectCallable.js,657

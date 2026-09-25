@@ -1,0 +1,46 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-023-E001,LOCAL_MESSAGE,Trading Name is required.,Client source: handleCreateServiceProvider,"Alert.alert(""Incomplete Form"", ""Trading Name is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-051,ireps-mobile/src/features/serviceProviders/FormCreateServiceProvider.js,63
+FRM-023-E002,LOCAL_MESSAGE,This manager is not linked to a valid Service Provider.,Client source: handleCreateServiceProvider,"Alert.alert(
+        ""Missing Parent Service Provider"",
+        ""This manager is not linked to a valid Service Provider."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-051,ireps-mobile/src/features/serviceProviders/FormCreateServiceProvider.js,68
+FRM-023-E003,LOCAL_MESSAGE,`${createPayload.tradingName} was created successfully.`,Client source: handleCreateServiceProvider,"Alert.alert(
+        ""Service Provider Created"",
+        `${createPayload.tradingName} was created successfully.`,
+        [{ text: ""OK"", onPress: () => router.back() }],
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-051,ireps-mobile/src/features/serviceProviders/FormCreateServiceProvider.js,78
+FRM-023-E004,LOCAL_MESSAGE,The Service Provider could not be created.,Client source: handleCreateServiceProvider,"Alert.alert(
+        ""Creation Failed"",
+        ""The Service Provider could not be created."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-051,ireps-mobile/src/features/serviceProviders/FormCreateServiceProvider.js,84
+FRM-023-E005,LOCAL_MESSAGE,Trading Name is required.,Client source: handleUpdateServiceProvider,"Alert.alert(""Incomplete Form"", ""Trading Name is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-052,ireps-mobile/src/features/serviceProviders/FormEditServiceProvider.js,112
+FRM-023-E006,LOCAL_MESSAGE,`${updatePayload.patch.profile.tradingName} was updated successfully.`,Client source: handleUpdateServiceProvider,"Alert.alert(
+        ""Service Provider Updated"",
+        `${updatePayload.patch.profile.tradingName} was updated successfully.`,
+        [{ text: ""OK"", onPress: () => router.back() }],
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-052,ireps-mobile/src/features/serviceProviders/FormEditServiceProvider.js,119
+FRM-023-E007,LOCAL_MESSAGE,Service Provider could not be updated.,Client source: handleUpdateServiceProvider,"Alert.alert(""Update Failed"", ""Service Provider could not be updated."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-052,ireps-mobile/src/features/serviceProviders/FormEditServiceProvider.js,126
+FRM-023-E008,unauthenticated,Authentication required,Server source: createServiceProvider,"new HttpsError(""unauthenticated"", ""Authentication required"")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,559
+FRM-023-E009,permission-denied,Only SPU or ADM may create Service Providers,Server source: createServiceProvider,"new HttpsError(
+      ""permission-denied"",
+      ""Only SPU or ADM may create Service Providers"",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,565
+FRM-023-E010,invalid-argument,Service Provider name is required,Server source: createServiceProvider,"new HttpsError(
+      ""invalid-argument"",
+      ""Service Provider name is required"",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,600
+FRM-023-E011,invalid-argument,At least one workbase must be assigned,Server source: createServiceProvider,"new HttpsError(
+      ""invalid-argument"",
+      ""At least one workbase must be assigned"",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,607
+FRM-023-E012,unauthenticated,Authentication required,Server source: updateServiceProvider,"new HttpsError(""unauthenticated"", ""Authentication required"")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,672
+FRM-023-E013,invalid-argument,spId and patch are required,Server source: updateServiceProvider,"new HttpsError(""invalid-argument"", ""spId and patch are required"")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,678
+FRM-023-E014,not-found,Service Provider not found,Server source: updateServiceProvider,"new HttpsError(""not-found"", ""Service Provider not found"")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,699
+FRM-023-E015,permission-denied,Managers may only edit their own Service Provider,Server source: updateServiceProvider,"new HttpsError(
+      ""permission-denied"",
+      ""Managers may only edit their own Service Provider"",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,711
+FRM-023-E016,permission-denied,Managers may not edit contract-level fields,Server source: updateServiceProvider,"new HttpsError(
+      ""permission-denied"",
+      ""Managers may not edit contract-level fields"",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,722

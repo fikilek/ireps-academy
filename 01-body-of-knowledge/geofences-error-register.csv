@@ -1,0 +1,43 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-025-E001,LOCAL_MESSAGE,Filtering will be implemented next.,Client source: handleFilterPress,"Alert.alert(""Coming Soon"", ""Filtering will be implemented next."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-009,ireps-mobile/app/(tabs)/admin/operations/geo-fences.js,269
+FRM-025-E002,LOCAL_MESSAGE,Geofence points must be placed inside the selected ward.,Client source: handleMapPress,"Alert.alert(
+          ""Outside Ward Boundary"",
+          ""Geofence points must be placed inside the selected ward."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-009,ireps-mobile/app/(tabs)/admin/operations/geo-fences.js,292
+FRM-025-E003,LOCAL_MESSAGE,"`Geofence ""${fenceName}"" created successfully.`",Client source: handleSave,"Alert.alert(""Success"", `Geofence ""${fenceName}"" created successfully.`)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-009,ireps-mobile/app/(tabs)/admin/operations/geo-fences.js,329
+FRM-025-E004,LOCAL_MESSAGE,"err?.message || ""Failed""",Client source: handleSave,"Alert.alert(""Error"", err?.message || ""Failed"")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-009,ireps-mobile/app/(tabs)/admin/operations/geo-fences.js,336
+FRM-025-E005,LOCAL_MESSAGE,"`The geofence ""${geoFence?.name || ""Unknown""}"" has no location data to zoom to.`",Client source: handleOpenGeoFenceOnMap,"Alert.alert(
+        ""Cannot Zoom"",
+        `The geofence ""${geoFence?.name || ""Unknown""}"" has no location data to zoom to.`,
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-009,ireps-mobile/app/(tabs)/admin/operations/geo-fences.js,362
+FRM-025-E006,unauthenticated,Authentication is required.,Server source: createGeoFenceRequest,"new HttpsError(""unauthenticated"", ""Authentication is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-081,ireps-web/functions/geofences/callables.js,28
+FRM-025-E007,invalid-argument,nameCheck.reason,Server source: createGeoFenceRequest,"new HttpsError(""invalid-argument"", nameCheck.reason)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-081,ireps-web/functions/geofences/callables.js,38
+FRM-025-E008,invalid-argument,A geofence must have at least 3 valid coordinate points.,Server source: createGeoFenceRequest,"new HttpsError(
+      ""invalid-argument"",
+      ""A geofence must have at least 3 valid coordinate points."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-081,ireps-web/functions/geofences/callables.js,58
+FRM-025-E009,already-exists,duplicateGeofenceNameMessage(duplicate),Server source: createGeoFenceRequest,"new HttpsError(""already-exists"", duplicateGeofenceNameMessage(duplicate))",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-081,ireps-web/functions/geofences/callables.js,70
+FRM-025-E010,invalid-argument,Geofence name is required.,Server source: validateCreateGeoFencePayload,"new HttpsError(""invalid-argument"", ""Geofence name is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-083,ireps-web/functions/geofences/helpers.js,50
+FRM-025-E011,invalid-argument,A geofence must have at least 3 points.,Server source: validateCreateGeoFencePayload,"new HttpsError(
+      ""invalid-argument"",
+      ""A geofence must have at least 3 points."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-083,ireps-web/functions/geofences/helpers.js,54
+FRM-025-E012,invalid-argument,Local Municipality is required.,Server source: validateCreateGeoFencePayload,"new HttpsError(""invalid-argument"", ""Local Municipality is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-083,ireps-web/functions/geofences/helpers.js,61
+FRM-025-E013,invalid-argument,Ward is required.,Server source: validateCreateGeoFencePayload,"new HttpsError(""invalid-argument"", ""Ward is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-083,ireps-web/functions/geofences/helpers.js,65
+FRM-025-E014,not-found,Actor user profile not found.,Server source: getActorUserDoc,"new HttpsError(""not-found"", ""Actor user profile not found."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-083,ireps-web/functions/geofences/helpers.js,322
+FRM-025-E015,permission-denied,Supervisor is not linked to a valid service provider.,Server source: assertCanCreateGeoFence,"new HttpsError(
+        ""permission-denied"",
+        ""Supervisor is not linked to a valid service provider."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-083,ireps-web/functions/geofences/helpers.js,392
+FRM-025-E016,permission-denied,Supervisor service provider could not be resolved.,Server source: assertCanCreateGeoFence,"new HttpsError(
+        ""permission-denied"",
+        ""Supervisor service provider could not be resolved."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-083,ireps-web/functions/geofences/helpers.js,403
+FRM-025-E017,permission-denied,Only MNC supervisors may create geofences.,Server source: assertCanCreateGeoFence,"new HttpsError(
+        ""permission-denied"",
+        ""Only MNC supervisors may create geofences."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-083,ireps-web/functions/geofences/helpers.js,410
+FRM-025-E018,permission-denied,You are not allowed to create geofences.,Server source: assertCanCreateGeoFence,"new HttpsError(
+    ""permission-denied"",
+    ""You are not allowed to create geofences."",
+  )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-083,ireps-web/functions/geofences/helpers.js,419

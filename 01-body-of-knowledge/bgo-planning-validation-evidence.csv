@@ -1,0 +1,11 @@
+source_id,line,function,schema_path,kind,expression
+FS-158,801,BmdBgoPage,,max,"Math.max(
+    allocatableReadyGroups.length - allocatedReadyGroups.length,
+    0,
+  )"
+FS-165,634,getTargetMembersPreviewText,,max,"Math.max(members.length - previewNames.length, 0)"
+FS-165,653,MembersList,,max,"Math.max(members.length - visibleMembers.length, 0)"
+FS-165,1137,TcBgoPage,,max,"Math.max(
+    readyGroups.length - allocatedReadyGroups.length,
+    0,
+  )"

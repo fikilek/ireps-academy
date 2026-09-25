@@ -1,0 +1,50 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-002-E001,LOCAL_MESSAGE,Awaiting Manager authorization.,Client source: handleSignup,"Alert.alert(
+          ""Enlistment Successful"",
+          ""Awaiting Manager authorization."",
+          [
+            {
+              text: ""OK"",
+              onPress: () => {
+                resetForm();
+                setIsRedirecting(false);
+                router.replace(""/"");
+              },
+            },
+          ],
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-007,ireps-mobile/app/(auth)/signup.jsx,84
+FRM-002-E002,LOCAL_MESSAGE,Please try again.,Client source: handleSignup,"Alert.alert(""Sign Up Failed"", ""Please try again."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-007,ireps-mobile/app/(auth)/signup.jsx,100
+FRM-002-E003,LOCAL_MESSAGE,Unexpected error occurred.,Client source: handleSignup,"Alert.alert(""Error"", ""Unexpected error occurred."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-007,ireps-mobile/app/(auth)/signup.jsx,104
+FRM-002-E004,invalid-argument,"Email, password, name, surname and service provider are required.",Server source: signupFieldWorker,"new HttpsError(
+      ""invalid-argument"",
+      ""Email, password, name, surname and service provider are required."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,3064
+FRM-002-E005,invalid-argument,Password must be at least 8 characters.,Server source: signupFieldWorker,"new HttpsError(
+      ""invalid-argument"",
+      ""Password must be at least 8 characters."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,3078
+FRM-002-E006,not-found,Selected service provider was not found.,Server source: signupFieldWorker,"new HttpsError(
+        ""not-found"",
+        ""Selected service provider was not found."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,3098
+FRM-002-E007,failed-precondition,Selected service provider is not active.,Server source: signupFieldWorker,"new HttpsError(
+        ""failed-precondition"",
+        ""Selected service provider is not active."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,3109
+FRM-002-E008,failed-precondition,No responsible manager was found for the selected service provider.,Server source: signupFieldWorker,"new HttpsError(
+        ""failed-precondition"",
+        ""No responsible manager was found for the selected service provider."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,3145
+FRM-002-E009,already-exists,A user with this email already exists.,Server source: signupFieldWorker,"new HttpsError(
+        ""already-exists"",
+        ""A user with this email already exists."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,3154
+FRM-002-E010,internal,err.message,Server source: signupFieldWorker,"new HttpsError(""internal"", err.message)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,3161
+FRM-002-E011,internal,"error.message || ""Could not complete field worker signup.""",Server source: signupFieldWorker,"new HttpsError(
+      ""internal"",
+      error.message || ""Could not complete field worker signup."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,3256
+FRM-002-E012,"String(error?.code || """")","String(error?.message || fallbackMessage || """").trim() || fallbackMessage",Client source: plainAuthError,"{
+    code: String(error?.code || """"),
+    message: String(error?.message || fallbackMessage || """").trim() || fallbackMessage,
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-054,ireps-mobile/src/redux/authApi.js,56

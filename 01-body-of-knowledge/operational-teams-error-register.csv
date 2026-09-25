@@ -1,0 +1,105 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-024-E001,LOCAL_MESSAGE,"error?.message || ""Operation failed.""",Client source: handleCreateOrUpdateTeam,"Alert.alert(
+        isEditMode ? ""Rename Failed"" : ""Team Creation Failed"",
+        error?.message || ""Operation failed."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-012,ireps-mobile/app/(tabs)/admin/operations/teams.js,237
+FRM-024-E002,LOCAL_MESSAGE,"error?.message || ""Could not add user to team.""",Client source: handleAssignUserToTeam,"Alert.alert(
+        ""Allocation Failed"",
+        error?.message || ""Could not add user to team."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-012,ireps-mobile/app/(tabs)/admin/operations/teams.js,287
+FRM-024-E003,LOCAL_MESSAGE,"Team cannot be deleted if it has members.
+First remove all members.",Client source: handleDeleteTeam,"Alert.alert(
+        ""Cannot Delete Team"",
+        ""Team cannot be deleted if it has members.\nFirst remove all members."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-012,ireps-mobile/app/(tabs)/admin/operations/teams.js,314
+FRM-024-E004,LOCAL_MESSAGE,Are you sure you want to delete this team?,Client source: handleDeleteTeam,"Alert.alert(""Delete Team"", ""Are you sure you want to delete this team?"", [
+      { text: ""Cancel"", style: ""cancel"" },
+      {
+        text: ""Delete"",
+        style: ""destructive"",
+        onPress: async () => {
+          try {
+            await deleteTeam({ teamId: team.id }).unwrap();
+          } catch (error) {
+            console.log(""deleteTeam UI ERROR"", error);
+
+            Alert.alert(
+              ""Delete Failed"",
+              error?.message || ""Could not delete team."",
+            );
+          }
+        },
+      },
+    ])",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-012,ireps-mobile/app/(tabs)/admin/operations/teams.js,322
+FRM-024-E005,LOCAL_MESSAGE,"error?.message || ""Could not delete team.""",Client source: handleDeleteTeam,"Alert.alert(
+              ""Delete Failed"",
+              error?.message || ""Could not delete team."",
+            )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-012,ireps-mobile/app/(tabs)/admin/operations/teams.js,333
+FRM-024-E006,LOCAL_MESSAGE,"error?.message || ""Could not remove user from team.""",Client source: handleRemoveUserFromTeam,"Alert.alert(
+        ""Remove Failed"",
+        error?.message || ""Could not remove user from team."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-012,ireps-mobile/app/(tabs)/admin/operations/teams.js,356
+FRM-024-E007,unauthenticated,Authentication is required.,Server source: createTeam,"new HttpsError(""unauthenticated"", ""Authentication is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-146,ireps-web/functions/teams/callables.js,37
+FRM-024-E008,invalid-argument,Team name is required.,Server source: createTeam,"new HttpsError(""invalid-argument"", ""Team name is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-146,ireps-web/functions/teams/callables.js,44
+FRM-024-E009,unauthenticated,Authentication is required.,Server source: renameTeam,"new HttpsError(""unauthenticated"", ""Authentication is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-146,ireps-web/functions/teams/callables.js,88
+FRM-024-E010,invalid-argument,Team id is required.,Server source: renameTeam,"new HttpsError(""invalid-argument"", ""Team id is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-146,ireps-web/functions/teams/callables.js,95
+FRM-024-E011,invalid-argument,Team name is required.,Server source: renameTeam,"new HttpsError(""invalid-argument"", ""Team name is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-146,ireps-web/functions/teams/callables.js,99
+FRM-024-E012,not-found,Team not found.,Server source: renameTeam,"new HttpsError(""not-found"", ""Team not found."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-146,ireps-web/functions/teams/callables.js,112
+FRM-024-E013,unauthenticated,Authentication is required.,Server source: addTeamMember,"new HttpsError(""unauthenticated"", ""Authentication is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-146,ireps-web/functions/teams/callables.js,150
+FRM-024-E014,invalid-argument,Team id and user uid are required.,Server source: addTeamMember,"new HttpsError(
+      ""invalid-argument"",
+      ""Team id and user uid are required."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-146,ireps-web/functions/teams/callables.js,157
+FRM-024-E015,not-found,Team not found.,Server source: addTeamMember,"new HttpsError(""not-found"", ""Team not found."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-146,ireps-web/functions/teams/callables.js,173
+FRM-024-E016,already-exists,User is already a member of this team.,Server source: addTeamMember,"new HttpsError(
+      ""already-exists"",
+      ""User is already a member of this team."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-146,ireps-web/functions/teams/callables.js,195
+FRM-024-E017,unauthenticated,Authentication is required.,Server source: removeTeamMember,"new HttpsError(""unauthenticated"", ""Authentication is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-146,ireps-web/functions/teams/callables.js,252
+FRM-024-E018,invalid-argument,Team id and user uid are required.,Server source: removeTeamMember,"new HttpsError(
+      ""invalid-argument"",
+      ""Team id and user uid are required."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-146,ireps-web/functions/teams/callables.js,259
+FRM-024-E019,not-found,Team not found.,Server source: removeTeamMember,"new HttpsError(""not-found"", ""Team not found."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-146,ireps-web/functions/teams/callables.js,275
+FRM-024-E020,not-found,User is not a member of this team.,Server source: removeTeamMember,"new HttpsError(""not-found"", ""User is not a member of this team."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-146,ireps-web/functions/teams/callables.js,287
+FRM-024-E021,unauthenticated,Authentication is required.,Server source: deleteTeam,"new HttpsError(""unauthenticated"", ""Authentication is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-146,ireps-web/functions/teams/callables.js,338
+FRM-024-E022,invalid-argument,Team id is required.,Server source: deleteTeam,"new HttpsError(""invalid-argument"", ""Team id is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-146,ireps-web/functions/teams/callables.js,344
+FRM-024-E023,not-found,Team not found.,Server source: deleteTeam,"new HttpsError(""not-found"", ""Team not found."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-146,ireps-web/functions/teams/callables.js,357
+FRM-024-E024,unauthenticated,Sign in to continue.,Server source: getFieldWorkSummary,"new HttpsError(""unauthenticated"", ""Sign in to continue."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-148,ireps-web/functions/teams/fieldWorkSummaryCallable.js,18
+FRM-024-E025,invalid-argument,A valid LM is required.,Server source: getFieldWorkSummary,"new HttpsError(""invalid-argument"", ""A valid LM is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-148,ireps-web/functions/teams/fieldWorkSummaryCallable.js,20
+FRM-024-E026,permission-denied,Only management users can see the Allocation Matrix.,Server source: getFieldWorkSummary,"new HttpsError(""permission-denied"", ""Only management users can see the Allocation Matrix."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-148,ireps-web/functions/teams/fieldWorkSummaryCallable.js,24
+FRM-024-E027,permission-denied,The LM must be one of your workbases.,Server source: getFieldWorkSummary,"new HttpsError(""permission-denied"", ""The LM must be one of your workbases."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-148,ireps-web/functions/teams/fieldWorkSummaryCallable.js,26
+FRM-024-E028,invalid-argument,User uid is required.,Server source: getUserDocByUid,"new HttpsError(""invalid-argument"", ""User uid is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-149,ireps-web/functions/teams/helpers.js,131
+FRM-024-E029,not-found,`User [${safeUid}] was not found.`,Server source: getUserDocByUid,"new HttpsError(""not-found"", `User [${safeUid}] was not found.`)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-149,ireps-web/functions/teams/helpers.js,137
+FRM-024-E030,unauthenticated,Authentication is required.,Server source: getActorUserDoc,"new HttpsError(""unauthenticated"", ""Authentication is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-149,ireps-web/functions/teams/helpers.js,151
+FRM-024-E031,permission-denied,Only MNG or SPV may manage teams.,Server source: assertTeamManagerRole,"new HttpsError(
+      ""permission-denied"",
+      ""Only MNG or SPV may manage teams."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-149,ireps-web/functions/teams/helpers.js,161
+FRM-024-E032,failed-precondition,Actor is not linked to a valid service provider.,Server source: resolveActorMncContext,"new HttpsError(
+      ""failed-precondition"",
+      ""Actor is not linked to a valid service provider."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-149,ireps-web/functions/teams/helpers.js,297
+FRM-024-E033,not-found,Actor service provider was not found.,Server source: resolveActorMncContext,"new HttpsError(""not-found"", ""Actor service provider was not found."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-149,ireps-web/functions/teams/helpers.js,309
+FRM-024-E034,failed-precondition,Could not resolve actor MNC context.,Server source: resolveActorMncContext,"new HttpsError(
+      ""failed-precondition"",
+      ""Could not resolve actor MNC context."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-149,ireps-web/functions/teams/helpers.js,319
+FRM-024-E035,permission-denied,User is outside the allowed MNC hierarchy.,Server source: assertUserAllowedInMncHierarchy,"new HttpsError(
+      ""permission-denied"",
+      ""User is outside the allowed MNC hierarchy."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-149,ireps-web/functions/teams/helpers.js,374
+FRM-024-E036,failed-precondition,Only FWR or SPV users may be team members.,Server source: assertTeamEligibleUser,"new HttpsError(
+      ""failed-precondition"",
+      ""Only FWR or SPV users may be team members."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-149,ireps-web/functions/teams/helpers.js,387
+FRM-024-E037,failed-precondition,Team ownership is missing a valid MNC service provider.,Server source: assertTeamBelongsToActorMnc,"new HttpsError(
+      ""failed-precondition"",
+      ""Team ownership is missing a valid MNC service provider."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-149,ireps-web/functions/teams/helpers.js,458
+FRM-024-E038,permission-denied,You may only manage teams in your MNC hierarchy.,Server source: assertTeamBelongsToActorMnc,"new HttpsError(
+      ""permission-denied"",
+      ""You may only manage teams in your MNC hierarchy."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-149,ireps-web/functions/teams/helpers.js,465
+FRM-024-E039,invalid-argument,Team id is required.,Server source: buildTeamCreatePayload,"new HttpsError(""invalid-argument"", ""Team id is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-149,ireps-web/functions/teams/helpers.js,487
+FRM-024-E040,invalid-argument,Team name is required.,Server source: buildTeamCreatePayload,"new HttpsError(""invalid-argument"", ""Team name is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-149,ireps-web/functions/teams/helpers.js,493

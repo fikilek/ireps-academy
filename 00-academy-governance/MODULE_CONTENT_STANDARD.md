@@ -49,3 +49,10 @@ Use the exact master-dictionary term whenever naming a concept. Do not introduce
 Relationship diagrams must distinguish conceptual grouping from saved records. Cover every current controlled Property Type, while making absence of a service, shared meters and mixed-type sites explicit. Physical-location diagrams must show boundaries, the equipment position and the served premise separately.
 
 Provide labelled photographic or realistic teaching examples for each placement. Give wide context and a closer view where useful, with recognition cues and common confusions. Label AI-generated illustrations visibly and retain prompts/provenance; never present them as actual customer evidence or accepted installation designs.
+
+## Application across all forms — 25 September 2026
+
+- [41 module families](../01-body-of-knowledge/forms-library.md)
+- [Common form standards](../01-body-of-knowledge/ireps-form-standards.md)
+
+All new packages are review drafts. Planned stages are identified explicitly; code presence and documentary coverage do not certify deployment or acceptance.

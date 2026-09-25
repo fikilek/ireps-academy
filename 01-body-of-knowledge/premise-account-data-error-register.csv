@@ -1,0 +1,176 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-011-E001,LOCAL_MESSAGE,Premise id is required to save this draft.,Client source: handleSaveDraft,"Alert.alert(""Missing Premise"", ""Premise id is required to save this draft."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-047,ireps-mobile/src/features/premises/FormAccountData.js,800
+FRM-011-E002,LOCAL_MESSAGE,The form is still empty. Capture account data before saving a local draft.,Client source: handleSaveDraft,"Alert.alert(
+        ""Nothing to Save"",
+        ""The form is still empty. Capture account data before saving a local draft."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-047,ireps-mobile/src/features/premises/FormAccountData.js,805
+FRM-011-E003,LOCAL_MESSAGE,Capture at least one municipal account number before saving a local draft.,Client source: handleSaveDraft,"Alert.alert(
+        ""Missing Account Number"",
+        ""Capture at least one municipal account number before saving a local draft."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-047,ireps-mobile/src/features/premises/FormAccountData.js,813
+FRM-011-E004,LOCAL_MESSAGE,"result?.message || ""Account data draft saved locally.""",Client source: handleSaveDraft,"Alert.alert(
+        ""Draft Saved"",
+        result?.message || ""Account data draft saved locally."",
+        [
+          {
+            text: ""OK"",
+            onPress: () => router.replace(""/(tabs)/premises""),
+          },
+        ],
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-047,ireps-mobile/src/features/premises/FormAccountData.js,833
+FRM-011-E005,LOCAL_MESSAGE,"result?.message || ""Failed to save account data draft.""",Client source: handleSaveDraft,"Alert.alert(
+      ""Draft Save Failed"",
+      result?.message || ""Failed to save account data draft."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-047,ireps-mobile/src/features/premises/FormAccountData.js,846
+FRM-011-E006,LOCAL_MESSAGE,This will clear the current edit form and open a clean account capture form.,Client source: handleAddAccountFromHeader,"Alert.alert(
+        ""Start New Account Capture?"",
+        ""This will clear the current edit form and open a clean account capture form."",
+        [
+          { text: ""CANCEL"", style: ""cancel"" },
+          {
+            text: ""CONTINUE"",
+            onPress: () => {
+              const blankValues = buildInitialValues();
+              setEditAccountMasterId("""");
+              setFormMode(""CREATE"");
+              setDraftValues(blankValues);
+              resetForm({
+                values: blankValues,
+                touched: { accounts: [{ accountNo: true }] },
+              });
+              setTimeout(() => validateForm?.(blankValues), 0);
+            },
+          },
+        ],
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-047,ireps-mobile/src/features/premises/FormAccountData.js,861
+FRM-011-E007,LOCAL_MESSAGE,"This will clear all captured account data, media, draft values, and edit mode for this premise.",Client source: handleResetAccountDataForm,"Alert.alert(
+      ""Reset Form?"",
+      ""This will clear all captured account data, media, draft values, and edit mode for this premise."",
+      [
+        { text: ""CANCEL"", style: ""cancel"" },
+        {
+          text: ""YES, RESET"",
+          style: ""destructive"",
+          onPress: async () => {
+            const blankValues = buildInitialValues();
+            setEditAccountMasterId("""");
+            setFormMode(""CLOSED"");
+            setDraftValues(blankValues);
+            await removeAccountDataDraftByPremiseId(premiseId);
+            resetForm({ values: blankValues });
+          },
+        },
+      ],
+      { cancelable: true },
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-047,ireps-mobile/src/features/premises/FormAccountData.js,917
+FRM-011-E008,LOCAL_MESSAGE,No existing owner data is available for this premise yet.,Client source: handleUseExistingOwner,"Alert.alert(
+        ""No Existing Owner"",
+        ""No existing owner data is available for this premise yet."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-047,ireps-mobile/src/features/premises/FormAccountData.js,941
+FRM-011-E009,LOCAL_MESSAGE,This will copy the existing owner details into the owner fields. You can still edit the fields after copying.,Client source: handleUseExistingOwner,"Alert.alert(
+      ""Use Existing Owner?"",
+      ""This will copy the existing owner details into the owner fields. You can still edit the fields after copying."",
+      [
+        { text: ""CANCEL"", style: ""cancel"" },
+        {
+          text: ""COPY"",
+          onPress: () => {
+            const ownerValues = buildOwnerValuesFromAccountMaster(
+              latestOwnerAccountMaster,
+            );
+
+            setFieldValue(""owner"", ownerValues);
+          },
+        },
+      ],
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-047,ireps-mobile/src/features/premises/FormAccountData.js,948
+FRM-011-E010,LOCAL_MESSAGE,"result?.message || ""Failed to save account data to local queue.""",Client source: saveSubmissionToLocalQueue,"Alert.alert(
+      ""Submit Failed"",
+      result?.message || ""Failed to save account data to local queue."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-047,ireps-mobile/src/features/premises/FormAccountData.js,988
+FRM-011-E011,LOCAL_MESSAGE,Premise id is required to submit this form.,Client source: handleSubmitAccountData,"Alert.alert(""Missing Premise"", ""Premise id is required to submit this form."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-047,ireps-mobile/src/features/premises/FormAccountData.js,998
+FRM-011-E012,LOCAL_MESSAGE,This premise is not available in the current synced ward. Please sync or select the correct ward and try again.,Client source: handleSubmitAccountData,"Alert.alert(
+        ""Premise Unavailable"",
+        ""This premise is not available in the current synced ward. Please sync or select the correct ward and try again."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-047,ireps-mobile/src/features/premises/FormAccountData.js,1004
+FRM-011-E013,LOCAL_MESSAGE,"result?.message ||
+            ""The backend did not accept this account data. Please correct the form and try again.""",Client source: handleSubmitAccountData,"Alert.alert(
+          ""Account Data Not Submitted"",
+          result?.message ||
+            ""The backend did not accept this account data. Please correct the form and try again."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-047,ireps-mobile/src/features/premises/FormAccountData.js,1052
+FRM-011-E014,error?.code,error?.message,Client source: handleSubmitAccountData,"{
+        code: error?.code,
+        message: error?.message,
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-047,ireps-mobile/src/features/premises/FormAccountData.js,1070
+FRM-011-E015,LOCAL_MESSAGE,"error?.message ||
+          ""Account data could not be submitted. Please review the form and try again.""",Client source: handleSubmitAccountData,"Alert.alert(
+        ""Submit Failed"",
+        error?.message ||
+          ""Account data could not be submitted. Please review the form and try again."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-047,ireps-mobile/src/features/premises/FormAccountData.js,1088
+FRM-011-E016,LOCAL_MESSAGE,Owner details will populate the occupant fields. You can still edit the occupant fields after copying.,Client source: copyOwnerToOccupant,"Alert.alert(
+      ""Copy Owner to Occupant?"",
+      ""Owner details will populate the occupant fields. You can still edit the occupant fields after copying."",
+      [
+        { text: ""CANCEL"", style: ""cancel"" },
+        {
+          text: ""COPY"",
+          onPress: () => {
+            const owner = values?.owner || {};
+
+            if (owner?.ownerType === ""JURISTIC_PERSON"") {
+              setFieldValue(""occupant.name"", owner?.juristicPerson?.registeredName || """");
+              setFieldValue(""occupant.surname"", """");
+              setFieldValue(""occupant.idNumber"", owner?.juristicPerson?.registrationNumber || """");
+              setFieldValue(""occupant.relationshipToOwner"", ""JURISTIC_OWNER"");
+            } else {
+              setFieldValue(""occupant.name"", owner?.naturalPerson?.name || """");
+              setFieldValue(""occupant.surname"", owner?.naturalPerson?.surname || """");
+              setFieldValue(""occupant.idNumber"", owner?.naturalPerson?.idNumber || """");
+              setFieldValue(""occupant.relationshipToOwner"", ""OWNER"");
+            }
+
+            setFieldValue(""occupant.contact.phone"", owner?.contact?.phone || """");
+            setFieldValue(""occupant.contact.whatsapp"", owner?.contact?.whatsapp || """");
+            setFieldValue(""occupant.contact.email"", owner?.contact?.email || """");
+            setFieldValue(""occupant.isOwner"", ""yes"");
+          },
+        },
+      ],
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-047,ireps-mobile/src/features/premises/FormAccountData.js,1122
+FRM-011-E017,unauthenticated,Authentication required,Server source: onCreateAccountDataCallable,"new HttpsError(""unauthenticated"", ""Authentication required"")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-072,ireps-web-normalisation/functions/dataCleansing/callables.js,36
+FRM-011-E018,dynamic code,validation.message,Server source: onCreateAccountDataCallable,"buildFailureResult(validation.code, validation.message)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-072,ireps-web-normalisation/functions/dataCleansing/callables.js,47
+FRM-011-E019,PREMISE_NOT_FOUND,Parent premise does not exist in premises collection,Server source: onCreateAccountDataCallable,"buildFailureResult(
+        ""PREMISE_NOT_FOUND"",
+        ""Parent premise does not exist in premises collection"",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-072,ireps-web-normalisation/functions/dataCleansing/callables.js,66
+FRM-011-E020,UNKNOWN_ERROR,"error?.message || ""Failed to create account data record""",Server source: onCreateAccountDataCallable,"buildFailureResult(
+      ""UNKNOWN_ERROR"",
+      error?.message || ""Failed to create account data record"",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-072,ireps-web-normalisation/functions/dataCleansing/callables.js,124
+FRM-011-E021,NAv,NAv,Client source: addAccountDataQueueItem,"{
+        success: false,
+        code: ""NAv"",
+        message: ""NAv"",
+        fieldAccountDataId: ""NAv"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-056,ireps-mobile/src/utils/accountDataSubmissionQueue.js,184
+FRM-011-E022,SYNCING,Syncing account data with backend.,Client source: markAccountDataQueueItemSyncing,"{
+        ...(item?.result || {}),
+        success: false,
+        code: ""SYNCING"",
+        message: ""Syncing account data with backend."",
+        fieldAccountDataId: item?.result?.fieldAccountDataId || ""NAv"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-056,ireps-mobile/src/utils/accountDataSubmissionQueue.js,295
+FRM-011-E023,"result?.code || ""SUCCESS""","result?.message || ""Account data synced successfully.""",Client source: markAccountDataQueueItemSuccess,"{
+        success: true,
+        code: result?.code || ""SUCCESS"",
+        message: result?.message || ""Account data synced successfully."",
+        fieldAccountDataId: result?.fieldAccountDataId || ""NAv"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-056,ireps-mobile/src/utils/accountDataSubmissionQueue.js,327
+FRM-011-E024,"result?.code || ""SYNC_FAILED""","result?.message || ""Account data sync failed.""",Client source: markAccountDataQueueItemFailed,"{
+        success: false,
+        code: result?.code || ""SYNC_FAILED"",
+        message: result?.message || ""Account data sync failed."",
+        fieldAccountDataId: result?.fieldAccountDataId || ""NAv"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-056,ireps-mobile/src/utils/accountDataSubmissionQueue.js,357

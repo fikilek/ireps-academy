@@ -1,0 +1,7 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-007-E001,LOCAL_MESSAGE,Please try again.,Client source: handleVerify,"Alert.alert(""Invalid code"", ""Please try again."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-034,ireps-mobile/app/onboarding/verify-phone.js,38
+FRM-007-E002,LOCAL_MESSAGE,Unable to resend code.,Client source: handleResend,"Alert.alert(""Error"", ""Unable to resend code."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-034,ireps-mobile/app/onboarding/verify-phone.js,50
+FRM-007-E003,"String(error?.code || """")","String(error?.message || fallbackMessage || """").trim() || fallbackMessage",Client source: plainAuthError,"{
+    code: String(error?.code || """"),
+    message: String(error?.message || fallbackMessage || """").trim() || fallbackMessage,
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-054,ireps-mobile/src/redux/authApi.js,56

@@ -1,0 +1,67 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-009-E001,LOCAL_MESSAGE,Your details were not saved. Check your signal and try again.,Client source: handleSaveProfile,"Alert.alert(
+        ""Not saved"",
+        ""Your details were not saved. Check your signal and try again."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-003,ireps-mobile-email/app/(tabs)/admin/user/user-settings.js,76
+FRM-009-E002,LOCAL_MESSAGE,message,Client source: sendEmailLink,"Alert.alert(title, message)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-003,ireps-mobile-email/app/(tabs)/admin/user/user-settings.js,92
+FRM-009-E003,LOCAL_MESSAGE,message,Client source: sendEmailLink,"Alert.alert(title, message)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-003,ireps-mobile-email/app/(tabs)/admin/user/user-settings.js,95
+FRM-009-E004,LOCAL_MESSAGE,problem.message,Client source: handleChangeEmail,"Alert.alert(problem.title, problem.message)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-003,ireps-mobile-email/app/(tabs)/admin/user/user-settings.js,105
+FRM-009-E005,LOCAL_MESSAGE,Type the password you sign in with.,Client source: handleChangeEmail,"Alert.alert(""Password needed"", ""Type the password you sign in with."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-003,ireps-mobile-email/app/(tabs)/admin/user/user-settings.js,110
+FRM-009-E006,LOCAL_MESSAGE,`From: ${signInEmail}\nTo: ${email}\n\nYour sign-in email changes only when you open the link in the new inbox.`,Client source: handleChangeEmail,"Alert.alert(
+      ""Send a link to the new email?"",
+      `From: ${signInEmail}\nTo: ${email}\n\nYour sign-in email changes only when you open the link in the new inbox.`,
+      [
+        { text: ""Cancel"", style: ""cancel"" },
+        { text: ""Send link"", onPress: () => sendEmailLink(email) },
+      ],
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-003,ireps-mobile-email/app/(tabs)/admin/user/user-settings.js,114
+FRM-009-E007,"String(error?.code || """")","String(error?.message || fallbackMessage || """").trim() || fallbackMessage",Client source: plainAuthError,"{
+    code: String(error?.code || """"),
+    message: String(error?.message || fallbackMessage || """").trim() || fallbackMessage,
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-004,ireps-mobile-email/src/redux/authApi.js,56
+FRM-009-E008,auth/requires-recent-login,Sign in again.,Client source: ,"{ code: ""auth/requires-recent-login"", message: ""Sign in again."" }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-004,ireps-mobile-email/src/redux/authApi.js,478
+FRM-009-E009,invalid-argument,"`${label} must be one of ${VALID_USER_ROLES.join("", "")}.`",Server source: assertValidRole,"new HttpsError(
+      ""invalid-argument"",
+      `${label} must be one of ${VALID_USER_ROLES.join("", "")}.`,
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-064,ireps-web-email/functions/users/helpers.js,58
+FRM-009-E010,permission-denied,"Only SPU, ADM or MNG may change user roles.",Server source: assertRoleManager,"new HttpsError(
+      ""permission-denied"",
+      ""Only SPU, ADM or MNG may change user roles."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-064,ireps-web-email/functions/users/helpers.js,71
+FRM-009-E011,unauthenticated,Authentication is required.,Server source: assertNotSelfRoleChange,"new HttpsError(""unauthenticated"", ""Authentication is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-064,ireps-web-email/functions/users/helpers.js,85
+FRM-009-E012,invalid-argument,Target user uid is required.,Server source: assertNotSelfRoleChange,"new HttpsError(""invalid-argument"", ""Target user uid is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-064,ireps-web-email/functions/users/helpers.js,89
+FRM-009-E013,permission-denied,You cannot change your own role.,Server source: assertNotSelfRoleChange,"new HttpsError(
+      ""permission-denied"",
+      ""You cannot change your own role."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-064,ireps-web-email/functions/users/helpers.js,93
+FRM-009-E014,permission-denied,You cannot change a user at your role level or above.,Server source: assertRoleHierarchy,"new HttpsError(
+      ""permission-denied"",
+      ""You cannot change a user at your role level or above."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-064,ireps-web-email/functions/users/helpers.js,122
+FRM-009-E015,permission-denied,You cannot assign a role at your role level or above.,Server source: assertRoleHierarchy,"new HttpsError(
+      ""permission-denied"",
+      ""You cannot assign a role at your role level or above."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-064,ireps-web-email/functions/users/helpers.js,129
+FRM-009-E016,failed-precondition,`User already has role ${normalizedPreviousRole}.`,Server source: assertRoleActuallyChanges,"new HttpsError(
+      ""failed-precondition"",
+      `User already has role ${normalizedPreviousRole}.`,
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-064,ireps-web-email/functions/users/helpers.js,147
+FRM-009-E017,not-found,`${label} user was not found.`,Server source: getUserSnapshotOrThrow,"new HttpsError(""not-found"", `${label} user was not found.`)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-066,ireps-web-email/functions/users/updateUserCallable.js,23
+FRM-009-E018,failed-precondition,User is currently assigned to an operational team. Remove the user from the team before assigning this role.,Server source: assertTargetMayLeaveOperationalRole,"new HttpsError(
+      ""failed-precondition"",
+      ""User is currently assigned to an operational team. Remove the user from the team before assigning this role."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-066,ireps-web-email/functions/users/updateUserCallable.js,39
+FRM-009-E019,internal,Could not update the user role.,Server source: toCallableError,"new HttpsError(
+    ""internal"",
+    ""Could not update the user role."",
+  )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-066,ireps-web-email/functions/users/updateUserCallable.js,49
+FRM-009-E020,unauthenticated,Authentication is required.,Server source: updateUserCallable,"new HttpsError(""unauthenticated"", ""Authentication is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-066,ireps-web-email/functions/users/updateUserCallable.js,59
+FRM-009-E021,invalid-argument,Target user uid is required.,Server source: updateUserCallable,"new HttpsError(""invalid-argument"", ""Target user uid is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-066,ireps-web-email/functions/users/updateUserCallable.js,66
+FRM-009-E022,failed-precondition,Target user does not have a matching Firebase Auth account.,Server source: updateUserCallable,"new HttpsError(
+      ""failed-precondition"",
+      ""Target user does not have a matching Firebase Auth account."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-066,ireps-web-email/functions/users/updateUserCallable.js,101
+FRM-009-E023,internal,Role update failed and Firebase Auth rollback also failed. Administrator investigation is required.,Server source: updateUserCallable,"new HttpsError(
+          ""internal"",
+          ""Role update failed and Firebase Auth rollback also failed. Administrator investigation is required."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-066,ireps-web-email/functions/users/updateUserCallable.js,147

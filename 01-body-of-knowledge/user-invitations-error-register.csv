@@ -1,0 +1,134 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-021-E001,LOCAL_MESSAGE,Only a Manager may create a Supervisor.,Client source: handleCreateSupervisor,"Alert.alert(""Access Denied"", ""Only a Manager may create a Supervisor."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-022,ireps-mobile/app/(tabs)/admin/users/create-supervisor.js,143
+FRM-021-E002,LOCAL_MESSAGE,This Manager is not linked to a valid Service Provider.,Client source: handleCreateSupervisor,"Alert.alert(
+        ""Missing Service Provider Link"",
+        ""This Manager is not linked to a valid Service Provider."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-022,ireps-mobile/app/(tabs)/admin/users/create-supervisor.js,148
+FRM-021-E003,LOCAL_MESSAGE,"Name, surname, email and service provider are required.",Client source: handleCreateSupervisor,"Alert.alert(
+        ""Incomplete Form"",
+        ""Name, surname, email and service provider are required."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-022,ireps-mobile/app/(tabs)/admin/users/create-supervisor.js,156
+FRM-021-E004,LOCAL_MESSAGE,Please enter a valid email address.,Client source: handleCreateSupervisor,"Alert.alert(""Invalid Email"", ""Please enter a valid email address."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-022,ireps-mobile/app/(tabs)/admin/users/create-supervisor.js,164
+FRM-021-E005,LOCAL_MESSAGE,Please choose the Service Provider the Supervisor belongs to.,Client source: handleCreateSupervisor,"Alert.alert(
+        ""Service Provider Required"",
+        ""Please choose the Service Provider the Supervisor belongs to."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-022,ireps-mobile/app/(tabs)/admin/users/create-supervisor.js,169
+FRM-021-E006,LOCAL_MESSAGE,The Supervisor was created successfully. Default password is 'password' and must be changed on first login.,Client source: handleCreateSupervisor,"Alert.alert(
+        ""Supervisor Created"",
+        ""The Supervisor was created successfully. Default password is 'password' and must be changed on first login."",
+        [{ text: ""OK"", onPress: () => router.back() }],
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-022,ireps-mobile/app/(tabs)/admin/users/create-supervisor.js,187
+FRM-021-E007,LOCAL_MESSAGE,"error?.message || ""The Supervisor could not be created.""",Client source: handleCreateSupervisor,"Alert.alert(
+        ""Creation Failed"",
+        error?.message || ""The Supervisor could not be created."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-022,ireps-mobile/app/(tabs)/admin/users/create-supervisor.js,193
+FRM-021-E008,LOCAL_MESSAGE,"Email, name and surname are required.",Client source: handleSubmit,"Alert.alert(""Hold!"", ""Email, name and surname are required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-021,ireps-mobile/app/(tabs)/admin/users/create-manager.js,69
+FRM-021-E009,LOCAL_MESSAGE,Select a Main Contractor first.,Client source: handleSubmit,"Alert.alert(""Hold!"", ""Select a Main Contractor first."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-021,ireps-mobile/app/(tabs)/admin/users/create-manager.js,73
+FRM-021-E010,LOCAL_MESSAGE,`Manager ${values.name.trim()} invited successfully.`,Client source: handleSubmit,"Alert.alert(
+        ""Mission Confirmed"",
+        `Manager ${values.name.trim()} invited successfully.`,
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-021,ireps-mobile/app/(tabs)/admin/users/create-manager.js,87
+FRM-021-E011,LOCAL_MESSAGE,"err?.data || err?.message || ""Could not invite manager.""",Client source: handleSubmit,"Alert.alert(
+        ""Command Error"",
+        err?.data || err?.message || ""Could not invite manager."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-021,ireps-mobile/app/(tabs)/admin/users/create-manager.js,93
+FRM-021-E012,LOCAL_MESSAGE,All identity fields are required.,Client source: handleSubmit,"Alert.alert(""Hold!"", ""All identity fields are required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-020,ireps-mobile/app/(tabs)/admin/users/create-admin.js,17
+FRM-021-E013,LOCAL_MESSAGE,`Administrator ${values.name} appointed to smars.`,Client source: handleSubmit,"Alert.alert(
+        ""Mission Confirmed"",
+        `Administrator ${values.name} appointed to smars.`,
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-020,ireps-mobile/app/(tabs)/admin/users/create-admin.js,29
+FRM-021-E014,LOCAL_MESSAGE,"err?.message || ""Could not appoint administrator""",Client source: handleSubmit,"Alert.alert(
+        ""Command Error"",
+        err?.message || ""Could not appoint administrator"",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-020,ireps-mobile/app/(tabs)/admin/users/create-admin.js,35
+FRM-021-E015,unauthenticated,Authentication required,Server source: createAdminUser,"new HttpsError(""unauthenticated"", ""Authentication required"")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,775
+FRM-021-E016,permission-denied,SPU only,Server source: createAdminUser,"new HttpsError(""permission-denied"", ""SPU only"")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,780
+FRM-021-E017,invalid-argument,Missing required fields,Server source: createAdminUser,"new HttpsError(""invalid-argument"", ""Missing required fields"")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,786
+FRM-021-E018,unauthenticated,Mission denied: Authentication required.,Server source: inviteManagerUser,"new HttpsError(
+      ""unauthenticated"",
+      ""Mission denied: Authentication required."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2285
+FRM-021-E019,invalid-argument,"Email, name, surname and MNC are required.",Server source: inviteManagerUser,"new HttpsError(
+      ""invalid-argument"",
+      ""Email, name, surname and MNC are required."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2295
+FRM-021-E020,permission-denied,Mission denied: Caller profile not found.,Server source: inviteManagerUser,"new HttpsError(
+        ""permission-denied"",
+        ""Mission denied: Caller profile not found."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2311
+FRM-021-E021,permission-denied,Mission denied: Only SPU or ADM may create a manager.,Server source: inviteManagerUser,"new HttpsError(
+        ""permission-denied"",
+        ""Mission denied: Only SPU or ADM may create a manager."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2322
+FRM-021-E022,not-found,Selected service provider was not found.,Server source: inviteManagerUser,"new HttpsError(
+        ""not-found"",
+        ""Selected service provider was not found."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2333
+FRM-021-E023,failed-precondition,Selected service provider is not active.,Server source: inviteManagerUser,"new HttpsError(
+        ""failed-precondition"",
+        ""Selected service provider is not active."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2345
+FRM-021-E024,failed-precondition,Selected service provider has no clients.,Server source: inviteManagerUser,"new HttpsError(
+        ""failed-precondition"",
+        ""Selected service provider has no clients."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2352
+FRM-021-E025,failed-precondition,Selected service provider has no LM clients to inherit as workbases.,Server source: inviteManagerUser,"new HttpsError(
+        ""failed-precondition"",
+        ""Selected service provider has no LM clients to inherit as workbases."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2376
+FRM-021-E026,already-exists,A user with this email already exists.,Server source: inviteManagerUser,"new HttpsError(
+        ""already-exists"",
+        ""A user with this email already exists."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2385
+FRM-021-E027,internal,err.message,Server source: inviteManagerUser,"new HttpsError(""internal"", err.message)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2392
+FRM-021-E028,internal,"error.message || ""Could not create manager.""",Server source: inviteManagerUser,"new HttpsError(
+      ""internal"",
+      error.message || ""Could not create manager."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2479
+FRM-021-E029,unauthenticated,Mission denied: Authentication required.,Server source: inviteSupervisorUser,"new HttpsError(
+      ""unauthenticated"",
+      ""Mission denied: Authentication required."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2491
+FRM-021-E030,invalid-argument,"Email, name, surname and service provider are required.",Server source: inviteSupervisorUser,"new HttpsError(
+      ""invalid-argument"",
+      ""Email, name, surname and service provider are required."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2507
+FRM-021-E031,permission-denied,Mission denied: Caller profile not found.,Server source: inviteSupervisorUser,"new HttpsError(
+        ""permission-denied"",
+        ""Mission denied: Caller profile not found."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2523
+FRM-021-E032,permission-denied,Mission denied: Only MNG may create a supervisor.,Server source: inviteSupervisorUser,"new HttpsError(
+        ""permission-denied"",
+        ""Mission denied: Only MNG may create a supervisor."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2538
+FRM-021-E033,failed-precondition,Caller is not linked to a valid service provider.,Server source: inviteSupervisorUser,"new HttpsError(
+        ""failed-precondition"",
+        ""Caller is not linked to a valid service provider."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2545
+FRM-021-E034,not-found,Selected service provider was not found.,Server source: inviteSupervisorUser,"new HttpsError(
+        ""not-found"",
+        ""Selected service provider was not found."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2564
+FRM-021-E035,failed-precondition,Selected service provider is not active.,Server source: inviteSupervisorUser,"new HttpsError(
+        ""failed-precondition"",
+        ""Selected service provider is not active."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2575
+FRM-021-E036,permission-denied,Selected service provider is outside the manager structure.,Server source: inviteSupervisorUser,"new HttpsError(
+        ""permission-denied"",
+        ""Selected service provider is outside the manager structure."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2588
+FRM-021-E037,failed-precondition,Selected service provider has no inherited workbases to assign.,Server source: inviteSupervisorUser,"new HttpsError(
+        ""failed-precondition"",
+        ""Selected service provider has no inherited workbases to assign."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2601
+FRM-021-E038,already-exists,A user with this email already exists.,Server source: inviteSupervisorUser,"new HttpsError(
+        ""already-exists"",
+        ""A user with this email already exists."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2610
+FRM-021-E039,internal,err.message,Server source: inviteSupervisorUser,"new HttpsError(""internal"", err.message)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2617
+FRM-021-E040,internal,"error.message || ""Could not create supervisor.""",Server source: inviteSupervisorUser,"new HttpsError(
+      ""internal"",
+      error.message || ""Could not create supervisor."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2709
+FRM-021-E041,unauthenticated,Mission denied.,Server source: inviteAdminUser,"new HttpsError(""unauthenticated"", ""Mission denied."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2720
+FRM-021-E042,internal,error.message,Server source: inviteAdminUser,"new HttpsError(""internal"", error.message)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,2797

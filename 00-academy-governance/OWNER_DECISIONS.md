@@ -36,3 +36,15 @@ Source: the owner's Academy conversation and approved consolidation proposal, 23
 7. What evidence marks a workflow production-ready, and which release should each guide teach?
 
 These questions are documentation requirements, not implementation instructions. Pending answers remain open rather than being filled by guesses.
+
+## Forms and lifecycle direction — 25 September 2026
+
+| ID | Topic | Status | Direction |
+| --- | --- | --- | --- |
+| DEC-021 | Form packages | Confirmed owner direction | Inventory all forms, including authentication, premise capture, reading and inspection. Each family has a Body of Knowledge, User Manual, Field Catalogue, Error Register and Practical Examples. |
+| DEC-022 | Registration forms | Confirmed owner direction | Meter Discovery and Meter Installation register a meter; later lifecycle forms operate on an existing meter identity. |
+| DEC-023 | Meter lifecycle | Confirmed coverage direction | Provide a deep chapter from pre-procurement through purchasing, delivery, stores, dispatch, installation, commissioning, operation, removal, return and disposal, with examples and diagrams. |
+| DEC-024 | Lifecycle implementation/state model | Open design | The owner's stages are not a claim that all forms or states exist. Procurement, custody, operational state, work progress and disposition need explicit definitions and transition rules. Separate dimensions are an Academy proposal. |
+| DEC-025 | iREPS Form Standards | Confirmed documentation direction | Establish a common form-standard reference. Explain existing rules and source discrepancies; distinguish further UI/behaviour proposals from agreed rules. |
+
+Store check-in/check-out naming, return/reuse, decommissioning/retirement/disposal distinctions, installation's future store-issue prerequisite and stage-level permissions remain review questions. Existing open decisions on offline behaviour, QA and financial consequences still apply.

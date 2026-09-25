@@ -1,0 +1,7 @@
+source_id,line,function,schema_path,kind,expression
+FS-006,37,,email,required,"string()
+    .email(""That does not look like an email address"")
+    .required(""Email is required"")"
+FS-006,37,,email,email,"string()
+    .email(""That does not look like an email address"")"
+FS-006,40,,password,required,"string().required(""Password is required"")"

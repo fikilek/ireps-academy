@@ -1,0 +1,187 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-034-E001,LOCAL_MESSAGE,Settings updated for all agents.,Client source: handleSave,"Alert.alert(""Success"", ""Settings updated for all agents."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-014,ireps-mobile/app/(tabs)/admin/settings/index.js,44
+FRM-034-E002,LOCAL_MESSAGE,Failed to sync settings.,Client source: handleSave,"Alert.alert(""Error"", ""Failed to sync settings."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-014,ireps-mobile/app/(tabs)/admin/settings/index.js,46
+FRM-034-E003,LOCAL_MESSAGE,Please fix the highlighted fields before creating the lookup.,Client source: handleCreate,"Alert.alert(
+        ""Check lookup details"",
+        ""Please fix the highlighted fields before creating the lookup."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-016,ireps-mobile/app/(tabs)/admin/settings/select-lookups/create.js,186
+FRM-034-E004,LOCAL_MESSAGE,"The lookup was created as a draft. Add options, then publish it when ready.",Client source: handleCreate,"Alert.alert(
+        ""Lookup created"",
+        ""The lookup was created as a draft. Add options, then publish it when ready."",
+        [
+          {
+            text: ""Open Lookup"",
+            onPress: () =>
+              router.replace({
+                pathname: ""/(tabs)/admin/settings/select-lookups/[lookupKey]"",
+                params: {
+                  lookupKey: nextLookupKey,
+                },
+              }),
+          },
+        ],
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-016,ireps-mobile/app/(tabs)/admin/settings/select-lookups/create.js,209
+FRM-034-E005,LOCAL_MESSAGE,"error?.message || ""The lookup could not be created.""",Client source: handleCreate,"Alert.alert(
+        ""Could not create lookup"",
+        error?.message || ""The lookup could not be created."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-016,ireps-mobile/app/(tabs)/admin/settings/select-lookups/create.js,226
+FRM-034-E006,LOCAL_MESSAGE,lookupKey is required.,Client source: handleSave,"Alert.alert(""Missing lookup"", ""lookupKey is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-017,ireps-mobile/app/(tabs)/admin/settings/select-lookups/option.js,185
+FRM-034-E007,LOCAL_MESSAGE,Please fix the highlighted fields before saving.,Client source: handleSave,"Alert.alert(
+        ""Check option details"",
+        ""Please fix the highlighted fields before saving."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-017,ireps-mobile/app/(tabs)/admin/settings/select-lookups/option.js,190
+FRM-034-E008,LOCAL_MESSAGE,The option was saved.,Client source: handleSave,"Alert.alert(""Option updated"", ""The option was saved."", [
+          {
+            text: ""OK"",
+            onPress: () =>
+              router.replace({
+                pathname: ""/(tabs)/admin/settings/select-lookups/[lookupKey]"",
+                params: { lookupKey },
+              }),
+          },
+        ])",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-017,ireps-mobile/app/(tabs)/admin/settings/select-lookups/option.js,210
+FRM-034-E009,LOCAL_MESSAGE,The option was created as DRAFT. Publish it from the lookup detail screen when ready.,Client source: handleSave,"Alert.alert(
+        ""Option created"",
+        ""The option was created as DRAFT. Publish it from the lookup detail screen when ready."",
+        [
+          {
+            text: ""OK"",
+            onPress: () =>
+              router.replace({
+                pathname: ""/(tabs)/admin/settings/select-lookups/[lookupKey]"",
+                params: { lookupKey },
+              }),
+          },
+        ],
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-017,ireps-mobile/app/(tabs)/admin/settings/select-lookups/option.js,235
+FRM-034-E010,LOCAL_MESSAGE,"error?.message || ""The option could not be saved.""",Client source: handleSave,"Alert.alert(
+        isEditMode ? ""Could not update option"" : ""Could not create option"",
+        error?.message || ""The option could not be saved."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-017,ireps-mobile/app/(tabs)/admin/settings/select-lookups/option.js,250
+FRM-034-E011,LOCAL_MESSAGE,"message || ""Are you sure?""",Client source: handlePress,"Alert.alert(title || label, message || ""Are you sure?"", [
+      {
+        text: ""Cancel"",
+        style: ""cancel"",
+      },
+      {
+        text: label,
+        style: color === ""#B91C1C"" ? ""destructive"" : ""default"",
+        onPress: onConfirm,
+      },
+    ])",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-015,ireps-mobile/app/(tabs)/admin/settings/select-lookups/[lookupKey].js,88
+FRM-034-E012,LOCAL_MESSAGE,Please enter a lookup title.,Client source: handleSave,"Alert.alert(""Title required"", ""Please enter a lookup title."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-015,ireps-mobile/app/(tabs)/admin/settings/select-lookups/[lookupKey].js,137
+FRM-034-E013,LOCAL_MESSAGE,Please enter a lookup domain.,Client source: handleSave,"Alert.alert(""Domain required"", ""Please enter a lookup domain."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-015,ireps-mobile/app/(tabs)/admin/settings/select-lookups/[lookupKey].js,142
+FRM-034-E014,LOCAL_MESSAGE,Please enter the label for the Other option.,Client source: handleSave,"Alert.alert(
+        ""Other label required"",
+        ""Please enter the label for the Other option."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-015,ireps-mobile/app/(tabs)/admin/settings/select-lookups/[lookupKey].js,147
+FRM-034-E015,LOCAL_MESSAGE,`Archive option ${optionCode}? System options cannot be archived.`,Client source: OptionCard,"Alert.alert(
+                ""Archive option"",
+                `Archive option ${optionCode}? System options cannot be archived.`,
+                [
+                  {
+                    text: ""Cancel"",
+                    style: ""cancel"",
+                  },
+                  {
+                    text: ""Archive"",
+                    style: ""destructive"",
+                    onPress: () =>
+                      onSetStatus({
+                        optionCode,
+                        action: ""ARCHIVE_OPTION"",
+                      }),
+                  },
+                ],
+              )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-015,ireps-mobile/app/(tabs)/admin/settings/select-lookups/[lookupKey].js,407
+FRM-034-E016,LOCAL_MESSAGE,The lookup details were saved.,Client source: handleUpdateLookup,"Alert.alert(""Lookup updated"", ""The lookup details were saved."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-015,ireps-mobile/app/(tabs)/admin/settings/select-lookups/[lookupKey].js,474
+FRM-034-E017,LOCAL_MESSAGE,"err?.message || ""Could not update lookup.""",Client source: handleUpdateLookup,"Alert.alert(""Update failed"", err?.message || ""Could not update lookup."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-015,ireps-mobile/app/(tabs)/admin/settings/select-lookups/[lookupKey].js,476
+FRM-034-E018,LOCAL_MESSAGE,Lookup status was updated.,Client source: handleSetLookupStatus,"Alert.alert(""Status updated"", ""Lookup status was updated."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-015,ireps-mobile/app/(tabs)/admin/settings/select-lookups/[lookupKey].js,487
+FRM-034-E019,LOCAL_MESSAGE,"err?.message || ""Could not update lookup status.""",Client source: handleSetLookupStatus,"Alert.alert(
+        ""Status update failed"",
+        err?.message || ""Could not update lookup status."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-015,ireps-mobile/app/(tabs)/admin/settings/select-lookups/[lookupKey].js,489
+FRM-034-E020,LOCAL_MESSAGE,Option status was updated.,Client source: handleSetOptionStatus,"Alert.alert(""Option updated"", ""Option status was updated."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-015,ireps-mobile/app/(tabs)/admin/settings/select-lookups/[lookupKey].js,504
+FRM-034-E021,LOCAL_MESSAGE,"err?.message || ""Could not update option status.""",Client source: handleSetOptionStatus,"Alert.alert(
+        ""Option update failed"",
+        err?.message || ""Could not update option status."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-015,ireps-mobile/app/(tabs)/admin/settings/select-lookups/[lookupKey].js,506
+FRM-034-E022,not-found,`Lookup ${lookupKey} does not exist.`,Server source: getLookup,"new HttpsError(""not-found"", `Lookup ${lookupKey} does not exist.`)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-093,ireps-web/functions/lookups/onIrepsSelectLookupAdminCallable.js,132
+FRM-034-E023,already-exists,`Lookup ${clean.lookupKey} already exists.`,Server source: createLookup,"new HttpsError(
+        ""already-exists"",
+        `Lookup ${clean.lookupKey} already exists.`,
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-093,ireps-web/functions/lookups/onIrepsSelectLookupAdminCallable.js,155
+FRM-034-E024,not-found,`Lookup ${lookupKey} does not exist.`,Server source: updateLookup,"new HttpsError(""not-found"", `Lookup ${lookupKey} does not exist.`)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-093,ireps-web/functions/lookups/onIrepsSelectLookupAdminCallable.js,207
+FRM-034-E025,not-found,`Lookup ${lookupKey} does not exist.`,Server source: setLookupStatus,"new HttpsError(""not-found"", `Lookup ${lookupKey} does not exist.`)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-093,ireps-web/functions/lookups/onIrepsSelectLookupAdminCallable.js,249
+FRM-034-E026,failed-precondition,System lookups cannot be archived.,Server source: setLookupStatus,"new HttpsError(
+        ""failed-precondition"",
+        ""System lookups cannot be archived."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-093,ireps-web/functions/lookups/onIrepsSelectLookupAdminCallable.js,255
+FRM-034-E027,not-found,`Lookup ${lookupKey} does not exist.`,Server source: createOption,"new HttpsError(""not-found"", `Lookup ${lookupKey} does not exist.`)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-093,ireps-web/functions/lookups/onIrepsSelectLookupAdminCallable.js,307
+FRM-034-E028,already-exists,`Option ${clean.code} already exists.`,Server source: createOption,"new HttpsError(
+        ""already-exists"",
+        `Option ${clean.code} already exists.`,
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-093,ireps-web/functions/lookups/onIrepsSelectLookupAdminCallable.js,313
+FRM-034-E029,not-found,`Lookup ${lookupKey} does not exist.`,Server source: updateOption,"new HttpsError(""not-found"", `Lookup ${lookupKey} does not exist.`)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-093,ireps-web/functions/lookups/onIrepsSelectLookupAdminCallable.js,371
+FRM-034-E030,not-found,`Option ${optionCode} does not exist.`,Server source: updateOption,"new HttpsError(""not-found"", `Option ${optionCode} does not exist.`)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-093,ireps-web/functions/lookups/onIrepsSelectLookupAdminCallable.js,377
+FRM-034-E031,not-found,`Lookup ${lookupKey} does not exist.`,Server source: setOptionStatus,"new HttpsError(""not-found"", `Lookup ${lookupKey} does not exist.`)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-093,ireps-web/functions/lookups/onIrepsSelectLookupAdminCallable.js,432
+FRM-034-E032,not-found,`Option ${optionCode} does not exist.`,Server source: setOptionStatus,"new HttpsError(""not-found"", `Option ${optionCode} does not exist.`)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-093,ireps-web/functions/lookups/onIrepsSelectLookupAdminCallable.js,438
+FRM-034-E033,failed-precondition,System options cannot be archived.,Server source: setOptionStatus,"new HttpsError(
+        ""failed-precondition"",
+        ""System options cannot be archived."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-093,ireps-web/functions/lookups/onIrepsSelectLookupAdminCallable.js,444
+FRM-034-E034,invalid-argument,"`Unsupported lookup admin action: ${action || ""NAv""}`",Server source: onIrepsSelectLookupAdminCallable,"new HttpsError(
+          ""invalid-argument"",
+          `Unsupported lookup admin action: ${action || ""NAv""}`,
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-093,ireps-web/functions/lookups/onIrepsSelectLookupAdminCallable.js,607
+FRM-034-E035,"error?.code || ""unknown""",error?.message || String(error),Server source: onIrepsSelectLookupAdminCallable,"{
+      action,
+      uid: actor.uid,
+      message: error?.message || String(error),
+      code: error?.code || ""unknown"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-093,ireps-web/functions/lookups/onIrepsSelectLookupAdminCallable.js,613
+FRM-034-E036,internal,"error?.message || ""Lookup admin action failed.""",Server source: onIrepsSelectLookupAdminCallable,"new HttpsError(
+      ""internal"",
+      error?.message || ""Lookup admin action failed."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-093,ireps-web/functions/lookups/onIrepsSelectLookupAdminCallable.js,624
+FRM-034-E037,not-found,`Lookup ${lookupKey} does not exist.`,Server source: onIrepsSelectOptionsCallable,"new HttpsError(""not-found"", `Lookup ${lookupKey} does not exist.`)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-094,ireps-web/functions/lookups/onIrepsSelectOptionsCallable.js,64
+FRM-034-E038,failed-precondition,`Lookup ${lookupKey} is not published.`,Server source: onIrepsSelectOptionsCallable,"new HttpsError(
+      ""failed-precondition"",
+      `Lookup ${lookupKey} is not published.`,
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-094,ireps-web/functions/lookups/onIrepsSelectOptionsCallable.js,76
+FRM-034-E039,invalid-argument,lookupKey is required.,Server source: sanitizeLookupKey,"new HttpsError(""invalid-argument"", ""lookupKey is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-096,ireps-web/functions/lookups/validators.js,24
+FRM-034-E040,invalid-argument,lookupKey is too long.,Server source: sanitizeLookupKey,"new HttpsError(""invalid-argument"", ""lookupKey is too long."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-096,ireps-web/functions/lookups/validators.js,28
+FRM-034-E041,invalid-argument,"lookupKey must use uppercase letters, numbers, and underscores only.",Server source: sanitizeLookupKey,"new HttpsError(
+      ""invalid-argument"",
+      ""lookupKey must use uppercase letters, numbers, and underscores only."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-096,ireps-web/functions/lookups/validators.js,32
+FRM-034-E042,invalid-argument,option code is required.,Server source: sanitizeOptionCode,"new HttpsError(""invalid-argument"", ""option code is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-096,ireps-web/functions/lookups/validators.js,45
+FRM-034-E043,invalid-argument,option code is too long.,Server source: sanitizeOptionCode,"new HttpsError(""invalid-argument"", ""option code is too long."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-096,ireps-web/functions/lookups/validators.js,49
+FRM-034-E044,invalid-argument,"option code must use uppercase letters, numbers, and underscores only.",Server source: sanitizeOptionCode,"new HttpsError(
+      ""invalid-argument"",
+      ""option code must use uppercase letters, numbers, and underscores only."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-096,ireps-web/functions/lookups/validators.js,53
+FRM-034-E045,invalid-argument,`${optionCode} is reserved and cannot be created as a normal option.`,Server source: sanitizeOptionCode,"new HttpsError(
+      ""invalid-argument"",
+      `${optionCode} is reserved and cannot be created as a normal option.`,
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-096,ireps-web/functions/lookups/validators.js,60
+FRM-034-E046,unauthenticated,Authentication required.,Server source: assertAuthenticated,"new HttpsError(""unauthenticated"", ""Authentication required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-096,ireps-web/functions/lookups/validators.js,71
+FRM-034-E047,unauthenticated,Authentication required.,Server source: resolveAdminActor,"new HttpsError(""unauthenticated"", ""Authentication required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-096,ireps-web/functions/lookups/validators.js,77
+FRM-034-E048,permission-denied,Only ADM or SPU may manage iREPS lookup options.,Server source: resolveAdminActor,"new HttpsError(
+      ""permission-denied"",
+      ""Only ADM or SPU may manage iREPS lookup options."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-096,ireps-web/functions/lookups/validators.js,88
+FRM-034-E049,invalid-argument,`${fieldName} is too long.`,Server source: sanitizeLimitedString,"new HttpsError(""invalid-argument"", `${fieldName} is too long.`)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-096,ireps-web/functions/lookups/validators.js,114
+FRM-034-E050,invalid-argument,`${fieldName} is required.`,Server source: sanitizeRequiredString,"new HttpsError(""invalid-argument"", `${fieldName} is required.`)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-096,ireps-web/functions/lookups/validators.js,124
+FRM-034-E051,invalid-argument,otherLabel is required when allowOther is true.,Server source: sanitizeLookupCreateInput,"new HttpsError(
+      ""invalid-argument"",
+      ""otherLabel is required when allowOther is true."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-096,ireps-web/functions/lookups/validators.js,164
+FRM-034-E052,invalid-argument,sortOrder must be a positive number.,Server source: sanitizeOptionCreateInput,"new HttpsError(
+      ""invalid-argument"",
+      ""sortOrder must be a positive number."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-096,ireps-web/functions/lookups/validators.js,259
+FRM-034-E053,invalid-argument,sortOrder must be a positive number.,Server source: sanitizeOptionPatch,"new HttpsError(
+        ""invalid-argument"",
+        ""sortOrder must be a positive number."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-096,ireps-web/functions/lookups/validators.js,297

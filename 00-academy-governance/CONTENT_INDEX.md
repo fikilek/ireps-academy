@@ -62,3 +62,12 @@ Use the manuals and subject folders below. Historical source assessments are acc
 - [Practical and acceptance scenarios](../10-assessments/meter-discover-scenarios.md)
 
 - [Placement plates and media provenance](../07-media-and-evidence/meter-discover-media-register.md) — generated teaching illustrations; visual review draft.
+
+## Forms and meter lifecycle — 25 September 2026
+
+- [Form library and five-component packages](../01-body-of-knowledge/forms-library.md)
+- [Meter Lifecycle chapter](../01-body-of-knowledge/meter-lifecycle-body-of-knowledge.md)
+- [iREPS Form Standards](../01-body-of-knowledge/ireps-form-standards.md)
+- [Source investigation and limitations](FORMS_INVESTIGATION_2026-09-25.md)
+
+All new packages are review drafts. Planned stages are identified explicitly; code presence and documentary coverage do not certify deployment or acceptance.

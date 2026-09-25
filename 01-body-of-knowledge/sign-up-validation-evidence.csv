@@ -1,0 +1,16 @@
+source_id,line,function,schema_path,kind,expression
+FS-007,36,,surname,required,"string().trim().required(""Surname is required"")"
+FS-007,37,,name,required,"string().trim().required(""Name is required"")"
+FS-007,38,,email,required,"string().email(""Invalid email address"").required(""Email is required"")"
+FS-007,38,,email,email,"string().email(""Invalid email address"")"
+FS-007,39,,password,required,"string()
+    .min(8, ""Password must be at least 8 characters"")
+    .required(""Password is required"")"
+FS-007,39,,password,min,"string()
+    .min(8, ""Password must be at least 8 characters"")"
+FS-007,42,,confirmPassword,required,"string()
+    .oneOf([ref(""password"")], ""Passwords do not match"")
+    .required(""Confirm your password"")"
+FS-007,42,,confirmPassword,oneOf,"string()
+    .oneOf([ref(""password"")], ""Passwords do not match"")"
+FS-007,45,,serviceProvider,required,"object().nullable().required(""Service Provider is required"")"

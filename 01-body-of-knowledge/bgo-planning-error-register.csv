@@ -1,0 +1,41 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-031-E001,"error?.status || error?.data?.code || ""BMD_BGO_CREATE_FAILED""","error?.data?.message ||
+            error?.message ||
+            ""Could not create MD BGO allocation.""",Client source: handleConfirmCreateBgo,"{
+          group,
+          error,
+          code: error?.status || error?.data?.code || ""BMD_BGO_CREATE_FAILED"",
+          message:
+            error?.data?.message ||
+            error?.message ||
+            ""Could not create MD BGO allocation."",
+        }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-158,ireps-web/src/pages/operations/BmdBgoPage.jsx,1015
+FRM-031-E002,"error?.status || error?.data?.code || ""BMD_BGO_REMOVE_FAILED""","error?.data?.message ||
+          error?.message ||
+          ""Could not remove MD BGO allocation.""",Client source: handleConfirmRemoveBmdBatch,"{
+        success: false,
+        message:
+          error?.data?.message ||
+          error?.message ||
+          ""Could not remove MD BGO allocation."",
+        code: error?.status || error?.data?.code || ""BMD_BGO_REMOVE_FAILED"",
+        batchId,
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-158,ireps-web/src/pages/operations/BmdBgoPage.jsx,1090
+FRM-031-E003,"error?.status || error?.data?.code || ""BGO_CREATE_FAILED""","error?.data?.message || error?.message || ""Failed to create BGO.""",Client source: handleConfirmCreateBgo,"{
+        success: false,
+        code: error?.status || error?.data?.code || ""BGO_CREATE_FAILED"",
+        message:
+          error?.data?.message || error?.message || ""Failed to create BGO."",
+        raw: error,
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-165,ireps-web/src/pages/operations/TcBgoPage.jsx,1372
+FRM-031-E004,"error?.status || error?.data?.code || ""BGO_DELETE_FAILED""","error?.data?.message ||
+          error?.message ||
+          ""Failed to delete unaccepted BGO.""",Client source: handleConfirmDeleteBgo,"{
+        success: false,
+        code: error?.status || error?.data?.code || ""BGO_DELETE_FAILED"",
+        message:
+          error?.data?.message ||
+          error?.message ||
+          ""Failed to delete unaccepted BGO."",
+        raw: error,
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-165,ireps-web/src/pages/operations/TcBgoPage.jsx,1422

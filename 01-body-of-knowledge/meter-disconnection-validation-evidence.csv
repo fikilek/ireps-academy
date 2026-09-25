@@ -1,0 +1,71 @@
+source_id,line,function,schema_path,kind,expression
+FS-024,429,,,test,"object()
+  .shape({
+    accessData: object().shape({
+      access: object().shape({
+        hasAccess: string()
+          .oneOf([""yes"", ""no""])
+          .required(""Access outcome is required""),
+        reason: string().notRequired(),
+        reasonSelect: object().shape({
+          code: string().notRequired(),
+          label: string().notRequired(),
+          otherText: string().notRequired(),
+        }),
+      }),
+    }),
+
+    assignment: object().shape({
+      // MN-R001 1.3.0: every disconnection says why. A locked instruction (office
+      // or finding) is already filled in.
+      instructionSelect: object()
+        .shape({
+          code: string().notRequired(),
+          label: string().notRequired(),
+          otherText: string().notRequired(),
+        })
+        .test(
+          ""disconnection-instruction-required"",
+          ""Disconnection instruction is required"",
+          (value) => isSelectWithOtherFilled(value),
+        ),
+    }),
+
+    disconnection: object().shape({
+      level: object().shape({
+        code: string().notRequired(),
+        label: string().notRequired(),
+        otherText: string().notRequired(),
+      }),
+
+    }),
+
+    fieldComment: object().shape({
+      text: string().notRequired(),
+    }),
+
+    media: array().of(object()),
+  })
+  .test(""dcn-v02-validation"", ""DCN validation failed"", function (values = {}) {
+    const access = values?.accessData?.access || {};
+    const disconnection = values?.disconnection || {};
+    const media = values?.media || [];
+
+    if (String(access?.hasAccess || """").toLowerCase() === ""no"") {
+      if (!isSele"
+FS-024,433,,accessData.access.hasAccess,required,"string()
+          .oneOf([""yes"", ""no""])
+          .required(""Access outcome is required"")"
+FS-024,433,,accessData.access.hasAccess,oneOf,"string()
+          .oneOf([""yes"", ""no""])"
+FS-024,448,,assignment.instructionSelect,test,"object()
+        .shape({
+          code: string().notRequired(),
+          label: string().notRequired(),
+          otherText: string().notRequired(),
+        })
+        .test(
+          ""disconnection-instruction-required"",
+          ""Disconnection instruction is required"",
+          (value) => isSelectWithOtherFilled(value),
+        )"

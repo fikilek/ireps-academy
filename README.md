@@ -32,3 +32,11 @@ Engineering rules, database schemas, application runtime code, tests and deploym
 ## First comprehensive module
 
 [Meter Discovery — Body of Knowledge](01-body-of-knowledge/meter-discover-body-of-knowledge.md) and [User Manual](02-user-manual/mobile/meter-discover-user-manual.md) are source-based review drafts, with detailed field/error references, diagrams and acceptance scenarios. The [module standard](00-academy-governance/MODULE_CONTENT_STANDARD.md) defines the two legs for subsequent modules.
+
+## Forms and meter lifecycle — review library
+
+- [All form packages](01-body-of-knowledge/forms-library.md)
+- [Meter Lifecycle](01-body-of-knowledge/meter-lifecycle-body-of-knowledge.md)
+- [iREPS Form Standards](01-body-of-knowledge/ireps-form-standards.md)
+
+All new packages are review drafts. Planned stages are identified explicitly; code presence and documentary coverage do not certify deployment or acceptance.

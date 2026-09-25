@@ -1,0 +1,48 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-010-E001,NAv,NAv,Client source: handleSubmit,"{
+                success: false,
+                code: ""NAv"",
+                message: ""NAv"",
+                premiseId: ""NAv"",
+              }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-048,ireps-mobile/src/features/premises/formPremise.js,1390
+FRM-010-E002,NAv,NAv,Client source: handleSubmit,"{
+                  success: false,
+                  code: ""NAv"",
+                  message: ""NAv"",
+                  premiseId: ""NAv"",
+                }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-048,ireps-mobile/src/features/premises/formPremise.js,1533
+FRM-010-E003,invalid-argument,premiseId is required,Server source: rebuildPremiseRegistryRowCallable,"new HttpsError(""invalid-argument"", ""premiseId is required"")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-080,ireps-web-normalisation/functions/registry/premiseCallable.js,10
+FRM-010-E004,internal,"error?.message || ""Failed to rebuild premise registry row""",Server source: rebuildPremiseRegistryRowCallable,"new HttpsError(
+      ""internal"",
+      error?.message || ""Failed to rebuild premise registry row"",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-080,ireps-web-normalisation/functions/registry/premiseCallable.js,27
+FRM-010-E005,NAv,NAv,Client source: addPremiseQueueItem,"{
+        success: false,
+        code: ""NAv"",
+        message: ""NAv"",
+        premiseId: ""NAv"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-057,ireps-mobile/src/utils/premiseSubmissionQueue.js,76
+FRM-010-E006,"result?.code || ""SUCCESS""","result?.message || ""Synced""",Client source: markPremiseQueueItemSuccess,"{
+        success: true,
+        code: result?.code || ""SUCCESS"",
+        message: result?.message || ""Synced"",
+        premiseId: result?.premiseId || ""NAv"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-057,ireps-mobile/src/utils/premiseSubmissionQueue.js,253
+FRM-010-E007,"result?.code || ""FAILED""","result?.message || ""Sync failed. This draft remains pending for retry.""",Client source: markPremiseQueueItemFailed,"{
+    id,
+    previousStatus: existingItem?.status,
+    code: result?.code || ""FAILED"",
+    message:
+      result?.message || ""Sync failed. This draft remains pending for retry."",
+    premiseId: result?.premiseId || ""NAv"",
+    result,
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-057,ireps-mobile/src/utils/premiseSubmissionQueue.js,273
+FRM-010-E008,"result?.code || ""FAILED""","result?.message ||
+          ""Sync failed. This draft remains pending for retry.""",Client source: markPremiseQueueItemFailed,"{
+        success: false,
+        code: result?.code || ""FAILED"",
+        message:
+          result?.message ||
+          ""Sync failed. This draft remains pending for retry."",
+        premiseId: result?.premiseId || ""NAv"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-057,ireps-mobile/src/utils/premiseSubmissionQueue.js,287

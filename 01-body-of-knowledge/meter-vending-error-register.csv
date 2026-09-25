@@ -1,0 +1,158 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-040-E001,LCT_TYPE_NOT_IMPLEMENTED,`${trnType} is not implemented yet`,Server source: getActionCheck,"{
+    ok: false,
+    code: ""LCT_TYPE_NOT_IMPLEMENTED"",
+    message: `${trnType} is not implemented yet`,
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,385
+FRM-040-E002,UNAUTHENTICATED,Authentication is required,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+        ""UNAUTHENTICATED"",
+        ""Authentication is required"",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,400
+FRM-040-E003,dynamic code,commonCheck.message,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(commonCheck.code, commonCheck.message)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,413
+FRM-040-E004,LCT_TYPE_NOT_IMPLEMENTED,`${trnType} is not implemented yet`,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+        ""LCT_TYPE_NOT_IMPLEMENTED"",
+        `${trnType} is not implemented yet`,
+        {
+          trnId,
+          trnType,
+          astId,
+        },
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,445
+FRM-040-E005,INSPECTION_OFFICE_WMS_ONLY,Meter inspection execution must complete an accepted office-originated instruction TRN,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+        ""INSPECTION_OFFICE_WMS_ONLY"",
+        ""Meter inspection execution must complete an accepted office-originated instruction TRN"",
+        {
+          trnId,
+          trnType,
+          astId,
+        },
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,463
+FRM-040-E006,UNAUTHORIZED_FIELD_ORIGIN,Only FWR or SPV actors can originate this lifecycle transaction from the field,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+          ""UNAUTHORIZED_FIELD_ORIGIN"",
+          ""Only FWR or SPV actors can originate this lifecycle transaction from the field"",
+          {
+            trnId,
+            trnType,
+            astId,
+            actorRole: fieldAuthority.role,
+            actorServiceProviderId: fieldAuthority.spId,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,486
+FRM-040-E007,dynamic code,assignmentCheck.message,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(assignmentCheck.code, assignmentCheck.message, {
+        trnId,
+        trnType,
+        astId,
+      })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,507
+FRM-040-E008,AST_NOT_FOUND,The referenced AST does not exist,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+          ""AST_NOT_FOUND"",
+          ""The referenced AST does not exist"",
+          {
+            trnId,
+            trnType,
+            astId,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,537
+FRM-040-E009,PREMISE_NOT_FOUND,The referenced premise does not exist,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+          ""PREMISE_NOT_FOUND"",
+          ""The referenced premise does not exist"",
+          {
+            trnId,
+            trnType,
+            astId,
+            premiseId,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,551
+FRM-040-E010,dynamic code,batchWorkCheck.message,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+          batchWorkCheck.code,
+          batchWorkCheck.message,
+          {
+            trnId,
+            trnType,
+            astId,
+            batch: batchWorkCheck.details,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,591
+FRM-040-E011,INSTRUCTION_TRN_NOT_FOUND,The lifecycle instruction TRN does not exist,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+            ""INSTRUCTION_TRN_NOT_FOUND"",
+            ""The lifecycle instruction TRN does not exist"",
+            {
+              trnId,
+              trnType,
+              astId,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,612
+FRM-040-E012,INVALID_INSTRUCTION_TRN_TYPE,The referenced instruction TRN type does not match the execution payload,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+            ""INVALID_INSTRUCTION_TRN_TYPE"",
+            ""The referenced instruction TRN type does not match the execution payload"",
+            {
+              trnId,
+              existingTrnType,
+              trnType,
+              astId,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,630
+FRM-040-E013,INSTRUCTION_NOT_EXECUTABLE,Rejected or cancelled lifecycle instructions cannot be executed,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+            ""INSTRUCTION_NOT_EXECUTABLE"",
+            ""Rejected or cancelled lifecycle instructions cannot be executed"",
+            {
+              trnId,
+              trnType,
+              workflowState,
+              astId,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,670
+FRM-040-E014,INSTRUCTION_NOT_ACCEPTED,Lifecycle instruction must be accepted before execution can be submitted,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+            ""INSTRUCTION_NOT_ACCEPTED"",
+            ""Lifecycle instruction must be accepted before execution can be submitted"",
+            {
+              trnId,
+              trnType,
+              workflowState,
+              astId,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,685
+FRM-040-E015,dynamic code,actionCheck?.message,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+            actionCheck?.code,
+            actionCheck?.message,
+            {
+              trnId,
+              trnType,
+              astId,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,708
+FRM-040-E016,dynamic code,servicePatchResult.message,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+              servicePatchResult.code,
+              servicePatchResult.message,
+              {
+                trnId,
+                trnType,
+                astId,
+              },
+            )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,744
+FRM-040-E017,dynamic code,actionCheck?.message,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+          actionCheck?.code,
+          actionCheck?.message,
+          {
+            trnId,
+            trnType,
+            astId,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,969
+FRM-040-E018,dynamic code,servicePatchResult.message,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+            servicePatchResult.code,
+            servicePatchResult.message,
+            {
+              trnId,
+              trnType,
+              astId,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,1005
+FRM-040-E019,UNKNOWN_ERROR,Lifecycle TRN was not processed,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(""UNKNOWN_ERROR"", ""Lifecycle TRN was not processed"", {
+        trnId,
+        trnType,
+        astId,
+      })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,1146
+FRM-040-E020,dynamic code,"error?.message || ""Failed to submit lifecycle transaction""",Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+      error?.irepsCode || ""UNKNOWN_ERROR"",
+      error?.message || ""Failed to submit lifecycle transaction"",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,1160

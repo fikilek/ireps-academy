@@ -1,0 +1,4 @@
+source_id,line,function,schema_path,kind,expression
+FS-016,80,validateForm,,test,LOOKUP_KEY_REGEX.test(form.lookupKey.trim())
+FS-016,90,validateForm,,test,LOOKUP_KEY_REGEX.test(form.domain.trim())
+FS-017,50,validateForm,,test,OPTION_CODE_REGEX.test(form.code.trim())

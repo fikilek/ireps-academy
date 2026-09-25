@@ -1,51 +1,43 @@
-> **Academy status:** Imported draft; release verification required. Imported 2026-09-23. Source: `SRC-008` in the [source register](../../00-academy-governance/SOURCE_REGISTER.csv). [Owner decisions](../../00-academy-governance/OWNER_DECISIONS.md) take precedence over conflicting inherited statements.
+# User Invitations — User Manual
 
-# Form: Invite a manager, supervisor or admin
+Module **FRM-021** · Baseline **25 September 2026** · Application: **Observed source; release unverified**.
 
-| | |
-| --- | --- |
-| Screens | `app/(tabs)/admin/users/create-manager.js`, `create-supervisor.js`, `create-admin.js` |
-| Back end | `inviteManagerUser`, `inviteSupervisorUser`, `inviteAdminUser` |
-| Rules | `AU-R001` sections 1, 5 and 9 |
-| Who uses it | An admin invites managers; a manager invites supervisors; the SPU invites admins |
+Draft for review. Observed source and documented rules are evidence of implementation intent, not proof of deployment, runtime success or production acceptance. Read the source baseline and open questions before using this as a release-specific lesson.
 
-## What it is for
+[Body of Knowledge](../../01-body-of-knowledge/user-invitations-body-of-knowledge.md) · [User Manual](invite-a-user.md) · [Field catalogue](../../01-body-of-knowledge/user-invitations-field-catalogue.md) · [Error register](../../01-body-of-knowledge/user-invitations-error-register.md) · [Practical examples](../../10-assessments/user-invitations-scenarios.md)
 
-Making an account for somebody who does not sign up: managers, supervisors and admins. Field workers sign up for themselves.
+## Before you start
 
-## What you fill in
+Separate screens implement each invited role. Their provider selection and permitted inviter differ. The authentication rule describes a generated, once-displayed initial password and mandatory password change; verify the source variant and delivery method before publishing a task guide.
 
-| Field | Notes |
-| --- | --- |
-| Email | Their working email. It becomes their sign-in name |
-| Name, surname | Required |
-| Service provider or main contractor | Which one they belong to. Not asked when inviting an admin |
+Use a named, verified build in the intended environment. Confirm identity, workbase and action-specific access. Check the subject before editing or submitting; similarly named people, premises, meters and batches are not interchangeable.
 
-## What happens when you send it
+## Procedure
 
-iREPS makes the account and **a one-time password just for that person**. It looks like `K7RM-4TQD-9XBV` — no letters or digits that can be misheard, and in three short blocks so it can be read out over a phone.
+1. Choose the specific role invitation screen.
+2. Confirm the person’s identity and email.
+3. Select the provider context required for that role.
+4. Review and submit once.
+5. Pass the invitation result through the organisation’s approved channel and verify pending/onboarding state without publishing the initial credential.
 
-**The one-time password is shown once, to you, in the window that follows.** Write it down or send it to the person before you tap "I have written it down". iREPS cannot email it, does not store it anywhere you can read it, and will never show it again.
+## What to check in the result
 
-If it is lost, invite them again with a different email, or tell them to use **Lost access?** on the sign-in screen and set their own password from the link.
+A manager invites a supervisor for the correct provider. The supervisor changes the initial password, then checks the assigned workbase. Being invited does not create an accepted work order.
 
-The person signs in with that password once, and iREPS then makes them set their own before they can reach anything.
+Record the returned identifier and actual result for this action. Where the action creates or updates stored information, re-open the intended record and inspect the outcome. A local save, upload progress indicator, confirmation of a request, or downloaded export must be described by its actual meaning.
 
-Until 18 September 2026 every invited person was created with the same password — the word `password` — and it was the same for everybody. That is finished.
+## When something prevents completion
 
-## Error Register
+Do not publish fixed-password examples from historical code. Verify the once-displayed password behaviour in the target build; invitations and re-invitations can have partial success.
 
-| What you see | What happened | What to do |
-| --- | --- | --- |
-| "An account already uses this email." | Somebody has already been invited or signed up with it | Use another email, or find them in Users |
-| A message naming a missing field | Something required is empty | Fill it in |
-| "No connection..." | The phone could not reach iREPS | Move to signal and try again |
-| Anything else | The reason the back end gave | Try again, and report it if it keeps happening |
+For a field validation error, correct the specific input and recheck its dependent evidence. For a permission or state refusal, resolve authority or record state through the responsible workstream. After a timeout or partial success, reconcile the original attempt before making a new one. Preserve identifiers and evidence; never publish credentials in an escalation.
 
-**If the window shows no one-time password**, the account was still made. Tell the person to use Lost access? on the sign-in screen.
+[Consult the module error register](../../01-body-of-knowledge/user-invitations-error-register.md) and [field catalogue](../../01-body-of-knowledge/user-invitations-field-catalogue.md).
 
-## What it does not do
+## Training exercise
 
-- It does not email anybody. You pass the password on yourself.
-- It does not let you choose the password, or see it again later.
-- It does not give a manager or supervisor their workbase; they choose it after their first sign-in.
+[Use the practical scenarios and their expected evidence](../../10-assessments/user-invitations-scenarios.md). Release-specific screenshots, all conditional branches and permission tests remain publication requirements.
+
+## Preserved task details and current qualification
+
+The authentication rule expects a generated initial password, displayed once to the inviter, followed by mandatory password change. Preserve the existing UID if the result is incomplete. If the credential is unavailable, use the established account recovery route after confirming that the account exists; do not create another identity under a different email simply to repeat an invitation. An expired/used initial credential is not a reason to alter employment history.

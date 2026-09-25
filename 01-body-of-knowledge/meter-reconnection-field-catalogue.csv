@@ -1,0 +1,22 @@
+field_id,label,component,binding,description,input_type,prerequisites,requirement,allowed_values,validation,default,disabled,transformation,storage_mapping,source_id,source_path,line
+FRM-018-C001,value,RadioButton.Group,value,Source control for value; interpret in the business definitions and its enclosing section.,RadioButton.Group,No direct enclosing conditional captured; check caller and route prerequisites.,Not established by control prop alone,See schema / owning shared component,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(nextValue) => {
+          setFieldValue(""accessData.access.hasAccess"", nextValue);
+
+          if (nextValue === ""yes"") {
+            setFieldValue(""accessData.access.reason"", ""NAv"");
+            setFieldValue(
+              ""accessData.access.reasonSelect"",
+              makeEmptySelectWithOther(),
+            );
+          }
+        }",UI binding shown; persisted path must be verified against payload builder,FS-027,ireps-mobile/app/(tabs)/asts/reconnection.jsx,481
+FRM-018-C002,Reconnection Instruction,IrepsSelectWithOther,values?.assignment?.instructionSelect,Requested reconnection.,IrepsSelectWithOther,conditional branch: instructionLocked,Not established by control prop alone,FIELD_RECONNECTION_INSTRUCTION_OPTIONS,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(nextValue) => {
+                      setFieldValue(""assignment.instructionSelect"", nextValue);
+                      setFieldValue(
+                        ""assignment.instruction.text"",
+                        selectWithOtherToText(nextValue),
+                      );
+                    }",UI binding shown; persisted path must be verified against payload builder,FS-027,ireps-mobile/app/(tabs)/asts/reconnection.jsx,1973
+FRM-018-C003,Instruction Notes,TextInput,"values?.assignment?.instruction?.notes || """"",Requested reconnection.,TextInput,conditional branch: instructionLocked,Not established by control prop alone,See schema / owning shared component,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(text) =>
+                      setFieldValue(""assignment.instruction.notes"", text)",UI binding shown; persisted path must be verified against payload builder,FS-027,ireps-mobile/app/(tabs)/asts/reconnection.jsx,1995
+FRM-018-C004,IrepsFieldCommentSection,IrepsFieldCommentSection,,Source control for IrepsFieldCommentSection; interpret in the business definitions and its enclosing section.,IrepsFieldCommentSection,No direct enclosing conditional captured; check caller and route prerequisites.,Not established by control prop alone,See schema / owning shared component,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,inProgress || saveInProgress,Handled by parent/shared component,UI binding shown; persisted path must be verified against payload builder,FS-027,ireps-mobile/app/(tabs)/asts/reconnection.jsx,2116

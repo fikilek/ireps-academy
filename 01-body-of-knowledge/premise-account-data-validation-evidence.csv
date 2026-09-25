@@ -1,0 +1,58 @@
+source_id,line,function,schema_path,kind,expression
+FS-047,447,,owner.ownerType,required,"string()
+      .oneOf([""NATURAL_PERSON"", ""JURISTIC_PERSON""])
+      .required(""Owner type is required"")"
+FS-047,447,,owner.ownerType,oneOf,"string()
+      .oneOf([""NATURAL_PERSON"", ""JURISTIC_PERSON""])"
+FS-047,451,,owner.naturalPerson,when,"object().when(""ownerType"", {
+      is: ""NATURAL_PERSON"",
+      then: (schema) =>
+        schema.shape({
+          name: string().trim().required(""Owner name is required""),
+          surname: string().trim().required(""Owner surname is required""),
+          idNumber: string().nullable(),
+        }),
+      otherwise: (schema) => schema,
+    })"
+FS-047,455,,owner.naturalPerson.then.name,required,"string().trim().required(""Owner name is required"")"
+FS-047,456,,owner.naturalPerson.then.surname,required,"string().trim().required(""Owner surname is required"")"
+FS-047,462,,owner.juristicPerson,when,"object().when(""ownerType"", {
+      is: ""JURISTIC_PERSON"",
+      then: (schema) =>
+        schema.shape({
+          registeredName: string().trim().required(""Registered name is required""),
+          registrationNumber: string().nullable(),
+          tradingName: string().nullable(),
+        }),
+      otherwise: (schema) => schema,
+    })"
+FS-047,466,,owner.juristicPerson.then.registeredName,required,"string().trim().required(""Registered name is required"")"
+FS-047,476,,owner.contact.email,email,"string().email(""Invalid email"")"
+FS-047,481,,occupant.isOwner,oneOf,"string().oneOf([""yes"", ""no""])"
+FS-047,483,,occupant.contact.email,email,"string().email(""Invalid email"")"
+FS-047,487,,accounts,test,"array()
+    .of(
+      object().shape({
+        accountNo: string().trim().required(""Account number is required""),
+      }),
+    )
+    .min(1, ""At least one account number is required"")
+    .test(
+      ""unique-account-numbers"",
+      ""Duplicate account numbers are not allowed"",
+      (accounts = []) => {
+        const normalized = accounts
+          .map((account) => normalizeAccountNo(account?.accountNo))
+          .filter(Boolean);
+
+        return new Set(normalized).size === normalized.length;
+      },
+    )"
+FS-047,487,,accounts,min,"array()
+    .of(
+      object().shape({
+        accountNo: string().trim().required(""Account number is required""),
+      }),
+    )
+    .min(1, ""At least one account number is required"")"
+FS-047,490,,accounts.accountNo,required,"string().trim().required(""Account number is required"")"

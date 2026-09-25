@@ -1,5 +1,10 @@
 # Meter Discovery — mobile user manual
 
+> **25 September update:** Read the [current Normal Path, Sales Path and Premise Picker guidance](../../01-body-of-knowledge/meter-discovery-path-update-2026-09-25.md) alongside this earlier detailed baseline. Source handover and reported tests do not establish production acceptance.
+
+
+
+
 **MDIS-UM · version 0.2 · review draft.** This guide follows the recorded mobile normalisation feature, with the branch differences and unresolved behaviour listed in the [source baseline](../../00-academy-governance/source-assessments/meter-discover-source-baseline-2026-09-23.md). It must be walked through on the intended release before field publication. The canonical module name is **Meter Discovery**.
 
 For explanations use the [Body of Knowledge](../../01-body-of-knowledge/meter-discover-body-of-knowledge.md). For mounting examples use the [placement image guide](../../01-body-of-knowledge/meter-discover-body-of-knowledge.md#placement-examples-context-and-closer-views). For any field's detailed meaning, allowed values or photograph requirement use the [field catalogue](../../01-body-of-knowledge/meter-discover-field-catalogue.md). For refusals and recovery use the [error register](../../01-body-of-knowledge/meter-discover-error-register.md).
@@ -27,9 +32,9 @@ If the parent premise is still only on the device, you can encounter a Saved as 
 ### B. Sales Path
 
 1. Open the accepted work in **My Work Orders** and select the relevant row.
-2. Follow the row to the correct ERF/premise. Keep the expected Sales meter and assigned work context.
+2. Use the Premise Picker when the row has no joined premise. Choose the actual unit, or create/copy a premise deliberately. A joined row opens its associated premise. Keep the expected Sales meter and assigned work context.
 3. Check the meter actually present. An electricity number may be prefilled from the target; it still needs physical verification.
-4. If offered a choice between the batch meter and another meter, choose truthfully. Do not retype the expected number over a different physical serial.
+4. If the path dialog appears from a premise, choose Sales Path or Normal Path deliberately, as explained in the linked update. Verify the physical serial; never replace it with the expected number just to make the row match.
 5. Continue through the same accessed electricity/water capture steps below. If access is unavailable, use the batch's dedicated **No Access** action; the inspected backend rejects a generic discovery carrying batch context with No Access and directs you to that separate route.
 6. After submission, verify both the found meter and the work-row outcome. A different-meter completion must retain the distinction between expected and found.
 

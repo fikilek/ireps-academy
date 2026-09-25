@@ -1,0 +1,213 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-027-E001,LOCAL_MESSAGE,Only ISSUED or REJECTED workorders can be reassigned.,Client source: handleReassign,"Alert.alert(
+        ""View Only"",
+        ""Only ISSUED or REJECTED workorders can be reassigned."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-008,ireps-mobile/app/(tabs)/admin/operations/dashboard/control.js,642
+FRM-027-E002,LOCAL_MESSAGE,`Cancel ${trnId}? This action should only be used before field acceptance or after rejection.`,Client source: handleCancel,"Alert.alert(
+      ""Cancel Workorder"",
+      `Cancel ${trnId}? This action should only be used before field acceptance or after rejection.`,
+      [
+        { text: ""NO"", style: ""cancel"" },
+        {
+          text: ""YES, CANCEL"",
+          style: ""destructive"",
+          onPress: async () => {
+            try {
+              const result = await manageLifecycleInstruction({
+                trnIds: [trnId],
+                action: ""CANCEL"",
+                cancelReason: ""Cancelled from WDB Manager Control"",
+              }).unwrap();
+
+              Alert.alert(
+                ""Work Cancelled"",
+                result?.message || ""Lifecycle instruction cancelled."",
+              );
+            } catch (error) {
+              console.log(""WDB cancel ERROR"", {
+                trnId,
+                code: error?.code,
+                message: error?.message,
+                data: error?.data,
+                raw: error,
+              });
+
+              Alert.alert(
+                ""Cancel Failed"",
+                error?.data?.message ||
+                  error?.message ||
+                  ""Could not cancel lifecycle instruction."",
+              );
+            }
+          },
+        },
+      ],
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-008,ireps-mobile/app/(tabs)/admin/operations/dashboard/control.js,655
+FRM-027-E003,LOCAL_MESSAGE,"result?.message || ""Lifecycle instruction cancelled.""",Client source: handleCancel,"Alert.alert(
+                ""Work Cancelled"",
+                result?.message || ""Lifecycle instruction cancelled."",
+              )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-008,ireps-mobile/app/(tabs)/admin/operations/dashboard/control.js,671
+FRM-027-E004,error?.code,error?.message,Client source: handleCancel,"{
+                trnId,
+                code: error?.code,
+                message: error?.message,
+                data: error?.data,
+                raw: error,
+              }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-008,ireps-mobile/app/(tabs)/admin/operations/dashboard/control.js,676
+FRM-027-E005,LOCAL_MESSAGE,"error?.data?.message ||
+                  error?.message ||
+                  ""Could not cancel lifecycle instruction.""",Client source: handleCancel,"Alert.alert(
+                ""Cancel Failed"",
+                error?.data?.message ||
+                  error?.message ||
+                  ""Could not cancel lifecycle instruction."",
+              )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-008,ireps-mobile/app/(tabs)/admin/operations/dashboard/control.js,684
+FRM-027-E006,LOCAL_MESSAGE,"result?.message || ""Lifecycle instruction reassigned successfully.""",Client source: handleSubmitReassign,"Alert.alert(
+        ""Work Reassigned"",
+        result?.message || ""Lifecycle instruction reassigned successfully."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-008,ireps-mobile/app/(tabs)/admin/operations/dashboard/control.js,708
+FRM-027-E007,error?.code,error?.message,Client source: handleSubmitReassign,"{
+        trnId: item?.id,
+        target,
+        code: error?.code,
+        message: error?.message,
+        data: error?.data,
+        raw: error,
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-008,ireps-mobile/app/(tabs)/admin/operations/dashboard/control.js,715
+FRM-027-E008,LOCAL_MESSAGE,"error?.data?.message ||
+          error?.message ||
+          ""Could not reassign lifecycle instruction.""",Client source: handleSubmitReassign,"Alert.alert(
+        ""Reassign Failed"",
+        error?.data?.message ||
+          error?.message ||
+          ""Could not reassign lifecycle instruction."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-008,ireps-mobile/app/(tabs)/admin/operations/dashboard/control.js,724
+FRM-027-E009,LOCAL_MESSAGE,"Select a USER, TEAM or SP target.",Client source: submit,"Alert.alert(""Target Required"", ""Select a USER, TEAM or SP target."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-008,ireps-mobile/app/(tabs)/admin/operations/dashboard/control.js,1267
+FRM-027-E010,LOCAL_MESSAGE,Give a short reason for this reassignment.,Client source: submit,"Alert.alert(
+        ""Reason Required"",
+        ""Give a short reason for this reassignment."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-008,ireps-mobile/app/(tabs)/admin/operations/dashboard/control.js,1274
+FRM-027-E011,INVALID_ASSIGNMENT_TARGETS,"assignment.targets must contain at least one USER, TEAM, or SP target",Server source: validateNewTargets,"{
+      ok: false,
+      code: ""INVALID_ASSIGNMENT_TARGETS"",
+      message:
+        ""assignment.targets must contain at least one USER, TEAM, or SP target"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-079,ireps-web-normalisation/functions/meterLifecycle/manageInstructionCallable.js,216
+FRM-027-E012,UNAUTHENTICATED,Authentication is required,Server source: onManageLifecycleInstructionCallable,"buildFailureResult(
+        ""UNAUTHENTICATED"",
+        ""Authentication is required"",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-079,ireps-web-normalisation/functions/meterLifecycle/manageInstructionCallable.js,465
+FRM-027-E013,UNAUTHORIZED_LCT_MANAGER,Only MNG and SPV(MNC) can reassign or cancel lifecycle instructions,Server source: onManageLifecycleInstructionCallable,"buildFailureResult(
+        ""UNAUTHORIZED_LCT_MANAGER"",
+        ""Only MNG and SPV(MNC) can reassign or cancel lifecycle instructions"",
+        {
+          actorRole: authority.role,
+          actorSpId: authority.spId,
+          actorIsMnc: authority.isMnc,
+        },
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-079,ireps-web-normalisation/functions/meterLifecycle/manageInstructionCallable.js,481
+FRM-027-E014,INVALID_MANAGE_ACTION,action must be REASSIGN or CANCEL,Server source: onManageLifecycleInstructionCallable,"buildFailureResult(
+        ""INVALID_MANAGE_ACTION"",
+        ""action must be REASSIGN or CANCEL"",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-079,ireps-web-normalisation/functions/meterLifecycle/manageInstructionCallable.js,502
+FRM-027-E015,INVALID_TRN_IDS,At least one TRN id is required,Server source: onManageLifecycleInstructionCallable,"buildFailureResult(
+        ""INVALID_TRN_IDS"",
+        ""At least one TRN id is required"",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-079,ireps-web-normalisation/functions/meterLifecycle/manageInstructionCallable.js,509
+FRM-027-E016,TOO_MANY_TRNS,A maximum of 50 TRNs can be managed at once,Server source: onManageLifecycleInstructionCallable,"buildFailureResult(
+        ""TOO_MANY_TRNS"",
+        ""A maximum of 50 TRNs can be managed at once"",
+        {
+          count: trnIds.length,
+        },
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-079,ireps-web-normalisation/functions/meterLifecycle/manageInstructionCallable.js,516
+FRM-027-E017,dynamic code,targetsCheck.message,Server source: onManageLifecycleInstructionCallable,"buildFailureResult(targetsCheck.code, targetsCheck.message)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-079,ireps-web-normalisation/functions/meterLifecycle/manageInstructionCallable.js,531
+FRM-027-E018,CANCEL_REASON_REQUIRED,Cancel reason is required when cancelling lifecycle instructions,Server source: onManageLifecycleInstructionCallable,"buildFailureResult(
+        ""CANCEL_REASON_REQUIRED"",
+        ""Cancel reason is required when cancelling lifecycle instructions"",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-079,ireps-web-normalisation/functions/meterLifecycle/manageInstructionCallable.js,538
+FRM-027-E019,TRN_NOT_FOUND,One or more TRNs were not found,Server source: onManageLifecycleInstructionCallable,"buildFailureResult(
+          ""TRN_NOT_FOUND"",
+          ""One or more TRNs were not found"",
+          {
+            missingTrnIds,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-079,ireps-web-normalisation/functions/meterLifecycle/manageInstructionCallable.js,566
+FRM-027-E020,INVALID_MANAGED_LCT_TYPE,"Only INSPECTION, DISCONNECTION, RECONNECTION and REMOVAL instructions can be managed here",Server source: onManageLifecycleInstructionCallable,"buildFailureResult(
+            ""INVALID_MANAGED_LCT_TYPE"",
+            ""Only INSPECTION, DISCONNECTION, RECONNECTION and REMOVAL instructions can be managed here"",
+            {
+              trnId: row.trnId,
+              trnType,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-079,ireps-web-normalisation/functions/meterLifecycle/manageInstructionCallable.js,606
+FRM-027-E021,INVALID_AST_ID,TRN is missing ast.astData.astId,Server source: onManageLifecycleInstructionCallable,"buildFailureResult(
+            ""INVALID_AST_ID"",
+            ""TRN is missing ast.astData.astId"",
+            {
+              trnId: row.trnId,
+              trnType,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-079,ireps-web-normalisation/functions/meterLifecycle/manageInstructionCallable.js,619
+FRM-027-E022,AST_NOT_FOUND,The referenced AST does not exist,Server source: onManageLifecycleInstructionCallable,"buildFailureResult(
+            ""AST_NOT_FOUND"",
+            ""The referenced AST does not exist"",
+            {
+              trnId: row.trnId,
+              trnType,
+              astId,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-079,ireps-web-normalisation/functions/meterLifecycle/manageInstructionCallable.js,634
+FRM-027-E023,TRN_ALREADY_COMPLETED,Completed lifecycle instructions cannot be reassigned or cancelled,Server source: onManageLifecycleInstructionCallable,"buildFailureResult(
+            ""TRN_ALREADY_COMPLETED"",
+            ""Completed lifecycle instructions cannot be reassigned or cancelled"",
+            {
+              trnId: row.trnId,
+              trnType,
+              workflowState,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-079,ireps-web-normalisation/functions/meterLifecycle/manageInstructionCallable.js,648
+FRM-027-E024,TRN_ALREADY_CANCELLED,Cancelled lifecycle instructions cannot be changed,Server source: onManageLifecycleInstructionCallable,"buildFailureResult(
+            ""TRN_ALREADY_CANCELLED"",
+            ""Cancelled lifecycle instructions cannot be changed"",
+            {
+              trnId: row.trnId,
+              trnType,
+              workflowState,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-079,ireps-web-normalisation/functions/meterLifecycle/manageInstructionCallable.js,662
+FRM-027-E025,TRN_IN_PROGRESS,In-progress lifecycle instructions cannot be reassigned or cancelled,Server source: onManageLifecycleInstructionCallable,"buildFailureResult(
+            ""TRN_IN_PROGRESS"",
+            ""In-progress lifecycle instructions cannot be reassigned or cancelled"",
+            {
+              trnId: row.trnId,
+              trnType,
+              workflowState,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-079,ireps-web-normalisation/functions/meterLifecycle/manageInstructionCallable.js,676
+FRM-027-E026,INVALID_REASSIGN_STATE,Only ISSUED or REJECTED lifecycle instructions can be reassigned,Server source: onManageLifecycleInstructionCallable,"buildFailureResult(
+            ""INVALID_REASSIGN_STATE"",
+            ""Only ISSUED or REJECTED lifecycle instructions can be reassigned"",
+            {
+              trnId: row.trnId,
+              trnType,
+              workflowState: workflowState || ""NAv"",
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-079,ireps-web-normalisation/functions/meterLifecycle/manageInstructionCallable.js,693
+FRM-027-E027,INVALID_CANCEL_STATE,Only ISSUED or REJECTED lifecycle instructions can be cancelled,Server source: onManageLifecycleInstructionCallable,"buildFailureResult(
+            ""INVALID_CANCEL_STATE"",
+            ""Only ISSUED or REJECTED lifecycle instructions can be cancelled"",
+            {
+              trnId: row.trnId,
+              trnType,
+              workflowState: workflowState || ""NAv"",
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-079,ireps-web-normalisation/functions/meterLifecycle/manageInstructionCallable.js,710
+FRM-027-E028,UNKNOWN_ERROR,Lifecycle instruction management action was not processed,Server source: onManageLifecycleInstructionCallable,"buildFailureResult(
+        ""UNKNOWN_ERROR"",
+        ""Lifecycle instruction management action was not processed"",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-079,ireps-web-normalisation/functions/meterLifecycle/manageInstructionCallable.js,839
+FRM-027-E029,UNKNOWN_ERROR,"error?.message || ""Failed to manage lifecycle instruction""",Server source: onManageLifecycleInstructionCallable,"buildFailureResult(
+      ""UNKNOWN_ERROR"",
+      error?.message || ""Failed to manage lifecycle instruction"",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-079,ireps-web-normalisation/functions/meterLifecycle/manageInstructionCallable.js,850

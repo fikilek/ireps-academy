@@ -1,56 +1,43 @@
-> **Academy status:** Imported draft; release verification required. Imported 2026-09-23. Source: `SRC-005` in the [source register](../../00-academy-governance/SOURCE_REGISTER.csv). [Owner decisions](../../00-academy-governance/OWNER_DECISIONS.md) take precedence over conflicting inherited statements.
+# Password Reset — User Manual
 
-# Form: Password reset
+Module **FRM-003** · Baseline **25 September 2026** · Application: **Observed source; release unverified**.
 
-| | |
-| --- | --- |
-| Screen | `app/(auth)/pwdReset.jsx`, route `/pwdReset` |
-| Reached from | **Lost access?** on Sign in |
-| Rules | `AU-R001` sections 1, 4, 6 and 7.3 |
-| Who uses it | Anybody who cannot remember their password |
+Draft for review. Observed source and documented rules are evidence of implementation intent, not proof of deployment, runtime success or production acceptance. Read the source baseline and open questions before using this as a release-specific lesson.
 
-## What it is for
+[Body of Knowledge](../../01-body-of-knowledge/password-reset-body-of-knowledge.md) · [User Manual](password-reset.md) · [Field catalogue](../../01-body-of-knowledge/password-reset-field-catalogue.md) · [Error register](../../01-body-of-knowledge/password-reset-error-register.md) · [Practical examples](../../10-assessments/password-reset-scenarios.md)
 
-Getting a link that lets you set a new password yourself. Nobody in the office needs to be told, and nobody can see your password.
+## Before you start
 
-## What you fill in
+The same acknowledgement is intended for registered and unregistered email addresses. A reset must not be taught as changing role, approval or workbase. Firebase-hosted recovery is distinct from an iREPS campaign or report-email facility.
 
-| Field | Notes |
-| --- | --- |
-| Email address | The email you sign in with |
+Use a named, verified build in the intended environment. Confirm identity, workbase and action-specific access. Check the subject before editing or submitting; similarly named people, premises, meters and batches are not interchangeable.
 
-One field. That is all.
+## Procedure
 
-## What happens when you tap Send reset link
+1. From Sign In choose Lost access? or the password-reset link on the applicable platform.
+2. Enter the sign-in email and confirm the request.
+3. Read the acknowledgement, then check the inbox and junk folder.
+4. Open the reset link and set the new password.
+5. Return to Sign In; use the new credential and complete any remaining onboarding gate.
 
-1. **A confirmation window** names the email the link will go to. Check it.
-2. **Progress** while it is sent.
-3. **A result window:** "If that email belongs to an iREPS account, a reset link is on its way. Check the inbox, and the junk folder."
+## What to check in the result
 
-**You always get those same words.** iREPS never says whether an email has an account, so nobody can use this screen to find out who works here. If you typed an email that is not on iREPS, nothing arrives — try the right one.
+A mistyped but syntactically valid address receives the same on-screen acknowledgement. The learner must understand that this is not proof that the address has an iREPS account.
 
-## Opening the link
+Record the returned identifier and actual result for this action. Where the action creates or updates stored information, re-open the intended record and inspect the outcome. A local save, upload progress indicator, confirmation of a request, or downloaded export must be described by its actual meaning.
 
-The email comes from Firebase and the link opens a page where you type your new password. It must be at least 8 characters, like every other password on iREPS. Then come back to iREPS and sign in with the new one.
+## When something prevents completion
 
-The link works for a limited time. If it has expired, come back to this screen and send another.
+The hosted link expiry and provider error conditions require release testing. Never promise delivery time or expose whether another person has an account. The primary mobile tree links to /pwdReset but that screen is absent there; it exists in the mobile-auth worktree. The feature must be integrated and verified before the primary mobile guide can be treated as executable.
 
-## Error Register
+For a field validation error, correct the specific input and recheck its dependent evidence. For a permission or state refusal, resolve authority or record state through the responsible workstream. After a timeout or partial success, reconcile the original attempt before making a new one. Preserve identifiers and evidence; never publish credentials in an escalation.
 
-| What you see | What happened | What to do |
-| --- | --- | --- |
-| "If that email belongs to an iREPS account, a reset link is on its way. Check the inbox, and the junk folder." | The send was accepted. This is also what you see for an email with no account | Open the email. If nothing arrives, check the spelling and the junk folder |
-| "That does not look like an email address." | The email is mistyped | Correct it |
-| **Too many tries** — "Wait a few minutes and try again." | Too many reset requests from this phone. Nothing was sent | Wait a few minutes and try again |
-| **No connection** — "Check your signal and try again." | The phone could not reach iREPS | Move to signal and try again |
-| **Could not send the reset link** — "Try again, and tell your manager if it keeps happening." | Something else | Try again, then report it |
+[Consult the module error register](../../01-body-of-knowledge/password-reset-error-register.md) and [field catalogue](../../01-body-of-knowledge/password-reset-field-catalogue.md).
 
-## What it does not do
+## Training exercise
 
-- It does not change anything about your account: not your role, not your authorisation, not your workbase.
-- It does not tell your manager.
-- It does not let you set the password inside the app. That happens on the page the link opens.
+[Use the practical scenarios and their expected evidence](../../10-assessments/password-reset-scenarios.md). Release-specific screenshots, all conditional branches and permission tests remain publication requirements.
 
----
+## Preserved task details and current qualification
 
-**The web console works the same way.** Its sign-in, password reset and change-password screens follow this same form and this same Error Register (AU-R001 10).
+Primary mobile Sign In currently links to /pwdReset but the screen is absent in that worktree. The reset screen exists in mobile-auth and on the web. Until a tested release integrates the mobile feature, do not present the primary phone route as working. The rule’s acknowledgement is deliberately identical for an existing and a nonexistent account.

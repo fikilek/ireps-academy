@@ -1,0 +1,4 @@
+source_id,line,function,schema_path,kind,expression
+FS-067,789,PaginationControls,,min,"Math.min(currentPage * pageSize, totalRows)"
+FS-067,1138,UsersPage,,max,"Math.max(1, Math.ceil(totalRows / pageSize))"
+FS-067,1139,UsersPage,,min,"Math.min(currentPage, totalPages)"

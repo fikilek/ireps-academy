@@ -1,0 +1,26 @@
+source_id,line,function,schema_path,kind,expression
+FS-010,190,,rejectReason,required,"string()
+    .trim()
+    .min(5, ""Give a short but useful reason"")
+    .max(500, ""Keep the reason below 500 characters"")
+    .required(""Reject reason is required"")"
+FS-010,190,,rejectReason,max,"string()
+    .trim()
+    .min(5, ""Give a short but useful reason"")
+    .max(500, ""Keep the reason below 500 characters"")"
+FS-010,190,,rejectReason,min,"string()
+    .trim()
+    .min(5, ""Give a short but useful reason"")"
+FS-010,649,getEntityLatestActivityMs,,max,"Math.max(
+    toActivityMillis(entity?.metadata?.updatedAt),
+    toActivityMillis(entity?.metadata?.createdAt),
+    toActivityMillis(entity?.updatedAt),
+    toActivityMillis(entity?.createdAt),
+    toActivityMillis(entity?.workflow?.completedAt),
+    toActivityMillis(entity?.workflow?.acceptedAt),
+    toActivityMillis(entity?.workflow?.issuedAt),
+  )"
+FS-010,1971,WorkorderManagementSystem,,max,"Math.max(
+      TARGETED_BATCH_ACTION_TIMEOUT_MS - (Date.now() - startedAt),
+      0,
+    )"

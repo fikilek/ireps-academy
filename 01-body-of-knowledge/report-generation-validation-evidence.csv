@@ -1,0 +1,7 @@
+source_id,line,function,schema_path,kind,expression
+FS-179,43,formatDuration,,max,"Math.max(0, Number(totalSeconds) || 0)"
+FS-179,110,GeneralMonthlyReportPage,,max,"Math.max(0, Math.floor((Date.now() - startedAtRef.current) / 1000))"
+FS-179,170,handleGenerate,,max,"Math.max(
+        0,
+        Math.round((completedAt.getTime() - startedAtRef.current) / 1000),
+      )"

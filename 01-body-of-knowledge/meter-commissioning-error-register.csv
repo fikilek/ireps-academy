@@ -1,0 +1,241 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-014-E001,LOCAL_MESSAGE,"{
+              message: ""Vending evidence required"",
+            }",Client source: buildCommissioningSchema,"this.createError({
+              message: ""Vending evidence required"",
+            })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-023,ireps-mobile/app/(tabs)/asts/commissioning.jsx,261
+FRM-014-E002,LOCAL_MESSAGE,"{
+              message: ""Final switch-on evidence required"",
+            }",Client source: buildCommissioningSchema,"this.createError({
+              message: ""Final switch-on evidence required"",
+            })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-023,ireps-mobile/app/(tabs)/asts/commissioning.jsx,271
+FRM-014-E003,LOCAL_MESSAGE,"{
+              message: ""Keypad issued evidence required"",
+            }",Client source: buildCommissioningSchema,"this.createError({
+              message: ""Keypad issued evidence required"",
+            })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-023,ireps-mobile/app/(tabs)/asts/commissioning.jsx,281
+FRM-014-E004,LOCAL_MESSAGE,"{
+              message: ""Water operational evidence required"",
+            }",Client source: buildCommissioningSchema,"this.createError({
+              message: ""Water operational evidence required"",
+            })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-023,ireps-mobile/app/(tabs)/asts/commissioning.jsx,291
+FRM-014-E005,LOCAL_MESSAGE,"{
+              message: ""Water reading / flow evidence required"",
+            }",Client source: buildCommissioningSchema,"this.createError({
+              message: ""Water reading / flow evidence required"",
+            })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-023,ireps-mobile/app/(tabs)/asts/commissioning.jsx,301
+FRM-014-E006,LOCAL_MESSAGE,AST data not found.,Client source: handleSubmitCommissioning,"Alert.alert(""Error"", ""AST data not found."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-023,ireps-mobile/app/(tabs)/asts/commissioning.jsx,714
+FRM-014-E007,LOCAL_MESSAGE,Only FIELD electricity or water meters can be commissioned by FWR or SPV(SUBC).,Client source: handleSubmitCommissioning,"Alert.alert(
+        ""Not Eligible"",
+        ""Only FIELD electricity or water meters can be commissioned by FWR or SPV(SUBC)."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-023,ireps-mobile/app/(tabs)/asts/commissioning.jsx,719
+FRM-014-E008,NAv,NAv,Client source: saveCommissioningDraftToQueue,"{
+              success: false,
+              code: ""NAv"",
+              message: ""NAv"",
+              trnId: ""NAv"",
+            }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-023,ireps-mobile/app/(tabs)/asts/commissioning.jsx,773
+FRM-014-E009,LOCAL_MESSAGE,Failed to save commissioning draft locally.,Client source: saveCommissioningDraftToQueue,"Alert.alert(
+          ""Draft Save Failed"",
+          ""Failed to save commissioning draft locally."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-023,ireps-mobile/app/(tabs)/asts/commissioning.jsx,798
+FRM-014-E010,LOCAL_MESSAGE,"error?.message || ""Meter commissioning submission failed.""",Client source: handleSubmitCommissioning,"Alert.alert(
+          ""Submission Failed"",
+          error?.message || ""Meter commissioning submission failed."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-023,ireps-mobile/app/(tabs)/asts/commissioning.jsx,898
+FRM-014-E011,LOCAL_MESSAGE,"result?.message || ""Meter commissioning submission failed.""",Client source: handleSubmitCommissioning,"Alert.alert(
+          ""Submission Failed"",
+          result?.message || ""Meter commissioning submission failed."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-023,ireps-mobile/app/(tabs)/asts/commissioning.jsx,910
+FRM-014-E012,LOCAL_MESSAGE,"error?.message || ""Submission failed""",Client source: handleSubmitCommissioning,"Alert.alert(""Error"", error?.message || ""Submission failed"")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-023,ireps-mobile/app/(tabs)/asts/commissioning.jsx,952
+FRM-014-E013,UNAUTHENTICATED,Authentication is required,Server source: onCreateMeterCommissioningCallable,"buildFailureResult(
+        ""UNAUTHENTICATED"",
+        ""Authentication is required"",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-069,ireps-web-normalisation/functions/commissioning/callable.js,30
+FRM-014-E014,dynamic code,inputCheck.message,Server source: onCreateMeterCommissioningCallable,"buildFailureResult(inputCheck.code, inputCheck.message)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-069,ireps-web-normalisation/functions/commissioning/callable.js,43
+FRM-014-E015,INVALID_COMMISSIONING_TRN_TYPE,Only METER_COMMISSIONING is supported by this callable,Server source: onCreateMeterCommissioningCallable,"buildFailureResult(
+        ""INVALID_COMMISSIONING_TRN_TYPE"",
+        ""Only METER_COMMISSIONING is supported by this callable"",
+        {
+          trnId,
+          trnType,
+          astId,
+        },
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-069,ireps-web-normalisation/functions/commissioning/callable.js,57
+FRM-014-E016,AST_NOT_FOUND,The referenced AST does not exist,Server source: onCreateMeterCommissioningCallable,"buildFailureResult(
+          ""AST_NOT_FOUND"",
+          ""The referenced AST does not exist"",
+          {
+            trnId,
+            trnType,
+            astId,
+            premiseId,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-069,ireps-web-normalisation/functions/commissioning/callable.js,111
+FRM-014-E017,PREMISE_NOT_FOUND,The referenced premise does not exist,Server source: onCreateMeterCommissioningCallable,"buildFailureResult(
+          ""PREMISE_NOT_FOUND"",
+          ""The referenced premise does not exist"",
+          {
+            trnId,
+            trnType,
+            astId,
+            premiseId,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-069,ireps-web-normalisation/functions/commissioning/callable.js,126
+FRM-014-E018,dynamic code,batchWorkCheck.message,Server source: onCreateMeterCommissioningCallable,"buildFailureResult(
+          batchWorkCheck.code,
+          batchWorkCheck.message,
+          {
+            trnId,
+            trnType,
+            astId,
+            premiseId,
+            batch: batchWorkCheck.details,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-069,ireps-web-normalisation/functions/commissioning/callable.js,162
+FRM-014-E019,dynamic code,commissioningCheck?.message,Server source: onCreateMeterCommissioningCallable,"buildFailureResult(
+          commissioningCheck?.code,
+          commissioningCheck?.message,
+          {
+            trnId,
+            trnType,
+            astId,
+            premiseId,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-069,ireps-web-normalisation/functions/commissioning/callable.js,183
+FRM-014-E020,UNKNOWN_ERROR,Commissioning TRN was not created,Server source: onCreateMeterCommissioningCallable,"buildFailureResult(""UNKNOWN_ERROR"", ""Commissioning TRN was not created"", {
+        trnId,
+        trnType,
+        astId,
+        premiseId,
+      })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-069,ireps-web-normalisation/functions/commissioning/callable.js,231
+FRM-014-E021,dynamic code,"error?.message || ""Failed to create commissioning TRN""",Server source: onCreateMeterCommissioningCallable,"buildFailureResult(
+      error?.irepsCode || ""UNKNOWN_ERROR"",
+      error?.message || ""Failed to create commissioning TRN"",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-069,ireps-web-normalisation/functions/commissioning/callable.js,246
+FRM-014-E022,INVALID_COMMISSIONING_ANSWER,`${fieldLabel} must be answered yes or no`,Server source: validateRequiredCommissioningCheck,"{
+      ok: false,
+      code: ""INVALID_COMMISSIONING_ANSWER"",
+      message: `${fieldLabel} must be answered yes or no`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-070,ireps-web-normalisation/functions/commissioning/helpers.js,100
+FRM-014-E023,COMMISSIONING_NOTES_REQUIRED,`Notes are required when ${fieldLabel} is no`,Server source: validateRequiredCommissioningCheck,"{
+      ok: false,
+      code: ""COMMISSIONING_NOTES_REQUIRED"",
+      message: `Notes are required when ${fieldLabel} is no`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-070,ireps-web-normalisation/functions/commissioning/helpers.js,108
+FRM-014-E024,COMMISSIONING_EVIDENCE_REQUIRED,`${evidenceLabel || fieldLabel} evidence is required`,Server source: validateRequiredCommissioningCheck,"{
+      ok: false,
+      code: ""COMMISSIONING_EVIDENCE_REQUIRED"",
+      message: `${evidenceLabel || fieldLabel} evidence is required`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-070,ireps-web-normalisation/functions/commissioning/helpers.js,116
+FRM-014-E025,INVALID_TRN_ID,Commissioning TRN id is required,Server source: validateCommissioningCreateInput,"{
+      ok: false,
+      code: ""INVALID_TRN_ID"",
+      message: ""Commissioning TRN id is required"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-070,ireps-web-normalisation/functions/commissioning/helpers.js,170
+FRM-014-E026,INVALID_COMMISSIONING_TRN_ID,`Commissioning TRN id must start with ${COMMISSIONING_TRN_PREFIX}`,Server source: validateCommissioningCreateInput,"{
+      ok: false,
+      code: ""INVALID_COMMISSIONING_TRN_ID"",
+      message: `Commissioning TRN id must start with ${COMMISSIONING_TRN_PREFIX}`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-070,ireps-web-normalisation/functions/commissioning/helpers.js,178
+FRM-014-E027,INVALID_ACCESS_DATA,accessData is required,Server source: validateCommissioningCreateInput,"{
+      ok: false,
+      code: ""INVALID_ACCESS_DATA"",
+      message: ""accessData is required"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-070,ireps-web-normalisation/functions/commissioning/helpers.js,186
+FRM-014-E028,INVALID_COMMISSIONING_TRN_TYPE,accessData.trnType must be METER_COMMISSIONING,Server source: validateCommissioningCreateInput,"{
+      ok: false,
+      code: ""INVALID_COMMISSIONING_TRN_TYPE"",
+      message: ""accessData.trnType must be METER_COMMISSIONING"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-070,ireps-web-normalisation/functions/commissioning/helpers.js,194
+FRM-014-E029,INVALID_AST_ID,ast.astData.astId is required,Server source: validateCommissioningCreateInput,"{
+      ok: false,
+      code: ""INVALID_AST_ID"",
+      message: ""ast.astData.astId is required"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-070,ireps-web-normalisation/functions/commissioning/helpers.js,202
+FRM-014-E030,INVALID_PREMISE_ID,A valid premise id is required,Server source: validateCommissioningCreateInput,"{
+      ok: false,
+      code: ""INVALID_PREMISE_ID"",
+      message: ""A valid premise id is required"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-070,ireps-web-normalisation/functions/commissioning/helpers.js,210
+FRM-014-E031,INVALID_COMMISSIONING_DATA,commissioning answers are required,Server source: validateCommissioningCreateInput,"{
+      ok: false,
+      code: ""INVALID_COMMISSIONING_DATA"",
+      message: ""commissioning answers are required"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-070,ireps-web-normalisation/functions/commissioning/helpers.js,218
+FRM-014-E032,AST_NOT_FIELD,Only FIELD meters can be commissioned,Server source: validateCommissioningAgainstAst,"{
+      ok: false,
+      code: ""AST_NOT_FIELD"",
+      message: ""Only FIELD meters can be commissioned"",
+      currentState,
+      meterType,
+      commissioningPassed: false,
+      nextAstState: currentState || ""NAv"",
+      astStatusChanged: false,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-070,ireps-web-normalisation/functions/commissioning/helpers.js,243
+FRM-014-E033,INVALID_COMMISSIONING_METER_TYPE,Only electricity or water meters can be commissioned,Server source: validateCommissioningAgainstAst,"{
+      ok: false,
+      code: ""INVALID_COMMISSIONING_METER_TYPE"",
+      message: ""Only electricity or water meters can be commissioned"",
+      currentState,
+      meterType,
+      commissioningPassed: false,
+      nextAstState: ""FIELD"",
+      astStatusChanged: false,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-070,ireps-web-normalisation/functions/commissioning/helpers.js,256
+FRM-014-E034,commissioningCheck?.code,commissioningCheck?.message,Server source: ,"{
+            trnId,
+            astId,
+            code: commissioningCheck?.code,
+            message: commissioningCheck?.message,
+          }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-071,ireps-web-normalisation/functions/commissioning/trigger.js,134
+FRM-014-E035,astPatchResult.code,astPatchResult.message,Server source: ,"{
+            trnId,
+            astId,
+            code: astPatchResult.code,
+            message: astPatchResult.message,
+          }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-071,ireps-web-normalisation/functions/commissioning/trigger.js,162
+FRM-014-E036,NAv,NAv,Client source: addSubmissionQueueItem,"{
+        success: false,
+        code: ""NAv"",
+        message: ""NAv"",
+        trnId: ""NAv"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-058,ireps-mobile/src/utils/submissionQueue.js,87
+FRM-014-E037,"result?.code || ""SUCCESS""","result?.message || ""Synced successfully""",Client source: markSubmissionQueueItemSuccess,"{
+        success: true,
+        code: result?.code || ""SUCCESS"",
+        message: result?.message || ""Synced successfully"",
+        trnId: result?.trnId || ""NAv"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-058,ireps-mobile/src/utils/submissionQueue.js,288
+FRM-014-E038,"result?.code || ""SYNC_FAILED""","result?.message || ""Sync failed. This draft remains pending for retry.""",Client source: markSubmissionQueueItemFailed,"{
+    queueItemId,
+    previousStatus: existingItem?.status,
+    code: result?.code || ""SYNC_FAILED"",
+    message:
+      result?.message || ""Sync failed. This draft remains pending for retry."",
+    trnId: result?.trnId || ""NAv"",
+    result,
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-058,ireps-mobile/src/utils/submissionQueue.js,319
+FRM-014-E039,"result?.code || ""SYNC_FAILED""","result?.message ||
+          ""Sync failed. This draft remains pending for retry.""",Client source: markSubmissionQueueItemFailed,"{
+        success: false,
+        code: result?.code || ""SYNC_FAILED"",
+        message:
+          result?.message ||
+          ""Sync failed. This draft remains pending for retry."",
+        trnId: result?.trnId || ""NAv"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-058,ireps-mobile/src/utils/submissionQueue.js,333
+FRM-014-E040,error?.code,error?.message,Client source: removeSubmissionQueueItemsByInstructionTrnId,"{
+      instructionTrnId,
+      code: error?.code,
+      message: error?.message,
+      stack: error?.stack,
+      raw: error,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-058,ireps-mobile/src/utils/submissionQueue.js,510
+FRM-014-E041,SERVER_CONFIRMED,Server confirmed this queued TRN was saved successfully.,Client source: reconcileSubmissionQueueWithServerTrns,"{
+          success: true,
+          code: ""SERVER_CONFIRMED"",
+          message:
+            ""Server confirmed this queued TRN was saved successfully."",
+          trnId: readServerTrnId(serverTrn),
+        }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-058,ireps-mobile/src/utils/submissionQueue.js,664

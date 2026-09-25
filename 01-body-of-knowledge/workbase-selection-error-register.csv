@@ -1,0 +1,5 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-008-E001,"String(error?.code || """")","String(error?.message || fallbackMessage || """").trim() || fallbackMessage",Client source: plainAuthError,"{
+    code: String(error?.code || """"),
+    message: String(error?.message || fallbackMessage || """").trim() || fallbackMessage,
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-054,ireps-mobile/src/redux/authApi.js,56

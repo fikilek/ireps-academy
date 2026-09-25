@@ -1,0 +1,23 @@
+source_id,line,function,schema_path,kind,expression
+FS-176,2172,PaginationControls,,min,"Math.min(currentPage * pageSize, totalRows)"
+FS-176,2884,MreadRegistryPage,,max,"Math.max(1, Math.ceil(totalRows / pageSize))"
+FS-176,2885,MreadRegistryPage,,max,"Math.max(1, Math.min(currentPage, totalPages))"
+FS-176,2885,MreadRegistryPage,,min,"Math.min(currentPage, totalPages)"
+FS-176,2887,MreadRegistryPage,,min,"Math.min(pageStartIndex + pageSize, totalRows)"
+FS-176,3053,handlePageChange,,max,"Math.max(
+      1,
+      Math.min(
+        Number.isFinite(normalizedPage) ? normalizedPage : 1,
+        totalPages,
+      ),
+    )"
+FS-176,3055,handlePageChange,,min,"Math.min(
+        Number.isFinite(normalizedPage) ? normalizedPage : 1,
+        totalPages,
+      )"
+FS-177,111,formatWardLabelFromNumber,,test,"/^\d{1,3}$/.test(text)"
+FS-177,1804,PaginationControls,,min,"Math.min(currentPage * pageSize, totalRows)"
+FS-177,2030,MreadStagingPage,,max,"Math.max(1, Math.ceil(totalFilteredRows / pageSize))"
+FS-177,2031,MreadStagingPage,,min,"Math.min(currentPage, totalPages)"
+FS-177,2095,handlePageChange,,max,"Math.max(1, Math.min(nextPage, totalPages))"
+FS-177,2095,handlePageChange,,min,"Math.min(nextPage, totalPages)"

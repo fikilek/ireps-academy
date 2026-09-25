@@ -1,0 +1,20 @@
+source_id,line,function,schema_path,kind,expression
+FS-009,108,buildGeoFenceRegion,,max,"Math.max(
+      Number(bbox?.maxLatitude ?? bbox?.maxLat) -
+        Number(bbox?.minLatitude ?? bbox?.minLat),
+      0.005,
+    )"
+FS-009,114,buildGeoFenceRegion,,max,"Math.max(
+      Number(bbox?.maxLongitude ?? bbox?.maxLng) -
+        Number(bbox?.minLongitude ?? bbox?.minLng),
+      0.005,
+    )"
+FS-009,213,GeoFencesScreen,,max,"Math.max(
+      Number(bbox?.maxLat) - Number(bbox?.minLat),
+      0.01,
+    )"
+FS-009,218,GeoFencesScreen,,max,"Math.max(
+      Number(bbox?.maxLng) - Number(bbox?.minLng),
+      0.01,
+    )"
+FS-160,409,layerIsLoading,,test,/^Loading|waiting for the server/i.test(state)

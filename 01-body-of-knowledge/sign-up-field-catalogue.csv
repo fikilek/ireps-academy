@@ -1,0 +1,15 @@
+field_id,label,component,binding,description,input_type,prerequisites,requirement,allowed_values,validation,default,disabled,transformation,storage_mapping,source_id,source_path,line
+FRM-002-C001,Surname,TextInput,values.surname,Person’s surname.,TextInput,No direct enclosing conditional captured; check caller and route prerequisites.,Not established by control prop alone,See schema / owning shared component,"string().trim().required(""Surname is required"")",Inherited binding shown; default not established by this extraction,!isLoading,"handleChange(""surname"")",UI binding shown; persisted path must be verified against payload builder,FS-007,ireps-mobile/app/(auth)/signup.jsx,158
+FRM-002-C002,Name,TextInput,values.name,Person’s given name.,TextInput,No direct enclosing conditional captured; check caller and route prerequisites.,Not established by control prop alone,See schema / owning shared component,"string().trim().required(""Name is required"")",Inherited binding shown; default not established by this extraction,!isLoading,"handleChange(""name"")",UI binding shown; persisted path must be verified against payload builder,FS-007,ireps-mobile/app/(auth)/signup.jsx,179
+FRM-002-C003,Email,TextInput,values.email,Unique sign-in identity.,email-address,No direct enclosing conditional captured; check caller and route prerequisites.,Not established by control prop alone,See schema / owning shared component,"string().email(""Invalid email address"").required(""Email is required"")
+string().email(""Invalid email address"")",Inherited binding shown; default not established by this extraction,!isLoading,"handleChange(""email"")",UI binding shown; persisted path must be verified against payload builder,FS-007,ireps-mobile/app/(auth)/signup.jsx,196
+FRM-002-C004,Password,TextInput,values.password,Person’s chosen password.,TextInput,No direct enclosing conditional captured; check caller and route prerequisites.,Not established by control prop alone,See schema / owning shared component,"string()
+    .min(8, ""Password must be at least 8 characters"")
+    .required(""Password is required"")
+string()
+    .min(8, ""Password must be at least 8 characters"")",Inherited binding shown; default not established by this extraction,!isLoading,"handleChange(""password"")",UI binding shown; persisted path must be verified against payload builder,FS-007,ireps-mobile/app/(auth)/signup.jsx,215
+FRM-002-C005,Confirm Password,TextInput,values.confirmPassword,Person’s chosen password.,TextInput,No direct enclosing conditional captured; check caller and route prerequisites.,Not established by control prop alone,See schema / owning shared component,"string()
+    .oneOf([ref(""password"")], ""Passwords do not match"")
+    .required(""Confirm your password"")
+string()
+    .oneOf([ref(""password"")], ""Passwords do not match"")",Inherited binding shown; default not established by this extraction,!isLoading,"handleChange(""confirmPassword"")",UI binding shown; persisted path must be verified against payload builder,FS-007,ireps-mobile/app/(auth)/signup.jsx,240

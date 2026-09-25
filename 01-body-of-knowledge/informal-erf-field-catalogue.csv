@@ -1,0 +1,17 @@
+field_id,label,component,binding,description,input_type,prerequisites,requirement,allowed_values,validation,default,disabled,transformation,storage_mapping,source_id,source_path,line
+FRM-012-C001,INFORMAL ERF BOUNDARY,InformalErfLocationPicker,boundaryPoints,Source control for INFORMAL ERF BOUNDARY; interpret in the business definitions and its enclosing section.,InformalErfLocationPicker,No direct enclosing conditional captured; check caller and route prerequisites.,Not established by control prop alone,See schema / owning shared component,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,Handled by parent/shared component,UI binding shown; persisted path must be verified against payload builder,FS-041,ireps-mobile/src/features/erfs/FormInformalErf.js,651
+FRM-012-C002,OTHER CREATION REASON,TextInput,values?.reasonOther,Why a usable formal ERF was not selected.,TextInput,"conditional branch: values?.reasonCode === ""OTHER""",Not established by control prop alone,See schema / owning shared component,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(value) =>
+                        setFieldValue(""reasonOther"", value)",UI binding shown; persisted path must be verified against payload builder,FS-041,ireps-mobile/src/features/erfs/FormInformalErf.js,691
+FRM-012-C003,values?.reasonCode,RadioButton.Group,values?.reasonCode,Why a usable formal ERF was not selected.,RadioButton.Group,No direct enclosing conditional captured; check caller and route prerequisites.,Not established by control prop alone,See schema / owning shared component,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"async (reasonCode) => {
+                        await setValues(
+                          {
+                            ...values,
+                            reasonCode,
+                            reasonOther:
+                              reasonCode === ""OTHER"" ? values.reasonOther : """",
+                          },
+                          true,
+                        );
+
+                        setReasonModalVisible(false);
+                      }",UI binding shown; persisted path must be verified against payload builder,FS-041,ireps-mobile/src/features/erfs/FormInformalErf.js,761

@@ -1,0 +1,3 @@
+source_id,line,function,schema_path,kind,expression
+FS-166,481,isPositiveInteger,,test,/^\d+$/.test(text)
+FS-166,822,runFrontendPrecheck,,max,"Math.max(rows.length - invalidRowCountByRowNumber.size, 0)"

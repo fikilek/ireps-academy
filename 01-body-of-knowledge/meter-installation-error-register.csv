@@ -1,0 +1,318 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-013-E001,LOCAL_MESSAGE,"{ message: ""No Access photo required"" }",Client source: FormMeterInstallation,"this.createError({ message: ""No Access photo required"" })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,621
+FRM-013-E002,LOCAL_MESSAGE,"{ message: ""Meter photo required"" }",Client source: FormMeterInstallation,"this.createError({ message: ""Meter photo required"" })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,627
+FRM-013-E003,LOCAL_MESSAGE,"{ message: ""Meter reading photo required"" }",Client source: FormMeterInstallation,"this.createError({ message: ""Meter reading photo required"" })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,636
+FRM-013-E004,LOCAL_MESSAGE,"{ message: ""Token reading photo required"" }",Client source: FormMeterInstallation,"this.createError({ message: ""Token reading photo required"" })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,644
+FRM-013-E005,LOCAL_MESSAGE,"{ message: ""Anomaly photo required"" }",Client source: FormMeterInstallation,"this.createError({ message: ""Anomaly photo required"" })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,652
+FRM-013-E006,LOCAL_MESSAGE,Other Keypad Serial Number Reason is required,Client source: FormMeterInstallation,"object()
+            .shape({
+              serialNo: string().nullable(),
+              comment: string().nullable(),
+              commentOther: string().nullable(),
+            })
+            .test(
+              ""prepaid-keypad-comment-valid"",
+              ""Select a valid Keypad Serial Number Comment"",
+              (value, context) => {
+                if (context.parent?.type !== ""prepaid"") return true;
+
+                const hasSerialNumber = !!String(value?.serialNo || """").trim();
+                const comment = String(value?.comment || """").trim();
+
+                if (hasSerialNumber || !comment) return true;
+                if (KEYPAD_SERIAL_NUMBER_COMMENT_REASONS.includes(comment)) {
+                  return true;
+                }
+
+                return context.createError({
+                  path: context.path + "".comment"",
+                  message: ""Select a valid Keypad Serial Number Comment"",
+                });
+              },
+            )
+            .test(
+              ""prepaid-keypad-other-reason"",
+              ""Other Keypad Serial Number Reason is required"",
+              (value, context) => {
+                if (context.parent?.type !== ""prepaid"") return true;
+
+                const hasSerialNumber = !!String(value?.serialNo || """").trim();
+                const comment = String(value?.comment || """").trim();
+
+                if (hasSerialNumber || comment !== ""Other"") return true;
+                if (String(value",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,727
+FRM-013-E007,LOCAL_MESSAGE,"{
+                  path: context.path + "".comment"",
+                  message: ""Select a valid Keypad Serial Number Comment"",
+                }",Client source: FormMeterInstallation,"context.createError({
+                  path: context.path + "".comment"",
+                  message: ""Select a valid Keypad Serial Number Comment"",
+                })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,747
+FRM-013-E008,LOCAL_MESSAGE,"{
+                  path: context.path + "".commentOther"",
+                  message: ""Other Keypad Serial Number Reason is required"",
+                }",Client source: FormMeterInstallation,"context.createError({
+                  path: context.path + "".commentOther"",
+                  message: ""Other Keypad Serial Number Reason is required"",
+                })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,765
+FRM-013-E009,LOCAL_MESSAGE,Other Circuit Breaker Reason is required,Client source: FormMeterInstallation,"object()
+            .shape({
+              size: string().nullable(),
+              comment: string().nullable(),
+              commentOther: string().nullable(),
+            })
+            .test(
+              ""cb-comment-valid"",
+              ""Select a valid CB Comment"",
+              (value, context) => {
+                const hasSize = !!String(value?.size || """").trim();
+                const comment = String(value?.comment || """").trim();
+
+                if (hasSize || !comment) return true;
+                if (CB_COMMENT_REASONS.includes(comment)) return true;
+
+                return context.createError({
+                  path: context.path + "".comment"",
+                  message: ""Select a valid CB Comment"",
+                });
+              },
+            )
+            .test(
+              ""cb-other-reason"",
+              ""Other Circuit Breaker Reason is required"",
+              (value, context) => {
+                const hasSize = !!String(value?.size || """").trim();
+                const comment = String(value?.comment || """").trim();
+
+                if (hasSize || comment !== ""Other"") return true;
+                if (String(value?.commentOther || """").trim()) return true;
+
+                return context.createError({
+                  path: context.path + "".commentOther"",
+                  message: ""Other Circuit Breaker Reason is required"",
+                });
+              },
+            )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,772
+FRM-013-E010,LOCAL_MESSAGE,"{
+                  path: context.path + "".comment"",
+                  message: ""Select a valid CB Comment"",
+                }",Client source: FormMeterInstallation,"context.createError({
+                  path: context.path + "".comment"",
+                  message: ""Select a valid CB Comment"",
+                })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,788
+FRM-013-E011,LOCAL_MESSAGE,"{
+                  path: context.path + "".commentOther"",
+                  message: ""Other Circuit Breaker Reason is required"",
+                }",Client source: FormMeterInstallation,"context.createError({
+                  path: context.path + "".commentOther"",
+                  message: ""Other Circuit Breaker Reason is required"",
+                })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,804
+FRM-013-E012,LOCAL_MESSAGE,"{ message: ""No Access photo required"" }",Client source: FormMeterInstallation,"this.createError({ message: ""No Access photo required"" })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,860
+FRM-013-E013,LOCAL_MESSAGE,"{ message: ""Meter No. photo required"" }",Client source: FormMeterInstallation,"this.createError({ message: ""Meter No. photo required"" })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,864
+FRM-013-E014,LOCAL_MESSAGE,"{ message: ""Seal photo required"" }",Client source: FormMeterInstallation,"this.createError({ message: ""Seal photo required"" })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,877
+FRM-013-E015,LOCAL_MESSAGE,"{
+              message: ""Keypad photo required"",
+            }",Client source: FormMeterInstallation,"this.createError({
+              message: ""Keypad photo required"",
+            })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,894
+FRM-013-E016,LOCAL_MESSAGE,"{
+              message: ""Circuit Breaker photo required"",
+            }",Client source: FormMeterInstallation,"this.createError({
+              message: ""Circuit Breaker photo required"",
+            })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,906
+FRM-013-E017,LOCAL_MESSAGE,"{
+              message: ""Off-Grid Supply photo required"",
+            }",Client source: FormMeterInstallation,"this.createError({
+              message: ""Off-Grid Supply photo required"",
+            })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,915
+FRM-013-E018,LOCAL_MESSAGE,"{ message: ""Anomaly photo required"" }",Client source: FormMeterInstallation,"this.createError({ message: ""Anomaly photo required"" })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,924
+FRM-013-E019,LOCAL_MESSAGE,Premise data not found.,Client source: handleSubmitInstallation,"Alert.alert(""Error"", ""Premise data not found."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,1094
+FRM-013-E020,NAv,NAv,Client source: saveMeterDraftToQueue,"{
+                success: false,
+                code: ""NAv"",
+                message: ""NAv"",
+                trnId: ""NAv"",
+              }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,1275
+FRM-013-E021,LOCAL_MESSAGE,Failed to save meter Installation draft locally.,Client source: saveMeterDraftToQueue,"Alert.alert(
+            ""Draft Save Failed"",
+            ""Failed to save meter Installation draft locally."",
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,1300
+FRM-013-E022,LOCAL_MESSAGE,messageBody,Client source: saveMeterDraftToQueue,"Alert.alert(messageTitle, messageBody)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,1307
+FRM-013-E023,LOCAL_MESSAGE,"error?.message || ""Meter Installation submission failed.""",Client source: handleSubmitInstallation,"Alert.alert(
+          ""Submission Failed"",
+          error?.message || ""Meter Installation submission failed."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,1434
+FRM-013-E024,LOCAL_MESSAGE,"result?.message || ""Meter Installation submission failed.""",Client source: handleSubmitInstallation,"Alert.alert(
+          result?.code === ""DUPLICATE_METER""
+            ? ""Duplicate Meter""
+            : ""Submission Failed"",
+          result?.message || ""Meter Installation submission failed."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,1453
+FRM-013-E025,LOCAL_MESSAGE,"error?.message || ""Submission failed""",Client source: handleSubmitInstallation,"Alert.alert(""Error"", error?.message || ""Submission failed"")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,1476
+FRM-013-E026,LOCAL_MESSAGE,"actionInit.error?.message ||
+        ""Choose either a water or electricity meter installation.""",Client source: FormMeterInstallation,"Alert.alert(
+      ""Invalid Meter Type"",
+      actionInit.error?.message ||
+        ""Choose either a water or electricity meter installation."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,1496
+FRM-013-E027,LOCAL_MESSAGE,Location is required for forensic evidence.,Client source: startWatching,"Alert.alert(
+          ""Permission Denied"",
+          ""Location is required for forensic evidence."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-042,ireps-mobile/src/features/meters/FormMeterIstallation.js,1510
+FRM-013-E028,LOCAL_MESSAGE,"error?.message || ""Could not play voice clip.""",Client source: togglePlayback,"Alert.alert(""Playback Failed"", error?.message || ""Could not play voice clip."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-036,ireps-mobile/components/forms/IrepsFieldCommentSection.js,148
+FRM-013-E029,LOCAL_MESSAGE,"error?.message || ""Could not replay voice clip.""",Client source: restartPlayback,"Alert.alert(""Playback Failed"", error?.message || ""Could not replay voice clip."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-036,ireps-mobile/components/forms/IrepsFieldCommentSection.js,159
+FRM-013-E030,LOCAL_MESSAGE,Camera access is required to record a field comment video.,Client source: openVideoCamera,"Alert.alert(
+          ""Camera Permission Required"",
+          ""Camera access is required to record a field comment video."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-036,ireps-mobile/components/forms/IrepsFieldCommentSection.js,536
+FRM-013-E031,LOCAL_MESSAGE,"error?.message || ""Could not record video.""",Client source: startVideoRecording,"Alert.alert(""Video Failed"", error?.message || ""Could not record video."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-036,ireps-mobile/components/forms/IrepsFieldCommentSection.js,576
+FRM-013-E032,LOCAL_MESSAGE,Microphone access is required to record a field comment voice clip.,Client source: startVoiceRecording,"Alert.alert(
+          ""Microphone Permission Required"",
+          ""Microphone access is required to record a field comment voice clip."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-036,ireps-mobile/components/forms/IrepsFieldCommentSection.js,599
+FRM-013-E033,LOCAL_MESSAGE,"error?.message || ""Could not start voice recording.""",Client source: startVoiceRecording,"Alert.alert(
+        ""Voice Recording Failed"",
+        error?.message || ""Could not start voice recording."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-036,ireps-mobile/components/forms/IrepsFieldCommentSection.js,617
+FRM-013-E034,LOCAL_MESSAGE,"error?.message || ""Could not save voice recording.""",Client source: stopVoiceRecording,"Alert.alert(
+        ""Voice Recording Failed"",
+        error?.message || ""Could not save voice recording."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-036,ireps-mobile/components/forms/IrepsFieldCommentSection.js,648
+FRM-013-E035,unauthenticated,User must be signed in.,Server source: onMeterInstallationCallable,"new HttpsError(""unauthenticated"", ""User must be signed in."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-073,ireps-web-normalisation/functions/index.js,4941
+FRM-013-E036,INVALID_METER_NUMBER,Meter number must contain a non-whitespace value,Server source: onMeterInstallationCallable,"{
+          success: false,
+          code: ""INVALID_METER_NUMBER"",
+          message: ""Meter number must contain a non-whitespace value"",
+          trnId,
+          astId: ""NAv"",
+        }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-073,ireps-web-normalisation/functions/index.js,4956
+FRM-013-E037,INVALID_PREMISE_ID,A valid saved premise id is required before meter installation can be submitted,Server source: onMeterInstallationCallable,"{
+        success: false,
+        code: ""INVALID_PREMISE_ID"",
+        message:
+          ""A valid saved premise id is required before meter installation can be submitted"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-073,ireps-web-normalisation/functions/index.js,4977
+FRM-013-E038,PREMISE_NOT_FOUND,Parent premise does not exist in premises collection,Server source: onMeterInstallationCallable,"{
+        success: false,
+        code: ""PREMISE_NOT_FOUND"",
+        message: ""Parent premise does not exist in premises collection"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-073,ireps-web-normalisation/functions/index.js,4989
+FRM-013-E039,batchWorkCheck.code,batchWorkCheck.message,Server source: onMeterInstallationCallable,"{
+        success: false,
+        code: batchWorkCheck.code,
+        message: batchWorkCheck.message,
+        trnId,
+        astId: ""NAv"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-073,ireps-web-normalisation/functions/index.js,5011
+FRM-013-E040,DUPLICATE_METER,Meter already exists in AST collection,Server source: onMeterInstallationCallable,"{
+          success: false,
+          code: ""DUPLICATE_METER"",
+          message: ""Meter already exists in AST collection"",
+          trnId,
+          astId: existingAstSnap.docs[0].id,
+        }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-073,ireps-web-normalisation/functions/index.js,5033
+FRM-013-E041,NO_ACCESS_RECORDED,No access installation TRN recorded successfully,Server source: onMeterInstallationCallable,"{
+        success: true,
+        code: ""NO_ACCESS_RECORDED"",
+        message: ""No access installation TRN recorded successfully"",
+        trnId,
+        astId: ""NAv"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-073,ireps-web-normalisation/functions/index.js,5083
+FRM-013-E042,INVALID_SERVICE_BUCKET,Could not resolve premise service bucket for meter installation,Server source: onMeterInstallationCallable,"{
+        success: false,
+        code: ""INVALID_SERVICE_BUCKET"",
+        message:
+          ""Could not resolve premise service bucket for meter installation"",
+        trnId,
+        astId: ""NAv"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-073,ireps-web-normalisation/functions/index.js,5193
+FRM-013-E043,failed-precondition,Parent premise no longer exists,Server source: onMeterInstallationCallable,"new HttpsError(
+          ""failed-precondition"",
+          ""Parent premise no longer exists"",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-073,ireps-web-normalisation/functions/index.js,5219
+FRM-013-E044,already-exists,Meter already exists in AST collection,Server source: onMeterInstallationCallable,"new HttpsError(
+          ""already-exists"",
+          ""Meter already exists in AST collection"",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-073,ireps-web-normalisation/functions/index.js,5281
+FRM-013-E045,TRN_ALREADY_EXISTS,TRN already exists and is treated as successful,Server source: onMeterInstallationCallable,"{
+        success: true,
+        code: ""TRN_ALREADY_EXISTS"",
+        message: ""TRN already exists and is treated as successful"",
+        trnId,
+        astId: trnId,
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-073,ireps-web-normalisation/functions/index.js,5330
+FRM-013-E046,METER_INSTALLATION_CREATED,Meter installation created successfully,Server source: onMeterInstallationCallable,"{
+      success: true,
+      code: ""METER_INSTALLATION_CREATED"",
+      message: ""Meter installation created successfully"",
+      trnId,
+      astId: trnId,
+      meterNo: meterNoNormalized,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-073,ireps-web-normalisation/functions/index.js,5406
+FRM-013-E047,error.conflict.conflictCode,error.conflict.message,Server source: onMeterInstallationCallable,"{
+        success: false,
+        code: error.conflict.conflictCode,
+        message: error.conflict.message,
+        trnId: ""NAv"",
+        astId: ""NAv"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-073,ireps-web-normalisation/functions/index.js,5429
+FRM-013-E048,internal,"error?.message || ""Failed to submit meter installation transaction""",Server source: onMeterInstallationCallable,"new HttpsError(
+      ""internal"",
+      error?.message || ""Failed to submit meter installation transaction"",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-073,ireps-web-normalisation/functions/index.js,5442
+FRM-013-E049,"code || ""UNKNOWN_ERROR""","message || ""Unknown error""",Server source: buildFailureResult,"{
+    success: false,
+    code: code || ""UNKNOWN_ERROR"",
+    message: message || ""Unknown error"",
+    trnId: ""NAv"",
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-074,ireps-web-normalisation/functions/meterInstallation/validation.js,27
+FRM-013-E050,dynamic code,missingMessage,Server source: validateInfrastructureEvidence,"buildFailureResult(missingCode, missingMessage)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-074,ireps-web-normalisation/functions/meterInstallation/validation.js,53
+FRM-013-E051,dynamic code,nonCanonicalOtherMessage,Server source: validateInfrastructureEvidence,"buildFailureResult(
+      nonCanonicalOtherCode,
+      nonCanonicalOtherMessage,
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-074,ireps-web-normalisation/functions/meterInstallation/validation.js,57
+FRM-013-E052,dynamic code,photoMessage,Server source: validateInfrastructureEvidence,"buildFailureResult(photoCode, photoMessage)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-074,ireps-web-normalisation/functions/meterInstallation/validation.js,67
+FRM-013-E053,NAv,NAv,Client source: addSubmissionQueueItem,"{
+        success: false,
+        code: ""NAv"",
+        message: ""NAv"",
+        trnId: ""NAv"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-058,ireps-mobile/src/utils/submissionQueue.js,87
+FRM-013-E054,"result?.code || ""SUCCESS""","result?.message || ""Synced successfully""",Client source: markSubmissionQueueItemSuccess,"{
+        success: true,
+        code: result?.code || ""SUCCESS"",
+        message: result?.message || ""Synced successfully"",
+        trnId: result?.trnId || ""NAv"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-058,ireps-mobile/src/utils/submissionQueue.js,288
+FRM-013-E055,"result?.code || ""SYNC_FAILED""","result?.message || ""Sync failed. This draft remains pending for retry.""",Client source: markSubmissionQueueItemFailed,"{
+    queueItemId,
+    previousStatus: existingItem?.status,
+    code: result?.code || ""SYNC_FAILED"",
+    message:
+      result?.message || ""Sync failed. This draft remains pending for retry."",
+    trnId: result?.trnId || ""NAv"",
+    result,
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-058,ireps-mobile/src/utils/submissionQueue.js,319
+FRM-013-E056,"result?.code || ""SYNC_FAILED""","result?.message ||
+          ""Sync failed. This draft remains pending for retry.""",Client source: markSubmissionQueueItemFailed,"{
+        success: false,
+        code: result?.code || ""SYNC_FAILED"",
+        message:
+          result?.message ||
+          ""Sync failed. This draft remains pending for retry."",
+        trnId: result?.trnId || ""NAv"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-058,ireps-mobile/src/utils/submissionQueue.js,333
+FRM-013-E057,error?.code,error?.message,Client source: removeSubmissionQueueItemsByInstructionTrnId,"{
+      instructionTrnId,
+      code: error?.code,
+      message: error?.message,
+      stack: error?.stack,
+      raw: error,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-058,ireps-mobile/src/utils/submissionQueue.js,510
+FRM-013-E058,SERVER_CONFIRMED,Server confirmed this queued TRN was saved successfully.,Client source: reconcileSubmissionQueueWithServerTrns,"{
+          success: true,
+          code: ""SERVER_CONFIRMED"",
+          message:
+            ""Server confirmed this queued TRN was saved successfully."",
+          trnId: readServerTrnId(serverTrn),
+        }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-058,ireps-mobile/src/utils/submissionQueue.js,664

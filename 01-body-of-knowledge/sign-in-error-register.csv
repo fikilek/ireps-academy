@@ -1,0 +1,10 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-001-E001,LOCAL_MESSAGE,message,Client source: Signin,"Alert.alert(title, message, [
+        { text: ""Sign out"", style: ""cancel"", onPress: () => signout() },
+        { text: ""Try again"" },
+      ])",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-006,ireps-mobile/app/(auth)/signin.jsx,64
+FRM-001-E002,LOCAL_MESSAGE,message,Client source: handleSignin,"Alert.alert(title, message)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-006,ireps-mobile/app/(auth)/signin.jsx,98
+FRM-001-E003,"String(error?.code || """")","String(error?.message || fallbackMessage || """").trim() || fallbackMessage",Client source: plainAuthError,"{
+    code: String(error?.code || """"),
+    message: String(error?.message || fallbackMessage || """").trim() || fallbackMessage,
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-054,ireps-mobile/src/redux/authApi.js,56

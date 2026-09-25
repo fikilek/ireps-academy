@@ -1,0 +1,90 @@
+source_id,line,function,schema_path,kind,expression
+FS-023,191,buildCommissioningSchema,commissioning.vendingConfirmed.answer,required,"string().oneOf([""yes"", ""no""]).required(""Required"")"
+FS-023,191,buildCommissioningSchema,commissioning.vendingConfirmed.answer,oneOf,"string().oneOf([""yes"", ""no""])"
+FS-023,193,buildCommissioningSchema,commissioning.vendingConfirmed.notes,when,"string().when(""answer"", {
+          is: ""no"",
+          then: (s) => s.trim().required(""Notes required when answer is no""),
+          otherwise: (s) => s.notRequired(),
+        })"
+FS-023,195,buildCommissioningSchema,commissioning.vendingConfirmed.notes.then,required,"s.trim().required(""Notes required when answer is no"")"
+FS-023,202,buildCommissioningSchema,commissioning.finalSwitchOnTested.answer,required,"string().oneOf([""yes"", ""no""]).required(""Required"")"
+FS-023,202,buildCommissioningSchema,commissioning.finalSwitchOnTested.answer,oneOf,"string().oneOf([""yes"", ""no""])"
+FS-023,204,buildCommissioningSchema,commissioning.finalSwitchOnTested.notes,when,"string().when(""answer"", {
+          is: ""no"",
+          then: (s) => s.trim().required(""Notes required when answer is no""),
+          otherwise: (s) => s.notRequired(),
+        })"
+FS-023,206,buildCommissioningSchema,commissioning.finalSwitchOnTested.notes.then,required,"s.trim().required(""Notes required when answer is no"")"
+FS-023,213,buildCommissioningSchema,commissioning.keypadIssued.answer,required,"string().oneOf([""yes"", ""no""]).required(""Required"")"
+FS-023,213,buildCommissioningSchema,commissioning.keypadIssued.answer,oneOf,"string().oneOf([""yes"", ""no""])"
+FS-023,215,buildCommissioningSchema,commissioning.keypadIssued.notes,when,"string().when(""answer"", {
+          is: ""no"",
+          then: (s) => s.trim().required(""Notes required when answer is no""),
+          otherwise: (s) => s.notRequired(),
+        })"
+FS-023,217,buildCommissioningSchema,commissioning.keypadIssued.notes.then,required,"s.trim().required(""Notes required when answer is no"")"
+FS-023,224,buildCommissioningSchema,commissioning.waterMeterOperational.answer,required,"string().oneOf([""yes"", ""no""]).required(""Required"")"
+FS-023,224,buildCommissioningSchema,commissioning.waterMeterOperational.answer,oneOf,"string().oneOf([""yes"", ""no""])"
+FS-023,226,buildCommissioningSchema,commissioning.waterMeterOperational.notes,when,"string().when(""answer"", {
+          is: ""no"",
+          then: (s) => s.trim().required(""Notes required when answer is no""),
+          otherwise: (s) => s.notRequired(),
+        })"
+FS-023,228,buildCommissioningSchema,commissioning.waterMeterOperational.notes.then,required,"s.trim().required(""Notes required when answer is no"")"
+FS-023,235,buildCommissioningSchema,commissioning.waterReadingOrFlowConfirmed.answer,required,"string().oneOf([""yes"", ""no""]).required(""Required"")"
+FS-023,235,buildCommissioningSchema,commissioning.waterReadingOrFlowConfirmed.answer,oneOf,"string().oneOf([""yes"", ""no""])"
+FS-023,237,buildCommissioningSchema,commissioning.waterReadingOrFlowConfirmed.notes,when,"string().when(""answer"", {
+          is: ""no"",
+          then: (s) => s.trim().required(""Notes required when answer is no""),
+          otherwise: (s) => s.notRequired(),
+        })"
+FS-023,239,buildCommissioningSchema,commissioning.waterReadingOrFlowConfirmed.notes.then,required,"s.trim().required(""Notes required when answer is no"")"
+FS-023,245,buildCommissioningSchema,media,test,"array()
+      .of(object())
+      .test(
+        ""commissioning-evidence"",
+        ""Commissioning evidence missing"",
+        function (value) {
+          const commissioning = this.parent?.commissioning || {};
+          const media = Array.isArray(value) ? value : [];
+
+          const hasMediaTag = (tag) => media.some((m) => m?.tag === tag);
+
+          if (
+            isPrepaidElectricityMeter &&
+            commissioning?.vendingConfirmed?.answer === ""yes"" &&
+            !hasMediaTag(""vendingEvidence"")
+          ) {
+            return this.createError({
+              message: ""Vending evidence required"",
+            });
+          }
+
+          if (
+            isElectricityMeter &&
+            commissioning?.finalSwitchOnTested?.answer === ""yes"" &&
+            !hasMediaTag(""finalSwitchOnEvidence"")
+          ) {
+            return this.createError({
+              message: ""Final switch-on evidence required"",
+            });
+          }
+
+          if (
+            isPrepaidElectricityMeter &&
+            commissioning?.keypadIssued?.answer === ""yes"" &&
+            !hasMediaTag(""keypadIssuedEvidence"")
+          ) {
+            return this.createError({
+              message: ""Keypad issued evidence required"",
+            });
+          }
+
+          if (
+            isWaterMeter &&
+            commissioning?.waterMeterOperational?.answer === ""yes"" &&
+            !hasMediaTag(""waterOperationalEvidence"")
+          ) {
+            return this.createError({
+              message: ""Water operational evidence required"",
+            });"

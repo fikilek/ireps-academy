@@ -1,0 +1,398 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-029-E001,LOCAL_MESSAGE,,Client source: TargetedBatchAllocationMapPage,"setError("""")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-163,ireps-web/src/pages/operations/TargetedBatchAllocationMapPage.jsx,209
+FRM-029-E002,LOCAL_MESSAGE,,Client source: chooseTarget,"setError("""")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-163,ireps-web/src/pages/operations/TargetedBatchAllocationMapPage.jsx,212
+FRM-029-E003,LOCAL_MESSAGE,,Client source: allocate,"setError("""")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-163,ireps-web/src/pages/operations/TargetedBatchAllocationMapPage.jsx,226
+FRM-029-E004,LOCAL_MESSAGE,,Client source: confirmAllocate,"setError("""")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-163,ireps-web/src/pages/operations/TargetedBatchAllocationMapPage.jsx,242
+FRM-029-E005,LOCAL_MESSAGE,`Nothing was allocated. ${view.lines[0]}`,Client source: closeAllocationWindow,setError(`Nothing was allocated. ${view.lines[0]}`),Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-163,ireps-web/src/pages/operations/TargetedBatchAllocationMapPage.jsx,256
+FRM-029-E006,LOCAL_MESSAGE,Allocation not confirmed. Check the map before allocating again.,Client source: closeAllocationWindow,"setError(""Allocation not confirmed. Check the map before allocating again."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-163,ireps-web/src/pages/operations/TargetedBatchAllocationMapPage.jsx,257
+FRM-029-E007,INVALID_TARGETED_BATCH_ID,tbId is required.,Server source: onAcceptRejectTargetedBatchCallable,"buildFailureResult(
+        ""INVALID_TARGETED_BATCH_ID"",
+        ""tbId is required."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-120,ireps-web/functions/targetedBatches/acceptanceCallable.js,367
+FRM-029-E008,INVALID_TARGETED_BATCH_ACTION,action must be ACCEPT or REJECT.,Server source: onAcceptRejectTargetedBatchCallable,"buildFailureResult(
+        ""INVALID_TARGETED_BATCH_ACTION"",
+        ""action must be ACCEPT or REJECT."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-120,ireps-web/functions/targetedBatches/acceptanceCallable.js,374
+FRM-029-E009,TARGETED_BATCH_REJECT_REASON_REQUIRED,Reject reason is required when rejecting a Targeted Batch.,Server source: onAcceptRejectTargetedBatchCallable,"buildFailureResult(
+        ""TARGETED_BATCH_REJECT_REASON_REQUIRED"",
+        ""Reject reason is required when rejecting a Targeted Batch."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-120,ireps-web/functions/targetedBatches/acceptanceCallable.js,381
+FRM-029-E010,code,message,Server source: onAcceptRejectTargetedBatchCallable,"{
+      tbId,
+      action,
+      actorUid: actor?.uid || null,
+      code,
+      message,
+      details: error?.details || null,
+      durationMs: Date.now() - startedAtMs,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-120,ireps-web/functions/targetedBatches/acceptanceCallable.js,534
+FRM-029-E011,dynamic code,message,Server source: onAcceptRejectTargetedBatchCallable,"buildFailureResult(code, message, {
+      tbId,
+      details: error?.details || null,
+      durationMs: Date.now() - startedAtMs,
+    })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-120,ireps-web/functions/targetedBatches/acceptanceCallable.js,544
+FRM-029-E012,UNAUTHENTICATED,Authentication is required to allocate a Targeted Batch.,Server source: onAllocateTargetedBatchCallable,"buildFailureResult(
+          ""UNAUTHENTICATED"",
+          ""Authentication is required to allocate a Targeted Batch."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-121,ireps-web/functions/targetedBatches/allocationCallable.js,854
+FRM-029-E013,UNAUTHORIZED_TARGETED_BATCH_ALLOCATION,Only MNG and SPV(MNC) users may allocate Targeted Batches.,Server source: onAllocateTargetedBatchCallable,"buildFailureResult(
+          ""UNAUTHORIZED_TARGETED_BATCH_ALLOCATION"",
+          ""Only MNG and SPV(MNC) users may allocate Targeted Batches."",
+          {
+            actorRole: authority.role,
+            actorRelationshipType: authority.relationshipType,
+            actorClientType: authority.clientType,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-121,ireps-web/functions/targetedBatches/allocationCallable.js,867
+FRM-029-E014,ACTOR_MNC_SERVICE_PROVIDER_MISSING,The signed-in user is not linked to an MNC Service Provider ID.,Server source: onAllocateTargetedBatchCallable,"buildFailureResult(
+          ""ACTOR_MNC_SERVICE_PROVIDER_MISSING"",
+          ""The signed-in user is not linked to an MNC Service Provider ID."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-121,ireps-web/functions/targetedBatches/allocationCallable.js,884
+FRM-029-E015,INVALID_TARGETED_BATCH_ID,tbId must follow TGB_YYYYMMDD_HHMMSS_XXXX.,Server source: onAllocateTargetedBatchCallable,"buildFailureResult(
+          ""INVALID_TARGETED_BATCH_ID"",
+          ""tbId must follow TGB_YYYYMMDD_HHMMSS_XXXX."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-121,ireps-web/functions/targetedBatches/allocationCallable.js,896
+FRM-029-E016,INVALID_ALLOCATION_TARGET_TYPE,targetType must be TEAM or SP.,Server source: onAllocateTargetedBatchCallable,"buildFailureResult(
+          ""INVALID_ALLOCATION_TARGET_TYPE"",
+          ""targetType must be TEAM or SP."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-121,ireps-web/functions/targetedBatches/allocationCallable.js,903
+FRM-029-E017,ALLOCATION_TARGET_ID_REQUIRED,targetId is required.,Server source: onAllocateTargetedBatchCallable,"buildFailureResult(
+          ""ALLOCATION_TARGET_ID_REQUIRED"",
+          ""targetId is required."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-121,ireps-web/functions/targetedBatches/allocationCallable.js,910
+FRM-029-E018,TARGETED_BATCH_NOT_FOUND,`Targeted Batch ${tbId} was not found.`,Server source: onAllocateTargetedBatchCallable,"buildFailureResult(
+          ""TARGETED_BATCH_NOT_FOUND"",
+          `Targeted Batch ${tbId} was not found.`,
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-121,ireps-web/functions/targetedBatches/allocationCallable.js,929
+FRM-029-E019,code,message,Server source: onAllocateTargetedBatchCallable,"{
+        tbId,
+        targetType: resolvedTarget?.type || null,
+        targetId: resolvedTarget?.id || null,
+        code,
+        message,
+        details: error?.details || null,
+        durationMs: Date.now() - startedAtMs,
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-121,ireps-web/functions/targetedBatches/allocationCallable.js,1261
+FRM-029-E020,dynamic code,message,Server source: onAllocateTargetedBatchCallable,"buildFailureResult(code, message, {
+        tbId,
+        details: error?.details || null,
+        durationMs: Date.now() - startedAtMs,
+      })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-121,ireps-web/functions/targetedBatches/allocationCallable.js,1271
+FRM-029-E021,UNAUTHENTICATED,Authentication is required to allocate Targeted Batches.,Server source: onAllocateTargetedBatchesTogetherCallable,"buildFailureResult(""UNAUTHENTICATED"", ""Authentication is required to allocate Targeted Batches."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-121,ireps-web/functions/targetedBatches/allocationCallable.js,1292
+FRM-029-E022,UNAUTHORIZED_TARGETED_BATCH_ALLOCATION,Only MNG and SPV(MNC) users may allocate Targeted Batches.,Server source: onAllocateTargetedBatchesTogetherCallable,"buildFailureResult(""UNAUTHORIZED_TARGETED_BATCH_ALLOCATION"", ""Only MNG and SPV(MNC) users may allocate Targeted Batches."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-121,ireps-web/functions/targetedBatches/allocationCallable.js,1295
+FRM-029-E023,ACTOR_MNC_SERVICE_PROVIDER_MISSING,The signed-in user is not linked to an MNC Service Provider ID.,Server source: onAllocateTargetedBatchesTogetherCallable,"buildFailureResult(""ACTOR_MNC_SERVICE_PROVIDER_MISSING"", ""The signed-in user is not linked to an MNC Service Provider ID."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-121,ireps-web/functions/targetedBatches/allocationCallable.js,1297
+FRM-029-E024,INVALID_GROUP_ALLOCATION_SIZE,`Select between 1 and ${GROUP_ALLOCATION_MAX} batches.`,Server source: onAllocateTargetedBatchesTogetherCallable,"buildFailureResult(""INVALID_GROUP_ALLOCATION_SIZE"", `Select between 1 and ${GROUP_ALLOCATION_MAX} batches.`)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-121,ireps-web/functions/targetedBatches/allocationCallable.js,1298
+FRM-029-E025,DUPLICATE_TARGETED_BATCH_ID,The same batch is selected twice.,Server source: onAllocateTargetedBatchesTogetherCallable,"buildFailureResult(""DUPLICATE_TARGETED_BATCH_ID"", ""The same batch is selected twice."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-121,ireps-web/functions/targetedBatches/allocationCallable.js,1299
+FRM-029-E026,INVALID_TARGETED_BATCH_ID,"`${invalid || ""A batch ID""} must follow TGB_YYYYMMDD_HHMMSS_XXXX.`",Server source: onAllocateTargetedBatchesTogetherCallable,"buildFailureResult(""INVALID_TARGETED_BATCH_ID"", `${invalid || ""A batch ID""} must follow TGB_YYYYMMDD_HHMMSS_XXXX.`)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-121,ireps-web/functions/targetedBatches/allocationCallable.js,1301
+FRM-029-E027,INVALID_ALLOCATION_TARGET_TYPE,targetType must be TEAM or SP.,Server source: onAllocateTargetedBatchesTogetherCallable,"buildFailureResult(""INVALID_ALLOCATION_TARGET_TYPE"", ""targetType must be TEAM or SP."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-121,ireps-web/functions/targetedBatches/allocationCallable.js,1303
+FRM-029-E028,ALLOCATION_TARGET_ID_REQUIRED,targetId is required.,Server source: onAllocateTargetedBatchesTogetherCallable,"buildFailureResult(""ALLOCATION_TARGET_ID_REQUIRED"", ""targetId is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-121,ireps-web/functions/targetedBatches/allocationCallable.js,1304
+FRM-029-E029,code,message,Server source: onAllocateTargetedBatchesTogetherCallable,"{ tbIds, code, message, details: error?.details || null, durationMs: Date.now() - startedAtMs }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-121,ireps-web/functions/targetedBatches/allocationCallable.js,1322
+FRM-029-E030,dynamic code,message,Server source: onAllocateTargetedBatchesTogetherCallable,"buildFailureResult(code, message, { tbId: error?.details?.tbId || null, details: error?.details || null, durationMs: Date.now() - startedAtMs })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-121,ireps-web/functions/targetedBatches/allocationCallable.js,1323
+FRM-029-E031,BATCH_CHECK_UNAVAILABLE,UNREADABLE_MESSAGE,Server source: cannotCheck,"{
+    allowed: false,
+    code: BATCH_CHECK_UNAVAILABLE,
+    message: UNREADABLE_MESSAGE,
+    details: { rule: RULE, rulesVersion: RULES_VERSION, meterNo: text(meterNo) || null, reason, ...details },
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-123,ireps-web/functions/targetedBatches/batch-work-guard.js,208
+FRM-029-E032,METER_IN_ANOTHER_TEAMS_BATCH,"refusalMessage({ tbId: batchId, geofenceName, targetType: allocation.type, targetName: allocation.name, allocatedAt: allocation.allocatedAt })",Server source: decideMeterBatchWork,"{
+    allowed: false,
+    code: METER_IN_ANOTHER_TEAMS_BATCH,
+    message: refusalMessage({ tbId: batchId, geofenceName, targetType: allocation.type, targetName: allocation.name, allocatedAt: allocation.allocatedAt }),
+    details,
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-123,ireps-web/functions/targetedBatches/batch-work-guard.js,243
+FRM-029-E033,BATCH_CHECK_UNAVAILABLE,UNREADABLE_MESSAGE,Server source: cannotCheck,"{
+    allowed: false, code: BATCH_CHECK_UNAVAILABLE, message: UNREADABLE_MESSAGE,
+    details: { rule: ERF_RULE, rulesVersion: RULES_VERSION, meterNo: text(meterNo) || null, erfId: text(erfId) || null, reason, ...details },
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-123,ireps-web/functions/targetedBatches/batch-work-guard.js,264
+FRM-029-E034,METER_IN_ANOTHER_TEAMS_BATCH,"refusalMessage({ about: ""erf"", tbId: row?.tbId, geofenceName: entry.geofenceName, targetType: allocation.type, targetName: allocation.name, allocatedAt: allocation.allocatedAt })",Server source: decideErfBatchWork,"{
+      allowed: false,
+      code: METER_IN_ANOTHER_TEAMS_BATCH,
+      // The rule's own words: TB-R059's sentence, naming the batch, its geofence, the team and the date.
+      message: refusalMessage({ about: ""erf"", tbId: row?.tbId, geofenceName: entry.geofenceName, targetType: allocation.type, targetName: allocation.name, allocatedAt: allocation.allocatedAt }),
+      details: {
+        rule: ERF_RULE, rulesVersion: RULES_VERSION, matchedOn: ""ERF"",
+        meterNo: text(meterNo) || null, erfId: text(erfId),
+        tbId: text(row?.tbId) || null, rowId: text(row?.id) || null, rowMeterNo: text(row?.salesAllMeterId) || null,
+        geofenceId: text(entry.parent?.geofenceId) || null, geofenceName: text(entry.geofenceName) || null,
+        targetType: allocation.type, targetId: allocation.id, targetName: allocation.name || null,
+        allocatedOn: allocationDateWords(allocation.allocatedAt) || null,
+        workerTeamId: text(finderTeamId) || null, workerServiceProviderId: text(finderSpId) || null,
+      },
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-123,ireps-web/functions/targetedBatches/batch-work-guard.js,281
+FRM-029-E035,BATCH_CHECK_UNAVAILABLE,UNREADABLE_MESSAGE,Server source: checkBatchWork,"{ allowed: false, code: BATCH_CHECK_UNAVAILABLE, message: UNREADABLE_MESSAGE, details }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-123,ireps-web/functions/targetedBatches/batch-work-guard.js,495
+FRM-029-E036,unauthenticated,Sign in to continue.,Server source: getBatchStats,"new HttpsError(""unauthenticated"", ""Sign in to continue."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-124,ireps-web/functions/targetedBatches/batchStatsCallable.js,38
+FRM-029-E037,invalid-argument,A valid LM is required.,Server source: getBatchStats,"new HttpsError(""invalid-argument"", ""A valid LM is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-124,ireps-web/functions/targetedBatches/batchStatsCallable.js,40
+FRM-029-E038,permission-denied,Only management users can see Batch Stats.,Server source: getBatchStats,"new HttpsError(""permission-denied"", ""Only management users can see Batch Stats."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-124,ireps-web/functions/targetedBatches/batchStatsCallable.js,44
+FRM-029-E039,permission-denied,The LM must be one of your workbases.,Server source: getBatchStats,"new HttpsError(""permission-denied"", ""The LM must be one of your workbases."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-124,ireps-web/functions/targetedBatches/batchStatsCallable.js,46
+FRM-029-E040,internal,Batch Stats could not be counted because the records could not be read. Try again.,Server source: getBatchStats,"new HttpsError(""internal"", ""Batch Stats could not be counted because the records could not be read. Try again."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-124,ireps-web/functions/targetedBatches/batchStatsCallable.js,50
+FRM-029-E041,dynamic code,message,Server source: fail,"new HttpsError(code, message)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-130,ireps-web/functions/targetedBatches/getTargetedBatchRowsCallable.js,17
+FRM-029-E042,error?.code || null,error?.message || String(error),Server source: logFailure,"{
+    stage,
+    ...details,
+    name: error?.name || null,
+    code: error?.code || null,
+    message: error?.message || String(error),
+    stack: error?.stack || null,
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-130,ireps-web/functions/targetedBatches/getTargetedBatchRowsCallable.js,28
+FRM-029-E043,"code || ""TARGETED_BATCH_CREATE_FAILED""","message || ""Targeted Batch creation failed""",Server source: buildFailureResult,"{
+    success: false,
+    code: code || ""TARGETED_BATCH_CREATE_FAILED"",
+    message: message || ""Targeted Batch creation failed"",
+    ...extra,
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,115
+FRM-029-E044,"extra.code || ""TARGETED_BATCH_CREATED""","message || ""Targeted Batch created successfully""",Server source: buildSuccessResult,"{
+    success: true,
+    code: extra.code || ""TARGETED_BATCH_CREATED"",
+    message: message || ""Targeted Batch created successfully"",
+    ...extra,
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,124
+FRM-029-E045,INVALID_TARGETED_BATCH_REQUEST,"errors.join("" "")",Server source: validateCreateTargetedBatchPayload,"{
+      ok: false,
+      code: ""INVALID_TARGETED_BATCH_REQUEST"",
+      message: errors.join("" ""),
+      errors: uniqueValues(errors),
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,726
+FRM-029-E046,SALES_ERF_REFERENCE_MISSING,The authoritative Sales source has no ERF reference.,Server source: resolveAuthoritativeSalesErfReference,"{
+        ok: false,
+        code: ""SALES_ERF_REFERENCE_MISSING"",
+        message: ""The authoritative Sales source has no ERF reference."",
+        candidateErfIds: [],
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,858
+FRM-029-E047,SALES_ERF_REFERENCE_AMBIGUOUS,`The authoritative Sales source resolves to ${uniqueCandidateIds.length} ERFs.`,Server source: resolveAuthoritativeSalesErfReference,"{
+        ok: false,
+        code: ""SALES_ERF_REFERENCE_AMBIGUOUS"",
+        message: `The authoritative Sales source resolves to ${uniqueCandidateIds.length} ERFs.`,
+        candidateErfIds: uniqueCandidateIds,
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,867
+FRM-029-E048,DRAFT_ERF_REFERENCE_MISMATCH,`The TB Draft ERF ${draftErfId} conflicts with authoritative ERF ${erfId}.`,Server source: resolveAuthoritativeSalesErfReference,"{
+      ok: false,
+      code: ""DRAFT_ERF_REFERENCE_MISMATCH"",
+      message: `The TB Draft ERF ${draftErfId} conflicts with authoritative ERF ${erfId}.`,
+      candidateErfIds: [erfId],
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,900
+FRM-029-E049,INVALID_SALES_TB_REFS,`Sales source ${expectedSalesId} has an invalid tbRefs field.`,Server source: validateNgpTbRefs,"{
+      ok: false,
+      code: ""INVALID_SALES_TB_REFS"",
+      message: `Sales source ${expectedSalesId} has an invalid tbRefs field.`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,986
+FRM-029-E050,INVALID_SALES_TB_REFS,`Sales source ${expectedSalesId} has malformed or duplicate Targeted Batch references.`,Server source: validateNgpTbRefs,"{
+        ok: false,
+        code: ""INVALID_SALES_TB_REFS"",
+        message: `Sales source ${expectedSalesId} has malformed or duplicate Targeted Batch references.`,
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,1001
+FRM-029-E051,NGP_SALES_ALREADY_BATCHED,`Sales source ${expectedSalesId} is already represented by another Targeted Batch.`,Server source: validateNgpTbRefs,"{
+      ok: false,
+      code: ""NGP_SALES_ALREADY_BATCHED"",
+      message: `Sales source ${expectedSalesId} is already represented by another Targeted Batch.`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,1017
+FRM-029-E052,NGP_SALES_NOW_HAS_GPS,`Sales source ${expectedSalesId} now has usable GPS and is no longer eligible for NGP batching.`,Server source: validateNgpAuthoritativeSalesPlanning,"{
+      ok: false,
+      code: ""NGP_SALES_NOW_HAS_GPS"",
+      message: `Sales source ${expectedSalesId} now has usable GPS and is no longer eligible for NGP batching.`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,1037
+FRM-029-E053,NGP_AUTHORITATIVE_ADDRESS_INCOMPLETE,`Sales source ${expectedSalesId} no longer has complete authoritative Town / street planning data.`,Server source: validateNgpAuthoritativeSalesPlanning,"{
+      ok: false,
+      code: ""NGP_AUTHORITATIVE_ADDRESS_INCOMPLETE"",
+      message: `Sales source ${expectedSalesId} no longer has complete authoritative Town / street planning data.`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,1064
+FRM-029-E054,NGP_AUTHORITATIVE_PLANNING_CHANGED,`Sales source ${expectedSalesId} Town / street data changed after selection. Refresh NGP planning before creating the batch.`,Server source: validateNgpAuthoritativeSalesPlanning,"{
+      ok: false,
+      code: ""NGP_AUTHORITATIVE_PLANNING_CHANGED"",
+      message: `Sales source ${expectedSalesId} Town / street data changed after selection. Refresh NGP planning before creating the batch.`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,1091
+FRM-029-E055,SALES_SOURCE_NOT_FOUND,`Sales source ${expectedSalesId} was not found.`,Server source: validateAuthoritativeSalesDocument,"{
+      ok: false,
+      code: ""SALES_SOURCE_NOT_FOUND"",
+      message: `Sales source ${expectedSalesId} was not found.`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,1118
+FRM-029-E056,SALES_SOURCE_ID_MISMATCH,`Sales source ${snapshot.id} does not match ${expectedSalesId}.`,Server source: validateAuthoritativeSalesDocument,"{
+      ok: false,
+      code: ""SALES_SOURCE_ID_MISMATCH"",
+      message: `Sales source ${snapshot.id} does not match ${expectedSalesId}.`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,1136
+FRM-029-E057,SALES_METER_IDENTITY_MISMATCH,`Sales source ${expectedSalesId} has a conflicting meter identity.`,Server source: validateAuthoritativeSalesDocument,"{
+      ok: false,
+      code: ""SALES_METER_IDENTITY_MISMATCH"",
+      message: `Sales source ${expectedSalesId} has a conflicting meter identity.`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,1144
+FRM-029-E058,DRAFT_METER_IDENTITY_MISMATCH,`TB Draft row for ${expectedSalesId} has a conflicting meter identity.`,Server source: validateAuthoritativeSalesDocument,"{
+      ok: false,
+      code: ""DRAFT_METER_IDENTITY_MISMATCH"",
+      message: `TB Draft row for ${expectedSalesId} has a conflicting meter identity.`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,1152
+FRM-029-E059,SALES_LM_SCOPE_MISSING,`Sales source ${expectedSalesId} has no canonical lmPcode.`,Server source: validateAuthoritativeSalesDocument,"{
+      ok: false,
+      code: ""SALES_LM_SCOPE_MISSING"",
+      message: `Sales source ${expectedSalesId} has no canonical lmPcode.`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,1160
+FRM-029-E060,SALES_LM_SCOPE_MISMATCH,"`Sales source ${expectedSalesId} belongs to ${sourceLmPcode}, not ${expectedLmPcode}.`",Server source: validateAuthoritativeSalesDocument,"{
+      ok: false,
+      code: ""SALES_LM_SCOPE_MISMATCH"",
+      message: `Sales source ${expectedSalesId} belongs to ${sourceLmPcode}, not ${expectedLmPcode}.`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,1168
+FRM-029-E061,UNSUPPORTED_SALES_METER_TYPE,"`Sales source ${expectedSalesId} has unsupported meter type ${meterType || ""NAv""}.`",Server source: validateAuthoritativeSalesDocument,"{
+      ok: false,
+      code: ""UNSUPPORTED_SALES_METER_TYPE"",
+      message: `Sales source ${expectedSalesId} has unsupported meter type ${meterType || ""NAv""}.`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,1176
+FRM-029-E062,INVALID_SALES_TB_REFS,`Sales source ${expectedSalesId} has an invalid tbRefs field.`,Server source: validateAuthoritativeSalesDocument,"{
+      ok: false,
+      code: ""INVALID_SALES_TB_REFS"",
+      message: `Sales source ${expectedSalesId} has an invalid tbRefs field.`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,1205
+FRM-029-E063,erfReference.code,`Sales source ${expectedSalesId}: ${erfReference.message}`,Server source: validateAuthoritativeSalesDocument,"{
+      ok: false,
+      code: erfReference.code,
+      message: `Sales source ${expectedSalesId}: ${erfReference.message}`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,1218
+FRM-029-E064,AUTHORITATIVE_ERF_NOT_FOUND,`Authoritative ERF ${expectedErfId} was not found.`,Server source: validateAuthoritativeErfDocument,"{
+      ok: false,
+      code: ""AUTHORITATIVE_ERF_NOT_FOUND"",
+      message: `Authoritative ERF ${expectedErfId} was not found.`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,1256
+FRM-029-E065,AUTHORITATIVE_ERF_ID_MISMATCH,`Authoritative ERF ${snapshot.id} conflicts with expected ERF ${expectedErfId}.`,Server source: validateAuthoritativeErfDocument,"{
+      ok: false,
+      code: ""AUTHORITATIVE_ERF_ID_MISMATCH"",
+      message: `Authoritative ERF ${snapshot.id} conflicts with expected ERF ${expectedErfId}.`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,1285
+FRM-029-E066,AUTHORITATIVE_ERF_LM_SCOPE_MISMATCH,"`Authoritative ERF ${expectedErfId} belongs to ${lmPcode || ""NAv""}, not ${expectedLmPcode}.`",Server source: validateAuthoritativeErfDocument,"{
+      ok: false,
+      code: ""AUTHORITATIVE_ERF_LM_SCOPE_MISMATCH"",
+      message: `Authoritative ERF ${expectedErfId} belongs to ${lmPcode || ""NAv""}, not ${expectedLmPcode}.`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,1293
+FRM-029-E067,AUTHORITATIVE_ERF_WARD_SCOPE_MISMATCH,"`Authoritative ERF ${expectedErfId} belongs to ward ${wardPcode || ""NAv""}, not ${expectedWardPcode}.`",Server source: validateAuthoritativeErfDocument,"{
+      ok: false,
+      code: ""AUTHORITATIVE_ERF_WARD_SCOPE_MISMATCH"",
+      message: `Authoritative ERF ${expectedErfId} belongs to ward ${wardPcode || ""NAv""}, not ${expectedWardPcode}.`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,1301
+FRM-029-E068,AUTHORITATIVE_ERF_WARD_NUMBER_MISSING,`Authoritative ERF ${expectedErfId} has no valid ward number.`,Server source: validateAuthoritativeErfDocument,"{
+      ok: false,
+      code: ""AUTHORITATIVE_ERF_WARD_NUMBER_MISSING"",
+      message: `Authoritative ERF ${expectedErfId} has no valid ward number.`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,1309
+FRM-029-E069,AUTHORITATIVE_ERF_WARD_NUMBER_CONFLICT,`Authoritative ERF ${expectedErfId} has conflicting ward information.`,Server source: validateAuthoritativeErfDocument,"{
+      ok: false,
+      code: ""AUTHORITATIVE_ERF_WARD_NUMBER_CONFLICT"",
+      message: `Authoritative ERF ${expectedErfId} has conflicting ward information.`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,1321
+FRM-029-E070,AUTHORITATIVE_ERF_WARD_NUMBER_MISMATCH,"`Authoritative ERF ${expectedErfId} belongs to ward ${wardNumber}, not ${expectedWardNumber}.`",Server source: validateAuthoritativeErfDocument,"{
+      ok: false,
+      code: ""AUTHORITATIVE_ERF_WARD_NUMBER_MISMATCH"",
+      message: `Authoritative ERF ${expectedErfId} belongs to ward ${wardNumber}, not ${expectedWardNumber}.`,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-131,ireps-web/functions/targetedBatches/helpers.js,1329
+FRM-029-E071,TARGETED_BATCH_PREMISE_CONFLICT,The existing premise belongs to another ERF.,Server source: assertExistingPremiseCompatible,"{
+    left: existingPremise?.erfId,
+    right: proposedPremise?.erfId,
+    code: ""TARGETED_BATCH_PREMISE_CONFLICT"",
+    message: ""The existing premise belongs to another ERF."",
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-133,ireps-web/functions/targetedBatches/premiseLink.js,343
+FRM-029-E072,TARGETED_BATCH_PARENT_ID_MISMATCH,The Targeted Batch parent ID does not match the request.,Server source: createOrLinkTargetedBatchPremise,"{
+      left: parent?.id || parentRef.id,
+      right: context.tbId,
+      code: ""TARGETED_BATCH_PARENT_ID_MISMATCH"",
+      message: ""The Targeted Batch parent ID does not match the request."",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-133,ireps-web/functions/targetedBatches/premiseLink.js,666
+FRM-029-E073,TARGETED_BATCH_ROW_PARENT_MISMATCH,The Targeted Batch Row belongs to another parent batch.,Server source: createOrLinkTargetedBatchPremise,"{
+      left: row?.tbId,
+      right: context.tbId,
+      code: ""TARGETED_BATCH_ROW_PARENT_MISMATCH"",
+      message: ""The Targeted Batch Row belongs to another parent batch."",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-133,ireps-web/functions/targetedBatches/premiseLink.js,673
+FRM-029-E074,TARGETED_BATCH_ROW_ID_MISMATCH,The Targeted Batch Row ID does not match the request.,Server source: createOrLinkTargetedBatchPremise,"{
+      left: row?.id || rowRef.id,
+      right: context.rowId,
+      code: ""TARGETED_BATCH_ROW_ID_MISMATCH"",
+      message: ""The Targeted Batch Row ID does not match the request."",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-133,ireps-web/functions/targetedBatches/premiseLink.js,680
+FRM-029-E075,TARGETED_BATCH_SALES_LINK_MISMATCH,The Targeted Batch Row points to another Sales document.,Server source: createOrLinkTargetedBatchPremise,"{
+      left: salesDocId,
+      right: context.salesDocId,
+      code: ""TARGETED_BATCH_SALES_LINK_MISMATCH"",
+      message: ""The Targeted Batch Row points to another Sales document."",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-133,ireps-web/functions/targetedBatches/premiseLink.js,690
+FRM-029-E076,TARGETED_BATCH_ERF_LINK_MISMATCH,The Targeted Batch Row points to another ERF.,Server source: createOrLinkTargetedBatchPremise,"{
+      left: erfId,
+      right: context.erfId,
+      code: ""TARGETED_BATCH_ERF_LINK_MISMATCH"",
+      message: ""The Targeted Batch Row points to another ERF."",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-133,ireps-web/functions/targetedBatches/premiseLink.js,697
+FRM-029-E077,TARGETED_BATCH_ERF_LINK_MISMATCH,The premise payload points to another ERF.,Server source: createOrLinkTargetedBatchPremise,"{
+      left: premisePayload?.erfId,
+      right: erfId,
+      code: ""TARGETED_BATCH_ERF_LINK_MISMATCH"",
+      message: ""The premise payload points to another ERF."",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-133,ireps-web/functions/targetedBatches/premiseLink.js,704
+FRM-029-E078,TARGETED_BATCH_PARENT_ID_MISMATCH,The Targeted Batch parent ID does not match the request.,Server source: assertTargetedBatchMeterDiscoveryCorrelations,"{
+    left: parent?.id || parentRef.id,
+    right: context.tbId,
+    code: ""TARGETED_BATCH_PARENT_ID_MISMATCH"",
+    message: ""The Targeted Batch parent ID does not match the request."",
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-133,ireps-web/functions/targetedBatches/premiseLink.js,1107
+FRM-029-E079,TARGETED_BATCH_ROW_PARENT_MISMATCH,The Targeted Batch Row belongs to another parent batch.,Server source: assertTargetedBatchMeterDiscoveryCorrelations,"{
+    left: row?.tbId,
+    right: context.tbId,
+    code: ""TARGETED_BATCH_ROW_PARENT_MISMATCH"",
+    message: ""The Targeted Batch Row belongs to another parent batch."",
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-133,ireps-web/functions/targetedBatches/premiseLink.js,1114
+FRM-029-E080,TARGETED_BATCH_ROW_ID_MISMATCH,The Targeted Batch Row ID does not match the request.,Server source: assertTargetedBatchMeterDiscoveryCorrelations,"{
+    left: row?.id || rowRef.id,
+    right: context.rowId,
+    code: ""TARGETED_BATCH_ROW_ID_MISMATCH"",
+    message: ""The Targeted Batch Row ID does not match the request."",
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-133,ireps-web/functions/targetedBatches/premiseLink.js,1121
+FRM-029-E081,TARGETED_BATCH_SALES_LINK_MISMATCH,The Targeted Batch Row points to another Sales document.,Server source: assertTargetedBatchMeterDiscoveryCorrelations,"{
+    left: getAuthoritativeSalesDocId(row),
+    right: salesRef.id,
+    code: ""TARGETED_BATCH_SALES_LINK_MISMATCH"",
+    message: ""The Targeted Batch Row points to another Sales document."",
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-133,ireps-web/functions/targetedBatches/premiseLink.js,1128
+FRM-029-E082,TARGETED_BATCH_SALES_LINK_MISMATCH,The Targeted Batch context points to another Sales document.,Server source: assertTargetedBatchMeterDiscoveryCorrelations,"{
+    left: context.salesDocId,
+    right: salesRef.id,
+    code: ""TARGETED_BATCH_SALES_LINK_MISMATCH"",
+    message: ""The Targeted Batch context points to another Sales document."",
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-133,ireps-web/functions/targetedBatches/premiseLink.js,1135
+FRM-029-E083,TARGETED_BATCH_ERF_LINK_MISMATCH,The Targeted Batch Row points to another ERF.,Server source: assertTargetedBatchMeterDiscoveryCorrelations,"{
+    left: getAuthoritativeErfId(row),
+    right: context.erfId,
+    code: ""TARGETED_BATCH_ERF_LINK_MISMATCH"",
+    message: ""The Targeted Batch Row points to another ERF."",
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-133,ireps-web/functions/targetedBatches/premiseLink.js,1142
+FRM-029-E084,TARGETED_BATCH_PREMISE_LINK_MISMATCH,The Targeted Batch Row points to another premise.,Server source: assertTargetedBatchMeterDiscoveryCorrelations,"{
+    left: row?.refs?.premiseId,
+    right: premiseRef.id,
+    code: ""TARGETED_BATCH_PREMISE_LINK_MISMATCH"",
+    message: ""The Targeted Batch Row points to another premise."",
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-133,ireps-web/functions/targetedBatches/premiseLink.js,1149
+FRM-029-E085,TARGETED_BATCH_ERF_LINK_MISMATCH,The linked premise belongs to another ERF.,Server source: assertTargetedBatchMeterDiscoveryCorrelations,"{
+    left: premise?.erfId,
+    right: context.erfId,
+    code: ""TARGETED_BATCH_ERF_LINK_MISMATCH"",
+    message: ""The linked premise belongs to another ERF."",
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-133,ireps-web/functions/targetedBatches/premiseLink.js,1156
+FRM-029-E086,"error?.irepsCode || error?.code || ""TARGETED_BATCH_NO_ACCESS_FAILED""",error?.message,Server source: recordTargetedBatchNoAccessCallable,"{
+      code: error?.irepsCode || error?.code || ""TARGETED_BATCH_NO_ACCESS_FAILED"",
+      message: error?.message,
+      uid: request?.auth?.uid || null,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-134,ireps-web/functions/targetedBatches/recordTargetedBatchNoAccessCallable.js,433
+FRM-029-E087,"error?.irepsCode || error?.code || ""TARGETED_BATCH_NO_ACCESS_FAILED""","error?.message || ""Targeted Batch No Access could not be recorded.""",Server source: recordTargetedBatchNoAccessCallable,"{success: false,
+      code: error?.irepsCode || error?.code || ""TARGETED_BATCH_NO_ACCESS_FAILED"",
+      message: error?.message || ""Targeted Batch No Access could not be recorded.""}",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-134,ireps-web/functions/targetedBatches/recordTargetedBatchNoAccessCallable.js,438
+FRM-029-E088,GEOCODING_CONFIGURATION_ERROR,true,Server source: addressConfigurationError,"{ ok: false, code: ""GEOCODING_CONFIGURATION_ERROR"", incomplete: true }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-138,ireps-web/functions/targetedBatches/sales-batch-geocoding.js,18
+FRM-029-E089,NO_EXACT_POSITION,true,Server source: acceptGoogleGeocode,"{ ok: false, code: ""NO_EXACT_POSITION"" }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-138,ireps-web/functions/targetedBatches/sales-batch-geocoding.js,22
+FRM-029-E090,GEOCODING_UNAVAILABLE,true,Server source: acceptGoogleGeocode,"{ ok: false, code: ""GEOCODING_UNAVAILABLE"", incomplete: true }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-138,ireps-web/functions/targetedBatches/sales-batch-geocoding.js,23
+FRM-029-E091,NO_EXACT_POSITION,true,Server source: acceptGoogleGeocode,"{ ok: false, code: ""NO_EXACT_POSITION"" }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-138,ireps-web/functions/targetedBatches/sales-batch-geocoding.js,38
+FRM-029-E092,GEOCODING_UNAVAILABLE,true,Server source: geocodeSalesAddress,"{ ok: false, code: ""GEOCODING_UNAVAILABLE"", incomplete: true }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-138,ireps-web/functions/targetedBatches/sales-batch-geocoding.js,46
+FRM-029-E093,GEOCODING_UNAVAILABLE,true,Server source: geocodeSalesAddress,"{ ok: false, code: ""GEOCODING_UNAVAILABLE"", incomplete: true }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-138,ireps-web/functions/targetedBatches/sales-batch-geocoding.js,57
+FRM-029-E094,GEOCODING_UNAVAILABLE,true,Server source: geocodeSalesAddress,"{ ok: false, code: ""GEOCODING_UNAVAILABLE"", incomplete: true }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-138,ireps-web/functions/targetedBatches/sales-batch-geocoding.js,60
+FRM-029-E095,GEOCODING_UNAVAILABLE,true,Server source: geocodeSalesAddress,"{ ok: false, code: ""GEOCODING_UNAVAILABLE"", incomplete: true }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-138,ireps-web/functions/targetedBatches/sales-batch-geocoding.js,63
+FRM-029-E096,GEOCODING_UNAVAILABLE,true,Server source: geocodeSalesAddress,"{ ok: false, code: ""GEOCODING_UNAVAILABLE"", incomplete: true }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-138,ireps-web/functions/targetedBatches/sales-batch-geocoding.js,66
+FRM-029-E097,"matches.length > 1 ? ""MULTIPLE_ERFS"" : ""NO_ERF""",true,Server source: findContainingErf,"{ ok: false, code: matches.length > 1 ? ""MULTIPLE_ERFS"" : ""NO_ERF"" }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-141,ireps-web/functions/targetedBatches/sales-batch-resolution.js,105
+FRM-029-E098,"error.code || ""TARGETED_BATCH_FAILED""","error.code ? error.message : ""Targeted Batch processing failed; retained draft is unchanged""",Server source: callableFailure,"{ success: false, code: error.code || ""TARGETED_BATCH_FAILED"", message: error.code ? error.message : ""Targeted Batch processing failed; retained draft is unchanged"" }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-141,ireps-web/functions/targetedBatches/sales-batch-resolution.js,277
+FRM-029-E099,SALES_MAP_FENCE_TOO_MANY,`This geofence holds ${insideIds.length} meters that can be batched. The limit is ${SALES_MAP_FENCE_LIMIT}. Draw a smaller geofence.`,Server source: salesMapFenceProblem,"{ code: ""SALES_MAP_FENCE_TOO_MANY"", message: `This geofence holds ${insideIds.length} meters that can be batched. The limit is ${SALES_MAP_FENCE_LIMIT}. Draw a smaller geofence.` }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-142,ireps-web/functions/targetedBatches/sales-map-fence.js,87
+FRM-029-E100,NO_READY_METERS,This geofence holds no meter that can be batched.,Server source: salesMapFenceProblem,"{ code: ""NO_READY_METERS"", message: ""This geofence holds no meter that can be batched."" }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-142,ireps-web/functions/targetedBatches/sales-map-fence.js,88
+FRM-029-E101,REASON_REQUIRED,true,Server source: inspectReasonText,"{ ok: false, code: ""REASON_REQUIRED"" }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-143,ireps-web/functions/targetedBatches/takeOutOfBatch.js,72
+FRM-029-E102,REASON_TOO_LONG,true,Server source: inspectReasonText,"{ ok: false, code: ""REASON_TOO_LONG"" }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-143,ireps-web/functions/targetedBatches/takeOutOfBatch.js,73
+FRM-029-E103,code,"refusalMessage(code, { meter, batch })",Server source: refuse,"{ decision: DECISIONS.REFUSE, code, message: refusalMessage(code, { meter, batch }), meterNo: meter, ...extra }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-143,ireps-web/functions/targetedBatches/takeOutOfBatch.js,87
+FRM-029-E104,code,`Meter ${meterNo} could not be taken out of batch ${tbId}. Nothing was changed for it. Please try again.`,Server source: takeOutOfBatch,"{ meterNo, code, message: `Meter ${meterNo} could not be taken out of batch ${tbId}. Nothing was changed for it. Please try again.` }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-144,ireps-web/functions/targetedBatches/takeOutOfBatchCallable.js,147
+FRM-029-E105,result.code,result.message,Server source: takeOutOfBatch,"{ meterNo, code: result.code, message: result.message }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-144,ireps-web/functions/targetedBatches/takeOutOfBatchCallable.js,154

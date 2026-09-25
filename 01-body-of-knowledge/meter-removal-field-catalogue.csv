@@ -1,0 +1,60 @@
+field_id,label,component,binding,description,input_type,prerequisites,requirement,allowed_values,validation,default,disabled,transformation,storage_mapping,source_id,source_path,line
+FRM-019-C001,value,RadioButton.Group,value,Source control for value; interpret in the business definitions and its enclosing section.,RadioButton.Group,No direct enclosing conditional captured; check caller and route prerequisites.,Not established by control prop alone,See schema / owning shared component,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(nextValue) => {
+          setFieldValue(""accessData.access.hasAccess"", nextValue);
+
+          if (nextValue === ""yes"") {
+            setFieldValue(""accessData.access.reason"", ""NAv"");
+            setFieldValue(
+              ""accessData.access.reasonSelect"",
+              makeEmptySelectWithOther(),
+            );
+          }
+        }",UI binding shown; persisted path must be verified against payload builder,FS-028,ireps-mobile/app/(tabs)/asts/removal.jsx,542
+FRM-019-C002,Removal Instruction,IrepsSelectWithOther,values?.assignment?.instructionSelect,Standalone removal or replacement intention.,IrepsSelectWithOther,conditional branch: instructionLocked,Not established by control prop alone,removalInstructionLookup.options,"object()
+        .shape({
+          code: string().notRequired(),
+          label: string().notRequired(),
+          otherText: string().notRequired(),
+        })
+        .test(
+          ""removal-instruction-required"",
+          ""Removal instruction is required"",
+          (value) => isSelectWithOtherFilled(value),
+        )",Inherited binding shown; default not established by this extraction,No direct prop captured,"(nextValue) => {
+                      setFieldValue(""assignment.instructionSelect"", nextValue);
+                      setFieldValue(
+                        ""assignment.instruction.text"",
+                        selectWithOtherToText(nextValue),
+                      );
+                    }",UI binding shown; persisted path must be verified against payload builder,FS-028,ireps-mobile/app/(tabs)/asts/removal.jsx,2195
+FRM-019-C003,Instruction Notes,TextInput,"values?.assignment?.instruction?.notes || """"",Standalone removal or replacement intention.,TextInput,conditional branch: instructionLocked,Not established by control prop alone,See schema / owning shared component,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(text) =>
+                      setFieldValue(""assignment.instruction.notes"", text)",UI binding shown; persisted path must be verified against payload builder,FS-028,ireps-mobile/app/(tabs)/asts/removal.jsx,2221
+FRM-019-C004,"isPrepaidReading ? ""Remaining Credit"" : ""Meter Reading""",TextInput,"(isPrepaidReading
+                            ? values?.removal?.tokenReading
+                            : values?.removal?.meterReading) || """"",Prepaid credit observation before removal.,numeric,conditional branch: noAccess,Not established by control prop alone,See schema / owning shared component,Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(text) => {
+                          const clean = text.replace(/[^\d.]/g, """");
+                          // A reading and a reason never go together.
+                          if (clean) {
+                            setFieldValue(
+                              ""removal.noReadingReason"",
+                              makeEmptySelectWithOther(),
+                            );
+                          }
+                          setFieldValue(
+                            isPrepaidReading
+                              ? ""removal.tokenReading""
+                              : ""removal.meterReading"",
+                            clean,
+                          );
+                        }",UI binding shown; persisted path must be verified against payload builder,FS-028,ireps-mobile/app/(tabs)/asts/removal.jsx,2350
+FRM-019-C005,"isPrepaidReading
+                              ? ""Reason Remaining Credit Could Not Be Captured""
+                              : ""No Reading Reason""",IrepsSelectWithOther,values?.removal?.noReadingReason,Prepaid credit observation before removal.,IrepsSelectWithOther,"conditional branch: noAccess; conditional branch: String(
+                        (isPrepaidReading
+                          ? values?.removal?.tokenReading
+                          : values?.removal?.meterReading) || """",
+                      ).trim()",Not established by control prop alone,"(isPrepaidReading
+                              ? REMAINING_CREDIT_REASON_LOOKUP
+                              : noReadingReasonLookup
+                            ).options",Not resolved by matching this control to a local schema key; review source validator and backend.,Inherited binding shown; default not established by this extraction,No direct prop captured,"(nextValue) =>
+                            setFieldValue(""removal.noReadingReason"", nextValue)",UI binding shown; persisted path must be verified against payload builder,FS-028,ireps-mobile/app/(tabs)/asts/removal.jsx,2405

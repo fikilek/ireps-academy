@@ -1,0 +1,126 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-032-E001,failed-precondition,Cycle window is missing or invalid. Cannot generate MREAD staging.,Server source: getCycleWindow,"new HttpsError(
+      ""failed-precondition"",
+      ""Cycle window is missing or invalid. Cannot generate MREAD staging."",
+      { code: ""INVALID_CYCLE_WINDOW"" },
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-098,ireps-web/functions/registry/mread/generateMreadStaging.js,193
+FRM-032-E002,unauthenticated,You must be signed in to generate MREAD staging.,Server source: assertCanGenerate,"new HttpsError(
+      ""unauthenticated"",
+      ""You must be signed in to generate MREAD staging."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-098,ireps-web/functions/registry/mread/generateMreadStaging.js,1064
+FRM-032-E003,permission-denied,Your role is not allowed to generate MREAD staging.,Server source: assertCanGenerate,"new HttpsError(
+      ""permission-denied"",
+      ""Your role is not allowed to generate MREAD staging."",
+      { code: ""ROLE_NOT_ALLOWED"", role },
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-098,ireps-web/functions/registry/mread/generateMreadStaging.js,1074
+FRM-032-E004,permission-denied,You are not authorised for this LM staging cycle.,Server source: assertCanGenerate,"new HttpsError(
+      ""permission-denied"",
+      ""You are not authorised for this LM staging cycle."",
+      { code: ""LM_SCOPE_NOT_ALLOWED"", lmPcode },
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-098,ireps-web/functions/registry/mread/generateMreadStaging.js,1082
+FRM-032-E005,failed-precondition,"error?.message || ""Unable to resolve selected MREAD staging cycle.""",Server source: resolveSelectedCycleContext,"new HttpsError(
+      ""failed-precondition"",
+      error?.message || ""Unable to resolve selected MREAD staging cycle."",
+      {
+        code: error?.message?.split("":"")[0] || ""MREAD_SELECTED_CYCLE_FAILED"",
+        cycleId,
+        lmPcode,
+      },
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-098,ireps-web/functions/registry/mread/generateMreadStaging.js,1362
+FRM-032-E006,not-found,MREAD staging cycle not found.,Server source: fetchCycleForGeneration,"new HttpsError(""not-found"", ""MREAD staging cycle not found."", {
+      code: ""CYCLE_NOT_FOUND"",
+    })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-098,ireps-web/functions/registry/mread/generateMreadStaging.js,1379
+FRM-032-E007,failed-precondition,Cycle LM is missing.,Server source: fetchCycleForGeneration,"new HttpsError(""failed-precondition"", ""Cycle LM is missing."", {
+      code: ""CYCLE_LM_MISSING"",
+    })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-098,ireps-web/functions/registry/mread/generateMreadStaging.js,1393
+FRM-032-E008,not-found,MREAD staging cycle not found.,Server source: lockCycleForGeneration,"new HttpsError(""not-found"", ""MREAD staging cycle not found."", {
+        code: ""CYCLE_NOT_FOUND"",
+      })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-098,ireps-web/functions/registry/mread/generateMreadStaging.js,1406
+FRM-032-E009,aborted,MREAD staging generation is already running for this cycle.,Server source: lockCycleForGeneration,"new HttpsError(
+        ""aborted"",
+        ""MREAD staging generation is already running for this cycle."",
+        { code: ""GENERATION_ALREADY_RUNNING"" },
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-098,ireps-web/functions/registry/mread/generateMreadStaging.js,1423
+FRM-032-E010,failed-precondition,Cycle LM is missing.,Server source: lockCycleForGeneration,"new HttpsError(""failed-precondition"", ""Cycle LM is missing."", {
+        code: ""CYCLE_LM_MISSING"",
+      })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-098,ireps-web/functions/registry/mread/generateMreadStaging.js,1432
+FRM-032-E011,"error?.code || error?.details?.code || ""GENERATE_MREAD_STAGING_FAILED""","error?.message || ""Failed to generate MREAD staging.""",Server source: markGenerationFailed,"{
+      code:
+        error?.code || error?.details?.code || ""GENERATE_MREAD_STAGING_FAILED"",
+      message: error?.message || ""Failed to generate MREAD staging."",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-098,ireps-web/functions/registry/mread/generateMreadStaging.js,1539
+FRM-032-E012,invalid-argument,cycleId is required.,Server source: generateMreadStaging,"new HttpsError(""invalid-argument"", ""cycleId is required."", {
+        code: ""CYCLE_ID_REQUIRED"",
+      })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-098,ireps-web/functions/registry/mread/generateMreadStaging.js,1602
+FRM-032-E013,error?.code,error?.message,Server source: generateMreadStaging,"{
+        cycleId,
+        uid,
+        code: error?.code,
+        message: error?.message,
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-098,ireps-web/functions/registry/mread/generateMreadStaging.js,1821
+FRM-032-E014,internal,"error?.message || ""Failed to generate MREAD staging.""",Server source: generateMreadStaging,"new HttpsError(
+        ""internal"",
+        error?.message || ""Failed to generate MREAD staging."",
+        { code: ""GENERATE_MREAD_STAGING_FAILED"" },
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-098,ireps-web/functions/registry/mread/generateMreadStaging.js,1847
+FRM-032-E015,unauthenticated,Authentication required,Server source: loadCallerContext,"new HttpsError(""unauthenticated"", ""Authentication required"")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-100,ireps-web/functions/registry/mread/listMreadStagingCycles.js,137
+FRM-032-E016,permission-denied,Manager is not assigned to the requested LM workbase,Server source: assertCanReadMreadStagingCycles,"new HttpsError(
+        ""permission-denied"",
+        ""Manager is not assigned to the requested LM workbase"",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-100,ireps-web/functions/registry/mread/listMreadStagingCycles.js,172
+FRM-032-E017,permission-denied,Supervisor is not linked to a service provider,Server source: assertCanReadMreadStagingCycles,"new HttpsError(
+        ""permission-denied"",
+        ""Supervisor is not linked to a service provider"",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-100,ireps-web/functions/registry/mread/listMreadStagingCycles.js,186
+FRM-032-E018,permission-denied,Supervisor service provider was not found,Server source: assertCanReadMreadStagingCycles,"new HttpsError(
+        ""permission-denied"",
+        ""Supervisor service provider was not found"",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-100,ireps-web/functions/registry/mread/listMreadStagingCycles.js,198
+FRM-032-E019,permission-denied,Only main-contractor supervisors may view MREAD staging cycles,Server source: assertCanReadMreadStagingCycles,"new HttpsError(
+        ""permission-denied"",
+        ""Only main-contractor supervisors may view MREAD staging cycles"",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-100,ireps-web/functions/registry/mread/listMreadStagingCycles.js,207
+FRM-032-E020,permission-denied,Supervisor is not assigned to the requested LM workbase,Server source: assertCanReadMreadStagingCycles,"new HttpsError(
+        ""permission-denied"",
+        ""Supervisor is not assigned to the requested LM workbase"",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-100,ireps-web/functions/registry/mread/listMreadStagingCycles.js,214
+FRM-032-E021,permission-denied,"Only SPU, MNG, or SPV(MNC) may view MREAD staging cycles",Server source: assertCanReadMreadStagingCycles,"new HttpsError(
+    ""permission-denied"",
+    ""Only SPU, MNG, or SPV(MNC) may view MREAD staging cycles"",
+  )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-100,ireps-web/functions/registry/mread/listMreadStagingCycles.js,226
+FRM-032-E022,invalid-argument,lmPcode is required for non-SPU users,Server source: listMreadStagingCycles,"new HttpsError(
+      ""invalid-argument"",
+      ""lmPcode is required for non-SPU users"",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-100,ireps-web/functions/registry/mread/listMreadStagingCycles.js,369
+FRM-032-E023,invalid-argument,stagingId is required,Server source: listMreadStagingRows,"new HttpsError(""invalid-argument"", ""stagingId is required"")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-101,ireps-web/functions/registry/mread/listMreadStagingRows.js,121
+FRM-032-E024,invalid-argument,wardPcode is required for MREAD staging row reads,Server source: listMreadStagingRows,"new HttpsError(
+      ""invalid-argument"",
+      ""wardPcode is required for MREAD staging row reads"",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-101,ireps-web/functions/registry/mread/listMreadStagingRows.js,125
+FRM-032-E025,not-found,Staging session not found,Server source: listMreadStagingRows,"new HttpsError(""not-found"", ""Staging session not found"")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-101,ireps-web/functions/registry/mread/listMreadStagingRows.js,137
+FRM-032-E026,invalid-argument,Staging session does not match requested LM scope,Server source: listMreadStagingRows,"new HttpsError(
+      ""invalid-argument"",
+      ""Staging session does not match requested LM scope"",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-101,ireps-web/functions/registry/mread/listMreadStagingRows.js,149
+FRM-032-E027,invalid-argument,lmPcode is required for non-SPU users,Server source: listMreadStagingSessions,"new HttpsError(
+        ""invalid-argument"",
+        ""lmPcode is required for non-SPU users"",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-102,ireps-web/functions/registry/mread/listMreadStagingSessions.js,128
+FRM-032-E028,"error?.code || ""LIST_MREAD_STAGING_SESSIONS_FAILED""",error?.message || String(error),Server source: listMreadStagingSessions,"{
+      code: error?.code || ""LIST_MREAD_STAGING_SESSIONS_FAILED"",
+      message: error?.message || String(error),
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-102,ireps-web/functions/registry/mread/listMreadStagingSessions.js,164
+FRM-032-E029,LIST_MREAD_STAGING_SESSIONS_FAILED,"error?.message || ""Could not load MREAD staging sessions""",Server source: listMreadStagingSessions,"{
+      ok: false,
+      code: ""LIST_MREAD_STAGING_SESSIONS_FAILED"",
+      message: error?.message || ""Could not load MREAD staging sessions"",
+      rows: [],
+      summary: {
+        totalSessions: 0,
+      },
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-102,ireps-web/functions/registry/mread/listMreadStagingSessions.js,173
+FRM-032-E030,PERMISSION_DENIED,Only authorised users may rebuild registry_mread.,Server source: rebuildRegistryMreadCallable,"{
+      ok: false,
+      code: ""PERMISSION_DENIED"",
+      message: ""Only authorised users may rebuild registry_mread."",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-105,ireps-web/functions/registry/mread/rebuildRegistryMread.js,43

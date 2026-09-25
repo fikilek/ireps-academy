@@ -1,63 +1,39 @@
-> **Academy status:** Imported draft; release verification required. Imported 2026-09-23. Source: `SRC-007` in the [source register](../../00-academy-governance/SOURCE_REGISTER.csv). [Owner decisions](../../00-academy-governance/OWNER_DECISIONS.md) take precedence over conflicting inherited statements.
+# Sign Up — User Manual
 
-# Form: Sign up
+Module **FRM-002** · Baseline **25 September 2026** · Application: **Observed source; release unverified**.
 
-| | |
-| --- | --- |
-| Screen | `app/(auth)/signup.jsx`, route `/signup` |
-| Back end | `signupFieldWorker`, and `listSignupServiceProviders` for the picker |
-| Rules | `AU-R001` sections 1, 2, 6 and 7.2 |
-| Who uses it | A new field worker, once |
+Draft for review. Observed source and documented rules are evidence of implementation intent, not proof of deployment, runtime success or production acceptance. Read the source baseline and open questions before using this as a release-specific lesson.
 
-## What it is for
+[Body of Knowledge](../../01-body-of-knowledge/sign-up-body-of-knowledge.md) · [User Manual](signup.md) · [Field catalogue](../../01-body-of-knowledge/sign-up-field-catalogue.md) · [Error register](../../01-body-of-knowledge/sign-up-error-register.md) · [Practical examples](../../10-assessments/sign-up-scenarios.md)
 
-Asking to join iREPS as a field worker. Sign up never makes a manager, a supervisor or an admin — those people are invited by the office.
+## Before you start
 
-## What you fill in
+The current documented journey is mobile signup followed by approval. The web sign-in interface does not establish a web self-registration journey. Utility/main-contractor/subcontractor governance and permission inheritance remain separate decisions.
 
-| Field | Notes |
-| --- | --- |
-| Surname | Required |
-| Name | Required |
-| Email | Your own working email. It becomes your sign-in name and the address a password reset goes to |
-| Password | At least 8 characters |
-| Confirm password | The same password again |
-| Service provider | Chosen from the list. Only active service providers appear |
+Use a named, verified build in the intended environment. Confirm identity, workbase and action-specific access. Check the subject before editing or submitting; similarly named people, premises, meters and batches are not interchangeable.
 
-The list of service providers comes from iREPS itself, because you are not signed in yet. If it cannot be loaded, the screen says so and offers **Try again** — it never leaves you with an empty picker and no explanation.
+## Procedure
 
-## What happens when you tap Submit
+1. Open Sign Up on mobile.
+2. Enter your surname, name, email, password and matching confirmation.
+3. Load and select the correct active service provider; do not choose a different employer just to bypass a failure.
+4. Review the email and service provider in the confirmation.
+5. Submit once, retain the result, then use Sign In and await the responsible manager’s authorisation.
 
-1. **A confirmation window** shows your name, your email and the service provider you chose. Check them, because the email is what you will sign in with.
-2. **Progress** while it is sent.
-3. **A result window**, success or failure.
+## What to check in the result
 
-On success you are told your sign up went through and your manager must authorise you, and you are put back on Sign in. **You are not let into the app yet.** Once your manager authorises you, you sign in normally.
+Lebo chooses the correct provider, submits and receives a pending outcome. A manager must authorise the fieldworker; registration is not permission to start Meter Discovery.
 
-## What iREPS checks, in this order
+Record the returned identifier and actual result for this action. Where the action creates or updates stored information, re-open the intended record and inspect the outcome. A local save, upload progress indicator, confirmation of a request, or downloaded export must be described by its actual meaning.
 
-1. Every field is filled in.
-2. The password is at least 8 characters.
-3. The service provider still exists.
-4. The service provider is active.
-5. A manager is responsible for that service provider.
-6. No account already uses that email.
+## When something prevents completion
 
-## Error Register
+Confirm backend/UI parity on the target release and whether account creation succeeded before retrying a network failure. Do not promise an invitation email for self-signup.
 
-| What you see | What happened | What to do |
-| --- | --- | --- |
-| **Could not load the service providers** — "Check your signal and try again." | The picker's list could not be fetched | Try again. It needs signal |
-| **Email already used** — "Sign in instead, or use Lost access?" | You, or somebody, already signed up with that email | Sign in, or reset the password |
-| **Service provider not active** — "Choose another, or ask your manager." | The service provider has been stopped on iREPS | Choose another, or ask your manager |
-| **No manager for that service provider** — "Ask your manager to sort this out before you sign up." | Nobody can authorise you, so signing up would leave you stuck | Tell your manager. The office must set this up first |
-| "Password must be at least 8 characters." | The password is too short | Use a longer one |
-| A message naming another field | Something required is missing or wrong | Fix that field |
-| **No connection** — "Check your signal and try again." | The phone could not reach iREPS | Move to signal and try again |
-| **Sign up failed** — "Try again, and tell your manager if it keeps happening." | Something else | Try again, then report it |
+For a field validation error, correct the specific input and recheck its dependent evidence. For a permission or state refusal, resolve authority or record state through the responsible workstream. After a timeout or partial success, reconcile the original attempt before making a new one. Preserve identifiers and evidence; never publish credentials in an escalation.
 
-## What it does not do
+[Consult the module error register](../../01-body-of-knowledge/sign-up-error-register.md) and [field catalogue](../../01-body-of-knowledge/sign-up-field-catalogue.md).
 
-- It does not authorise you. Only your manager can.
-- It does not give you a workbase. You choose that after your manager authorises you.
-- It does not send anyone an email. Your manager sees you waiting inside iREPS.
+## Training exercise
+
+[Use the practical scenarios and their expected evidence](../../10-assessments/sign-up-scenarios.md). Release-specific screenshots, all conditional branches and permission tests remain publication requirements.

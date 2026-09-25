@@ -1,0 +1,175 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-026-E001,LOCAL_MESSAGE,"message ||
+        ""No network. Lifecycle instruction saved to offline forms queue.""",Client source: saveLifecycleInstructionToQueue,"Alert.alert(
+      ""Saved Offline"",
+      message ||
+        ""No network. Lifecycle instruction saved to offline forms queue."",
+      [
+        {
+          text: ""OK"",
+          onPress: () => router.back(),
+        },
+      ],
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-013,ireps-mobile/app/(tabs)/admin/operations/trn-origin.js,616
+FRM-026-E002,LOCAL_MESSAGE,"result?.message || ""Lifecycle instruction created successfully.""",Client source: handleCreateInstruction,"Alert.alert(
+        ""TRN Created"",
+        result?.message || ""Lifecycle instruction created successfully."",
+        [
+          {
+            text: ""OK"",
+            onPress: () => router.back(),
+          },
+        ],
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-013,ireps-mobile/app/(tabs)/admin/operations/trn-origin.js,689
+FRM-026-E003,LOCAL_MESSAGE,"error?.message ||
+          error?.data?.message ||
+          ""Could not create lifecycle instruction.""",Client source: handleCreateInstruction,"Alert.alert(
+        ""Create TRN Failed"",
+        error?.message ||
+          error?.data?.message ||
+          ""Could not create lifecycle instruction."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-013,ireps-mobile/app/(tabs)/admin/operations/trn-origin.js,721
+FRM-026-E004,UNAUTHENTICATED,Authentication is required,Server source: onCreateMeterLifecycleInstructionCallable,"buildFailureResult(
+          ""UNAUTHENTICATED"",
+          ""Authentication is required"",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-078,ireps-web-normalisation/functions/meterLifecycle/instructionCallable.js,250
+FRM-026-E005,UNAUTHORIZED_LCT_ORIGINATOR,Only MNG can create lifecycle instructions,Server source: onCreateMeterLifecycleInstructionCallable,"buildFailureResult(
+          ""UNAUTHORIZED_LCT_ORIGINATOR"",
+          ""Only MNG can create lifecycle instructions"",
+          {
+            actorRole: authority.role,
+            actorRelationshipType: authority.relationshipType,
+            actorClientType: authority.clientType,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-078,ireps-web-normalisation/functions/meterLifecycle/instructionCallable.js,266
+FRM-026-E006,dynamic code,inputCheck.message,Server source: onCreateMeterLifecycleInstructionCallable,"buildFailureResult(inputCheck.code, inputCheck.message)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-078,ireps-web-normalisation/functions/meterLifecycle/instructionCallable.js,280
+FRM-026-E007,dynamic code,assignmentCheck.message,Server source: onCreateMeterLifecycleInstructionCallable,"buildFailureResult(
+          assignmentCheck.code,
+          assignmentCheck.message,
+          {
+            trnId,
+            trnType,
+            astId,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-078,ireps-web-normalisation/functions/meterLifecycle/instructionCallable.js,300
+FRM-026-E008,INSTRUCTION_MEDIA_REQUIRED,Instruction media is required when assignment.instruction.mediaRequired is true,Server source: onCreateMeterLifecycleInstructionCallable,"buildFailureResult(
+          ""INSTRUCTION_MEDIA_REQUIRED"",
+          ""Instruction media is required when assignment.instruction.mediaRequired is true"",
+          {
+            trnId,
+            trnType,
+            astId,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-078,ireps-web-normalisation/functions/meterLifecycle/instructionCallable.js,323
+FRM-026-E009,TRN_ALREADY_EXISTS,A TRN with this id already exists,Server source: onCreateMeterLifecycleInstructionCallable,"buildFailureResult(
+            ""TRN_ALREADY_EXISTS"",
+            ""A TRN with this id already exists"",
+            {
+              trnId,
+              trnType,
+              astId,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-078,ireps-web-normalisation/functions/meterLifecycle/instructionCallable.js,355
+FRM-026-E010,AST_NOT_FOUND,The referenced AST does not exist,Server source: onCreateMeterLifecycleInstructionCallable,"buildFailureResult(
+            ""AST_NOT_FOUND"",
+            ""The referenced AST does not exist"",
+            {
+              trnId,
+              trnType,
+              astId,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-078,ireps-web-normalisation/functions/meterLifecycle/instructionCallable.js,369
+FRM-026-E011,PREMISE_NOT_FOUND,The referenced premise does not exist,Server source: onCreateMeterLifecycleInstructionCallable,"buildFailureResult(
+            ""PREMISE_NOT_FOUND"",
+            ""The referenced premise does not exist"",
+            {
+              trnId,
+              trnType,
+              astId,
+              premiseId,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-078,ireps-web-normalisation/functions/meterLifecycle/instructionCallable.js,383
+FRM-026-E012,ACTIVE_LCT_ALREADY_EXISTS,This meter already has an active lifecycle instruction of this type,Server source: onCreateMeterLifecycleInstructionCallable,"buildFailureResult(
+            ""ACTIVE_LCT_ALREADY_EXISTS"",
+            ""This meter already has an active lifecycle instruction of this type"",
+            {
+              trnId,
+              trnType,
+              astId,
+              existingTrnId: existingDoc.id,
+              existingWorkflowState: existingData?.workflow?.state || ""NAv"",
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-078,ireps-web-normalisation/functions/meterLifecycle/instructionCallable.js,401
+FRM-026-E013,dynamic code,eligibilityCheck.message,Server source: onCreateMeterLifecycleInstructionCallable,"buildFailureResult(
+            eligibilityCheck.code,
+            eligibilityCheck.message,
+            {
+              trnId,
+              trnType,
+              astId,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-078,ireps-web-normalisation/functions/meterLifecycle/instructionCallable.js,425
+FRM-026-E014,UNKNOWN_ERROR,Lifecycle instruction TRN was not created,Server source: onCreateMeterLifecycleInstructionCallable,"buildFailureResult(
+          ""UNKNOWN_ERROR"",
+          ""Lifecycle instruction TRN was not created"",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-078,ireps-web-normalisation/functions/meterLifecycle/instructionCallable.js,521
+FRM-026-E015,UNKNOWN_ERROR,"error?.message || ""Failed to create lifecycle instruction""",Server source: onCreateMeterLifecycleInstructionCallable,"buildFailureResult(
+        ""UNKNOWN_ERROR"",
+        error?.message || ""Failed to create lifecycle instruction"",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-078,ireps-web-normalisation/functions/meterLifecycle/instructionCallable.js,532
+FRM-026-E016,INVALID_TRN_ID,TRN id is required,Server source: validateCreateLifecycleInstructionInput,"{
+      ok: false,
+      code: ""INVALID_TRN_ID"",
+      message: ""TRN id is required"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,3029
+FRM-026-E017,INVALID_OFFICE_LCT_TYPE,"Only INSPECTION, DISCONNECTION, RECONNECTION, REMOVAL and METER READING instructions can be created from Operations.",Server source: validateCreateLifecycleInstructionInput,"{
+      ok: false,
+      code: ""INVALID_OFFICE_LCT_TYPE"",
+      message:
+        ""Only INSPECTION, DISCONNECTION, RECONNECTION, REMOVAL and METER READING instructions can be created from Operations."",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,3037
+FRM-026-E018,INVALID_AST_ID,astId is required,Server source: validateCreateLifecycleInstructionInput,"{
+      ok: false,
+      code: ""INVALID_AST_ID"",
+      message: ""astId is required"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,3046
+FRM-026-E019,INVALID_PREMISE_ID,premiseId is required,Server source: validateCreateLifecycleInstructionInput,"{
+      ok: false,
+      code: ""INVALID_PREMISE_ID"",
+      message: ""premiseId is required"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,3054
+FRM-026-E020,INVALID_AST_STATE,DECOMMISSIONED meters cannot be issued for inspection,Server source: validateLifecycleInstructionEligibility,"{
+        ok: false,
+        code: ""INVALID_AST_STATE"",
+        message: ""DECOMMISSIONED meters cannot be issued for inspection"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,3082
+FRM-026-E021,INVALID_AST_STATE,Only CONNECTED meters can be issued for disconnection,Server source: validateLifecycleInstructionEligibility,"{
+        ok: false,
+        code: ""INVALID_AST_STATE"",
+        message: ""Only CONNECTED meters can be issued for disconnection"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,3094
+FRM-026-E022,INVALID_AST_STATE,Only DISCONNECTED meters can be issued for reconnection,Server source: validateLifecycleInstructionEligibility,"{
+        ok: false,
+        code: ""INVALID_AST_STATE"",
+        message: ""Only DISCONNECTED meters can be issued for reconnection"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,3106
+FRM-026-E023,INVALID_AST_STATE,This meter has already been removed,Server source: validateLifecycleInstructionEligibility,"{
+        ok: false,
+        code: ""INVALID_AST_STATE"",
+        message: ""This meter has already been removed"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,3118
+FRM-026-E024,INVALID_AST_STATE,DECOMMISSIONED meters cannot be issued for meter reading,Server source: validateLifecycleInstructionEligibility,"{
+        ok: false,
+        code: ""INVALID_AST_STATE"",
+        message: ""DECOMMISSIONED meters cannot be issued for meter reading"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,3130
+FRM-026-E025,PREPAID_MREAD_NOT_SUPPORTED,MREAD Sprint 1 supports conventional meters only,Server source: validateLifecycleInstructionEligibility,"{
+        ok: false,
+        code: ""PREPAID_MREAD_NOT_SUPPORTED"",
+        message: ""MREAD Sprint 1 supports conventional meters only"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,3138
+FRM-026-E026,INVALID_OFFICE_LCT_TYPE,Unsupported lifecycle instruction type,Server source: validateLifecycleInstructionEligibility,"{
+    ok: false,
+    code: ""INVALID_OFFICE_LCT_TYPE"",
+    message: ""Unsupported lifecycle instruction type"",
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,3148

@@ -1,0 +1,100 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-033-E001,LOCAL_MESSAGE,,Client source: handleGenerate,"setError("""")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-179,ireps-web/src/pages/reports/GeneralMonthlyReportPage.jsx,143
+FRM-033-E002,LOCAL_MESSAGE,errorMessage(generationError),Client source: handleGenerate,setError(errorMessage(generationError)),Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-179,ireps-web/src/pages/reports/GeneralMonthlyReportPage.jsx,190
+FRM-033-E003,dynamic code,error.message,Server source: toHttpsError,"new HttpsError(error.code, error.message, error.details)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-110,ireps-web/functions/reportPlatform/emailDeliveryCallable.js,30
+FRM-033-E004,internal,Report email delivery failed.,Server source: toHttpsError,"new HttpsError(""internal"", ""Report email delivery failed."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-110,ireps-web/functions/reportPlatform/emailDeliveryCallable.js,33
+FRM-033-E005,dynamic code,error,Server source: sendGeneratedReportEmailCallable,toHttpsError(error),Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-110,ireps-web/functions/reportPlatform/emailDeliveryCallable.js,82
+FRM-033-E006,dynamic code,error.message,Server source: toHttpsError,"new HttpsError(error.code, error.message, error.details)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-112,ireps-web/functions/reportPlatform/generatedReportsCallables.js,25
+FRM-033-E007,internal,Generated Reports operation failed.,Server source: toHttpsError,"new HttpsError(""internal"", ""Generated Reports operation failed."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-112,ireps-web/functions/reportPlatform/generatedReportsCallables.js,28
+FRM-033-E008,dynamic code,error,Server source: listGeneratedReportsCallable,toHttpsError(error),Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-112,ireps-web/functions/reportPlatform/generatedReportsCallables.js,41
+FRM-033-E009,dynamic code,error,Server source: getGeneratedReportDownloadCallable,toHttpsError(error),Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-112,ireps-web/functions/reportPlatform/generatedReportsCallables.js,56
+FRM-033-E010,dynamic code,error,Server source: deleteGeneratedReportCallable,toHttpsError(error),Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-112,ireps-web/functions/reportPlatform/generatedReportsCallables.js,70
+FRM-033-E011,dynamic code,error.message,Server source: toHttpsError,"new HttpsError(error.code, error.message, error.details)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-114,ireps-web/functions/reportPlatform/persistenceCallables.js,24
+FRM-033-E012,internal,Report persistence failed.,Server source: toHttpsError,"new HttpsError(""internal"", ""Report persistence failed."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-114,ireps-web/functions/reportPlatform/persistenceCallables.js,27
+FRM-033-E013,dynamic code,error,Server source: prepareGeneratedReportCallable,toHttpsError(error),Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-114,ireps-web/functions/reportPlatform/persistenceCallables.js,38
+FRM-033-E014,dynamic code,error,Server source: finalizeGeneratedReportCallable,toHttpsError(error),Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-114,ireps-web/functions/reportPlatform/persistenceCallables.js,52
+FRM-033-E015,unauthenticated,Authentication required.,Server source: assertTrnReadAccess,"new HttpsError(""unauthenticated"", ""Authentication required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-117,ireps-web/functions/reportPlatform/trnMediaCallables.js,39
+FRM-033-E016,permission-denied,This user may not read TRN Registry media.,Server source: assertTrnReadAccess,"new HttpsError(
+      ""permission-denied"",
+      ""This user may not read TRN Registry media."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-117,ireps-web/functions/reportPlatform/trnMediaCallables.js,48
+FRM-033-E017,permission-denied,This TRN is outside the user's assigned workbases.,Server source: assertTrnReadAccess,"new HttpsError(
+      ""permission-denied"",
+      ""This TRN is outside the user's assigned workbases."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-117,ireps-web/functions/reportPlatform/trnMediaCallables.js,60
+FRM-033-E018,failed-precondition,The selected TRN media URL is invalid.,Server source: assertTrustedMediaUrl,"new HttpsError(
+      ""failed-precondition"",
+      ""The selected TRN media URL is invalid."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-117,ireps-web/functions/reportPlatform/trnMediaCallables.js,100
+FRM-033-E019,failed-precondition,The selected TRN media is not stored in an approved Firebase Storage URL.,Server source: assertTrustedMediaUrl,"new HttpsError(
+      ""failed-precondition"",
+      ""The selected TRN media is not stored in an approved Firebase Storage URL."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-117,ireps-web/functions/reportPlatform/trnMediaCallables.js,110
+FRM-033-E020,permission-denied,The selected TRN media belongs to an unexpected Storage bucket.,Server source: assertTrustedMediaUrl,"new HttpsError(
+      ""permission-denied"",
+      ""The selected TRN media belongs to an unexpected Storage bucket."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-117,ireps-web/functions/reportPlatform/trnMediaCallables.js,121
+FRM-033-E021,unavailable,`TRN media download failed with HTTP ${response.status}.`,Server source: fetchImageBytes,"new HttpsError(
+        ""unavailable"",
+        `TRN media download failed with HTTP ${response.status}.`,
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-117,ireps-web/functions/reportPlatform/trnMediaCallables.js,156
+FRM-033-E022,resource-exhausted,The selected TRN image is too large for Quick TRN PDF embedding.,Server source: fetchImageBytes,"new HttpsError(
+        ""resource-exhausted"",
+        ""The selected TRN image is too large for Quick TRN PDF embedding."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-117,ireps-web/functions/reportPlatform/trnMediaCallables.js,164
+FRM-033-E023,failed-precondition,The selected TRN media is not a supported JPG or PNG image.,Server source: fetchImageBytes,"new HttpsError(
+        ""failed-precondition"",
+        ""The selected TRN media is not a supported JPG or PNG image."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-117,ireps-web/functions/reportPlatform/trnMediaCallables.js,176
+FRM-033-E024,unavailable,The selected TRN image is empty.,Server source: fetchImageBytes,"new HttpsError(""unavailable"", ""The selected TRN image is empty."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-117,ireps-web/functions/reportPlatform/trnMediaCallables.js,184
+FRM-033-E025,resource-exhausted,The selected TRN image is too large for Quick TRN PDF embedding.,Server source: fetchImageBytes,"new HttpsError(
+        ""resource-exhausted"",
+        ""The selected TRN image is too large for Quick TRN PDF embedding."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-117,ireps-web/functions/reportPlatform/trnMediaCallables.js,187
+FRM-033-E026,deadline-exceeded,TRN media download timed out.,Server source: fetchImageBytes,"new HttpsError(""deadline-exceeded"", ""TRN media download timed out."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-117,ireps-web/functions/reportPlatform/trnMediaCallables.js,198
+FRM-033-E027,unavailable,"error?.message || ""TRN media could not be downloaded.""",Server source: fetchImageBytes,"new HttpsError(
+      ""unavailable"",
+      error?.message || ""TRN media could not be downloaded."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-117,ireps-web/functions/reportPlatform/trnMediaCallables.js,201
+FRM-033-E028,invalid-argument,mediaIndex must be a non-negative integer.,Server source: assertMediaIndex,"new HttpsError(
+      ""invalid-argument"",
+      ""mediaIndex must be a non-negative integer."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-117,ireps-web/functions/reportPlatform/trnMediaCallables.js,315
+FRM-033-E029,not-found,`The requested ${source.toLowerCase()} media item does not exist.`,Server source: loadMediaResult,"new HttpsError(
+      ""not-found"",
+      `The requested ${source.toLowerCase()} media item does not exist.`,
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-117,ireps-web/functions/reportPlatform/trnMediaCallables.js,332
+FRM-033-E030,unauthenticated,Authentication required.,Server source: getQuickTrnMediaCallable,"new HttpsError(""unauthenticated"", ""Authentication required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-117,ireps-web/functions/reportPlatform/trnMediaCallables.js,364
+FRM-033-E031,invalid-argument,trnId is required.,Server source: getQuickTrnMediaCallable,"new HttpsError(""invalid-argument"", ""trnId is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-117,ireps-web/functions/reportPlatform/trnMediaCallables.js,371
+FRM-033-E032,invalid-argument,Unsupported Quick TRN media action.,Server source: getQuickTrnMediaCallable,"new HttpsError(
+      ""invalid-argument"",
+      ""Unsupported Quick TRN media action."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-117,ireps-web/functions/reportPlatform/trnMediaCallables.js,375
+FRM-033-E033,not-found,The exact TRN was not found.,Server source: getQuickTrnMediaCallable,"new HttpsError(""not-found"", ""The exact TRN was not found."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-117,ireps-web/functions/reportPlatform/trnMediaCallables.js,385
+FRM-033-E034,not-found,The TRN-linked authoritative premise was not found.,Server source: getQuickTrnMediaCallable,"new HttpsError(
+        ""not-found"",
+        ""The TRN-linked authoritative premise was not found."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-117,ireps-web/functions/reportPlatform/trnMediaCallables.js,420
+FRM-033-E035,unauthenticated,Authentication required.,Server source: assertGmrAccess,"new HttpsError(""unauthenticated"", ""Authentication required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-119,ireps-web/functions/reports/generalMonthlyReport.js,273
+FRM-033-E036,permission-denied,This user may not generate the General Monthly Report.,Server source: assertGmrAccess,"new HttpsError(
+      ""permission-denied"",
+      ""This user may not generate the General Monthly Report."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-119,ireps-web/functions/reports/generalMonthlyReport.js,281
+FRM-033-E037,permission-denied,The General Monthly Report is outside the user's assigned workbases.,Server source: assertGmrAccess,"new HttpsError(
+      ""permission-denied"",
+      ""The General Monthly Report is outside the user's assigned workbases."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-119,ireps-web/functions/reports/generalMonthlyReport.js,293
+FRM-033-E038,invalid-argument,`GMR Builder v0.1 is locked to ${GMR_LM_NAME} (${GMR_LM_PCODE}).`,Server source: generateGeneralMonthlyReportCallable,"new HttpsError(
+        ""invalid-argument"",
+        `GMR Builder v0.1 is locked to ${GMR_LM_NAME} (${GMR_LM_PCODE}).`,
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-119,ireps-web/functions/reports/generalMonthlyReport.js,1402
+FRM-033-E039,invalid-argument,GMR Builder v0.1 requires MONTHLY_GMR generation mode.,Server source: generateGeneralMonthlyReportCallable,"new HttpsError(
+        ""invalid-argument"",
+        ""GMR Builder v0.1 requires MONTHLY_GMR generation mode."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-119,ireps-web/functions/reports/generalMonthlyReport.js,1408
+FRM-033-E040,invalid-argument,error.message,Server source: generateGeneralMonthlyReportCallable,"new HttpsError(""invalid-argument"", error.message)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-119,ireps-web/functions/reports/generalMonthlyReport.js,1419
+FRM-033-E041,failed-precondition,error.message,Server source: generateGeneralMonthlyReportCallable,"new HttpsError(""failed-precondition"", error.message)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-119,ireps-web/functions/reports/generalMonthlyReport.js,1469
+FRM-033-E042,internal,The General Monthly Report dataset could not be generated.,Server source: generateGeneralMonthlyReportCallable,"new HttpsError(
+        ""internal"",
+        ""The General Monthly Report dataset could not be generated."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-119,ireps-web/functions/reports/generalMonthlyReport.js,1471

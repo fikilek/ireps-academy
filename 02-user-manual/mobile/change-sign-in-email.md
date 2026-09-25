@@ -1,89 +1,43 @@
-> **Academy status:** Imported draft; release verification required. Imported 2026-09-23. Source: `SRC-009` in the [source register](../../00-academy-governance/SOURCE_REGISTER.csv). [Owner decisions](../../00-academy-governance/OWNER_DECISIONS.md) take precedence over conflicting inherited statements.
+# Change Sign-in Email — User Manual
 
-# Form: Change a sign-in email
+Module **FRM-009** · Baseline **25 September 2026** · Application: **Feature-branch source; deployment unverified**.
 
-| | |
-| --- | --- |
-| Screens | Your own: **Account Settings** → Email → CHANGE (`app/(tabs)/admin/user/user-settings.js`). Somebody else's: **Users** → the person → SIGN-IN EMAIL → CHANGE EMAIL (`app/(tabs)/admin/users/[uid].js`) |
-| Back end | Your own: Firebase's own link. Somebody else's: `changeUserEmail`. Both: `syncSignInEmail` |
-| Rules | `AU-R001` sections 6, 7.5, 7.6 and 11 |
+Draft for review. Observed source and documented rules are evidence of implementation intent, not proof of deployment, runtime success or production acceptance. Read the source baseline and open questions before using this as a release-specific lesson.
 
-## One email per person
+[Body of Knowledge](../../01-body-of-knowledge/change-sign-in-email-body-of-knowledge.md) · [User Manual](change-sign-in-email.md) · [Field catalogue](../../01-body-of-knowledge/change-sign-in-email-field-catalogue.md) · [Error register](../../01-body-of-knowledge/change-sign-in-email-error-register.md) · [Practical examples](../../10-assessments/change-sign-in-email-scenarios.md)
 
-The email you sign in with **is** your email in iREPS. There is no second one to edit.
+## Before you start
 
-Before 22 September 2026, Account Settings let you type a new email and save it. That changed only what iREPS showed — you still had to sign in with the old one. That is how somebody could end up signing in as `…@gmail.comm` while iREPS said `…@gmail.com`. That edit is gone.
+There are two distinct journeys: the person confirms a link at their new address; an authorised office user changes another person’s address when needed. Dedicated email feature worktrees provide evidence that must not be advertised as deployed on all builds.
 
-If the two ever differ, the sign-in email wins: when you open the app, iREPS puts your sign-in email back on your record.
+Use a named, verified build in the intended environment. Confirm identity, workbase and action-specific access. Check the subject before editing or submitting; similarly named people, premises, meters and batches are not interchangeable.
 
-## Changing your own
+## Procedure
 
-1. Account Settings → **Email** → CHANGE.
-2. Type the new email, and your password, and tap **SEND LINK**. The password proves it is you; Firebase will not send the link without it.
-3. **A confirmation window** shows the old and the new email.
-4. **Progress** while the link is sent.
-5. **A result window**: check your new inbox.
+1. Choose own-account or authorised office change; do not edit only the profile email.
+2. Review the person and destination address.
+3. For own-account change, reauthenticate as requested and open the link in the new inbox; use the old address until the link takes effect.
+4. For an office change, check the explicit server result before telling the person which email to use.
+5. Sign in with the effective new address and existing password; verify the user record follows the authentication account.
 
-**Nothing changes until you open that link** in the new inbox. Until then, keep signing in with the old email. So a typo in the new email cannot lock you out — the link goes nowhere, and your old email still works.
+## What to check in the result
 
-Once you open the link, your sign-in email is the new one and you are signed out. Sign in with the new email and the same password.
+An office change updates authentication but the profile update fails. The new sign-in address remains effective; the next synchronisation must reconcile the record without changing the person’s UID.
 
-## Changing somebody else's
+Record the returned identifier and actual result for this action. Where the action creates or updates stored information, re-open the intended record and inspect the outcome. A local save, upload progress indicator, confirmation of a request, or downloaded export must be described by its actual meaning.
 
-For somebody who cannot get email at the address they have — a typo, or a mailbox that is closed. Unlike your own, **it changes at once**, with no link.
+## When something prevents completion
 
-| You are | You may change |
-| --- | --- |
-| SPU | Anybody's |
-| Admin | Anybody's but the SPU's |
-| Manager | Field workers and supervisors of your own service providers |
+Verify deployment of email branches, permitted actor/target combinations and audit reconciliation. AU-R001 gives specific email-change permissions; it does not settle permission inheritance elsewhere.
 
-You never change your own this way — use Account Settings.
+For a field validation error, correct the specific input and recheck its dependent evidence. For a permission or state refusal, resolve authority or record state through the responsible workstream. After a timeout or partial success, reconcile the original attempt before making a new one. Preserve identifiers and evidence; never publish credentials in an escalation.
 
-1. Users → the person → **CHANGE EMAIL**.
-2. Type their new email and tap **Change**.
-3. **A confirmation window** names the person and the new email.
-4. **Progress** while it changes.
-5. **A result window** shows the old and the new email, taken from iREPS itself.
+[Consult the module error register](../../01-body-of-knowledge/change-sign-in-email-error-register.md) and [field catalogue](../../01-body-of-knowledge/change-sign-in-email-field-catalogue.md).
 
-Their password, role, authorisation and workbase do not change. If iREPS is open on their phone they are signed out at that moment. Tell them to sign in with the new email and their usual password.
+## Training exercise
 
-The screen shows **Email on their record**, which can be out of date. iREPS changes the real sign-in email whatever the record says, and the result window names the real old one.
+[Use the practical scenarios and their expected evidence](../../10-assessments/change-sign-in-email-scenarios.md). Release-specific screenshots, all conditional branches and permission tests remain publication requirements.
 
-## Every change is kept
+## Preserved task details and current qualification
 
-Each change is written down beside the person: the old and new sign-in email, the email their record held before, who made the change and when. When iREPS puts somebody's sign-in email back on their record, the address it replaces is kept there too, so nothing typed into the old Account Settings is lost.
-
-## Error Register — your own
-
-| What you see | What happened | What to do |
-| --- | --- | --- |
-| **Check your new inbox** — "We sent a link to the new email. Your sign-in email changes when you open it. Until then, keep signing in with the old one. Once it changes you will be signed out: sign in with the new email and the same password." | The link went out | Open it in the new inbox |
-| **Password not right** — "Type the password you sign in with." | The password you typed is wrong | Type it again |
-| **Nothing to change** — "That is already your sign-in email." | You typed the email you already have | Nothing |
-| **Check the email** — "That does not look like an email address." | Mistyped, for example no @ | Correct it |
-| **Email already used** — "Another iREPS account uses that email. Choose another." | Somebody already signs in with it. Where Firebase keeps that private you see Check your new inbox instead, and no link arrives | Choose another |
-| **Sign in again** — "For your safety, iREPS needs a fresh sign-in before you change your email." | You have been signed in a long time | Sign out, sign in, try again |
-| **Too many tries** — "Wait a few minutes and try again." | Too many requests from this phone | Wait |
-| **No connection** — "Check your signal and try again." | No signal | Move to signal |
-| **Email not changed** — "Try again, and tell your manager if it keeps happening." | Something else | Try again, then report |
-
-## Error Register — somebody else's
-
-| What you see | What happened | What to do |
-| --- | --- | --- |
-| **Email changed** — "They now sign in as NEW instead of OLD, with the same password as before. If iREPS is open on their phone they are signed out, and sign in again with the new email." | It changed | Tell them |
-| The same, plus "Their record still shows the old email; it catches up the next time they open the app." | It changed, but the record did not follow straight away | Nothing — it catches up |
-| **Nothing to change** — "That is already their sign-in email." | It already was | Nothing |
-| **Check the email** — "That does not look like an email address." | Mistyped | Correct it |
-| **Email already used** — "Another iREPS account uses that email." | Somebody else signs in with it | Find out who |
-| **Not yours to change** — "You may only change the email of people you manage." | Not one of your people | Ask an admin |
-| **Use Account Settings** — "Change your own email from Account Settings." | It is your own account | Use Account Settings |
-| **No connection** — "Check your signal and try again." | No signal | Move to signal |
-| **Email not changed** — the reason iREPS gave, or "Try again, and tell your manager if it keeps happening." | Something else | Try again, then report |
-
-## What it does not do
-
-- It does not change a password. That is Lost access? or Change password.
-- It does not tell the person. You tell them.
-- It is not on the web console yet.
+The documented own-account mobile route is Account Settings → Email → CHANGE; the office mobile route is Users → person → CHANGE EMAIL in the email feature. Verify those routes in the intended build. AU-R001 specifically allows Super User to change others’ addresses, Admin except a Super User target, and a Manager for their own providers’ fieldworkers/supervisors. Nobody uses the office route to change their own address. These are email-action rules, not blanket permission inheritance.

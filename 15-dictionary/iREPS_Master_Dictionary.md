@@ -5069,3 +5069,55 @@ These terms describe the approved final-state contract. They do not assert that 
 - **Related terms:** Normal Path, Targeted Batch, My Work Orders, Premise, Meter Discovery
 
 **Naming rule:** use exactly **Normal Path** and **Sales Path** whenever naming these entry paths. One term has one meaning. Existing runtime identifiers and verbatim error messages remain exact source evidence; a technical name is not a new learner-facing synonym.
+
+## Meter lifecycle vocabulary — 25 September 2026
+
+### Term: Meter Lifecycle
+
+- **Status:** Owner-confirmed subject and coverage; final implementation model open.
+- **Simple meaning:** The complete traceable history of a physical meter from acquisition planning through custody, field service and end-of-service handling.
+- **Detailed explanation:** Links procurement, receipt, issue, registration, commissioning, repeated operations, removal, return and disposition. Current software state is only one dimension; unknown historical stages are not fabricated for discovered meters.
+- **Related reference:** [Meter Lifecycle — Body of Knowledge](../01-body-of-knowledge/meter-lifecycle-body-of-knowledge.md).
+
+### Term: Premise Picker
+
+- **Status:** Current development handover term; release verification required.
+- **Simple meaning:** The selection interface for choosing the individual premise associated with a Sales Path work row.
+- **Detailed explanation:** Lists premises for the row's ERF and relevant join context; supports the offered new/copy choices. A premise is not selected merely because its address resembles another unit's. Server checks still enforce associations.
+- **Related reference:** [Current path guidance](../01-body-of-knowledge/meter-discovery-path-update-2026-09-25.md).
+
+### Term: Store Check-in
+
+- **Status:** Owner-directed lifecycle concept; form and final controlled wording proposed.
+- **Simple meaning:** Receipt of identified physical meters into a named store with accountable custody and condition evidence.
+- **Detailed explanation:** Receipt, acceptance and availability for issue can differ. The software Warehouse/cache is not a physical store.
+
+### Term: Store Check-out
+
+- **Status:** Owner-directed lifecycle concept; form and transition rules proposed.
+- **Simple meaning:** Issue of identified meters from a store to an authorised recipient for a stated purpose.
+- **Detailed explanation:** Dispatch does not prove installation. Link recipient, serials, job/issue reference and later reconciliation.
+
+### Term: Meter Custody
+
+- **Status:** Proposed explicit lifecycle dimension for review.
+- **Simple meaning:** Accountability for possession or handling of a specific physical meter at a particular time.
+- **Detailed explanation:** Custody is distinct from legal ownership, employment role, GPS position and connection status; handover records establish its changes.
+
+### Term: Return to Store
+
+- **Status:** Owner-directed lifecycle concept; exact record naming open.
+- **Simple meaning:** Physical receipt back into a named store of unused, removed or otherwise returning meters.
+- **Detailed explanation:** Preserve original identity, origin, condition and receiving evidence. Return is not automatic approval for reuse.
+
+### Term: Meter Retirement
+
+- **Status:** Proposed distinction within owner-requested lifecycle coverage; approval rules open.
+- **Simple meaning:** A recorded decision to end a meter's operational use.
+- **Detailed explanation:** May occur separately from physical removal, store return and disposal. It does not erase history.
+
+### Term: Meter Disposal
+
+- **Status:** Owner-requested lifecycle stage; exact process and approval rules open.
+- **Simple meaning:** The recorded final authorised handling of a meter after the relevant disposition decision.
+- **Detailed explanation:** Requires traceability to identity and authority. A disposed physical asset's historical evidence remains meaningful.

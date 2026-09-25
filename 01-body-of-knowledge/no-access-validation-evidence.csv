@@ -1,0 +1,30 @@
+source_id,line,function,schema_path,kind,expression
+FS-037,45,IrepsNoAccessSection,,test,/^other(?:\s*:|$)/i.test(rawSelectedValue)
+FS-011,26,,reason,required,"string()
+    .trim()
+    .required(""No Access reason is required."")"
+FS-011,29,,media,required,"array()
+    .test(
+      ""no-access-photo"",
+      ""No Access photograph is required."",
+      (value) =>
+        Array.isArray(value) &&
+        value.some(
+          (item) =>
+            item?.tag === ""noAccessPhoto"" &&
+            Boolean(item?.uri || item?.url),
+        ),
+    )
+    .required(""No Access photograph is required."")"
+FS-011,29,,media,test,"array()
+    .test(
+      ""no-access-photo"",
+      ""No Access photograph is required."",
+      (value) =>
+        Array.isArray(value) &&
+        value.some(
+          (item) =>
+            item?.tag === ""noAccessPhoto"" &&
+            Boolean(item?.uri || item?.url),
+        ),
+    )"

@@ -1,0 +1,58 @@
+source_id,line,function,schema_path,kind,expression
+FS-026,597,,,test,"object()
+  .shape({
+    accessData: object().shape({
+      access: object().shape({
+        hasAccess: string()
+          .oneOf([""yes"", ""no""])
+          .required(""Access outcome is required""),
+        reason: string().notRequired(),
+        reasonSelect: object().shape({
+          code: string().notRequired(),
+          label: string().notRequired(),
+          otherText: string().notRequired(),
+        }),
+      }),
+    }),
+
+    assignment: object().shape({
+      instructionSelect: object().shape({
+        code: string().notRequired(),
+        label: string().notRequired(),
+        otherText: string().notRequired(),
+      }),
+    }),
+
+    meterReading: object().shape({
+      reading: string().notRequired(),
+      tokenReading: string().notRequired(),
+      readingAt: string().notRequired(),
+      noReadingReason: object().shape({
+        code: string().notRequired(),
+        label: string().notRequired(),
+        otherText: string().notRequired(),
+      }),
+      readingVarianceReasonSelect: object().shape({
+        code: string().notRequired(),
+        label: string().notRequired(),
+        otherText: string().notRequired(),
+      }),
+      readingVarianceReason: string().notRequired(),
+      readingGps: object().nullable(),
+      executorNotes: string().notRequired(),
+    }),
+
+    media: array().of(object()),
+  })
+  .test(
+    ""mread-v01-validation"",
+    ""MREAD validation failed"",
+    function (values = {}) {
+      const access = values?.accessData?.access || {};
+      const meterReading = values?.meterReading || {};
+  "
+FS-026,601,,accessData.access.hasAccess,required,"string()
+          .oneOf([""yes"", ""no""])
+          .required(""Access outcome is required"")"
+FS-026,601,,accessData.access.hasAccess,oneOf,"string()
+          .oneOf([""yes"", ""no""])"

@@ -1,0 +1,56 @@
+source_id,line,function,schema_path,kind,expression
+FS-025,1477,,,test,"object()
+  .shape({
+    accessData: object().shape({
+      access: object().shape({
+        hasAccess: string()
+          .oneOf([""yes"", ""no""])
+          .required(""Access outcome is required""),
+        reason: string().notRequired(),
+        reasonSelect: object().shape({
+          code: string().notRequired(),
+          label: string().notRequired(),
+          otherText: string().notRequired(),
+        }),
+      }),
+    }),
+    inspection: object().shape({
+      captured: object().shape({
+        ast: object().shape({
+          astData: object().shape({
+            astNo: string().notRequired(),
+            astManufacturer: string().notRequired(),
+            astName: string().notRequired(),
+          }),
+        }),
+      }),
+    }),
+    media: array().of(object()),
+  })
+  .test(
+    ""inspection-v01-validation"",
+    ""Inspection validation failed"",
+    function (values = {}) {
+      const noAccess = isNoAccess(values);
+      const media = values?.media || [];
+      const lastKnownMeterKind =
+        values?.inspection?.lastKnown?.ast?.astData?.meter?.type ||
+        values?.ast?.astData?.meter?.type ||
+        """";
+
+      if (!isKnownInspectionMeterKind(lastKnownMeterKind)) {
+        return this.createError({
+          path: ""inspection.captured.ast.astData.meter.type"",
+          message:
+            ""Inspection is blocked because the existing iREPS meter kind is unknown. Update the meter record before creating an INSPECTION."",
+        });
+      }
+
+      if (noAccess) {
+        if (
+          !isSelectWithOtherFilled(values?"
+FS-025,1481,,accessData.access.hasAccess,required,"string()
+          .oneOf([""yes"", ""no""])
+          .required(""Access outcome is required"")"
+FS-025,1481,,accessData.access.hasAccess,oneOf,"string()
+          .oneOf([""yes"", ""no""])"

@@ -1,0 +1,96 @@
+source_id,line,function,schema_path,kind,expression
+FS-048,817,FormPremise,address.suburbName,required,"Yup.string().trim().required(""Mandatory"")"
+FS-048,818,FormPremise,address.strNo,required,"Yup.string().trim().required(""Mandatory"")"
+FS-048,819,FormPremise,address.strName,required,"Yup.string().trim().required(""Mandatory"")"
+FS-048,820,FormPremise,address.strType,required,"Yup.string()
+          .notOneOf([""Select...""], ""Please select a street type"")
+          .required(""Required"")"
+FS-048,826,FormPremise,propertyType.type,required,"Yup.string()
+          .notOneOf([""Select...""], ""Please select a property type"")
+          .required(""Required"")"
+FS-048,832,FormPremise,propertyType.name,when,"Yup.string().when(""type"", ([type], schema) =>
+          requiresPropertyName(type)
+            ? schema.trim().required(`${premiseNameLabel(type)} is mandatory`)
+            : schema.optional(),
+        )"
+FS-048,834,FormPremise,propertyType.name,required,schema.trim().required(`${premiseNameLabel(type)} is mandatory`)
+FS-048,838,FormPremise,propertyType.unitNo,when,"Yup.string().when(""type"", {
+          is: (val) => requiresUnitNo(val, unitNoValidationContext),
+          then: (schema) => schema.trim().required(""Unit No is mandatory""),
+          otherwise: (schema) => schema.optional(),
+        })"
+FS-048,840,FormPremise,propertyType.unitNo.then,required,"schema.trim().required(""Unit No is mandatory"")"
+FS-048,845,FormPremise,context,required,"Yup.string()
+        .oneOf([""Township"", ""Suburb""], ""Please select a valid category"")
+        .required(""Required"")"
+FS-048,845,FormPremise,context,oneOf,"Yup.string()
+        .oneOf([""Township"", ""Suburb""], ""Please select a valid category"")"
+FS-048,850,FormPremise,occupancy.status,required,"Yup.string()
+          .oneOf(
+            [
+              ""Occupied"",
+              ""Unoccupied"",
+              ""Vandalised"",
+              ""Under Construction"",
+              ""Dilapidated"",
+              ""Accessed"",
+            ],
+            ""Invalid Status"",
+          )
+          .required(""Required"")"
+FS-048,850,FormPremise,occupancy.status,oneOf,"Yup.string()
+          .oneOf(
+            [
+              ""Occupied"",
+              ""Unoccupied"",
+              ""Vandalised"",
+              ""Under Construction"",
+              ""Dilapidated"",
+              ""Accessed"",
+            ],
+            ""Invalid Status"",
+          )"
+FS-048,866,FormPremise,geometry.centroid,test,"Yup.object()
+          .shape({
+            lat: Yup.number().required(""Latitude is required""),
+            lng: Yup.number().required(""Longitude is required""),
+          })
+          .test(
+            ""moved-from-erf-centroid"",
+            ""You must move the GPS pin away from the default ERF position"",
+            function (value) {
+              if (isEditLike) return true;
+
+              const hasValidPoint =
+                typeof value?.lat === ""number"" &&
+                typeof value?.lng === ""number"";
+
+              if (!hasValidPoint) return false;
+
+              const hasDefaultPoint =
+                typeof erfCentroid?.lat === ""number"" &&
+                typeof erfCentroid?.lng === ""number"";
+
+              if (!hasDefaultPoint) return true;
+
+              return !isSamePoint(value, erfCentroid);
+            },
+          )"
+FS-048,868,FormPremise,geometry.centroid.lat,required,"Yup.number().required(""Latitude is required"")"
+FS-048,869,FormPremise,geometry.centroid.lng,required,"Yup.number().required(""Longitude is required"")"
+FS-048,894,FormPremise,media,test,"Yup.array()
+        .default([])
+        .test(
+          ""property-address-photo-required"",
+          ""Property Address photo is mandatory once street number and street name are completed"",
+          (media, context) => {
+            const strNo = context?.parent?.address?.strNo;
+            const strName = context?.parent?.address?.strName;
+
+            const addressCompleted = isFilled(strNo) && isFilled(strName);
+
+            if (!addressCompleted) return true;
+
+            return hasTaggedMedia(media, ""propertyAdrPhoto"");
+          },
+        )"

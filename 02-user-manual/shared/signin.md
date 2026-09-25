@@ -1,64 +1,43 @@
-> **Academy status:** Imported draft; release verification required. Imported 2026-09-23. Source: `SRC-004` in the [source register](../../00-academy-governance/SOURCE_REGISTER.csv). [Owner decisions](../../00-academy-governance/OWNER_DECISIONS.md) take precedence over conflicting inherited statements.
+# Sign In — User Manual
 
-# Form: Sign in
+Module **FRM-001** · Baseline **25 September 2026** · Application: **Observed source; release unverified**.
 
-| | |
-| --- | --- |
-| Screen | `app/(auth)/signin.jsx`, route `/signin` |
-| Rules | `AU-R001` sections 3, 6 and 7.1 |
-| Who uses it | Everybody, every working day |
+Draft for review. Observed source and documented rules are evidence of implementation intent, not proof of deployment, runtime success or production acceptance. Read the source baseline and open questions before using this as a release-specific lesson.
 
-## What it is for
+[Body of Knowledge](../../01-body-of-knowledge/sign-in-body-of-knowledge.md) · [User Manual](signin.md) · [Field catalogue](../../01-body-of-knowledge/sign-in-field-catalogue.md) · [Error register](../../01-body-of-knowledge/sign-in-error-register.md) · [Practical examples](../../10-assessments/sign-in-scenarios.md)
 
-Proving who you are. Nothing else. What you may see afterwards is decided by your user record, not by this screen.
+## Before you start
 
-## What you fill in
+Mobile and web share the account, but routing depends on the account record. A person may need a password change, manager authorisation or workbase selection before reaching operational screens. Sign In is not meter registration.
 
-| Field | Notes |
-| --- | --- |
-| Email address | Spaces at each end are removed and it is read as lower case, so `Fikile@iREPS.co.za ` works |
-| Password | Used exactly as typed, except for spaces at each end |
+Use a named, verified build in the intended environment. Confirm identity, workbase and action-specific access. Check the subject before editing or submitting; similarly named people, premises, meters and batches are not interchangeable.
 
-The eye beside the password shows what you typed. **Lost access?** under the password opens Password reset.
+## Procedure
 
-## What happens when you tap Signin
+1. Open Sign In in the intended environment.
+2. Enter the account email and password; check the email before submitting.
+3. Wait for the authentication result and for the iREPS user record to load.
+4. Follow the route offered: password change, pending approval, workbase selection or work.
+5. Check your displayed identity and active workbase before capturing any operational information.
 
-1. There is no confirmation window. Sign in is your own door and you tap it many times a day.
-2. The button shows a spinner while iREPS checks you and loads your details.
-3. When it works, the app opens on the screen you belong on. There is no "well done" window; the app opening is the answer.
-4. When it fails, a window tells you what went wrong, and the form comes back with what you typed.
+## What to check in the result
 
-Where you land:
+A newly registered fieldworker can authenticate but still sees pending approval. The correct next action is manager authorisation, not creating a second account.
 
-| Your state | Where you go |
-| --- | --- |
-| The office has demanded a new password | Change password, and nowhere else until it is done |
-| Your manager has not authorised you yet | The waiting screen |
-| You have no active workbase | Select workbase |
-| All set | Your work |
+Record the returned identifier and actual result for this action. Where the action creates or updates stored information, re-open the intended record and inspect the outcome. A local save, upload progress indicator, confirmation of a request, or downloaded export must be described by its actual meaning.
 
-**It cannot hang.** If your details have not arrived after 30 seconds, the screen stops waiting, tells you, and gives you your screen back.
+## When something prevents completion
 
-## Error Register
+Verify the actual post-login route on each release. A successful Firebase sign-in followed by a missing user record is a partial result. Do not describe it as an incorrect password.
 
-Everything you can be told after tapping Signin.
+For a field validation error, correct the specific input and recheck its dependent evidence. For a permission or state refusal, resolve authority or record state through the responsible workstream. After a timeout or partial success, reconcile the original attempt before making a new one. Preserve identifiers and evidence; never publish credentials in an escalation.
 
-| What you see | What happened | What to do |
-| --- | --- | --- |
-| "Email or password is not right." | The password is wrong, or there is no account for that email | Check both and try again. Use Lost access? if you cannot remember |
-| "That does not look like an email address." | The email is mistyped, for example a missing @ | Correct the email |
-| **Account stopped** — "Speak to your manager." | The account has been disabled | Speak to your manager |
-| **Too many tries** — "Wait a few minutes and try again." | Too many wrong tries from this phone | Wait a few minutes. Use Lost access? in the meantime |
-| **No connection** — "Check your signal and try again." | The phone could not reach iREPS | Move to signal and try again |
-| **Your details did not load** — "You are signed in, but they did not arrive. Check your signal and try again." | You are through, but your record did not arrive in 30 seconds | Try again. If it keeps happening, tell your manager |
-| **Sign in failed** — "Try again, and tell your manager if it keeps happening." | Something else | Try again, then report it |
+[Consult the module error register](../../01-body-of-knowledge/sign-in-error-register.md) and [field catalogue](../../01-body-of-knowledge/sign-in-field-catalogue.md).
 
-## What it does not do
+## Training exercise
 
-- It does not create accounts. That is Sign up.
-- It does not change your password. That is Password reset, or Change password once you are in.
-- It does not decide whether you may work. Your manager authorises you.
+[Use the practical scenarios and their expected evidence](../../10-assessments/sign-in-scenarios.md). Release-specific screenshots, all conditional branches and permission tests remain publication requirements.
 
----
+## Preserved task details and current qualification
 
-**The web console works the same way.** Its sign-in, password reset and change-password screens follow this same form and this same Error Register (AU-R001 10).
+Sign In does not ask for routine confirmation. It shows progress, and successful navigation is the success outcome. The source waits up to 30 seconds for the user record; an authenticated identity with a missing record is a different failure from a wrong password. Current source trims email and password edges and lowercases the email. Preserve the distinction between a normalization rule and the actual inspected implementation.

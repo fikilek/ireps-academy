@@ -1,0 +1,88 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-022-E001,unauthenticated,Mission denied: Authentication required.,Server source: authorizeFieldWorker,"new HttpsError(
+      ""unauthenticated"",
+      ""Mission denied: Authentication required."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,3268
+FRM-022-E002,invalid-argument,Field worker uid is required.,Server source: authorizeFieldWorker,"new HttpsError(""invalid-argument"", ""Field worker uid is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,3277
+FRM-022-E003,permission-denied,Mission denied: Caller profile not found.,Server source: authorizeFieldWorker,"new HttpsError(
+        ""permission-denied"",
+        ""Mission denied: Caller profile not found."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,3285
+FRM-022-E004,permission-denied,Mission denied: Only MNG may authorize field workers.,Server source: authorizeFieldWorker,"new HttpsError(
+        ""permission-denied"",
+        ""Mission denied: Only MNG may authorize field workers."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,3299
+FRM-022-E005,failed-precondition,Caller is not linked to a valid service provider.,Server source: authorizeFieldWorker,"new HttpsError(
+        ""failed-precondition"",
+        ""Caller is not linked to a valid service provider."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,3306
+FRM-022-E006,not-found,Field worker was not found.,Server source: authorizeFieldWorker,"new HttpsError(""not-found"", ""Field worker was not found."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,3317
+FRM-022-E007,failed-precondition,Selected user is not a field worker.,Server source: authorizeFieldWorker,"new HttpsError(
+        ""failed-precondition"",
+        ""Selected user is not a field worker."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,3331
+FRM-022-E008,failed-precondition,Field worker is not linked to a valid service provider.,Server source: authorizeFieldWorker,"new HttpsError(
+        ""failed-precondition"",
+        ""Field worker is not linked to a valid service provider."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,3338
+FRM-022-E009,failed-precondition,Field worker is not awaiting manager confirmation.,Server source: authorizeFieldWorker,"new HttpsError(
+        ""failed-precondition"",
+        ""Field worker is not awaiting manager confirmation."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,3348
+FRM-022-E010,permission-denied,This field worker is outside the manager structure.,Server source: authorizeFieldWorker,"new HttpsError(
+        ""permission-denied"",
+        ""This field worker is outside the manager structure."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,3369
+FRM-022-E011,failed-precondition,No inherited workbases were resolved for this field worker.,Server source: authorizeFieldWorker,"new HttpsError(
+        ""failed-precondition"",
+        ""No inherited workbases were resolved for this field worker."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,3383
+FRM-022-E012,internal,"error.message || ""Could not authorize field worker.""",Server source: authorizeFieldWorker,"new HttpsError(
+      ""internal"",
+      error.message || ""Could not authorize field worker."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-088,ireps-web/functions/index.js,3420
+FRM-022-E013,invalid-argument,"`${label} must be one of ${VALID_USER_ROLES.join("", "")}.`",Server source: assertValidRole,"new HttpsError(
+      ""invalid-argument"",
+      `${label} must be one of ${VALID_USER_ROLES.join("", "")}.`,
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-151,ireps-web/functions/users/helpers.js,58
+FRM-022-E014,permission-denied,"Only SPU, ADM or MNG may change user roles.",Server source: assertRoleManager,"new HttpsError(
+      ""permission-denied"",
+      ""Only SPU, ADM or MNG may change user roles."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-151,ireps-web/functions/users/helpers.js,71
+FRM-022-E015,unauthenticated,Authentication is required.,Server source: assertNotSelfRoleChange,"new HttpsError(""unauthenticated"", ""Authentication is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-151,ireps-web/functions/users/helpers.js,85
+FRM-022-E016,invalid-argument,Target user uid is required.,Server source: assertNotSelfRoleChange,"new HttpsError(""invalid-argument"", ""Target user uid is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-151,ireps-web/functions/users/helpers.js,89
+FRM-022-E017,permission-denied,You cannot change your own role.,Server source: assertNotSelfRoleChange,"new HttpsError(
+      ""permission-denied"",
+      ""You cannot change your own role."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-151,ireps-web/functions/users/helpers.js,93
+FRM-022-E018,permission-denied,You cannot change a user at your role level or above.,Server source: assertRoleHierarchy,"new HttpsError(
+      ""permission-denied"",
+      ""You cannot change a user at your role level or above."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-151,ireps-web/functions/users/helpers.js,122
+FRM-022-E019,permission-denied,You cannot assign a role at your role level or above.,Server source: assertRoleHierarchy,"new HttpsError(
+      ""permission-denied"",
+      ""You cannot assign a role at your role level or above."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-151,ireps-web/functions/users/helpers.js,129
+FRM-022-E020,failed-precondition,`User already has role ${normalizedPreviousRole}.`,Server source: assertRoleActuallyChanges,"new HttpsError(
+      ""failed-precondition"",
+      `User already has role ${normalizedPreviousRole}.`,
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-151,ireps-web/functions/users/helpers.js,147
+FRM-022-E021,not-found,`${label} user was not found.`,Server source: getUserSnapshotOrThrow,"new HttpsError(""not-found"", `${label} user was not found.`)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-153,ireps-web/functions/users/updateUserCallable.js,23
+FRM-022-E022,failed-precondition,User is currently assigned to an operational team. Remove the user from the team before assigning this role.,Server source: assertTargetMayLeaveOperationalRole,"new HttpsError(
+      ""failed-precondition"",
+      ""User is currently assigned to an operational team. Remove the user from the team before assigning this role."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-153,ireps-web/functions/users/updateUserCallable.js,39
+FRM-022-E023,internal,Could not update the user role.,Server source: toCallableError,"new HttpsError(
+    ""internal"",
+    ""Could not update the user role."",
+  )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-153,ireps-web/functions/users/updateUserCallable.js,49
+FRM-022-E024,unauthenticated,Authentication is required.,Server source: updateUserCallable,"new HttpsError(""unauthenticated"", ""Authentication is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-153,ireps-web/functions/users/updateUserCallable.js,59
+FRM-022-E025,invalid-argument,Target user uid is required.,Server source: updateUserCallable,"new HttpsError(""invalid-argument"", ""Target user uid is required."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-153,ireps-web/functions/users/updateUserCallable.js,66
+FRM-022-E026,failed-precondition,Target user does not have a matching Firebase Auth account.,Server source: updateUserCallable,"new HttpsError(
+      ""failed-precondition"",
+      ""Target user does not have a matching Firebase Auth account."",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-153,ireps-web/functions/users/updateUserCallable.js,101
+FRM-022-E027,internal,Role update failed and Firebase Auth rollback also failed. Administrator investigation is required.,Server source: updateUserCallable,"new HttpsError(
+          ""internal"",
+          ""Role update failed and Firebase Auth rollback also failed. Administrator investigation is required."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-153,ireps-web/functions/users/updateUserCallable.js,147

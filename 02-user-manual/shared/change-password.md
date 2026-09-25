@@ -1,55 +1,39 @@
-> **Academy status:** Imported draft; release verification required. Imported 2026-09-23. Source: `SRC-006` in the [source register](../../00-academy-governance/SOURCE_REGISTER.csv). [Owner decisions](../../00-academy-governance/OWNER_DECISIONS.md) take precedence over conflicting inherited statements.
+# Change Password — User Manual
 
-# Form: Change password
+Module **FRM-004** · Baseline **25 September 2026** · Application: **Observed source; release unverified**.
 
-| | |
-| --- | --- |
-| Screen | `app/onboarding/change-password.js`, route `/onboarding/change-password` |
-| Rules | `AU-R001` sections 1, 5, 6 and 7.4 |
-| Who uses it | Anybody the office has told to set a new password, and every invited manager, supervisor or admin on their first sign-in |
+Draft for review. Observed source and documented rules are evidence of implementation intent, not proof of deployment, runtime success or production acceptance. Read the source baseline and open questions before using this as a release-specific lesson.
 
-## What it is for
+[Body of Knowledge](../../01-body-of-knowledge/change-password-body-of-knowledge.md) · [User Manual](change-password.md) · [Field catalogue](../../01-body-of-knowledge/change-password-field-catalogue.md) · [Error register](../../01-body-of-knowledge/change-password-error-register.md) · [Practical examples](../../10-assessments/change-password-scenarios.md)
 
-Setting your own password when iREPS demands it. This screen appears by itself — you do not go looking for it.
+## Before you start
 
-**You cannot tap past it.** While the demand stands, this is the only screen you can reach, whatever your role, whatever your onboarding state, and however long you have been working on iREPS.
+A credential update and clearing the iREPS must-change flag are separate writes. If the first succeeds and the second fails, the new password is already effective. Do not tell the person to keep using the old password.
 
-## Why it appeared
+Use a named, verified build in the intended environment. Confirm identity, workbase and action-specific access. Check the subject before editing or submitting; similarly named people, premises, meters and batches are not interchangeable.
 
-- You were invited by the office and signed in with the temporary password you were given.
-- The office has demanded that everybody set a new password — for a new password standard, or after something suspicious.
+## Procedure
 
-## What you fill in
+1. Sign in and follow the mandatory Change Password route when shown.
+2. Enter a new password and matching confirmation.
+3. Confirm and wait for the result.
+4. If the password changed but recording failed, use the new password and report the incomplete onboarding acknowledgement.
+5. Verify that the required gate clears and the expected next onboarding step appears.
 
-| Field | Notes |
-| --- | --- |
-| New password | At least 8 characters. Spaces at each end are removed |
-| Confirm password | The same password again |
+## What to check in the result
 
-## What happens when you tap Save
+The network fails after Firebase changes the credential. The result states that the change was not recorded in iREPS. The person signs in using the new password; the manager investigates the remaining flag.
 
-1. **A confirmation window:** you will use the new password the next time you sign in.
-2. **Progress** while it is saved.
-3. **A result window**, and then iREPS takes you where you belong: your work if you already have an active workbase, or Select workbase if you do not.
+Record the returned identifier and actual result for this action. Where the action creates or updates stored information, re-open the intended record and inspect the outcome. A local save, upload progress indicator, confirmation of a request, or downloaded export must be described by its actual meaning.
 
-Changing the password clears the demand **and nothing else**. Your role, your authorisation and your workbase are untouched: a working field worker is still a working field worker afterwards, and somebody still being onboarded carries on where they were.
+## When something prevents completion
 
-## Error Register
+The rule records no voluntary signed-in password-change route at present. The primary select-workbase screen still clears mustChangePassword: this conflicts with the rule that only an actual password change clears it. Flag for engineering review; Academy does not patch it.
 
-| What you see | What happened | What to do |
-| --- | --- | --- |
-| "Password must be at least 8 characters." | Too short | Use a longer one |
-| "The two passwords are not the same." | The two fields differ | Retype them both |
-| **Sign in again** — "For your safety, iREPS needs a fresh sign-in before you change your password." | You have been signed in a long time; such a change needs a fresh sign-in | Sign out, sign in, come back |
-| **No connection** — "Check your signal and try again." | The phone could not reach iREPS | Move to signal and try again |
-| **Password not changed** — "Try again, and tell your manager if it keeps happening." | Something else | Try again, then report it |
+For a field validation error, correct the specific input and recheck its dependent evidence. For a permission or state refusal, resolve authority or record state through the responsible workstream. After a timeout or partial success, reconcile the original attempt before making a new one. Preserve identifiers and evidence; never publish credentials in an escalation.
 
-## What it does not do
+[Consult the module error register](../../01-body-of-knowledge/change-password-error-register.md) and [field catalogue](../../01-body-of-knowledge/change-password-field-catalogue.md).
 
-- It does not change your email.
-- It does not move you backwards or forwards in onboarding.
-- It does not tell your manager what your password is. Nobody at iREPS can see it.
+## Training exercise
 
----
-
-**The web console works the same way.** Its sign-in, password reset and change-password screens follow this same form and this same Error Register (AU-R001 10).
+[Use the practical scenarios and their expected evidence](../../10-assessments/change-password-scenarios.md). Release-specific screenshots, all conditional branches and permission tests remain publication requirements.

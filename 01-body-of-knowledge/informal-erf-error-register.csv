@@ -1,0 +1,222 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-012-E001,LOCAL_MESSAGE,"The Informal ERF boundary is captured, but iREPS has not yet captured the phone GPS required for the forensic submission record. Keep location enabled, return to the map, and try again.",Client source: FormInformalErf,"Alert.alert(
+            ""Device GPS Not Captured"",
+            ""The Informal ERF boundary is captured, but iREPS has not yet captured the phone GPS required for the forensic submission record. Keep location enabled, return to the map, and try again."",
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-041,ireps-mobile/src/features/erfs/FormInformalErf.js,501
+FRM-012-E002,LOCAL_MESSAGE,"submissionResult?.duplicate
+              ? ""This Informal ERF was already created. No duplicate was added.""
+              : `The Informal ERF was created successfully.\n\n${submissionResult?.erfId || """"}`",Client source: FormInformalErf,"Alert.alert(
+            ""Informal ERF Created"",
+            submissionResult?.duplicate
+              ? ""This Informal ERF was already created. No duplicate was added.""
+              : `The Informal ERF was created successfully.\n\n${submissionResult?.erfId || """"}`,
+            [
+              {
+                text: ""OK"",
+                onPress: () => router.back(),
+              },
+            ],
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-041,ireps-mobile/src/features/erfs/FormInformalErf.js,556
+FRM-012-E003,LOCAL_MESSAGE,"submissionResult?.message ||
+              ""The Informal ERF is saved on this device and will submit automatically when the network is available.""",Client source: FormInformalErf,"Alert.alert(
+            ""Saved Locally"",
+            submissionResult?.message ||
+              ""The Informal ERF is saved on this device and will submit automatically when the network is available."",
+            [
+              {
+                text: ""OK"",
+                onPress: () => router.back(),
+              },
+            ],
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-041,ireps-mobile/src/features/erfs/FormInformalErf.js,573
+FRM-012-E004,LOCAL_MESSAGE,"submissionResult?.message ||
+              ""The server rejected this Informal ERF.""",Client source: FormInformalErf,"Alert.alert(
+            ""Informal ERF Not Created"",
+            submissionResult?.message ||
+              ""The server rejected this Informal ERF."",
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-041,ireps-mobile/src/features/erfs/FormInformalErf.js,589
+FRM-012-E005,LOCAL_MESSAGE,"submissionResult?.message ||
+            ""The Informal ERF could not be submitted or saved locally.""",Client source: FormInformalErf,"Alert.alert(
+          ""Submission Failed"",
+          submissionResult?.message ||
+            ""The Informal ERF could not be submitted or saved locally."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-041,ireps-mobile/src/features/erfs/FormInformalErf.js,598
+FRM-012-E006,error?.code,error?.message,Client source: submitInformalErfOnline,"{
+      erfId: identifiedPayload.erfId,
+      code: error?.code,
+      message: error?.message,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-055,ireps-mobile/src/services/informalErfSubmissionController.js,445
+FRM-012-E007,code,message,Client source: getInformalErfErrorDetails,"{
+    code,
+    message,
+    details,
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-055,ireps-mobile/src/services/informalErfSubmissionController.js,526
+FRM-012-E008,errorInfo.code,errorInfo.message,Client source: submitInformalErfWithFallback,"{
+      success: false,
+      mode: ""REJECTED"",
+      code: errorInfo.code,
+      firebaseCode: errorInfo.code,
+      message: errorInfo.message,
+      details: errorInfo.details,
+      erfId: null,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-055,ireps-mobile/src/services/informalErfSubmissionController.js,629
+FRM-012-E009,OFFLINE,"queueResult?.success
+        ? ""No network was available. The Informal ERF was saved locally.""
+        : queueResult?.message",Client source: submitInformalErfWithFallback,"{
+      success: queueResult?.success === true,
+      mode: queueResult?.success ? ""QUEUED"" : ""FAILED"",
+      reason: ""OFFLINE"",
+      code: ""OFFLINE"",
+      firebaseCode: null,
+      message: queueResult?.success
+        ? ""No network was available. The Informal ERF was saved locally.""
+        : queueResult?.message,
+      erfId: identifiedPayload.erfId,
+      queueItem: queueResult?.queueItem || null,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-055,ireps-mobile/src/services/informalErfSubmissionController.js,659
+FRM-012-E010,"onlineResult?.result?.code || ""INFORMAL_ERF_CREATED""","onlineResult?.result?.message ||
+        ""Informal ERF created successfully.""",Client source: submitInformalErfWithFallback,"{
+      success: true,
+      mode: ""ONLINE"",
+      code: onlineResult?.result?.code || ""INFORMAL_ERF_CREATED"",
+      firebaseCode: null,
+      message:
+        onlineResult?.result?.message ||
+        ""Informal ERF created successfully."",
+      erfId:
+        onlineResult?.result?.erfId ||
+        identifiedPayload.erfId,
+      parcelNo: onlineResult?.result?.parcelNo || null,
+      duplicate: onlineResult?.result?.duplicate === true,
+      result: onlineResult?.result || null,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-055,ireps-mobile/src/services/informalErfSubmissionController.js,676
+FRM-012-E011,errorInfo.code,errorInfo.message,Client source: submitInformalErfWithFallback,"{
+        erfId: identifiedPayload.erfId,
+        code: errorInfo.code,
+        message: errorInfo.message,
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-055,ireps-mobile/src/services/informalErfSubmissionController.js,695
+FRM-012-E012,errorInfo.code,errorInfo.message,Client source: submitInformalErfWithFallback,"{
+        success: false,
+        mode: ""REJECTED"",
+        message: errorInfo.message,
+        code: errorInfo.code,
+        firebaseCode: errorInfo.code,
+        details: errorInfo.details,
+        erfId: identifiedPayload.erfId,
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-055,ireps-mobile/src/services/informalErfSubmissionController.js,701
+FRM-012-E013,errorInfo.code,errorInfo.message,Client source: submitInformalErfWithFallback,"{
+        erfId: identifiedPayload.erfId,
+        code: errorInfo.code,
+        message: errorInfo.message,
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-055,ireps-mobile/src/services/informalErfSubmissionController.js,713
+FRM-012-E014,errorInfo.code,errorInfo.message,Client source: submitInformalErfWithFallback,"{
+        success: false,
+        mode: ""FAILED"",
+        message: errorInfo.message,
+        code: errorInfo.code,
+        firebaseCode: errorInfo.code,
+        details: errorInfo.details,
+        erfId: identifiedPayload.erfId,
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-055,ireps-mobile/src/services/informalErfSubmissionController.js,719
+FRM-012-E015,errorInfo.code,errorInfo.message,Client source: submitInformalErfWithFallback,"{
+      erfId: identifiedPayload.erfId,
+      code: errorInfo.code,
+      message: errorInfo.message,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-055,ireps-mobile/src/services/informalErfSubmissionController.js,733
+FRM-012-E016,errorInfo.code,"queueResult?.success
+        ? ""The server is temporarily unavailable. The Informal ERF was saved locally and will retry automatically.""
+        : queueResult?.message",Client source: submitInformalErfWithFallback,"{
+      success: queueResult?.success === true,
+      mode: queueResult?.success ? ""QUEUED"" : ""FAILED"",
+      reason: ""TEMPORARY_FAILURE"",
+      message: queueResult?.success
+        ? ""The server is temporarily unavailable. The Informal ERF was saved locally and will retry automatically.""
+        : queueResult?.message,
+      code: errorInfo.code,
+      firebaseCode: errorInfo.code,
+      details: errorInfo.details,
+      erfId: identifiedPayload.erfId,
+      queueItem: queueResult?.queueItem || null,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-055,ireps-mobile/src/services/informalErfSubmissionController.js,746
+FRM-012-E017,invalid-argument,message,Server source: throwInvalidArgument,"new HttpsError(
+    ""invalid-argument"",
+    message,
+    permanentDetails(details),
+  )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-090,ireps-web/functions/informal-erfs/submitInformalErfCallable.js,63
+FRM-012-E018,permission-denied,message,Server source: throwPermissionDenied,"new HttpsError(
+    ""permission-denied"",
+    message,
+    permanentDetails(details),
+  )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-090,ireps-web/functions/informal-erfs/submitInformalErfCallable.js,71
+FRM-012-E019,failed-precondition,message,Server source: throwFailedPrecondition,"new HttpsError(
+    ""failed-precondition"",
+    message,
+    permanentDetails(details),
+  )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-090,ireps-web/functions/informal-erfs/submitInformalErfCallable.js,79
+FRM-012-E020,already-exists,message,Server source: throwAlreadyExists,"new HttpsError(
+    ""already-exists"",
+    message,
+    permanentDetails(details),
+  )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-090,ireps-web/functions/informal-erfs/submitInformalErfCallable.js,87
+FRM-012-E021,unavailable,"The Informal ERF exists, but geofence counts could not be refreshed. Retry safely with the same erfId.",Server source: refreshMatchedGeoFenceCountsOrThrow,"new HttpsError(
+      ""unavailable"",
+      ""The Informal ERF exists, but geofence counts could not be refreshed. Retry safely with the same erfId."",
+      temporaryDetails({
+        erfId: args.erfId,
+        parcelNo: args.parcelNo,
+        erfCreated: true,
+      }),
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-090,ireps-web/functions/informal-erfs/submitInformalErfCallable.js,234
+FRM-012-E022,unavailable,"The Informal ERF exists, but the ERF registry could not be refreshed. Retry safely with the same erfId.",Server source: refreshErfRegistryProjectionOrThrow,"new HttpsError(
+      ""unavailable"",
+      ""The Informal ERF exists, but the ERF registry could not be refreshed. Retry safely with the same erfId."",
+      temporaryDetails({
+        erfId,
+        parcelNo,
+        erfCreated: true,
+        registryProjected: false,
+      }),
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-090,ireps-web/functions/informal-erfs/submitInformalErfCallable.js,296
+FRM-012-E023,unavailable,"The Informal ERF exists, but the Ward Registry could not be refreshed. Retry safely with the same erfId.",Server source: refreshWardRegistryProjectionOrThrow,"new HttpsError(
+      ""unavailable"",
+      ""The Informal ERF exists, but the Ward Registry could not be refreshed. Retry safely with the same erfId."",
+      temporaryDetails({
+        erfId,
+        parcelNo,
+        lmPcode,
+        wardPcode,
+        erfCreated: true,
+        wardRegistryProjected: false,
+      }),
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-090,ireps-web/functions/informal-erfs/submitInformalErfCallable.js,369
+FRM-012-E024,"duplicate
+      ? ""INFORMAL_ERF_ALREADY_CREATED""
+      : ""INFORMAL_ERF_CREATED""","duplicate
+      ? ""This Informal ERF was already created.""
+      : ""Informal ERF created successfully.""",Server source: buildSuccessResult,"{
+    success: true,
+    code: duplicate
+      ? ""INFORMAL_ERF_ALREADY_CREATED""
+      : ""INFORMAL_ERF_CREATED"",
+    erfId,
+    parcelNo,
+    duplicate,
+    message: duplicate
+      ? ""This Informal ERF was already created.""
+      : ""Informal ERF created successfully."",
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-090,ireps-web/functions/informal-erfs/submitInformalErfCallable.js,385
+FRM-012-E025,unauthenticated,Authentication is required.,Server source: submitInformalErfCallable,"new HttpsError(
+        ""unauthenticated"",
+        ""Authentication is required."",
+        permanentDetails(),
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-090,ireps-web/functions/informal-erfs/submitInformalErfCallable.js,410
+FRM-012-E026,internal,The Firebase Storage bucket is not configured.,Server source: submitInformalErfCallable,"new HttpsError(
+        ""internal"",
+        ""The Firebase Storage bucket is not configured."",
+        temporaryDetails(),
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-090,ireps-web/functions/informal-erfs/submitInformalErfCallable.js,458
+FRM-012-E027,internal,The Informal ERF could not be created.,Server source: submitInformalErfCallable,"new HttpsError(
+        ""internal"",
+        ""The Informal ERF could not be created."",
+        temporaryDetails({ erfId }),
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-090,ireps-web/functions/informal-erfs/submitInformalErfCallable.js,924

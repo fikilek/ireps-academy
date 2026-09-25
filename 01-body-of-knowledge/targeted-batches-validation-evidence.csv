@@ -1,0 +1,23 @@
+source_id,line,function,schema_path,kind,expression
+FS-164,328,PaginationControls,,min,"Math.min(currentPage * pageSize, totalRows)"
+FS-164,677,TargetedBatchesPage,,max,"Math.max(1, Math.ceil(sortedUploads.length / pageSize))"
+FS-164,678,TargetedBatchesPage,,min,"Math.min(currentPage, totalPages)"
+FS-171,26,SelectedTargetMembers,,max,"Math.max(members.length - visibleMembers.length, 0)"
+FS-172,12,TargetedBatchDraftTable,,max,"Math.max(1, Math.ceil(filtered.length / pageSize))"
+FS-172,12,TargetedBatchDraftTable,,min,"Math.min(page, pages)"
+FS-172,16,controls,,min,"Math.min(start + pageSize, filtered.length)"
+FS-181,13,parseOtherCount,,test,/^\d+$/.test(trimmed)
+FS-181,21,menuPositionFor,,max,"Math.max(8, Math.min(rect.left, window.innerWidth - MENU_WIDTH - 8))"
+FS-181,21,menuPositionFor,,min,"Math.min(rect.left, window.innerWidth - MENU_WIDTH - 8)"
+FS-182,198,PaginationControls,,min,"Math.min(currentPage * pageSize, totalRows)"
+FS-182,622,NonGpsStreetPlanning,,max,"Math.max(
+    1,
+    Math.ceil(filteredTowns.length / townPageSize),
+  )"
+FS-182,626,NonGpsStreetPlanning,,min,"Math.min(townPage, townTotalPages)"
+FS-182,656,NonGpsStreetPlanning,,max,"Math.max(
+    1,
+    Math.ceil(filteredStreets.length / streetPageSize),
+  )"
+FS-182,660,NonGpsStreetPlanning,,min,"Math.min(streetPage, streetTotalPages)"
+FS-173,45,Pagination,,min,"Math.min(currentPage * pageSize, totalRows)"

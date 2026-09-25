@@ -1,0 +1,338 @@
+error_id,code,message,source_stage,trigger_evidence,data_state,remedy,source_id,source_path,line
+FRM-017-E001,LOCAL_MESSAGE,"{
+          path: ""accessData.access.reasonSelect"",
+          message: ""No-access reason is required"",
+        }",Client source: ,"this.createError({
+          path: ""accessData.access.reasonSelect"",
+          message: ""No-access reason is required"",
+        })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-024,ireps-mobile/app/(tabs)/asts/disconnection.jsx,483
+FRM-017-E002,LOCAL_MESSAGE,"{
+          path: ""media"",
+          message: ""No access photo is required"",
+        }",Client source: ,"this.createError({
+          path: ""media"",
+          message: ""No access photo is required"",
+        })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-024,ireps-mobile/app/(tabs)/asts/disconnection.jsx,490
+FRM-017-E003,LOCAL_MESSAGE,"{
+        path: ""disconnection.level"",
+        message: ""Disconnection level is required"",
+      }",Client source: ,"this.createError({
+        path: ""disconnection.level"",
+        message: ""Disconnection level is required"",
+      })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-024,ireps-mobile/app/(tabs)/asts/disconnection.jsx,500
+FRM-017-E004,LOCAL_MESSAGE,"{
+        path: ""media"",
+        message: ""Disconnection level evidence required"",
+      }",Client source: ,"this.createError({
+        path: ""media"",
+        message: ""Disconnection level evidence required"",
+      })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-024,ireps-mobile/app/(tabs)/asts/disconnection.jsx,508
+FRM-017-E005,LOCAL_MESSAGE,Could not open this instruction media item.,Client source: openActiveMediaExternal,"Alert.alert(
+        ""Open Media Failed"",
+        ""Could not open this instruction media item."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-024,ireps-mobile/app/(tabs)/asts/disconnection.jsx,622
+FRM-017-E006,LOCAL_SAVE_ONLY,Saved locally only. Not submitted.,Client source: saveDraftToQueue,"{
+            success: false,
+            code: ""LOCAL_SAVE_ONLY"",
+            message: ""Saved locally only. Not submitted."",
+            trnId: cleanPayload?.id || instructionTrnId || ""NAv"",
+          }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-024,ireps-mobile/app/(tabs)/asts/disconnection.jsx,1426
+FRM-017-E007,LOCAL_MESSAGE,Failed to save disconnection draft locally.,Client source: saveDraftToQueue,"Alert.alert(
+        ""Draft Save Failed"",
+        ""Failed to save disconnection draft locally."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-024,ireps-mobile/app/(tabs)/asts/disconnection.jsx,1452
+FRM-017-E008,LOCAL_MESSAGE,"error?.message || ""Failed to save this DCN form locally.""",Client source: handleSaveDisconnection,"Alert.alert(
+        ""Save Failed"",
+        error?.message || ""Failed to save this DCN form locally."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-024,ireps-mobile/app/(tabs)/asts/disconnection.jsx,1487
+FRM-017-E009,LOCAL_MESSAGE,This DCN execution form must be opened from an accepted WMS instruction.,Client source: handleSubmitDisconnection,"Alert.alert(
+        ""Missing Instruction"",
+        ""This DCN execution form must be opened from an accepted WMS instruction."",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-024,ireps-mobile/app/(tabs)/asts/disconnection.jsx,1662
+FRM-017-E010,LOCAL_MESSAGE,AST data not found.,Client source: handleSubmitDisconnection,"Alert.alert(""Error"", ""AST data not found."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-024,ireps-mobile/app/(tabs)/asts/disconnection.jsx,1670
+FRM-017-E011,LOCAL_MESSAGE,Only CONNECTED meters can be disconnected.,Client source: handleSubmitDisconnection,"Alert.alert(""Not Eligible"", ""Only CONNECTED meters can be disconnected."")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-024,ireps-mobile/app/(tabs)/asts/disconnection.jsx,1675
+FRM-017-E012,LOCAL_MESSAGE,"You are offline. Press SAVE to keep this disconnection on the phone, then submit it when you are online.",Client source: handleSubmitDisconnection,"Alert.alert(
+          ""Offline: nothing was sent"",
+          ""You are offline. Press SAVE to keep this disconnection on the phone, then submit it when you are online."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-024,ireps-mobile/app/(tabs)/asts/disconnection.jsx,1711
+FRM-017-E013,LOCAL_MESSAGE,"error?.message || ""Meter disconnection submission failed.""",Client source: handleSubmitDisconnection,"Alert.alert(
+          ""Submission Failed"",
+          error?.message || ""Meter disconnection submission failed."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-024,ireps-mobile/app/(tabs)/asts/disconnection.jsx,1787
+FRM-017-E014,LOCAL_MESSAGE,"result?.message || ""Meter disconnection submission failed.""",Client source: handleSubmitDisconnection,"Alert.alert(
+          ""Submission Failed"",
+          result?.message || ""Meter disconnection submission failed."",
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-024,ireps-mobile/app/(tabs)/asts/disconnection.jsx,1798
+FRM-017-E015,LOCAL_MESSAGE,"error?.message || ""Submission failed""",Client source: handleSubmitDisconnection,"Alert.alert(""Error"", error?.message || ""Submission failed"")",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-024,ireps-mobile/app/(tabs)/asts/disconnection.jsx,1822
+FRM-017-E016,LOCAL_MESSAGE,"This disconnection form has not been submitted. If you cancel now, the captured data will be lost unless you use SAVE.",Client source: confirmCancel,"Alert.alert(
+      ""Cancel Disconnection Form?"",
+      ""This disconnection form has not been submitted. If you cancel now, the captured data will be lost unless you use SAVE."",
+      [
+        {
+          text: ""STAY"",
+          style: ""cancel"",
+        },
+        {
+          text: ""CANCEL FORM"",
+          style: ""destructive"",
+          onPress: () => router.back(),
+        },
+      ],
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-024,ireps-mobile/app/(tabs)/asts/disconnection.jsx,1840
+FRM-017-E017,LOCAL_MESSAGE,This will clear your changes and return the form to the state it had when it first loaded.,Client source: FormMeterDisconnection,"Alert.alert(
+                    ""Reset Form?"",
+                    ""This will clear your changes and return the form to the state it had when it first loaded."",
+                    [
+                      {
+                        text: ""KEEP EDITING"",
+                        style: ""cancel"",
+                      },
+                      {
+                        text: ""RESET"",
+                        style: ""destructive"",
+                        onPress: () => {
+                          resetForm();
+
+                          setTimeout(() => {
+                            validateForm();
+                          }, 0);
+                        },
+                      },
+                    ],
+                  )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-024,ireps-mobile/app/(tabs)/asts/disconnection.jsx,2290
+FRM-017-E018,LCT_TYPE_NOT_IMPLEMENTED,`${trnType} is not implemented yet`,Server source: getActionCheck,"{
+    ok: false,
+    code: ""LCT_TYPE_NOT_IMPLEMENTED"",
+    message: `${trnType} is not implemented yet`,
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,385
+FRM-017-E019,UNAUTHENTICATED,Authentication is required,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+        ""UNAUTHENTICATED"",
+        ""Authentication is required"",
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,400
+FRM-017-E020,dynamic code,commonCheck.message,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(commonCheck.code, commonCheck.message)",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,413
+FRM-017-E021,LCT_TYPE_NOT_IMPLEMENTED,`${trnType} is not implemented yet`,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+        ""LCT_TYPE_NOT_IMPLEMENTED"",
+        `${trnType} is not implemented yet`,
+        {
+          trnId,
+          trnType,
+          astId,
+        },
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,445
+FRM-017-E022,INSPECTION_OFFICE_WMS_ONLY,Meter inspection execution must complete an accepted office-originated instruction TRN,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+        ""INSPECTION_OFFICE_WMS_ONLY"",
+        ""Meter inspection execution must complete an accepted office-originated instruction TRN"",
+        {
+          trnId,
+          trnType,
+          astId,
+        },
+      )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,463
+FRM-017-E023,UNAUTHORIZED_FIELD_ORIGIN,Only FWR or SPV actors can originate this lifecycle transaction from the field,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+          ""UNAUTHORIZED_FIELD_ORIGIN"",
+          ""Only FWR or SPV actors can originate this lifecycle transaction from the field"",
+          {
+            trnId,
+            trnType,
+            astId,
+            actorRole: fieldAuthority.role,
+            actorServiceProviderId: fieldAuthority.spId,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,486
+FRM-017-E024,dynamic code,assignmentCheck.message,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(assignmentCheck.code, assignmentCheck.message, {
+        trnId,
+        trnType,
+        astId,
+      })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,507
+FRM-017-E025,AST_NOT_FOUND,The referenced AST does not exist,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+          ""AST_NOT_FOUND"",
+          ""The referenced AST does not exist"",
+          {
+            trnId,
+            trnType,
+            astId,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,537
+FRM-017-E026,PREMISE_NOT_FOUND,The referenced premise does not exist,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+          ""PREMISE_NOT_FOUND"",
+          ""The referenced premise does not exist"",
+          {
+            trnId,
+            trnType,
+            astId,
+            premiseId,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,551
+FRM-017-E027,dynamic code,batchWorkCheck.message,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+          batchWorkCheck.code,
+          batchWorkCheck.message,
+          {
+            trnId,
+            trnType,
+            astId,
+            batch: batchWorkCheck.details,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,591
+FRM-017-E028,INSTRUCTION_TRN_NOT_FOUND,The lifecycle instruction TRN does not exist,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+            ""INSTRUCTION_TRN_NOT_FOUND"",
+            ""The lifecycle instruction TRN does not exist"",
+            {
+              trnId,
+              trnType,
+              astId,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,612
+FRM-017-E029,INVALID_INSTRUCTION_TRN_TYPE,The referenced instruction TRN type does not match the execution payload,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+            ""INVALID_INSTRUCTION_TRN_TYPE"",
+            ""The referenced instruction TRN type does not match the execution payload"",
+            {
+              trnId,
+              existingTrnType,
+              trnType,
+              astId,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,630
+FRM-017-E030,INSTRUCTION_NOT_EXECUTABLE,Rejected or cancelled lifecycle instructions cannot be executed,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+            ""INSTRUCTION_NOT_EXECUTABLE"",
+            ""Rejected or cancelled lifecycle instructions cannot be executed"",
+            {
+              trnId,
+              trnType,
+              workflowState,
+              astId,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,670
+FRM-017-E031,INSTRUCTION_NOT_ACCEPTED,Lifecycle instruction must be accepted before execution can be submitted,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+            ""INSTRUCTION_NOT_ACCEPTED"",
+            ""Lifecycle instruction must be accepted before execution can be submitted"",
+            {
+              trnId,
+              trnType,
+              workflowState,
+              astId,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,685
+FRM-017-E032,dynamic code,actionCheck?.message,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+            actionCheck?.code,
+            actionCheck?.message,
+            {
+              trnId,
+              trnType,
+              astId,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,708
+FRM-017-E033,dynamic code,servicePatchResult.message,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+              servicePatchResult.code,
+              servicePatchResult.message,
+              {
+                trnId,
+                trnType,
+                astId,
+              },
+            )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,744
+FRM-017-E034,dynamic code,actionCheck?.message,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+          actionCheck?.code,
+          actionCheck?.message,
+          {
+            trnId,
+            trnType,
+            astId,
+          },
+        )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,969
+FRM-017-E035,dynamic code,servicePatchResult.message,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+            servicePatchResult.code,
+            servicePatchResult.message,
+            {
+              trnId,
+              trnType,
+              astId,
+            },
+          )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,1005
+FRM-017-E036,UNKNOWN_ERROR,Lifecycle TRN was not processed,Server source: onMeterLifecycleTrnCallable,"buildFailureResult(""UNKNOWN_ERROR"", ""Lifecycle TRN was not processed"", {
+        trnId,
+        trnType,
+        astId,
+      })",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,1146
+FRM-017-E037,dynamic code,"error?.message || ""Failed to submit lifecycle transaction""",Server source: onMeterLifecycleTrnCallable,"buildFailureResult(
+      error?.irepsCode || ""UNKNOWN_ERROR"",
+      error?.message || ""Failed to submit lifecycle transaction"",
+    )",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-076,ireps-web-normalisation/functions/meterLifecycle/callables.js,1160
+FRM-017-E038,INVALID_AST_STATE,Only CONNECTED meters can be disconnected,Server source: validateMeterDisconnection,"{
+      ok: false,
+      code: ""INVALID_AST_STATE"",
+      message: ""Only CONNECTED meters can be disconnected"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,2766
+FRM-017-E039,INVALID_METER_TYPE,Only electricity or water meters can be disconnected,Server source: validateMeterDisconnection,"{
+      ok: false,
+      code: ""INVALID_METER_TYPE"",
+      message: ""Only electricity or water meters can be disconnected"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,2774
+FRM-017-E040,DISCONNECTION_INSTRUCTION_REQUIRED,Disconnection instruction is required,Server source: validateMeterDisconnection,"{
+      ok: false,
+      code: ""DISCONNECTION_INSTRUCTION_REQUIRED"",
+      message: ""Disconnection instruction is required"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,2783
+FRM-017-E041,NO_ACCESS_REASON_REQUIRED,No-access reason is required,Server source: validateMeterDisconnection,"{
+        ok: false,
+        code: ""NO_ACCESS_REASON_REQUIRED"",
+        message: ""No-access reason is required"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,2792
+FRM-017-E042,MISSING_NO_ACCESS_PHOTO,No access photo is required,Server source: validateMeterDisconnection,"{
+        ok: false,
+        code: ""MISSING_NO_ACCESS_PHOTO"",
+        message: ""No access photo is required"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,2804
+FRM-017-E043,INVALID_DISCONNECTION_LEVEL,Valid disconnection level is required,Server source: validateMeterDisconnection,"{
+      ok: false,
+      code: ""INVALID_DISCONNECTION_LEVEL"",
+      message: ""Valid disconnection level is required"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,2830
+FRM-017-E044,MISSING_DISCONNECTION_LEVEL_EVIDENCE,Disconnection level evidence media is required,Server source: validateMeterDisconnection,"{
+      ok: false,
+      code: ""MISSING_DISCONNECTION_LEVEL_EVIDENCE"",
+      message: ""Disconnection level evidence media is required"",
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-077,ireps-web-normalisation/functions/meterLifecycle/helpers.js,2848
+FRM-017-E045,NAv,NAv,Client source: addSubmissionQueueItem,"{
+        success: false,
+        code: ""NAv"",
+        message: ""NAv"",
+        trnId: ""NAv"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-058,ireps-mobile/src/utils/submissionQueue.js,87
+FRM-017-E046,"result?.code || ""SUCCESS""","result?.message || ""Synced successfully""",Client source: markSubmissionQueueItemSuccess,"{
+        success: true,
+        code: result?.code || ""SUCCESS"",
+        message: result?.message || ""Synced successfully"",
+        trnId: result?.trnId || ""NAv"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-058,ireps-mobile/src/utils/submissionQueue.js,288
+FRM-017-E047,"result?.code || ""SYNC_FAILED""","result?.message || ""Sync failed. This draft remains pending for retry.""",Client source: markSubmissionQueueItemFailed,"{
+    queueItemId,
+    previousStatus: existingItem?.status,
+    code: result?.code || ""SYNC_FAILED"",
+    message:
+      result?.message || ""Sync failed. This draft remains pending for retry."",
+    trnId: result?.trnId || ""NAv"",
+    result,
+  }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-058,ireps-mobile/src/utils/submissionQueue.js,319
+FRM-017-E048,"result?.code || ""SYNC_FAILED""","result?.message ||
+          ""Sync failed. This draft remains pending for retry.""",Client source: markSubmissionQueueItemFailed,"{
+        success: false,
+        code: result?.code || ""SYNC_FAILED"",
+        message:
+          result?.message ||
+          ""Sync failed. This draft remains pending for retry."",
+        trnId: result?.trnId || ""NAv"",
+      }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-058,ireps-mobile/src/utils/submissionQueue.js,333
+FRM-017-E049,error?.code,error?.message,Client source: removeSubmissionQueueItemsByInstructionTrnId,"{
+      instructionTrnId,
+      code: error?.code,
+      message: error?.message,
+      stack: error?.stack,
+      raw: error,
+    }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-058,ireps-mobile/src/utils/submissionQueue.js,510
+FRM-017-E050,SERVER_CONFIRMED,Server confirmed this queued TRN was saved successfully.,Client source: reconcileSubmissionQueueWithServerTrns,"{
+          success: true,
+          code: ""SERVER_CONFIRMED"",
+          message:
+            ""Server confirmed this queued TRN was saved successfully."",
+          trnId: readServerTrnId(serverTrn),
+        }",Inspect trigger/commit ordering; this extracted entry alone does not establish rollback.,Use the situation table and module-specific guidance; preserve original attempt identity.,FS-058,ireps-mobile/src/utils/submissionQueue.js,664
